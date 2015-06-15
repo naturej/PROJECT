@@ -1,5 +1,7 @@
 package kr.co.ohdeokrionline.model.dao;
 
-public interface Message_Dao {
+import kr.co.ohdeokrionline.model.vo.Message_DTO;
 
+public interface Message_Dao {
+	void insertMessage(Message_DTO message);
 }
