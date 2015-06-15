@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<form method="post">
+		ID:  <input type="text" name="user_id"/><br>
+		PWD: <input type="password" name="password"/><br>
+		<input type="submit" value="확인"/>
+	</form>
 </body>
 </html>

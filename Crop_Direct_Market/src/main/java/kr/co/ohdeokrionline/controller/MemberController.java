@@ -1,5 +1,13 @@
 package kr.co.ohdeokrionline.controller;
 
-public class MemberController {
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@Controller
+public class MemberController {
+	@RequestMapping("login.five")
+	public String login(){
+		
+		return "login/login";
+	}
 }
