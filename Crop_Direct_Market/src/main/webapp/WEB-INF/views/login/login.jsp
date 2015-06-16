@@ -8,9 +8,19 @@
 </head>
 <body>
 	<form method="post">
-		ID:  <input type="text" name="user_id"/><br>
-		PWD: <input type="password" name="password"/><br>
-		<input type="submit" value="확인"/>
+		<table>
+			<tr>
+				<td>ID:&nbsp;</td>
+				<td><input type="text" name="user_id"/></td>
+			</tr>
+			<tr>
+				<td>PWD:</td>
+				<td><input type="password" name="password"/></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right"><a href="join.five">회원가입</a>&nbsp;<input type="submit" value="확인"/></td>
+			</tr>
+		</table>
 	</form>
 </body>
 </html>

@@ -28,6 +28,11 @@ public class MemberController {
 		return "index";
 	}
 	
+	@RequestMapping(value="join.five",method=RequestMethod.GET)
+	public String joinForm() {
+		return "join/join";
+	}
+	
 	@RequestMapping("test.message")
 	public void insert() {
 		Message_Dao dao = sqlSession.getMapper(Message_Dao.class);
