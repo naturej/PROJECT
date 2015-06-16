@@ -171,7 +171,7 @@
 			<!-- 유저사진등록 -->
 			<tr>
 				<td>사진</td>
-				<td><input type="file" name="photo" placeholder="image"></td>
+				<td><input type="file" name="file" placeholder="image"></td>
 			</tr>
 
 			<!-- 지역주소등록 -->

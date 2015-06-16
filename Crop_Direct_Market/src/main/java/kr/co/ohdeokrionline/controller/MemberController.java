@@ -61,7 +61,8 @@ public class MemberController {
 		
 		if(file != null){
 			String fname = file.getOriginalFilename();
-			String path = request.getServletContext().getRealPath("/upload");
+			//String path = request.getServletContext().getRealPath("upload");
+			String path = "C:\\Users\\KOSTA\\git\\PROJECT\\Crop_Direct_Market\\src\\main\\webapp\\upload";
 			System.out.println(path);
 			String fullpath = path + "\\" + fname;
 			if(!fname.equals("")){
