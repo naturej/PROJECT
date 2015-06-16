@@ -51,7 +51,7 @@
 										on m.USERID=r.USERID
 										where m.USERID=?"
 			/>
-			<security:password-encoder ref="bcryptPasswordEncoder" hash="sha"/>
+			<security:password-encoder ref="bcryptPasswordEncoder" hash="bcrypt"/>
 		</security:authentication-provider>
 	</security:authentication-manager>
 </beans>

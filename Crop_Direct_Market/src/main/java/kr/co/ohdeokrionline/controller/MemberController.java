@@ -2,9 +2,11 @@ package kr.co.ohdeokrionline.controller;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ohdeokrionline.model.dao.Member_Dao;
 import kr.co.ohdeokrionline.model.dao.Message_Dao;
@@ -88,13 +90,14 @@ public class MemberController {
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 	
-	@RequestMapping(value="passwordEncoder",method={RequestMethod.GET,RequestMethod.POST})
-	String passwordEncoder(@RequestParam(value="targetStr",required=false,defaultValue="")String targetStr, Model model){
-		if(StringUtils.hasText(targetStr)){
+	@RequestMapping(value="passwordEncoder.five",method={RequestMethod.GET,RequestMethod.POST})
+	String passwordEncoder(@RequestParam(value="password",required=false,defaultValue="")String password, Model model) throws IOException{
+		if(StringUtils.hasText(password)){
 			// 암호화 작업
-			String bCryptString = passwordEncoder.encode(targetStr);
-			model.addAttribute("targetStr",targetStr);
-			model.addAttribute("bCryptString", bCryptString);
+			String bCryptString = passwordEncoder.encode(password);
+			System.out.println(bCryptString);
+			model.addAttribute("passwordEncoder", bCryptString);
+			return "join/encoder"; 
 		}
 		return "";
 	}

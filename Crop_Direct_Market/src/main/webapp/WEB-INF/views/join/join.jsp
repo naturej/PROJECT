@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript">
 	
 		/* 유효성검사 */
@@ -73,8 +73,17 @@
 				document.joinForm.email.focus();
 				exit;
 			}
-
-			document.joinForm.submit();
+			$.ajax({
+				  type: "POST",
+				  url: "passwordEncoder.five",
+				  data: {password:$('#password').val()},
+				  success: function(data){
+					  $('#password').val(data);
+					  alert('data : '+data);
+					  document.joinForm.submit();
+				  }
+			});
+			
 
 		}
 		
@@ -124,7 +133,7 @@
 			<!-- 비밀번호 입력 -->
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="password" name="password" placeholder="Password"></td>
+				<td><input type="password" name="password" id="password" placeholder="Password"></td>
 			</tr>
 
 			<!-- 비밀번호 입력 -->
