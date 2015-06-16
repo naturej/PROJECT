@@ -69,6 +69,11 @@
 				<td>우편번호</td>
 				<td><input type="text" name="add_code" placeholder="phoneNumber"></td>
 			</tr>
+			
+			<tr>
+				<td><input type="submit" value="가입확인"></td>
+				<td><input type="reset" value="가입취소"></td>
+			</tr>
 		</table>
 
 	</form>
