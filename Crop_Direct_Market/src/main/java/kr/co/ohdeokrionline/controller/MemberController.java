@@ -18,10 +18,14 @@ public class MemberController {
 	private SqlSession sqlSession;
 
 
-	@RequestMapping("login.five")
+	@RequestMapping(value="login.five",method=RequestMethod.GET)
 	public String login() {
-
 		return "login/login";
+	}
+	
+	@RequestMapping(value="login.five",method=RequestMethod.POST)
+	public String loginProcess() {
+		return "index";
 	}
 	
 	@RequestMapping("test.message")
