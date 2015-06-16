@@ -4,5 +4,12 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.ohdeokrionline.model.dao.Message_Dao">
 	<insert id="insertMessage" parameterType="kr.co.ohdeokrionline.model.vo.Message_DTO">
+	insert into message_rec(ME_NUM, ME_SUBJECT, ME_CONTENT, ME_DATE, SEND_USERID, REC_USERID) 
+	values(#{me_num}, #{me_subject}, #{me_content}, #{me_date}, #{send_userid}, #{rec_userid});
+	
+	insert into message_send(ME_NUM, ME_SUBJECT, ME_CONTENT, ME_DATE, SEND_USERID, REC_USERID) 
+	values(#{me_num}, #{me_subject}, #{me_content}, #{me_date}, #{send_userid}, #{rec_userid});
 	</insert>
+	
+	
 </mapper>
