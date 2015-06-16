@@ -26,7 +26,7 @@ public class MemberController {
 	@Autowired
 	private SqlSession sqlSession;
 
-
+	// 로그인
 	@RequestMapping(value="login.five",method=RequestMethod.GET)
 	public String login() {
 		return "login/login";
@@ -37,6 +37,7 @@ public class MemberController {
 		return "index";
 	}
 	
+	// 회원가입
 	@RequestMapping(value="join.five",method=RequestMethod.GET)
 	public String joinForm() {
 		return "join/join";
