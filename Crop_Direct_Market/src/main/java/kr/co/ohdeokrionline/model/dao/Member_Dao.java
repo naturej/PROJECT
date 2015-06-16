@@ -1,5 +1,9 @@
 package kr.co.ohdeokrionline.model.dao;
 
-public interface Member_Dao {
+import java.sql.SQLException;
 
+import kr.co.ohdeokrionline.model.vo.Member_DTO;
+
+public interface Member_Dao {
+	int joinInsert(Member_DTO member) throws ClassNotFoundException, SQLException;
 }

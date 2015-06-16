@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Main page 입니다.
+	Main page 입니다.<br>
+	<a href="login.five">로그인</a>
 </body>
 </html>

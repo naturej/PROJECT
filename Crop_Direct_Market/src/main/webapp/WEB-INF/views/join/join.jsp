@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- 회원가입 폼 -->
-	<form action="" method="post" enctype="multipart/form-data" >
+	<!-- 회원가입 폼  -->
+	<form method="post" enctype="multipart/form-data">
 		<table>
 			<!-- ID 입력  -->
 			<tr>
@@ -25,13 +25,13 @@
 			<!-- 비밀번호 입력 -->
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="text" name="password" placeholder="Password"></td>
+				<td><input type="password" name="password" placeholder="Password"></td>
 			</tr>
 
 			<!-- 비밀번호 입력 -->
 			<tr>
 				<td>비밀번호 확인</td>
-				<td><input type="text" name="password2" placeholder="Password"></td>
+				<td><input type="password" name="password2" placeholder="Password"></td>
 			</tr>
 
 			<!-- Email 입력 -->
@@ -43,7 +43,7 @@
 			<!-- 유저사진등록 -->
 			<tr>
 				<td>사진</td>
-				<td><input type="file" name="photo" placeholder="image"></td>
+				<td><input type="file" name="file" placeholder="image"></td>
 			</tr>
 
 			<!-- 지역주소등록 -->
