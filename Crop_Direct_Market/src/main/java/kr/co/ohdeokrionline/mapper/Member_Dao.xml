@@ -10,4 +10,8 @@
 		users(user_id,user_name,password,enabled,email,photo,addr,addd,cell_phone,add_code)
 		values(#{user_id},#{user_name},#{password},1,#{email},#{photo},#{addr},#{addd},#{cell_phone},#{add_code})
 	</insert>
+	
+	<select id="login" resultType="kr.co.ohdeokrionline.model.vo.Member_DTO">
+		select * from users where user_id=#{user_id}
+	</select>
 </mapper>

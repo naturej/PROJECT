@@ -33,8 +33,18 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="login.five",method=RequestMethod.POST)
-	public String loginProcess() {
-		return "index";
+	public String loginProcess(String user_id,String password) {
+		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
+		try {
+			Member_DTO member = dao.login(user_id);
+			if(member.getPassword().equals(password)){
+				return "redirect:index.jsp";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return "login/login";
 	}
 	
 	// 회원가입
@@ -45,7 +55,7 @@ public class MemberController {
 	
 	@RequestMapping(value="join.five",method=RequestMethod.POST)
 	public String joinInsert(Member_DTO member,HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException {
-		System.out.println(member);
+		
 		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
 		CommonsMultipartFile file = member.getFile();
 		
