@@ -2,11 +2,9 @@ package kr.co.ohdeokrionline.controller;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ohdeokrionline.model.dao.Member_Dao;
 import kr.co.ohdeokrionline.model.dao.Message_Dao;
@@ -39,7 +37,10 @@ public class MemberController {
 		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
 		try {
 			Member_DTO member = dao.login(user_id);
-			if(member.getPassword().equals(password)){
+			/*if(member.getPassword().equals(password)){
+				return "redirect:index.jsp";
+			}*/
+			if(passwordEncoder.matches(password, member.getPassword())){
 				return "redirect:index.jsp";
 			}
 		} catch (SQLException e) {
@@ -101,4 +102,5 @@ public class MemberController {
 		}
 		return "";
 	}
+	
 }
