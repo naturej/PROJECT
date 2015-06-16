@@ -3,21 +3,35 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.ohdeokrionline.model.dao.Message_Dao">
+	<!-- 받은 메세지 목록 -->
 	<select id="ListRec" resultType="kr.co.ohdeokrionline.model.vo.Message_DTO">
-		select * from message_rec
+		SELECT * FROM MESSAGE_REC
 	</select>
 	
+	<!-- 보낸 메세지 목록 -->	
 	<select id="ListSend" resultType="kr.co.ohdeokrionline.model.vo.Message_DTO">
-		select * from message_send
+		SELECT * FROM MESSAGE_SEND
 	</select>
 
-	<insert id="insertMessageRec" parameterType="kr.co.ohdeokrionline.model.vo.Message_DTO">
+	<!-- MESSAGE_REC 테이블에 삽입-->
+	<insert id="insertRec" parameterType="kr.co.ohdeokrionline.model.vo.Message_DTO">
 	INSERT INTO MESSAGE_REC(ME_NUM, ME_SUBJECT, ME_CONTENT, ME_DATE, SEND_USERID, REC_USERID) 
 	VALUES(MES_R_SEQ.NEXTVAL, #{me_subject}, #{me_content}, #{me_date}, #{send_userid}, #{rec_userid})
 	</insert>
 	
-	<insert id="insertMessageSend" parameterType="kr.co.ohdeokrionline.model.vo.Message_DTO">
+	<!-- MESSAGE_SEND 테이블에 삽입-->
+	<insert id="insertSend" parameterType="kr.co.ohdeokrionline.model.vo.Message_DTO">
 	INSERT INTO MESSAGE_SEND(ME_NUM, ME_SUBJECT, ME_CONTENT, ME_DATE, SEND_USERID, REC_USERID) 
 	VALUES(MES_S_SEQ.NEXTVAL, #{me_subject}, #{me_content}, #{me_date}, #{send_userid}, #{rec_userid})
 	</insert>
+	
+	<!-- 받은 메세지함에서 삭제 -->
+	<delete id="deleteRec">
+		DELETE MESSAGE_REC FROM ME_NUM=#{me_num}
+	</delete>
+	
+	<!-- 보낸 메세지함에서 삭제 -->
+	<delete id="deleteSend">
+		DELETE MESSAGE_SEND FROM ME_NUM=#{me_num}
+	</delete>
 </mapper>
