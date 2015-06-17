@@ -15,7 +15,8 @@
 		<td>보내는사람</td>
 		<td>제목</td>
 		<td>작성일</td>
-		<td></td>
+		<td>수신확인</td>
+		<td>삭제</td>
 	<tr>
 	<c:forEach items="${list}" var="m">
 	<tr>
@@ -24,6 +25,8 @@
 		<td>${m.send_userid}</td>
 		<td><a href="SendDetail.five?me_num=${m.me_num}">${m.me_subject}</a></td>
 		<td>${m.me_date}</td>
+		<c:if test="${m.me_count != '1'}"><td>읽지않음</td></c:if>
+		<c:if test="${m.me_count == '1'}"><td>읽음</td></c:if>
 		<td><a href="deleteSend.five?me_num=${m.me_num}">삭제</a></td>
 	<tr>
 	</c:forEach>

@@ -5,12 +5,12 @@
 <mapper namespace="kr.co.ohdeokrionline.model.dao.Message_Dao">
 	<!-- 받은 메세지 목록 -->
 	<select id="listRec" resultType="kr.co.ohdeokrionline.model.vo.Message_DTO">
-		SELECT * FROM MESSAGE_REC
+		SELECT * FROM MESSAGE_REC ORDER BY ME_NUM DESC
 	</select>
 	
 	<!-- 보낸 메세지 목록 -->	
 	<select id="listSend" resultType="kr.co.ohdeokrionline.model.vo.Message_DTO">
-		SELECT * FROM MESSAGE_SEND
+		SELECT * FROM MESSAGE_SEND ORDER BY ME_NUM DESC
 	</select>
 	
 	<!-- 받은 메세지 상세보기 -->
@@ -37,6 +37,11 @@
 	VALUES(MES_S_SEQ.NEXTVAL, #{me_subject, jdbcType=VARCHAR}, #{me_content, jdbcType=VARCHAR},
 	 #{send_userid, jdbcType=VARCHAR}, #{rec_userid, jdbcType=VARCHAR})
 	</insert>
+	
+	<!-- 메세지 조회수 증가 -->
+	<update id="updateSend">
+	UPDATE MESSAGE_SEND SET ME_COUNT=1 WHERE ME_NUM=#{me_num}
+	</update>
 	
 	<!-- 받은 메세지함에서 삭제 -->
 	<delete id="deleteRec">

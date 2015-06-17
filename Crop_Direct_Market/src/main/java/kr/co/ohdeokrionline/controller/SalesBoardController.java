@@ -50,10 +50,13 @@ public class SalesBoardController {
 	}
 	
 	// 받은 메세지 상세보기
+	@Transactional
 	@RequestMapping("RecDetail.five")
 	public String RecDetail(Model model, String me_num){
+		System.out.println("메세지 조회수 증가...");
 		Message_Dao dao = sqlSession.getMapper(Message_Dao.class);
 		Message_DTO dto = dao.recDetail(me_num);
+		dao.updateSend(me_num);
 		model.addAttribute("dto",dto);
 		
 		return "marketplace/receiveDetail";

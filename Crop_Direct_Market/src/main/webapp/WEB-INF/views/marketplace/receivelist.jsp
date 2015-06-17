@@ -15,7 +15,7 @@
 		<td>보내는사람</td>
 		<td>제목</td>
 		<td>작성일</td>
-		<td></td>
+		<td>삭제</td>
 	<tr>
 	<c:forEach items="${list}" var="m">
 	<tr>

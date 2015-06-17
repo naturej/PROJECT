@@ -9,6 +9,7 @@ public class Message_DTO {
 	private Date me_date;
 	private String send_userid;
 	private String rec_userid;
+	private int me_count;
 	
 	public int getMe_num() {
 		return me_num;
@@ -46,5 +47,11 @@ public class Message_DTO {
 	public void setRec_userid(String rec_userid) {
 		this.rec_userid = rec_userid;
 	}
-	
+	public int getMe_count() {
+		return me_count;
+	}
+	public void setMe_count(int me_count) {
+		this.me_count = me_count;
+	}
+
 }
