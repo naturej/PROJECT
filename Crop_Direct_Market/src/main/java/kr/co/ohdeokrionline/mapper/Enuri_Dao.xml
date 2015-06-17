@@ -13,7 +13,7 @@
 	</select>
 	
 	<!-- 판매글 제목 가져오기-->
-	<select id="bo_subject">
+	<select id="bo_subject" parameterType="kr.co.ohdeokrionline.model.vo.Message_DTO">
 	SELECT DISTINCT(S.BO_SUBJECT)
 	FROM SALBOARD S
 	JOIN ENURI E

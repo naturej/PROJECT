@@ -103,7 +103,7 @@ public class SalesBoardController {
 	// 에누리 리스트
 	@Transactional
 	@RequestMapping("enulist.five")
-	public String enuList(Model model, String bo_num){
+	public String enuList(Model model, int bo_num){
 		
 		Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
 		model.addAttribute("list",dao.enuList());
