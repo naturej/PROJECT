@@ -4,6 +4,12 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace=
 	"kr.co.ohdeokrionline.model.dao.SchduleRecord_Dao">
-
-
+	<select id="mySchedule" resultType="kr.co.ohdeokrionline.model.vo.ScheduleRecord_DTO">
+		select * from plan where user_id=#{user_id}
+	</select>
+	<insert id="scheduleAdd" parameterType="kr.co.ohdeokrionline.model.vo.ScheduleRecord_DTO">
+		insert into
+		plan(user_id,pl_date,pl_sub,pl_content,pro_name)
+		values(#{user_id},#{pl_date},#{pl_sub},#{pl_content},#{pro_name})
+	</insert>
 </mapper>
