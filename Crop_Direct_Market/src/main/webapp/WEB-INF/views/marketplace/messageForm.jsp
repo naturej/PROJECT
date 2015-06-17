@@ -7,11 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function winclose() {
-		window.close();
-	}
-
-	function sendmsg() {
+	function sendmsg() {	
+		alert('메세지가 전송되었습니다');
 		window.close();
 	}
 </script>
@@ -46,8 +43,8 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-				<input type="submit" value="발송" onclick="javascript:sendmsg()">
-				<input type="button" value="닫기" onclick="winclose()">
+				<input type="submit" value="전송" onclick="sendmsg()">
+				<input type="button" value="닫기" onclick="window.close()">
 				</td>
 			</tr>
 		</table>

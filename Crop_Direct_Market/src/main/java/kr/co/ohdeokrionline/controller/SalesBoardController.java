@@ -18,14 +18,12 @@ public class SalesBoardController {
 	// 테스트용 페이지 이동
 	@RequestMapping("test.five")
 	public String sendpage() {
-		System.out.println("왜못잡냐");
 		return "marketplace/messagetestpage";
 	}
 
-	// 테스트용 페이지 이동
+	// 메시지 발송창 팝업 
 	@RequestMapping("popup.five")
 	public String openpopup() {
-		System.out.println("이건 잡니?");
 		return "marketplace/messageForm";
 	}
 	
