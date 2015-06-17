@@ -7,28 +7,48 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	
+	function winclose() {
+		window.close();
+	}
+
+	function sendmsg() {
+		window.close();
+	}
 </script>
 </head>
 <body>
-	<form action="">
+	<form action="sendMessage.five">
 		<table>
 			<tr>
 				<!-- 팝업 되기 전에 받아 온 정보를 가져와서 뿌려야 하는 데이터 -->
-				<td>받는 사람 : </td> 
-				<%-- <td><%=request.getParameter("recname")%></td> --%>
-				<td> gathering11 </td><!-- 테스트용 고정 값 -->
-
-			<tr>
-			<tr>
-				<td><input type="text" name="title"></td>
+				<td>받는사람</td>
+				<td>geatin(고정값)</td>
 			</tr>
 			<tr>
-				<td><textarea name="content"></textarea></td>
+				<td>보내는 사람</td>
+				<td>gathering11(고정값)</td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="발송"></td>
-				<td><input type="button" value="닫기" onclick="close()"></td>
+				<td>제목</td>
+				<td><input type="text" name="me_subject"></td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td><textarea name="me_content"></textarea></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="send_userid" value="gathering11" hidden><!-- 테스트용 고정 값 -->
+				</td>
+				<td><input type="text" name="rec_userid" value="geatin" hidden><!-- 테스트용 고정 값 -->
+				</td>
+				<td><input type="text" name="ME_DATE" value="sysdate" hidden><!-- 테스트용 고정 값 -->
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+				<input type="submit" value="발송" onclick="javascript:sendmsg()">
+				<input type="button" value="닫기" onclick="winclose()">
+				</td>
 			</tr>
 		</table>
 	</form>

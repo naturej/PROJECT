@@ -11,7 +11,7 @@
 	$(function() {
 		$(".name").click(
 				function() {
-					window.open('messageForm.jsp?rec_name=' + $(this).html(),
+					window.open('popup.five?rec_name=' + $(this).html(),
 							'top=100px, left=100px, height=700 width=1000')
 				});
 	});
