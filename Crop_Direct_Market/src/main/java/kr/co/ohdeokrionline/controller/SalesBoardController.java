@@ -1,5 +1,6 @@
 package kr.co.ohdeokrionline.controller;
 
+import kr.co.ohdeokrionline.model.dao.Enuri_Dao;
 import kr.co.ohdeokrionline.model.dao.Message_Dao;
 import kr.co.ohdeokrionline.model.vo.Message_DTO;
 
@@ -91,11 +92,25 @@ public class SalesBoardController {
 	}
 	
 	// 받은 메세지 삭제
-		@RequestMapping("deleteRec.five")
-		public String deleteRec(String me_num){
-			Message_Dao dao = sqlSession.getMapper(Message_Dao.class);
-			dao.deleteRec(me_num);
-			
-			return "redirect:receiveList.five";
-		}
+	@RequestMapping("deleteRec.five")
+	public String deleteRec(String me_num){
+		Message_Dao dao = sqlSession.getMapper(Message_Dao.class);
+		dao.deleteRec(me_num);
+		
+		return "redirect:receiveList.five";
+	}
+	
+	// 에누리 리스트
+	@Transactional
+	@RequestMapping("enulist.five")
+	public String enuList(Model model, String bo_num){
+		
+		Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
+		model.addAttribute("list",dao.enuList());
+		model.addAttribute("bo_id",dao.bo_id(bo_num));
+		model.addAttribute("bo_subject",dao.bo_subject(bo_num));
+		
+		return "marketplace/enulist";
+	} 
+		
 }

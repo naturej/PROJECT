@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import kr.co.ohdeokrionline.model.vo.Enuri_DTO;
 
 public interface Enuri_Dao {
+	// 판매글 아이디
+	public String bo_id(String enu_idx);
+	// 판매글 제목
+	public String bo_subject(String enu_idx);
 	// 에누리 목록
 	public ArrayList<Enuri_DTO> enuList();
 	// 상세보기
