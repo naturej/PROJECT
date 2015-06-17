@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	List<ScheduleRecord_DTO> list = (List<ScheduleRecord_DTO>)session.getAttribute("list");
+	List<ScheduleRecord_DTO> list = (List<ScheduleRecord_DTO>)request.getAttribute("list");
 %>
 <!-- 내일정관리 페이지 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -46,7 +46,7 @@
 	
 	<!-- Include JQuery Frontier Calendar plugin -->
 	<script type="text/javascript" src="js/calendar/js/frontierCalendar/jquery-frontier-cal-1.3.2.js"></script>
-
+	
 </head>
 <body style="background-color: #aaaaaa;">
 
@@ -365,19 +365,21 @@
 						//DB 등록 작업
 						console.log(list.length);
 						var agi = jfcalplugin.getAgendaItemById("#mycal",++list.length);
+						//var agi = jfcalplugin.getAgendaItemById("#mycal",1);
+						/* var startDate = agi.startDate.toLocaleString().substring(0,12)
+										.replace(".","-").replace(".","-").replace(".","")
+										.replace(" ","0").replace(" ","0"); */
 						var startDate = agi.startDate.toLocaleString().substring(0,12)
-										.replace(".","-").replace(".","-").replace(".","-")
-										.replace(" ","0").replace(" ","0");
 						var endDate = agi.endDate.toLocaleString().substring(0,12)
-									.replace(".","-").replace(".","-").replace(".","-")
+									.replace(".","-").replace(".","-").replace(".","")
 									.replace(" ","0").replace(" ","0");
 						console.log(agi);
 						$.ajax({
 							url : "scheduleAdd.five",
 							data : {
-								user_id : "",
+								user_id : "smlee2",
 								pl_date : startDate,
-								cal : agi
+								pl_content : agi.title
 							},
 							success : function(data){
 								console.log(data);
@@ -731,40 +733,34 @@
 		//스케쥴에 등록
 		console.log(list);
 		$.each(list,function(index,obj){
-			var startDate = obj.startdate;
-			console.log(startDate);
-			var startDtArray = startDate.split("-");
-			var startYear = startDtArray[0];
+			var date = obj.pl_date;
+			console.log(date);
+			var DtArray = date.split("-");
+			var Year = DtArray[0];
 			// jquery datepicker months start at 1 (1=January)		
-			var startMonth = startDtArray[1];		
-			var startDay = startDtArray[2];
-			// strip any preceeding 0's		
-			startMonth = startMonth.replace(/^[0]+/g,"");
-			startDay = startDay.replace(/^[0]+/g,"");
-
-			var endDate = obj.enddate;
-			var endDtArray = endDate.split("-");
-			var endYear = endDtArray[0];
-			// jquery datepicker months start at 1 (1=January)		
-			var endMonth = endDtArray[1];		
-			var endDay = endDtArray[2];
-			// strip any preceeding 0's		
-			endMonth = endMonth.replace(/^[0]+/g,"");
-			endDay = endDay.replace(/^[0]+/g,"");
+			var Month = DtArray[1];		
+			var Day = DtArray[2].replace(" 00:00:00","");
 			
+			// strip any preceeding 0's		
+			Month = Month.replace(/^[0]+/g,"");
+			Day = Day.replace(/^[0]+/g,"");
+			
+			// to integers
+			Year = parseInt(Year);
+			Month = parseInt(Month)-1;
+			Day = parseInt(Day);
+
 			// Dates use integers
-			var startDateObj = new Date(parseInt(startYear),parseInt(startMonth)-1,parseInt(startDay),0,0);
-			var endDateObj = new Date(parseInt(endYear),parseInt(endMonth)-1,parseInt(endDay),0,0);
-			//alert(obj.empno+"/"+obj.title+"/"+obj.startdate+"/"+obj.enddate)
+			var dateObj = new Date(2015,5,17);
 			jfcalplugin.addAgendaItem(
 				"#mycal",
-				obj.title,
-				startDateObj,
-				endDateObj,
+				obj.pl_content,
+				dateObj,
+				dateObj,
 				false,
 				{
-					empno:obj.empno,
-					scnum:obj.scnum
+					empno:1,
+					scnum:1
 				},
 				{
 					backgroundColor: $("#colorBackground").val(),
@@ -772,7 +768,6 @@
 				}
 			);
 		});
-		
 		
 	});
 	</script>
