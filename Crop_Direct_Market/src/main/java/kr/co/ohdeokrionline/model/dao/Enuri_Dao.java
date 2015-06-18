@@ -16,8 +16,8 @@ public interface Enuri_Dao {
 	//에누리 메시지 전달 
 	void insertEnuri(Enuri_DTO enuri);
 	// 에누리 수락
-	public int yesEnuri(String enu_idx);
+	public void yesEnuri(String enu_idx);
 	// 에누리 거절
-	public int noEnuri(String enu_idx);
+	public void noEnuri(String enu_idx);
 	// 장바구니로 보내기
 }

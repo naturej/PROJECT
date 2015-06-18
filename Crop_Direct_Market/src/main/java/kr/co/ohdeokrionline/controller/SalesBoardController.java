@@ -168,17 +168,22 @@ public class SalesBoardController {
 	
 	// 에누리 수락
 	@RequestMapping("yesEnuri.five")
-	public void yesEnuri(String enu_idx){
+	public String yesEnuri(String enu_idx){
+		System.out.println("window.close를 썼을 때 yesEnuri 요청");
 		Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
 		dao.yesEnuri(enu_idx);
 		//사용자 장바구니에 에누리 전달
+		
+		return "marketplace/yesEnuri";
 	}
 	
 	// 에누리 거절
 	@RequestMapping("noEnuri.five")
-	public void noEnuri(String enu_idx){
+	public String noEnuri(String enu_idx){
 		Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
 		dao.noEnuri(enu_idx);
+		
+		return "marketplace/noEnuri";
 	}
 	
 }

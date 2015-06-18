@@ -5,18 +5,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>에누리 상세보기</title>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript">
 	function yesEnuri() {	
-		location.href = "yesEnuri.five?enu_idx=${dto.enu_idx}";
-		alert('수락했습니다');
-		window.close();
+		alert('수락했습니다')
+		window.location = "yesEnuri.five?enu_idx="+${dto.enu_idx};
+		window.opener.location.reload();
+ 		//window.close();//현재 문제  : close()를 사용하면 
+ 					   // 주소 이동 이 전에 닫힌다.
+ 		//window.close();
 	}
-	
-	function noEnuri() {	
-		location.replace("noEnuri.five?enu_idx=${dto.enu_idx}");
-		System.out.println("거절");
+	function noEnuri() {
 		alert('거절했습니다');
-		window.close();
+		window.location = "noEnuri.five?enu_idx="+${dto.enu_idx};
+		window.opener.location.reload();
 	}
 </script>
 </head>
