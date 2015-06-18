@@ -125,7 +125,7 @@ public class SalesBoardController {
 		@RequestMapping("send_enuriMessage.five")
 		public String send_enuri(Enuri_DTO enuri) {
 			System.out.println("왔따~");
-			SaleBoard_Dao dao = sqlSession.getMapper(SaleBoard_Dao.class);
+			Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
 			System.out.println(enuri.toString());
 			dao.insertEnuri(enuri);
 			return null;

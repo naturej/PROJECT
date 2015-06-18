@@ -7,8 +7,4 @@
 	<select id="salDetail" resultType="kr.co.ohdeokrionline.model.vo.SaleBoard_DTO"><!-- 테스트용 상세보기 쿼리 -->
 		SELECT * FROM SALBOARD WHERE BO_NUM= 6
 	</select>
-	<insert id="insertEnuri" parameterType="kr.co.ohdeokrionline.model.vo.Enuri_DTO"><!-- 테스트용 상세보기 쿼리 -->
-		INSERT INTO ENURI(BO_NUM, USER_ID,ENU_CONTENT, ENU_QUAN, ENU_PRICE, ENU_IDX) 
-			VALUES(#{bo_num} ,	#{user_id} ,#{enu_content} ,#{enu_quan} ,#{enu_price} ,	ENU_SEQ.NEXTVAL )
-	</insert>
 </mapper>
