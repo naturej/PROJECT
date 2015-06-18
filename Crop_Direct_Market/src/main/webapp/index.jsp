@@ -10,5 +10,6 @@
 	Main page 입니다.<br>
 	<a href="login.five">로그인</a>
 	<a href="searchPriceApi.five">시세정보</a>
+	<br><a href="schedule.five">일정</a>
 </body>
 </html>

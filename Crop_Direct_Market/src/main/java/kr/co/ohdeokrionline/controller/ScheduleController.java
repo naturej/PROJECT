@@ -32,20 +32,78 @@ public class ScheduleController {
 	@RequestMapping("scheduleAdd.five")
 	public String scheduleAdd(ScheduleRecord_DTO schedule) throws SQLException{
 		
-		String date = schedule.getPl_date().replace(". " , "-").replace(".", "");
-		String[] Dt = date.split("-");
+		String startdate = schedule.getPl_startdate().replace(". " , "-").replace(".", "");
+		String[] startDt = startdate.split("-");
+		String enddate = schedule.getPl_enddate().replace(". " , "-").replace(".", "");
+		String[] endDt = enddate.split("-");
 		
-		schedule.setPl_date(
-				new Date(Integer.parseInt(Dt[0])-1900,
-						Integer.parseInt(Dt[1])-1,
-						Integer.parseInt(Dt[2])).toString()
+		schedule.setPl_startdate(
+				new Date(Integer.parseInt(startDt[0])-1900,
+						Integer.parseInt(startDt[1])-1,
+						Integer.parseInt(startDt[2])).toString()
 						);
-		schedule.setPl_sub("smlee");
-		schedule.setPro_name("보리");
+		
+		schedule.setPl_enddate(
+				new Date(Integer.parseInt(endDt[0])-1900,
+						Integer.parseInt(endDt[1])-1,
+						Integer.parseInt(endDt[2])).toString()
+						);
 		
 		ScheduleRecord_Dao dao = sqlSession.getMapper(ScheduleRecord_Dao.class);
-		
+		System.out.println("add:"+schedule);
 		dao.scheduleAdd(schedule);
-		return "mypage/schedule";
+		return "redirect:schedule.five";
+	}
+	
+	@RequestMapping("scheduleEdit.five")
+	public String scheduleEdit(ScheduleRecord_DTO schedule) throws SQLException{
+		
+		String startdate = schedule.getPl_startdate().replace(". " , "-").replace(".", "");
+		String[] startDt = startdate.split("-");
+		String enddate = schedule.getPl_enddate().replace(". " , "-").replace(".", "");
+		String[] endDt = enddate.split("-");
+		
+		schedule.setPl_startdate(
+				new Date(Integer.parseInt(startDt[0])-1900,
+						Integer.parseInt(startDt[1])-1,
+						Integer.parseInt(startDt[2])).toString()
+						);
+		
+		schedule.setPl_enddate(
+				new Date(Integer.parseInt(endDt[0])-1900,
+						Integer.parseInt(endDt[1])-1,
+						Integer.parseInt(endDt[2])).toString()
+						);
+		
+		ScheduleRecord_Dao dao = sqlSession.getMapper(ScheduleRecord_Dao.class);
+		System.out.println("edit:"+schedule);
+		dao.scheduleEdit(schedule);
+		return "redirect:schedule.five";
+	}
+	
+	@RequestMapping("scheduleRemove.five")
+	public String scheduleRemove(ScheduleRecord_DTO schedule) throws SQLException{
+		
+		String startdate = schedule.getPl_startdate().replace(". " , "-").replace(".", "");
+		String[] startDt = startdate.split("-");
+		String enddate = schedule.getPl_enddate().replace(". " , "-").replace(".", "");
+		String[] endDt = enddate.split("-");
+		
+		schedule.setPl_startdate(
+				new Date(Integer.parseInt(startDt[0])-1900,
+						Integer.parseInt(startDt[1])-1,
+						Integer.parseInt(startDt[2])).toString()
+						);
+		
+		schedule.setPl_enddate(
+				new Date(Integer.parseInt(endDt[0])-1900,
+						Integer.parseInt(endDt[1])-1,
+						Integer.parseInt(endDt[2])).toString()
+						);
+		
+		ScheduleRecord_Dao dao = sqlSession.getMapper(ScheduleRecord_Dao.class);
+		System.out.println("remove:"+schedule);
+		dao.scheduleRemove(schedule);
+		return "redirect:schedule.five";
 	}
 }

@@ -313,10 +313,12 @@
 			buttons: {
 				'일정 추가': function() {
 	
-					var what = jQuery.trim($("#what").val());
-				
-					if(what == ""){
-						alert("Please enter a short event description into the \"what\" field.");
+					var what = jQuery.trim($("#what").val());//제목
+					var pro_name = $('#product').val();//상품명
+					var pl_content = $('#pl_content').val();//내용
+					
+					if(what == "" || pro_name == "" || pl_content == ""){
+						alert("Please enter a short event description into fields.");
 					}else{
 					
 						var startDate = $("#startDate").val();
@@ -354,7 +356,8 @@
 							endDateObj,
 							false,
 							{
-								
+								"상품" : pro_name,
+								"내용" : pl_content
 							},
 							{
 								backgroundColor: $("#colorBackground").val(),
@@ -363,31 +366,31 @@
 						);
 						
 						//DB 등록 작업
-						console.log(list.length);
 						var agi = jfcalplugin.getAgendaItemById("#mycal",++list.length);
-						//var agi = jfcalplugin.getAgendaItemById("#mycal",1);
 						/* var startDate = agi.startDate.toLocaleString().substring(0,12)
 										.replace(".","-").replace(".","-").replace(".","")
 										.replace(" ","0").replace(" ","0"); */
 						var startDate = agi.startDate.toLocaleString().substring(0,12)
 						var endDate = agi.endDate.toLocaleString().substring(0,12)
-									.replace(".","-").replace(".","-").replace(".","")
-									.replace(" ","0").replace(" ","0");
-						console.log(agi);
+						
 						$.ajax({
 							url : "scheduleAdd.five",
 							data : {
 								user_id : "smlee2",
-								pl_date : startDate,
-								pl_content : agi.title
+								pl_startdate : startDate,
+								pl_enddate : endDate,
+								pl_sub : agi.title,
+								pro_name : pro_name,
+								pl_content : pl_content
 							},
 							success : function(data){
-								console.log(data);
+								location.href="schedule.five";
 							},
 							error : function(xhr, status){
 								alert(xhr + '/' + status); 
 							}
 						});
+						
 						$(this).dialog('close');
 					}
 					
@@ -469,6 +472,8 @@
 				$("#endMin option:eq(0)").attr("selected", "selected");
 				$("#endMeridiem option:eq(0)").attr("selected", "selected");			
 				$("#what").val("");
+				$('#product').val("");
+				$('#pl_content').val("");
 				//$("#colorBackground").val("#1040b0");
 				//$("#colorForeground").val("#ffffff");
 			}
@@ -485,14 +490,14 @@
 		         },
 		         '확인': function(){
 		        	
-		        	var what = jQuery.trim($("#edit_what").val());
+		        	var what = jQuery.trim($("#edit_what").val());//제목
+		        	var pro_name = $('#edit_product').val();//상품명
+					var pl_content = $('#edit_pl_content').val();//내용
 					
-					if(what == ""){
-						alert("Please enter a short event description into the \"what\" field.");
+					if(what == "" || pro_name == "" || pl_content == ""){
+						alert("Please enter a short event description into fields.");
 					}else{
-					
 						var startDate = $("#edit_startDate").val();
-						console.log(startDate);
 						var startDtArray = startDate.split("-");
 						var startYear = startDtArray[0];
 						// jquery datepicker months start at 1 (1=January)		
@@ -513,8 +518,7 @@
 	
 						endDay = endDay.replace(/^[0]+/g,"");
 						
-						//alert("Start time: " + startHour + ":" + startMin + " " + startMeridiem + ", End time: " + endHour + ":" + endMin + " " + endMeridiem);
-	
+						
 						// Dates use integers
 						var startDateObj = new Date(parseInt(startYear),parseInt(startMonth)-1,parseInt(startDay),0,0);
 						var endDateObj = new Date(parseInt(endYear),parseInt(endMonth)-1,parseInt(endDay),0,0);
@@ -540,29 +544,23 @@
 						);
 						
 						//DB 등록 작업
-						var agi = jfcalplugin.getAgendaItemById("#mycal",clickAgendaItem.agendaId);
-		        		var scnum = agi.data.scnum;
-						var startDate = agi.startDate.toLocaleString().substring(0,12)
-										.replace(".","-").replace(".","-").replace(".","-")
-										.replace(" ","0").replace(" ","0");
-						var endDate = agi.endDate.toLocaleString().substring(0,12)
-									.replace(".","-").replace(".","-").replace(".","-")
-									.replace(" ","0").replace(" ","0");
+						var agi = jfcalplugin.getAgendaItemById("#mycal",++clickAgendaItem.agendaId);
+		        		
+						var startDate = agi.startDate.toLocaleString().substring(0,12);
+						var endDate = agi.endDate.toLocaleString().substring(0,12);
 						
 						$.ajax({
-							url : "ScheduleEdit.mp",
+							url : "scheduleEdit.five",
 							data : {
-								sd : startDate,
-								ed : endDate,
-								title : what,
-								scnum : scnum
+								user_id : "smlee2",
+								pl_startdate : startDate,
+								pl_enddate : endDate,
+								pl_sub : agi.title,
+								pro_name : pro_name,
+								pl_content : pl_content
 							},
 							success : function(data){
-								if(data.length>0){
-									location.href='SchedulePage.mp';
-								}else{
-									alert('fail');
-								}
+								location.href="schedule.five";
 							},
 							error : function(xhr, status){
 								alert(xhr + '/' + status); 
@@ -574,7 +572,6 @@
 		    	 }
 		      },
 		      open: function(event, ui){
-	
 		         // initialize start date picker
 		         $("#edit_startDate").datepicker({
 		            showOtherMonths: true,
@@ -599,6 +596,9 @@
 		         $("#edit_startDate").val(startDate.getFullYear()+"-"+(startDate.getMonth()+1)+"-"+startDate.getDate());
 		         var endDate = clickAgendaItem.endDate;
 		         $("#edit_endDate").val(endDate.getFullYear()+"-"+(endDate.getMonth()+1)+"-"+endDate.getDate());
+		         
+		         $('#edit_product').val(clickAgendaItem.data["상품"]);
+		         $('#edit_pl_content').val(clickAgendaItem.data["내용"]);
 		         
 		         // initialize color pickers
 		         $("#edit_colorSelectorBackground").ColorPicker({
@@ -661,16 +661,22 @@
 				'삭제': function() {
 					if(confirm("Are you sure you want to delete this agenda item?")){
 						var agi = jfcalplugin.getAgendaItemById("#mycal",clickAgendaItem.agendaId);
-		        		var scnum = agi.data.scnum;
-		        		
+						var startDate = agi.startDate.toLocaleString().substring(0,12);
+						var endDate = agi.endDate.toLocaleString().substring(0,12);
+						
 		        		$.ajax({
-							url : "ScheduleDelete.mp",
+							url : "scheduleRemove.five",
 							data : {
-								scnum : scnum
+								user_id : "smlee2",
+								pl_startdate : startDate,
+								pl_enddate : endDate,
+								pl_sub : agi.title,
+								pro_name : agi.data["상품"],
+								pl_content : agi.data["내용"]
 							},
 							success : function(data){
 								if(data.length>0){
-									location.href='SchedulePage.mp';
+									location.href='schedule.five';
 								}else{
 									alert('fail');
 								}
@@ -731,36 +737,55 @@
 		});
 		
 		//스케쥴에 등록
-		console.log(list);
 		$.each(list,function(index,obj){
-			var date = obj.pl_date;
-			console.log(date);
-			var DtArray = date.split("-");
-			var Year = DtArray[0];
+			// 변수 선언
+			var startdate = obj.pl_startdate;
+			var enddate = obj.pl_enddate;
+			
+			// start Date
+			var startDtArray = startdate.split("-");
+			var startYear = startDtArray[0];
 			// jquery datepicker months start at 1 (1=January)		
-			var Month = DtArray[1];		
-			var Day = DtArray[2].replace(" 00:00:00","");
+			var startMonth = startDtArray[1];		
+			var startDay = startDtArray[2].replace(" 00:00:00","");
 			
 			// strip any preceeding 0's		
-			Month = Month.replace(/^[0]+/g,"");
-			Day = Day.replace(/^[0]+/g,"");
+			startMonth = startMonth.replace(/^[0]+/g,"");
+			startDay = startDay.replace(/^[0]+/g,"");
 			
 			// to integers
-			Year = parseInt(Year);
-			Month = parseInt(Month)-1;
-			Day = parseInt(Day);
+			startYear = parseInt(startYear);
+			startMonth = parseInt(startMonth)-1;
+			startDay = parseInt(startDay);
+			
+			// end Date
+			var endDtArray = enddate.split("-");
+			var endYear = endDtArray[0];
+			// jquery datepicker months start at 1 (1=January)		
+			var endMonth = endDtArray[1];		
+			var endDay = endDtArray[2].replace(" 00:00:00","");
+			
+			// strip any preceeding 0's		
+			endMonth = endMonth.replace(/^[0]+/g,"");
+			endDay = endDay.replace(/^[0]+/g,"");
+			
+			// to integers
+			endYear = parseInt(endYear);
+			endMonth = parseInt(endMonth)-1;
+			endDay = parseInt(endDay);
 
 			// Dates use integers
-			var dateObj = new Date(2015,5,17);
+			var startDateObj = new Date(startYear,startMonth,startDay);
+			var endDateObj = new Date(endYear,endMonth,endDay);
 			jfcalplugin.addAgendaItem(
 				"#mycal",
-				obj.pl_content,
-				dateObj,
-				dateObj,
+				obj.pl_sub,
+				startDateObj,
+				endDateObj,
 				false,
 				{
-					empno:1,
-					scnum:1
+					"내용":obj.pl_content,
+					"상품":obj.pro_name
 				},
 				{
 					backgroundColor: $("#colorBackground").val(),
@@ -808,8 +833,12 @@
 			<p class="validateTips">모두 채워주세요</p>
 			<form>
 			<fieldset>
-				<label for="name">무엇을?</label>
+				<label for="name">제목</label>
 				<input type="text" name="what" id="what" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:95%; padding: .4em;"/>
+				<label>상품명</label>
+				<input type="text" name="product" id="product" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:95%; padding: .4em;"/>
+				<label>내용</label>
+				<textarea name="pl_content" id="pl_content" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:95%; padding: .4em;"></textarea>
 				<table style="width:100%; padding:5px;">
 					<tr>
 						<td colspan="2">
@@ -848,53 +877,58 @@
 			</fieldset>
 			</form>
 		</div>
-		<div id="edit-event-form">
-      	<p class="validateTips">모두 채워주세요</p>
-         <form>
-            <fieldset>
-               <label>무엇을?</label>
-               <input type="text" name="edit_what" id="edit_what" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:95%; padding: .4em;"/>
-               <table style="width:100%; padding:5px;">
-               <tr>
-                  <td>
-                     <label colspan="2">시작일</label>
-                     <input type="text" name="edit_startDate" id="edit_startDate" value="" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:95%; padding: .4em;"/>            
-                  </td>
-               </tr>
-               <tr>
-                  <td>
-                     <label colspan="2">종료일</label>
-                     <input type="text" name="edit_endDate" id="edit_endDate" value="" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:95%; padding: .4em;"/>            
-                  </td>            
-               </tr>         
-            </table>
-            <table>
-               <tr>
-                  <td>
-                     <label>Background Color</label>
-                  </td>
-                  <td>
-                     <div id="edit_colorSelectorBackground"><div style="background-color: #333333; width:30px; height:30px; border: 2px solid #000000;"></div></div>
-                     <input type="hidden" id="edit_colorBackground" value="#333333">
-                  </td>
-                  <td>&nbsp;&nbsp;&nbsp;</td>
-                  <td>
-                     <label>Text Color</label>
-                  </td>
-                  <td>
-                     <div id="edit_colorSelectorForeground"><div style="background-color: #ffffff; width:30px; height:30px; border: 2px solid #000000;"></div></div>
-                     <input type="hidden" id="edit_colorForeground" value="#ffffff">
-                  </td>                  
-               </tr>            
-            </table>
-            </fieldset>
-         </form>
-      </div>
-		<div id="display-event-form" title="View Agenda Item">
-			
-		</div>		
+	<div id="edit-event-form">
+		<p class="validateTips">모두 채워주세요</p>
+		<form>
+			<fieldset>
+				<label for="name">제목</label>
+				<input type="text" name="edit_what" id="edit_what" class="text ui-widget-content ui-corner-all"
+					style="margin-bottom: 12px; width: 95%; padding: .4em;" />
+				<label>상품명</label>
+				<input type="text" name="edit_product" id="edit_product" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:95%; padding: .4em;"/>
+				<label>내용</label>
+				<textarea name="edit_pl_content" id="edit_pl_content" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:95%; padding: .4em;"></textarea>
+				<table style="width: 100%; padding: 5px;">
+					<tr>
+						<td>
+						<label colspan="2">시작일</label>
+						<input type="text" name="edit_startDate" id="edit_startDate" value=""
+							class="text ui-widget-content ui-corner-all"
+							style="margin-bottom: 12px; width: 95%; padding: .4em;" /></td>
+					</tr>
+					<tr>
+						<td>
+						<label colspan="2">종료일</label>
+						<input type="text" name="edit_endDate" id="edit_endDate" value=""
+							class="text ui-widget-content ui-corner-all"
+							style="margin-bottom: 12px; width: 95%; padding: .4em;" /></td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td><label>Background Color</label></td>
+						<td>
+							<div id="edit_colorSelectorBackground">
+								<div
+									style="background-color: #333333; width: 30px; height: 30px; border: 2px solid #000000;"></div>
+							</div> <input type="hidden" id="edit_colorBackground" value="#333333">
+						</td>
+						<td>&nbsp;&nbsp;&nbsp;</td>
+						<td><label>Text Color</label></td>
+						<td>
+							<div id="edit_colorSelectorForeground">
+								<div
+									style="background-color: #ffffff; width: 30px; height: 30px; border: 2px solid #000000;"></div>
+							</div> <input type="hidden" id="edit_colorForeground" value="#ffffff">
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+		</form>
+	</div>
+	<div id="display-event-form" title="View Agenda Item"></div>
 
-		<p>&nbsp;</p>
+	<p>&nbsp;</p>
 
 
 </body>
