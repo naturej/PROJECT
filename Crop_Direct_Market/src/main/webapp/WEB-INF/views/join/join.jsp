@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -79,7 +80,6 @@
 				  data: {password:$('#password').val()},
 				  success: function(data){
 					  $('#password').val(data);
-					  alert('data : '+data);
 					  document.joinForm.submit();
 				  }
 			});
@@ -105,12 +105,11 @@
 			document.joinForm.email.style.display="inline";
 			document.joinForm.email.value = document.joinForm.email1.value+"@"+document.joinForm.email3.value;
 		}
-		
 	</script>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
 </head>
 <body>
 
@@ -176,43 +175,85 @@
 					<input type="text" name="email" readonly="readonly">
 				</td>
 			</tr>
-
-			<!-- 유저사진등록 -->
+	
+			<!-- 우편번호  -->
 			<tr>
-				<td>사진</td>
-				<td><input type="file" name="file" placeholder="image"></td>
+				<td>우편번호</td>
+				<td><input type="text" name="add_code" placeholder="phoneNumber"></td>
 			</tr>
-
 			<!-- 지역주소등록 -->
 			<tr>
 				<td>지역주소</td>
 				<td><input type="text" name="addr" placeholder="address"></td>
 			</tr>
-
+	
 			<!-- 세부주소 -->
 			<tr>
 				<td>세부주소</td>
 				<td><input type="text" name="addd" placeholder="address"></td>
 			</tr>
-
+	
 			<!-- 전화번호  -->
 			<tr>
 				<td>전화번호</td>
 				<td><input type="text" name="cell_phone" placeholder="phoneNumber"></td>
 			</tr>
 
-			<!-- 우편번호  -->
+			<!-- 유저사진등록 -->
 			<tr>
-				<td>우편번호</td>
-				<td><input type="text" name="add_code" placeholder="phoneNumber"></td>
+				<td>사진</td>
+				<td><input type="file" name="file" placeholder="image"></td>
 			</tr>
+			<tr><td colspan="2"><hr></td></tr>
+			<c:if test="${param.user == 'seller'}">
+				<!-- 농장 ID 입력 --> 
+				<tr>
+					<td>농장 ID</td>
+					<td><input type="text" name="farminfo" placeholder="FarmID"></td>
+				</tr>
+				
+				<!-- 농장 이름 입력 -->
+				<tr>
+					<td>농장 이름</td>
+					<td><input type="text" name="farm_name" placeholder="FarmName"></td>
+				</tr>
+				
+				<!-- 농장지역등록 -->
+				<tr>
+					<td>농장 지역</td>
+					<td><input type="text" name="farm_add" placeholder="FarmAddress"></td>
+				</tr>
+		
+				<!-- 세부주소 -->
+				<tr>
+					<td>농장 세부주소</td>
+					<td><input type="text" name="farm_add_de" placeholder="FarmAddress"></td>
+				</tr>
+				
+				<!-- 농장 주요작물 -->
+				<tr>
+					<td>농장 주요작물</td>
+					<td><input type="text" name="pro_name" placeholder="Product"></td>
+				</tr>
+				
+				<!-- 농장전화번호  -->
+				<tr>
+					<td>농장 전화번호</td>
+					<td><input type="text" name="farm_phon" placeholder="FarmPhoneNumber"></td>
+				</tr>
+				
+				<!-- 농장소개  -->
+				<tr>
+					<td>농장 소개</td>
+					<td><textarea name="farm_comment" placeholder="FarmIntroduce"></textarea></td>
+				</tr>
+			</c:if>
 			
 			<tr>
 				<td><input type="button" value="가입확인" onclick="checkfield()"></td>
 				<td><input type="reset" value="가입취소"></td>
 			</tr>
 		</table>
-
 	</form> 
 </body>
 </html>
