@@ -7,13 +7,16 @@
 <title>에누리 상세보기</title>
 <script type="text/javascript">
 	function yesEnuri() {	
-		location.replace("yesEnuri.five?enu_idx=${dto.enu_idx}");
-		alert('수락하셨습니다');
+		location.href = "yesEnuri.five?enu_idx=${dto.enu_idx}";
+		alert('수락했습니다');
+		window.close();
 	}
 	
 	function noEnuri() {	
 		location.replace("noEnuri.five?enu_idx=${dto.enu_idx}");
-		alert('거절하셨습니다');
+		System.out.println("거절");
+		alert('거절했습니다');
+		window.close();
 	}
 </script>
 </head>

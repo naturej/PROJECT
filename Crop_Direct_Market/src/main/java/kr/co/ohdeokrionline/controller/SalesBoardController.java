@@ -171,6 +171,7 @@ public class SalesBoardController {
 	public void yesEnuri(String enu_idx){
 		Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
 		dao.yesEnuri(enu_idx);
+		//사용자 장바구니에 에누리 전달
 	}
 	
 	// 에누리 거절

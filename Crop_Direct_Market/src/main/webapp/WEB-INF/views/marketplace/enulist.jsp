@@ -5,9 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript">
 	function popup(enu_idx){
-		window.open('enuDetail.five?enu_idx='+enu_idx,'에누리 상세보기', 'width=500 height=700')
+		window.open('enuDetail.five?enu_idx='+enu_idx,'에누리 상세보기', 'width=700 height=1000')
 	}
 </script>
 <title>에누리 게시판</title>
