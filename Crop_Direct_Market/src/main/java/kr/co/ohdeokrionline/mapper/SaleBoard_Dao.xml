@@ -7,4 +7,5 @@
 	<select id="salDetail" resultType="kr.co.ohdeokrionline.model.vo.SaleBoard_DTO"><!-- 테스트용 상세보기 쿼리 -->
 		SELECT * FROM SALBOARD WHERE BO_NUM= 6
 	</select>
+	
 </mapper>
