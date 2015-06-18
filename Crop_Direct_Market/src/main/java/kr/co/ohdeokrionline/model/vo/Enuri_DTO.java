@@ -12,6 +12,22 @@ public class Enuri_DTO {
 	private String enu_confirm;
 	private int enu_price;
 	
+	
+	public Enuri_DTO(){}
+	
+	public Enuri_DTO(int bo_num, String user_id, String enu_content,
+			Date enu_date, int enu_quan, String enu_confirm, int enu_price,
+			int enu_idx) {
+		this.bo_num = bo_num;
+		this.user_id = user_id;
+		this.enu_content = enu_content;
+		this.enu_date = enu_date;
+		this.enu_quan = enu_quan;
+		this.enu_confirm = enu_confirm;
+		this.enu_price = enu_price;
+		this.enu_idx = enu_idx;
+	}
+	
 	public int getBo_num() {
 		return bo_num;
 	}

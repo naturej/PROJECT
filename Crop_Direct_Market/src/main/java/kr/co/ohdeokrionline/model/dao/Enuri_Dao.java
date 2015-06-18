@@ -13,11 +13,11 @@ public interface Enuri_Dao {
 	public ArrayList<Enuri_DTO> enuList();
 	// 상세보기
 	public Enuri_DTO enuDetail(String enu_idx);
-	// 글쓰기
-	public void enuInsert(Enuri_DTO enuri);
+	//에누리 메시지 전달 
+	void insertEnuri(Enuri_DTO enuri);
 	// 에누리 수락
-	public int yesConfirm(String enu_idx);
+	public int yesEnuri(String enu_idx);
 	// 에누리 거절
-	public int noConfirm(String enu_idx);
+	public int noEnuri(String enu_idx);
 	// 장바구니로 보내기
 }
