@@ -3,6 +3,7 @@ package kr.co.ohdeokrionline.controller;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,9 +14,11 @@ import kr.co.ohdeokrionline.model.dao.Enuri_Dao;
 import kr.co.ohdeokrionline.model.dao.Message_Dao;
 import kr.co.ohdeokrionline.model.dao.SaleBoard_Dao;
 import kr.co.ohdeokrionline.model.dao.SalesBoard_Dao;
+import kr.co.ohdeokrionline.model.dao.ShoppingBasket_Dao;
 import kr.co.ohdeokrionline.model.vo.Enuri_DTO;
 import kr.co.ohdeokrionline.model.vo.Message_DTO;
 import kr.co.ohdeokrionline.model.vo.SalesBoard_DTO;
+import kr.co.ohdeokrionline.model.vo.ShoppingBasket_DTO;
 import kr.co.ohdeokrionline.model.vo.Unit_DTO;
 import net.sf.json.JSONArray;
 
@@ -320,6 +323,17 @@ public class SalesBoardController {
 		dao.noEnuri(enu_idx);
 		
 		return "marketplace/noEnuri";
+	}
+	
+	//장바구니 리스트
+	@RequestMapping("shopList.five")
+	public String shoplist(Model model) throws SQLException{
+		ShoppingBasket_Dao dao = sqlSession.getMapper(ShoppingBasket_Dao.class);
+		ArrayList<ShoppingBasket_DTO> list = dao.shoplist();
+		System.out.println(list);
+		model.addAttribute("list",list);
+		
+		return "mypage/shoppingbasket";
 	}
 	
 }
