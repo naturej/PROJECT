@@ -26,7 +26,8 @@
 						success : function(data) { //서버가 보낸 data
 							
 							data = JSON.parse(data);
-							//console.log(data);
+							console.log(data.title);
+							console.log(data.result[0].article);
 
 							$('#table').empty();
 							for ( var _title in data.title) {
@@ -48,6 +49,8 @@
 
 				});
 	});
+	
+	
 </script>
 </head>
 <body>
