@@ -6,8 +6,10 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import kr.co.ohdeokrionline.model.dao.FarmRecord_Dao;
 import kr.co.ohdeokrionline.model.dao.Member_Dao;
 import kr.co.ohdeokrionline.model.dao.Message_Dao;
+import kr.co.ohdeokrionline.model.vo.FarmRecord_DTO;
 import kr.co.ohdeokrionline.model.vo.Member_DTO;
 
 import org.apache.ibatis.session.SqlSession;
@@ -51,15 +53,22 @@ public class MemberController {
 	}
 	
 	// 회원가입
+	@RequestMapping(value="joinSelect.five",method=RequestMethod.GET)
+	public String joinSelect() {
+		return "join/joinSelect";
+	}
+	
 	@RequestMapping(value="join.five",method=RequestMethod.GET)
-	public String joinForm() {
+	public String joinForm(String user,Model model) {
+		model.addAttribute("user",user);
 		return "join/join";
 	}
 	
 	@RequestMapping(value="join.five",method=RequestMethod.POST)
-	public String joinInsert(Member_DTO member,HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException {
-		
+	public String joinInsert(Member_DTO member,FarmRecord_DTO farm,HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException {
+		System.out.println(farm);
 		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
+		FarmRecord_Dao dao2 = sqlSession.getMapper(FarmRecord_Dao.class);
 		CommonsMultipartFile file = member.getFile();
 		
 		if(file != null){
@@ -79,7 +88,9 @@ public class MemberController {
 		}
 		
 		dao.joinInsert(member);
-		
+		if(farm.getFarminfo()!=null){
+			dao2.insertFarminfo(farm);
+		}
 		return "redirect:index.jsp";
 	}
 	

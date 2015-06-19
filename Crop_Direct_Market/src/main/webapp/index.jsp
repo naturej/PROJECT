@@ -14,6 +14,7 @@
 	</se:authorize>
 	Main page 입니다.<br>
 	<a href="login.five">로그인</a>
+
 	<br><a href="schedule.five">일정</a>
 		
 	<hr>
@@ -22,5 +23,9 @@
 	<a href="MiddleLandWeatherApi.five">중기육상예보</a><br>
 	<a href="MiddleTemperatureApi.five">중기기온조회</a><br>
 	<a href="RealTime_Forecast_Api.five">동네실황조회</a><br>
+
+	<a href="searchPriceApi.five">시세정보</a>
+	<br><a href="schedule.five">일정</a>
+>>>>>>> branch 'master' of https://github.com/naturej/PROJECT.git
 </body>
 </html>

@@ -4,7 +4,8 @@ import java.sql.Date;
 
 public class ScheduleRecord_DTO {
 	private String user_id;
-	private String pl_date;
+	private String pl_startdate;
+	private String pl_enddate;
 	private String pl_sub;
 	private String pl_content;
 	private String pro_name;
@@ -17,12 +18,20 @@ public class ScheduleRecord_DTO {
 		this.user_id = user_id;
 	}
 
-	public String getPl_date() {
-		return pl_date;
+	public String getPl_startdate() {
+		return pl_startdate;
 	}
 
-	public void setPl_date(String pl_date) {
-		this.pl_date = pl_date;
+	public void setPl_startdate(String pl_startdate) {
+		this.pl_startdate = pl_startdate;
+	}
+
+	public String getPl_enddate() {
+		return pl_enddate;
+	}
+
+	public void setPl_enddate(String pl_enddate) {
+		this.pl_enddate = pl_enddate;
 	}
 
 	public String getPl_sub() {
@@ -51,8 +60,9 @@ public class ScheduleRecord_DTO {
 
 	@Override
 	public String toString() {
-		return "{user_id:'" + user_id + "', pl_date:'"
-				+ pl_date + "', pl_sub:'" + pl_sub + "', pl_content:'" + pl_content
+		return "{user_id:'" + user_id + "', pl_startdate:'"
+				+ pl_startdate +"', pl_enddate:'" + pl_enddate 
+				+ "', pl_sub:'" + pl_sub + "', pl_content:'" + pl_content
 				+ "', pro_name:'" + pro_name + "'}";
 	}
 	

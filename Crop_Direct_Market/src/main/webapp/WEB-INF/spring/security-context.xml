@@ -22,9 +22,9 @@
 	-> <security:form-login login-page="/joinus/login.htm"/>
 -->
 	<security:http>
-		<security:form-login login-page="/joinus/login.htm"
-		authentication-failure-url="/joinus/login.htm?error"/>
-		<security:logout logout-success-url="/index.htm"/>
+		<security:form-login login-page="/login.five"
+		authentication-failure-url="/login.five?error"/>
+		<!-- <security:logout logout-success-url="/index.jsp"/> -->
 		<!-- 1단계 : 파일 별로 권한 설정 
 		<security:intercept-url pattern="/customer/noticeDetail.htm" access="ROLE_USER"/>
 		<security:intercept-url pattern="/customer/noticeReg.htm" access="ROLE_ADMIN"/> 
@@ -37,19 +37,19 @@
 		aaaReg.htm , bbbb_Reg.htm 적용
 		-->
 		<!-- <security:intercept-url pattern="/customer/*Reg.htm" access="ROLE_USER"/> -->
-		<security:intercept-url pattern="/customer/*" access="ROLE_USER"/>
-		<security:intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
+		<!-- <security:intercept-url pattern="/customer/*" access="ROLE_USER"/>
+		<security:intercept-url pattern="/admin/**" access="ROLE_ADMIN"/> -->
 	</security:http>
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<!-- 2단계 Spring security JDBC -->
 			<security:jdbc-user-service data-source-ref="driverManagerDataSource"
-			users-by-username-query="select USERID, pwd as PASSWORD, 1 enabled from member where userid=?"
-			authorities-by-username-query="select m.USERID, r.ROLE_NAME 
-										from MEMBER m join ROLL r
-										on m.USERID=r.USERID
-										where m.USERID=?"
+			users-by-username-query="select USER_ID, PASSWORD, enabled from users where user_id=?"
+			authorities-by-username-query="select u.USER_ID, a.AUTHORITY 
+										from USERS u join AUTHORITIES a
+										on u.USER_ID=a.USER_ID
+										where u.USER_ID=?"
 			/>
 			<security:password-encoder ref="bcryptPasswordEncoder" hash="bcrypt"/>
 		</security:authentication-provider>

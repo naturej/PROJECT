@@ -5,26 +5,33 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript">
+	function popup(enu_idx){
+		window.open('enuDetail.five?enu_idx='+enu_idx,'에누리 상세보기', 'width=700 height=1000')
+	}
+</script>
 <title>에누리 게시판</title>
 </head>
 <body>
 	<table width="500" cellpadding="0" cellspacing="0" border="1">
 	<tr>
 		<td>번호</td>
-		<td>받는사람</td>
 		<td>보내는사람</td>
-		<td>제목</td>
+		<td>내용</td>
 		<td>작성일</td>
-		<td>삭제</td>
+		<td>상태</td>
 	<tr>
 	<c:forEach items="${list}" var="e">
 	<tr>
 		<td>${e.enu_idx}</td>
- 		<td>${bo_id}</td>
 		<td>${e.user_id}</td>
-		<td>${bo_subject}</td>
+		<td><a href="#" onclick="popup('${e.enu_idx}')">${e.enu_content}</a></td>
 		<td>${e.enu_date}</td>
-		<td>삭제</td>
+		<c:if test="${e.enu_confirm == '0'}"><td>대기중</td></c:if>
+		<c:if test="${e.enu_confirm == '1'}"><td>수락</td></c:if>
+		<c:if test="${e.enu_confirm == '2'}"><td>거절</td></c:if>
 	<tr>
 	</c:forEach>
 </table>
