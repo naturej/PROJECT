@@ -16,7 +16,7 @@
 		<tr><td>참여자:${marketDto.mar_maxshop}</td></tr>
 		<tr><td>파일:${marketDto.mar_photo}</td></tr>
 	</table>
-	
+	<a href="">참가등록</a>
 	<a href="marketdelete.five?mar_id=${marketDto.mar_id}">삭제</a>
 
 </body>
