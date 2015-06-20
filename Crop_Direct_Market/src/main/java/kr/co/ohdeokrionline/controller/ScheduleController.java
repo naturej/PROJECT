@@ -1,5 +1,6 @@
 package kr.co.ohdeokrionline.controller;
 
+import java.security.Principal;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -21,11 +22,12 @@ public class ScheduleController {
 	private SqlSession sqlSession;
 	
 	@RequestMapping(value="schedule.five",method=RequestMethod.GET)
-	public String schedule(Model model) throws SQLException{
+	public String schedule(Model model,Principal principal) throws SQLException{
 		ScheduleRecord_Dao dao = sqlSession.getMapper(ScheduleRecord_Dao.class);
-		List<ScheduleRecord_DTO> list = dao.mySchedule("smlee2");
-		System.out.println(list);
+		List<ScheduleRecord_DTO> list = dao.mySchedule(principal.getName());
+		System.out.println(principal.getName());
 		model.addAttribute("list", list);
+		model.addAttribute("user_id",principal.getName());
 		return "mypage/schedule";
 	}
 	
