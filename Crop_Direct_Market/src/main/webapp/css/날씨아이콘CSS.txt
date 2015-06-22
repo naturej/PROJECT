@@ -1,0 +1,7 @@
+
+1. css 경로설정
+
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/weather-icons-master/css/weather-icons.css"  type="text/css">
+
+2. i 태그 사용
+<i class="wi wi-day-lightning"></i>

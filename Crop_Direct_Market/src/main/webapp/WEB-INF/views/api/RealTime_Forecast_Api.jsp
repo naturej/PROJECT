@@ -5,6 +5,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/weather-icons-master/css/weather-icons.css"  type="text/css">
+
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 
 <script type="text/javascript">
@@ -172,6 +174,7 @@
 		});
 		
 		
+		//뽑아낸 데이터를 전송해서 날씨결과를 얻음
 		$('#buttonprice').click(function(){
 			
 			var form_data = {
@@ -194,19 +197,26 @@
 					
 					$('#table').empty();
 					$('#table').append("<tr id='category'></tr>");
+					$('#table').append("<tr id='weather_icon'></tr>");
 					$('#table').append("<tr id='obsrValue'></tr>");
 					for(var i=0; i<data.body.items.length ; i++){
 						console.log(data.body.items[i].category);
 						console.log(data.body.items[i].obsrValue);
 						//$('#table').append("<td id='"+i+"'>" + data.body.items[i].category+ "</td>");
 						var category = data.body.items[i].category; 
+						var weather_icon = "";
 						var obsrValue = data.body.items[i].obsrValue;
-
+						
+						//기온
 					 	if(category=="T1H"){
 					 		category=category.replace("T1H", "기온");
+					 		weather_icon="<i class='wi wi-thermometer' style='font-size: 30px'></i>";
 					 		obsrValue=obsrValue+"℃";
+					 	
+					 	//강수량	
 						}else if(category=="RN1"){
 							category=category.replace("RN1", "1시간 강수량");
+							weather_icon="<i class='wi wi-umbrella' style='font-size: 30px'></i>";
 							if(obsrValue=="0") obsrValue="0mm 또는 없음";
 							if(obsrValue=="1") obsrValue="1mm 미만";
 							if(obsrValue=="5") obsrValue="1~4mm";
@@ -216,53 +226,176 @@
 							if(obsrValue=="70") obsrValue="40~69mm	";
 							if(obsrValue=="100") obsrValue="70mm 이상";
 							
+						//하늘상태
 						}else if(category=="SKY"){
 							category=category.replace("SKY", "하늘상태");
-							if(obsrValue=="1") obsrValue="맑음";
-							if(obsrValue=="2") obsrValue="구름조금";
-							if(obsrValue=="3") obsrValue="구름많음";
-							if(obsrValue=="4") obsrValue="흐림";
+							if(obsrValue=="1") {obsrValue="맑음"; weather_icon="<i class='wi wi-day-sunny' style='font-size: 30px'></i>";}
+							if(obsrValue=="2") {obsrValue="구름조금"; weather_icon="<i class='wi wi-day-sunny-overcast' style='font-size: 30px'></i>";}
+							if(obsrValue=="3") {obsrValue="구름많음"; weather_icon="<i class='wi wi-day-cloudy' style='font-size: 30px'></i>";}
+							if(obsrValue=="4") {obsrValue="흐림"; weather_icon="<i class='wi wi-cloudy' style='font-size: 30px'></i>";}
+						
+						//동서바람성분	
 						}else if(category=="UUU"){
 							category=category.replace("UUU", "동서바람성분");
+							(obsrValue[0]=="-") ? weather_icon="<i class='wi wi-left' style='font-size: 30px'></i>" : weather_icon="<i class='wi wi-right' style='font-size: 30px'></i>";
 							(obsrValue[0]=="-") ? obsrValue=obsrValue.replace("-","서 ") : obsrValue="동 "+obsrValue;
+							
+						//남북바람성분	
 						}else if(category=="VVV"){
 							category=category.replace("VVV", "남북바람성분");
+							(obsrValue[0]=="-") ? weather_icon="<i class='wi wi-down' style='font-size: 30px'></i>" : weather_icon="<i class='wi wi-up' style='font-size: 30px'></i>";
 							(obsrValue[0]=="-") ? obsrValue=obsrValue.replace("-","남 ") : obsrValue="북 "+obsrValue;
+						
+						//습도
 						}else if(category=="REH"){
 							category=category.replace("REH", "습도");
+							weather_icon="<i class='wi wi-sprinkles' style='font-size: 30px'></i>";
 							obsrValue=obsrValue+"%";
+							
+						//강수형태	
 						}else if(category=="PTY"){
 							category=category.replace("PTY", "강수형태");
-							if(obsrValue=="0") obsrValue="없음";
-							if(obsrValue=="1") obsrValue="비";
-							if(obsrValue=="2") obsrValue="비/눈";
-							if(obsrValue=="3") obsrValue="눈";
+							if(obsrValue=="0") {
+								weather_icon="<i class='wi wi-cloud' style='font-size: 30px'></i>";
+								obsrValue="없음";
+							}
+							if(obsrValue=="1") {
+								weather_icon="<i class='wi wi-rain' style='font-size: 30px'></i>";
+								obsrValue="비";
+							}
+							if(obsrValue=="2") {
+								weather_icon="<i class='wi wi-rain-mix' style='font-size: 30px'></i>";
+								obsrValue="비/눈";
+							}
+							if(obsrValue=="3") {
+								weather_icon="<i class='wi wi-snow' style='font-size: 30px'></i>";
+								obsrValue="눈";
+							}
+							
+						//낙뢰	
 						}else if(category=="LGT"){
 							category=category.replace("LGT", "낙뢰");
+							weather_icon="<i class='wi wi-lightning' style='font-size: 30px'></i>";
 							if(obsrValue=="0") obsrValue="없음";
 							if(obsrValue=="1") obsrValue="있음";
-						}else if(category=="VEC"){
-							category=category.replace("VEC", "풍향");
 						
-							if(obsrValue<45) obsrValue=obsrValue+"° / N-NE";
-							if(obsrValue>=45 && obsrValue<90) obsrValue=obsrValue+"° / NE-E";
-							if(obsrValue>=90 && obsrValue<135) obsrValue=obsrValue+"° / E-SE";
-							if(obsrValue>=135&& obsrValue<180) obsrValue=obsrValue+"° / SE-S";
-							if(obsrValue>=180 && obsrValue<225) obsrValue=obsrValue+"° / S-SW";
-							if(obsrValue>=225 && obsrValue<270) obsrValue=obsrValue+"° / SW-W";
-							if(obsrValue>=270 && obsrValue<315) obsrValue=obsrValue+"° / W-NW";
-							if(obsrValue>=315 && obsrValue<=360) obsrValue=obsrValue+"° / NW-N";
+						//풍향
+						}else if(category=="VEC"){
+							category=category.replace("VEC", "풍향");							
+							if(obsrValue<45) {
+								if(obsrValue=0){
+									weather_icon="<i class='wi wi-wind-default _0-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>0 && obsrValue<=20){
+									weather_icon="<i class='wi wi-wind-default _15-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>20 && obsrValue<45){
+									weather_icon="<i class='wi wi-wind-default _30-deg' style='font-size: 30px'></i>";
+								}
+								obsrValue=obsrValue+"° / N-NE";
+							}
+							if(obsrValue>=45 && obsrValue<90) {
+								if(obsrValue=45){
+									weather_icon="<i class='wi wi-wind-default _45-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>45 && obsrValue<=65){
+									weather_icon="<i class='wi wi-wind-default _60-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>65 && obsrValue<90){
+									weather_icon="<i class='wi wi-wind-default _75-deg' style='font-size: 30px'></i>";
+								}
+								obsrValue=obsrValue+"° / NE-E";
+							}
+							if(obsrValue>=90 && obsrValue<135) {
+								if(obsrValue=90){
+									weather_icon="<i class='wi wi-wind-default _90-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>90 && obsrValue<=110){
+									weather_icon="<i class='wi wi-wind-default _105-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>110 && obsrValue<135){
+									weather_icon="<i class='wi wi-wind-default _120-deg' style='font-size: 30px'></i>";
+								}
+								obsrValue=obsrValue+"° / E-SE";
+							}
+							if(obsrValue>=135&& obsrValue<180) {
+								if(obsrValue=135){
+									weather_icon="<i class='wi wi-wind-default _135-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>135 && obsrValue<=155){
+									weather_icon="<i class='wi wi-wind-default _150-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>155 && obsrValue<180){
+									weather_icon="<i class='wi wi-wind-default _165-deg' style='font-size: 30px'></i>";
+								}
+								obsrValue=obsrValue+"° / SE-S";
+							}
+							if(obsrValue>=180 && obsrValue<225) {
+								if(obsrValue=180){
+									weather_icon="<i class='wi wi-wind-default _180-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>180 && obsrValue<=200){
+									weather_icon="<i class='wi wi-wind-default _195-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>200 && obsrValue<225){
+									weather_icon="<i class='wi wi-wind-default _210-deg' style='font-size: 30px'></i>";
+								}
+								obsrValue=obsrValue+"° / S-SW";
+							}
+							if(obsrValue>=225 && obsrValue<270) {
+								if(obsrValue=225){
+									weather_icon="<i class='wi wi-wind-default _225-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>225 && obsrValue<=245){
+									weather_icon="<i class='wi wi-wind-default _240-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>245 && obsrValue<270){
+									weather_icon="<i class='wi wi-wind-default _255-deg' style='font-size: 30px'></i>";
+								}
+								obsrValue=obsrValue+"° / SW-W";
+							}
+							if(obsrValue>=270 && obsrValue<315) {
+								if(obsrValue=270){
+									weather_icon="<i class='wi wi-wind-default _270-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>270 && obsrValue<=290){
+									weather_icon="<i class='wi wi-wind-default _285-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>290 && obsrValue<315){
+									weather_icon="<i class='wi wi-wind-default _300-deg' style='font-size: 30px'></i>";
+								}
+								obsrValue=obsrValue+"° / W-NW";
+							}
+							if(obsrValue>=315 && obsrValue<360) {
+								if(obsrValue=315){
+									weather_icon="<i class='wi wi-wind-default _315-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>315 && obsrValue<=335){
+									weather_icon="<i class='wi wi-wind-default _330-deg' style='font-size: 30px'></i>";
+								}else if(obsrValue>335 && obsrValue<360){
+									weather_icon="<i class='wi wi-wind-default _345-deg' style='font-size: 30px'></i>";
+								}
+								obsrValue=obsrValue+"° / NW-N";
+							}
 							
-
+						//풍속	
 						}else if(category=="WSD"){
 							category=category.replace("WSD", "풍속");
-							if(obsrValue<4) obsrValue=obsrValue+"m/s"+" 약";
-							if(obsrValue>=4 && obsrValue<9) obsrValue=obsrValue+"m/s"+" 약간강";
-							if(obsrValue<14 && obsrValue>=9) obsrValue=obsrValue+"m/s"+" 강";
-							if(obsrValue>=14) obsrValue=obsrValue+"m/s"+" 매우강";
+							if(obsrValue<4) {
+								if(obsrValue<1) weather_icon="<i class='wi wi-beafort-0' style='font-size: 30px'></i>";
+								if(obsrValue>=1 && obsrValue<2) weather_icon="<i class='wi wi-beafort-1' style='font-size: 30px'></i>";
+								if(obsrValue>=2 && obsrValue<3) weather_icon="<i class='wi wi-beafort-2' style='font-size: 30px'></i>";
+								if(obsrValue>=3 && obsrValue<4) weather_icon="<i class='wi wi-beafort-3' style='font-size: 30px'></i>";
+								obsrValue=obsrValue+"m/s"+" 약";
+							}
+							if(obsrValue>=4 && obsrValue<9) {
+								if(obsrValue>=4 && obsrValue<5) weather_icon="<i class='wi wi-beafort-4' style='font-size: 30px'></i>";
+								if(obsrValue>=5 && obsrValue<6) weather_icon="<i class='wi wi-beafort-5' style='font-size: 30px'></i>";
+								if(obsrValue>=6 && obsrValue<7) weather_icon="<i class='wi wi-beafort-6' style='font-size: 30px'></i>";
+								if(obsrValue>=7 && obsrValue<8) weather_icon="<i class='wi wi-beafort-7' style='font-size: 30px'></i>";
+								if(obsrValue>=8 && obsrValue<9) weather_icon="<i class='wi wi-beafort-8' style='font-size: 30px'></i>";
+								obsrValue=obsrValue+"m/s"+" 약간강";
+							}
+							if(obsrValue<14 && obsrValue>=9) {
+								if(obsrValue>=9 && obsrValue<10) weather_icon="<i class='wi wi-beafort-9' style='font-size: 30px'></i>";
+								if(obsrValue>=10 && obsrValue<11) weather_icon="<i class='wi wi-beafort-10' style='font-size: 30px'></i>";
+								if(obsrValue>=11 && obsrValue<12) weather_icon="<i class='wi wi-beafort-11' style='font-size: 30px'></i>";
+								if(obsrValue>=12 && obsrValue<14) weather_icon="<i class='wi wi-beafort-12' style='font-size: 30px'></i>";
+								obsrValue=obsrValue+"m/s"+" 강";
+							}
+							if(obsrValue>=14) {
+								weather_icon="<i class='wi wi-beafort-12' style='font-size: 30px'></i>";
+								obsrValue=obsrValue+"m/s"+" 매우강";
+							}
 						}
-						$('#category').append("<td id='"+i+"'>" + category+ "</td>");
-						$('#obsrValue').append("<td id='"+i+"'>" + obsrValue+ "</td>");
+						$('#category').append("<td id='"+i+"' align='center'>" + category+ "</td>");
+						$('#weather_icon').append("<td id='"+i+"' align='center'>" + weather_icon+ "</td>");
+						$('#obsrValue').append("<td id='"+i+"' align='center'>" + obsrValue+ "</td>");
 					}
 				
 				
@@ -318,7 +451,7 @@
 				<td>
 					x좌표<input type="text" id="latitude" readonly="readonly">
 				</td>
-				<td>
+				<td> 
 					y좌표<input type="text" id="longtitude" readonly="readonly">
 				</td>
 				<td>
@@ -330,6 +463,7 @@
 		</table>
 	</form>	
 	<hr>
+
 		<table id="table" border="1"  style="border-collapse:collapse" >
 			
 		</table>

@@ -1,0 +1,8 @@
+http://erikflowers.github.io/weather-icons/  날씨아이콘
+
+CheatSheet는 http://erikflowers.github.io/weather-icons/cheatsheet/ 이곳에서 참고하시면 된다.
+
+코드내 사용법 :
+
+
+<i class="wi wi-snow"></i>
