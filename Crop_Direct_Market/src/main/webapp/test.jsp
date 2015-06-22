@@ -19,7 +19,8 @@
 	<a href="#" onclick="popup()">쪽지보내기</a><br><br>
 	<a href="receiveList.five">받은 메세지함</a><br><br>
 	<a href="sendList.five">보낸 메세지함</a><br><br>
-	<a href="sellpage.five">에누리 신청하기</a><br><br>
-	<a href="enulist.five">에누리 목록보기</a>
+	<a href="sellpage.five">에누리 신청테스트/평가 테스트</a><br><br>
+	<a href="enulist.five">에누리 목록보기</a><br><br>
+	<a href="shopList.five">장바구니</a>
 </body>
 </html>
