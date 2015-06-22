@@ -18,6 +18,10 @@
       'top=100px, left=100px, height=700 width=1000')
       
    }
+   function review(salnum, userid, product){
+	   window.open('review_sinchung.five?bo_num='+salnum+'&user_id='+userid+'&product='+product,
+	      'top=100px, left=100px, height=700 width=1000')
+   }
 </script>
 </head>
 <body>
@@ -51,6 +55,7 @@
          <td>${list.unit}</td>
          <td>${list.pro_name}</td>
          <td>${list.bo_date}</td>
+         <td><a href="#" onclick="review('${list.bo_num}','${list.user_id}','${list.pro_name}')">평가하기</a></td>
       <tr>
    </table>
 </body>

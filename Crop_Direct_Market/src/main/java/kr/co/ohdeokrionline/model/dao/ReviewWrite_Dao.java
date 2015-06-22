@@ -1,5 +1,7 @@
 package kr.co.ohdeokrionline.model.dao;
 
-public interface ReviewWrite_Dao {
+import kr.co.ohdeokrionline.model.vo.ReviewWrite_DTO;
 
+public interface ReviewWrite_Dao {
+	void reviewInsert(ReviewWrite_DTO dto);
 }

@@ -12,11 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ohdeokrionline.model.dao.Enuri_Dao;
 import kr.co.ohdeokrionline.model.dao.Message_Dao;
+import kr.co.ohdeokrionline.model.dao.ReviewWrite_Dao;
 import kr.co.ohdeokrionline.model.dao.SaleBoard_Dao;
 import kr.co.ohdeokrionline.model.dao.SalesBoard_Dao;
 import kr.co.ohdeokrionline.model.dao.ShoppingBasket_Dao;
 import kr.co.ohdeokrionline.model.vo.Enuri_DTO;
 import kr.co.ohdeokrionline.model.vo.Message_DTO;
+import kr.co.ohdeokrionline.model.vo.ReviewWrite_DTO;
 import kr.co.ohdeokrionline.model.vo.SalesBoard_DTO;
 import kr.co.ohdeokrionline.model.vo.ShoppingBasket_DTO;
 import kr.co.ohdeokrionline.model.vo.Unit_DTO;
@@ -323,6 +325,21 @@ public class SalesBoardController {
 		dao.noEnuri(enu_idx);
 		
 		return "marketplace/noEnuri";
+	}
+	
+//	 평가등록
+	@RequestMapping("reviewReg.five")
+	public String insertReview(ReviewWrite_DTO dto) {
+		System.out.println("point2");
+		ReviewWrite_Dao dao = sqlSession.getMapper(ReviewWrite_Dao.class);
+		dao.reviewInsert(dto);
+		return "marketplace/yesEnuri";
+//		꺼져버리는 공통 페이지
+	}
+//	팝업창 띄우기
+	@RequestMapping("review_sinchung.five")
+	public String review_popup() {
+		return "marketplace/review";
 	}
 	
 	//장바구니 리스트
