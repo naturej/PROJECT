@@ -391,6 +391,11 @@ public class SalesBoardController {
 	}
 	
 	// 장바구니 선택삭제
+	@RequestMapping("deleteshop.five")
+	public void deleteshop(int bo_num){
+		ShoppingBasket_Dao dao = sqlSession.getMapper(ShoppingBasket_Dao.class);
+		dao.deleteshop(bo_num);
+	}
 	
 	// 장바구니 전체삭제
 	@RequestMapping("deleteall.five")

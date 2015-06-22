@@ -17,6 +17,13 @@
 		});
 		location.reload();
 	}
+	
+	function deleteshop(bo_num){
+		$.ajax({
+			url:'deleteshop.five?bo_num='+bo_num
+		});
+		location.reload();
+	}
 </script>
 </head>
 <body>
@@ -29,6 +36,7 @@
 		<td>판매가</td>
 		<td>수량</td>
 		<td>총가격</td>
+		<td>삭제</td>
 	<tr>
 	<c:set var="sum" value="0"/>
 	<c:forEach items="${list}" var="e">
@@ -41,15 +49,16 @@
 		<td>${e.bo_price}</td>
 		<td>${e.sh_quantity}</td>
 		<td>${e.sh_price}</td>
+		<td><a href="" onclick="deleteshop('${e.bo_num}')">x</a></td>
 	<tr>
 	</c:forEach>
 	<tr>
-		<td colspan="7" align="right">
+		<td colspan="8" align="right">
 			총가격 : ${sum} 
 		</td>
 	</tr>
 	<tr>
-		<td colspan="7" align="center">
+		<td colspan="8" align="center">
 			<input type="button" value="선택상품 삭제">
 			<input type="button" value="선택상품 주문"><!-- 주문으로 넘어가게 -->
 			<input type="button" value="이전으로" onclick="javascript:history.back()">
