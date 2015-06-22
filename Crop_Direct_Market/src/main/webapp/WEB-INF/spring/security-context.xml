@@ -24,7 +24,7 @@
 	<security:http>
 		<security:form-login login-page="/login.five"
 		authentication-failure-url="/login.five?error"/>
-		<!-- <security:logout logout-success-url="/index.jsp"/> -->
+		<security:logout invalidate-session="true" delete-cookies="true" logout-success-url="/index.five" />
 		<!-- 1단계 : 파일 별로 권한 설정 
 		<security:intercept-url pattern="/customer/noticeDetail.htm" access="ROLE_USER"/>
 		<security:intercept-url pattern="/customer/noticeReg.htm" access="ROLE_ADMIN"/> 

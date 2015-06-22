@@ -27,7 +27,7 @@
 					<td class="bo_num">${n.bo_num}</td>
 					<td class="bo_subject"><a href="salesdetail.five?bo_num=${n.bo_num}">${n.bo_subject}</a></td>
 					<td class="bo_photo"><img class="" src="salesboard/upload/${n.bo_photo}" alt="" width="200px" height="200px"></td>
-					<td class="unit">${n.unit}</td>
+					<td class="unit">${n.bo_salnum}${n.unit}</td>
 					<td class="bo_price">${n.bo_price}</td>
 					<td class="user_id">${n.user_id}</td>
 					<td class="bo_date">${n.bo_date}</td>

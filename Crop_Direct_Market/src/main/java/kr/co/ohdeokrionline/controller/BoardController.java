@@ -99,15 +99,6 @@ public class BoardController {
 			 return "board/boarddetail"; 
 		 }
 		 
-		 //수정 기존데이터 출력
-		 @RequestMapping(value="boardedit.five",method=RequestMethod.GET)
-			public String boardedit(String idx, Model model) throws ClassNotFoundException, SQLException{
-			 	Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
-			 	Board_DTO boardDto = boardDao.detailboard(idx);
-			 	model.addAttribute("boardDto", boardDto);
-			 	return "board/boardedit";
-			}
-		 
 		//수정 실행문
 		@RequestMapping(value={"boardedit.five"},method=RequestMethod.POST)   //=>customer/notice.htm
 		public String noticeEdit(Board_DTO n, HttpServletRequest request) throws ClassNotFoundException, SQLException, IOException{

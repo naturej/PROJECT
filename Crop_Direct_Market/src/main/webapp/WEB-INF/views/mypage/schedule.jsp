@@ -3,8 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <%
 	List<ScheduleRecord_DTO> list = (List<ScheduleRecord_DTO>)request.getAttribute("list");
+	String user_id = (String)request.getAttribute("user_id");
 %>
 <!-- 내일정관리 페이지 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -68,6 +70,7 @@
 	$(document).ready(function(){	
 		i=1;
 		list = <%=list%>;
+		user_id = <%="'"+user_id+"'"%>;
 		var clickDate = "";
 		var clickAgendaItem = "";
 		
@@ -376,7 +379,7 @@
 						$.ajax({
 							url : "scheduleAdd.five",
 							data : {
-								user_id : "smlee2",
+								user_id : user_id,
 								pl_startdate : startDate,
 								pl_enddate : endDate,
 								pl_sub : agi.title,
@@ -552,7 +555,7 @@
 						$.ajax({
 							url : "scheduleEdit.five",
 							data : {
-								user_id : "smlee2",
+								user_id : user_id,
 								pl_startdate : startDate,
 								pl_enddate : endDate,
 								pl_sub : agi.title,
@@ -667,7 +670,7 @@
 		        		$.ajax({
 							url : "scheduleRemove.five",
 							data : {
-								user_id : "smlee2",
+								user_id : user_id,
 								pl_startdate : startDate,
 								pl_enddate : endDate,
 								pl_sub : agi.title,
@@ -798,7 +801,9 @@
 	</script>
 
 		<div id="example" style="margin: auto; width:70%;">
-		<h3 align="center">일정 관리</h3>
+		<se:authorize ifAnyGranted="ROLE_SELLER,ROLE_CONSUMER,ROLE_ADMIN">
+			<h3 align="center">${user_id}'s 일정</h3>
+		</se:authorize>		
 		<div id="toolbar" class="ui-widget-header ui-corner-all" style="padding:3px; vertical-align: middle; white-space:nowrap; overflow: hidden;">
 			<button id="BtnPreviousMonth">이전 달</button>
 			<button id="BtnNextMonth">다음 달</button>

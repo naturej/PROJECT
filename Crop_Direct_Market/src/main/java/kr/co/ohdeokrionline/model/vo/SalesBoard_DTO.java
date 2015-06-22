@@ -15,7 +15,14 @@ public class SalesBoard_DTO {
 	private String user_id;
 	private String unit;
 	private String pro_name;
+	private int bo_salnum;
 	
+	public int getBo_salnum() {
+		return bo_salnum;
+	}
+	public void setBo_salnum(int bo_salnum) {
+		this.bo_salnum = bo_salnum;
+	}
 	public int getBo_num() {
 		return bo_num;
 	}
