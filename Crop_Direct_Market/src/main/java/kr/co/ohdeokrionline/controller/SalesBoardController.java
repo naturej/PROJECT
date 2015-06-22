@@ -389,5 +389,7 @@ public class SalesBoardController {
 		
 		ShoppingBasket_Dao dao = sqlSession.getMapper(ShoppingBasket_Dao.class);
 		dao.insertshop(dto);
+		
+		//return "redirect:salesdetail.five?bo_num="+dto.getBo_num();
 	}
 }
