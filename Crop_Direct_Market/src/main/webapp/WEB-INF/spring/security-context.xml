@@ -37,8 +37,7 @@
 		aaaReg.htm , bbbb_Reg.htm 적용
 		-->
 		<!-- <security:intercept-url pattern="/customer/*Reg.htm" access="ROLE_USER"/> -->
-		<!-- <security:intercept-url pattern="/customer/*" access="ROLE_USER"/>
-		<security:intercept-url pattern="/admin/**" access="ROLE_ADMIN"/> -->
+		
 	</security:http>
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	<security:authentication-manager>

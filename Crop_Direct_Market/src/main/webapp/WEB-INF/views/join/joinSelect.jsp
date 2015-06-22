@@ -7,6 +7,6 @@
 <title>회원가입 선택</title>
 </head>
 <body>
-<a href="join.five?user=seller">판매자</a>&nbsp;<a href="join.five?user=consumer">소비자</a>
+<a href="join.five?user=ROLE_SELLER">판매자</a>&nbsp;<a href="join.five?user=ROLE_CONSUMER">소비자</a>
 </body>
 </html>

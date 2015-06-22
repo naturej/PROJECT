@@ -205,7 +205,7 @@
 				<td><input type="file" name="file" placeholder="image"></td>
 			</tr>
 			<tr><td colspan="2"><hr></td></tr>
-			<c:if test="${param.user == 'seller'}">
+			<c:if test="${param.user == 'ROLE_SELLER'}">
 				<!-- 농장 ID 입력 --> 
 				<tr>
 					<td>농장 ID</td>
@@ -254,6 +254,14 @@
 				<td><input type="reset" value="가입취소"></td>
 			</tr>
 		</table>
+		<c:choose>
+			<c:when test="${param.user == 'ROLE_SELLER'}">
+				<input type="hidden" name="authority" value="ROLE_SELLER">
+			</c:when>
+			<c:otherwise>
+				<input type="hidden" name="authority" value="ROLE_CONSUMER">
+			</c:otherwise>
+		</c:choose>
 	</form> 
 </body>
 </html>

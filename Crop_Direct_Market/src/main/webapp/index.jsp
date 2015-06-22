@@ -18,7 +18,7 @@
 	Main page 입니다.<br>
 	<a href="login.five">로그인</a>
 
-	<br><a href="schedule.five">일정</a>
+	<br><a href="/mypage/schedule.five">일정</a>
 		
 	<hr>
 	<a href="searchPriceApi.five">시세정보</a><br>

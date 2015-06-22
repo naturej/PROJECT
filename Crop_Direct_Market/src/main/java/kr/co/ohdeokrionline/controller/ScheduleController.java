@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping("/mypage/")
 public class ScheduleController {
 	@Autowired
 	private SqlSession sqlSession;
@@ -24,8 +25,8 @@ public class ScheduleController {
 	@RequestMapping(value="schedule.five",method=RequestMethod.GET)
 	public String schedule(Model model,Principal principal) throws SQLException{
 		ScheduleRecord_Dao dao = sqlSession.getMapper(ScheduleRecord_Dao.class);
-		List<ScheduleRecord_DTO> list = dao.mySchedule(principal.getName());
-		System.out.println(principal.getName());
+		List<ScheduleRecord_DTO> list = dao.mySchedule(principal.getName()); //LogingUser 값을 받음
+		
 		model.addAttribute("list", list);
 		model.addAttribute("user_id",principal.getName());
 		return "mypage/schedule";
