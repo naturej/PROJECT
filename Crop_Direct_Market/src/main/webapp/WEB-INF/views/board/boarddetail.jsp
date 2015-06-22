@@ -32,5 +32,15 @@
 				</tr>
 				</c:forEach>
 				</table>
+				
+				<form action="reply.five?" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="idx" value="${boardDto.idx}">
+				<table>
+				<tr><td>작성자<input type="text" id="USER_ID" name="USER_ID" /></td></tr>
+				<tr><td><textarea id="re_content" name="re_content">내용</textarea></td></tr>
+				<tr><td><input type="submit" value="작성" /></td></tr>
+				</table>
+				</form>	
+				
 </body>
 </html>

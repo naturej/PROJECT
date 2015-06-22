@@ -8,18 +8,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-			<table border="1">
-				<tr><td>제목:${salboardDto.bo_subject}</td></tr>
-				<tr><td>글쓴이: ${salboardDto.user_id}</td></tr>
-				<tr><td>작성일:${salboardDto.bo_date}</td></tr>
-				<tr><td><img class="" src="salesboard/upload/${salboardDto.bo_photo}" alt="" width="400px" height="400px"></td></tr>
-				<tr><td>내용:${salboardDto.bo_content}</td></tr>
-				<tr><td>가격:${salboardDto.bo_price}</td></tr>
-				<tr><td>단위:${salboardDto.unit}</td></tr>
-				<tr><td>품종:${salboardDto.pro_name}</td></tr>
+				<table border="1">
+				<tr><td>제목</td><td>${salboardDto.bo_subject}</td></tr>
+				<tr><td>글쓴이</td><td> ${salboardDto.user_id}</td></tr>
+				<tr><td>작성일</td><td>${salboardDto.bo_date}</td></tr>
+				<tr><td colspan="2"><img class="" src="salesboard/upload/${salboardDto.bo_photo}" alt="" width="400px" height="400px"></td></tr>
+				<tr><td>내용</td><td>${salboardDto.bo_content}</td></tr>
+				<tr><td>가격</td><td>${salboardDto.bo_price}</td></tr>
+				<tr><td>단위</td><td>${salboardDto.bo_salnum}${salboardDto.unit}</td></tr>
+				<tr><td>품종</td><td>${salboardDto.pro_name}</td></tr>
 				
 				
 			</table>
+			
 			
 				<a href="salboardlist.five">목록</a>
 				<a href="salboardedit.five?bo_num=${salboardDto.bo_num}">수정</a>

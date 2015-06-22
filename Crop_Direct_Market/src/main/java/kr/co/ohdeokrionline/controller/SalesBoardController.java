@@ -18,8 +18,10 @@ import kr.co.ohdeokrionline.model.dao.SalesBoard_Dao;
 import kr.co.ohdeokrionline.model.dao.ShoppingBasket_Dao;
 import kr.co.ohdeokrionline.model.vo.Enuri_DTO;
 import kr.co.ohdeokrionline.model.vo.Message_DTO;
+import kr.co.ohdeokrionline.model.vo.Product_DTO;
 import kr.co.ohdeokrionline.model.vo.ReviewWrite_DTO;
 import kr.co.ohdeokrionline.model.vo.SalesBoard_DTO;
+import kr.co.ohdeokrionline.model.vo.Separate_DTO;
 import kr.co.ohdeokrionline.model.vo.ShoppingBasket_DTO;
 import kr.co.ohdeokrionline.model.vo.Unit_DTO;
 import net.sf.json.JSONArray;
@@ -155,15 +157,39 @@ public class SalesBoardController {
 			return "redirect:salboardlist.five";
 		}  
 		 
-	 @RequestMapping("unitlist.five")  
-	 public void unitlist(HttpServletResponse response) throws IOException{
-		 SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
+		//단위 select tag 
+		 @RequestMapping("unitlist.five")  
+		 public void unitlist(HttpServletResponse response) throws IOException{
+			 response.setContentType("text/html;charset=utf-8");
+			 SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
 		 List<Unit_DTO> list = salboardDao.unitlist();
 		 JSONArray unitlists = JSONArray.fromObject(list);
          response.getWriter().print(unitlists);//서버로 데이터 전송
          System.out.println("서버로 list 전송완료");
-	 }
-
+	     }
+		 
+		//품종 select tag 
+		 @RequestMapping("seplist.five")  
+		 public void seplist(HttpServletResponse response) throws IOException{
+			 response.setContentType("text/html;charset=utf-8");
+			 SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
+		 List<Separate_DTO> list = salboardDao.seplist();
+		 JSONArray seplists = JSONArray.fromObject(list);
+         response.getWriter().print(seplists);//서버로 데이터 전송
+         System.out.println("서버로 seplist 전송완료");
+	     }
+	 
+		//상품 select tag 
+		 @RequestMapping("prolist.five")  
+		 public void prolist(HttpServletResponse response,String pro_sep) throws IOException{
+			 System.out.println(pro_sep);
+			 response.setContentType("text/html;charset=utf-8");
+			 SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
+		 ArrayList<Product_DTO> list = salboardDao.prolist(pro_sep);
+		 JSONArray prolists = JSONArray.fromObject(list);
+         response.getWriter().print(prolists);//서버로 데이터 전송
+         System.out.println("서버로 prolist 전송완료");
+	     }
 
 	// 테스트용 페이지 이동
 	@RequestMapping("test.five")
