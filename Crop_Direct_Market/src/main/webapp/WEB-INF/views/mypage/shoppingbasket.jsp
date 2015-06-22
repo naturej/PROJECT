@@ -7,6 +7,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>장바구니</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script type="text/javascript">
+	function deleteAll(){
+		$.ajax({
+			url:'deleteall.five'
+		});
+		location.reload();
+	}
+</script>
 </head>
 <body>
 <table width="500" cellpadding="0" cellspacing="0" border="1">
@@ -42,7 +53,7 @@
 			<input type="button" value="선택상품 삭제">
 			<input type="button" value="선택상품 주문"><!-- 주문으로 넘어가게 -->
 			<input type="button" value="이전으로" onclick="javascript:history.back()">
-			<input type="button" value="비우기">
+			<input type="button" value="비우기" onclick="deleteAll()">
 		</td>
 	</tr>
 </table>

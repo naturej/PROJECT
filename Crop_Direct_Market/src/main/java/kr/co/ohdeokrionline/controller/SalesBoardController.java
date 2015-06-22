@@ -382,14 +382,20 @@ public class SalesBoardController {
 	// 장바구니 넣기
 	@RequestMapping(value="shopInsert.five",method=RequestMethod.POST)
 	public void insertShop(ShoppingBasket_DTO dto){
-		System.out.println("bo_num : " + dto.getBo_num());
-		System.out.println("bo_price : " + dto.getBo_price());
-		System.out.println("quantity : " + dto.getSh_quantity());
 		dto.setUser_id("gathering11");	// 지금은 고정값.. 나중에 principal.getName()
 		
 		ShoppingBasket_Dao dao = sqlSession.getMapper(ShoppingBasket_Dao.class);
 		dao.insertshop(dto);
 		
 		//return "redirect:salesdetail.five?bo_num="+dto.getBo_num();
+	}
+	
+	// 장바구니 선택삭제
+	
+	// 장바구니 전체삭제
+	@RequestMapping("deleteall.five")
+	public void deleteall(){
+		ShoppingBasket_Dao dao = sqlSession.getMapper(ShoppingBasket_Dao.class);
+		dao.deleteall();
 	}
 }
