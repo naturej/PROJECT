@@ -25,9 +25,9 @@
 	</select>
 	 
  	<!-- 장바구니 넣기 -->
-	<insert id="shopinsert" parameterType="kr.co.ohdeokrionline.model.vo.ShoppingBasket_DTO">
+	<insert id="insertshop" parameterType="kr.co.ohdeokrionline.model.vo.ShoppingBasket_DTO">
 		INSERT INTO SHOPBAG(USER_ID,BO_NUM,SH_QUANTITY,SH_PRICE) 
-		VALUES(#{user_id},#{bo_num},#{sh_quantity},#{bo_price*sh_quantity})
-	</insert> 
+		VALUES(#{user_id},#{bo_num},#{sh_quantity},#{bo_price}*#{sh_quantity})
+	</insert>
 
 </mapper>
