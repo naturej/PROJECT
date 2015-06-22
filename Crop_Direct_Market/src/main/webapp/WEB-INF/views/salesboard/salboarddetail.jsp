@@ -25,8 +25,18 @@
 			return false;
 		}
 		else{
+			$.ajax({
+				type:'post',
+				url:'shopInsert.five',
+				data:{
+					user_id:"gathering11",	//나중에 바꿈..
+					bo_num:"${salboardDto.bo_num}",
+					sh_quantity:$("#sh_quantity").val(),
+					bo_price:"${salboardDto.bo_price}"
+				},
+				dataType:'html'
+			});
 			$( "#dialog-confirm" ).dialog( "open" );
-			$('#shopbag').submit();
 		}
 	}
 	
@@ -57,7 +67,7 @@
 </script>
 </head>
 <body>
-	<form id="shopbag" action="shopInsert.five" method="post">
+	<form id="shopbag">
             <table border="1">
             <tr><td>제목</td><td>${salboardDto.bo_subject}</td></tr>
             <tr><td>글쓴이</td><td>${salboardDto.user_id}</td></tr>
