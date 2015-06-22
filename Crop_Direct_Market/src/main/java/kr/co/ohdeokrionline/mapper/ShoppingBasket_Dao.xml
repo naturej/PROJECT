@@ -5,14 +5,29 @@
 <mapper namespace=
 	"kr.co.ohdeokrionline.model.dao.ShoppingBasket_Dao">
 	<!-- 장바구니 리스트 -->
+	<!-- 
 	<select id="shoplist" resultType="kr.co.ohdeokrionline.model.vo.ShoppingBasket_DTO">
 		SELECT * FROM SHOPBAG ORDER BY USER_ID
 	</select>
-	
-<!-- 	
+	 -->
+	<select id="shoplist" resultType="kr.co.ohdeokrionline.model.vo.ShoppingBasket_DTO">
+		SELECT S.BO_NUM AS BO_NUM,
+			   S.BO_SUBJECT AS BO_SUBJECT,
+			   S.BO_PHOTO AS BO_PHOTO,
+			   S.BO_PRICE AS BO_PRICE,
+			   S.USER_ID AS SELL_ID,
+			   SH.USER_ID AS USER_ID, 
+			   SH.SH_QUANTITY AS SH_QUANTITY, 
+			   SH.SH_PRICE AS SH_PRICE
+		FROM SALBOARD S 
+		JOIN SHOPBAG SH
+		ON S.BO_NUM = SH.BO_NUM
+	</select>
+	 
+ 	<!-- 장바구니 넣기 -->
 	<insert id="shopinsert" parameterType="kr.co.ohdeokrionline.model.vo.ShoppingBasket_DTO">
 		INSERT INTO SHOPBAG(USER_ID,BO_NUM,SH_QUANTITY,SH_PRICE) 
 		VALUES(#{user_id},#{bo_num},#{sh_quantity},#{bo_price*sh_quantity})
 	</insert> 
--->
+
 </mapper>

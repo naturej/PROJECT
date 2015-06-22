@@ -12,8 +12,10 @@
 <table width="500" cellpadding="0" cellspacing="0" border="1">
 	<tr>
 		<td>선택</td>
-		<td>유저</td>
-		<td>글번호</td>
+		<td>판매자</td>
+		<td>구매자</td>
+		<td>품명</td>
+		<td>판매가</td>
 		<td>수량</td>
 		<td>총가격</td>
 	<tr>
@@ -22,19 +24,21 @@
 	<c:set var="sum" value="${sum + e.sh_price}"></c:set>
 	<tr>
 		<td><input type="checkbox" checked="checked"></td>
+		<td>${e.sell_id}</td>
 		<td>${e.user_id}</td>
-		<td>${e.bo_num}</td>
+		<td>${e.bo_subject}</td>
+		<td>${e.bo_price}</td>
 		<td>${e.sh_quantity}</td>
 		<td>${e.sh_price}</td>
 	<tr>
 	</c:forEach>
 	<tr>
-		<td colspan="5" align="right">
+		<td colspan="7" align="right">
 			총가격 : ${sum} 
 		</td>
 	</tr>
 	<tr>
-		<td colspan="5" align="center">
+		<td colspan="7" align="center">
 			<input type="button" value="선택상품 삭제">
 			<input type="button" value="선택상품 주문"><!-- 주문으로 넘어가게 -->
 			<input type="button" value="이전으로" onclick="javascript:history.back()">
