@@ -14,8 +14,8 @@
       console.log(number)
       console.log(id)
       console.log(product)
-      window.open('enuri_sinchung.five?bo_num='+number+'&user_id='+id+'&pro_name='+product,
-      'top=100px, left=100px, height=700 width=1000')
+      window.open('enuri_sinchung.five?bo_num='+number+'&user_id='+id+'&pro_name='+product,'에누리 신청',
+      'top=100px, left=100px, width=430 height=510 ')
       
    }
    function review(salnum, userid, product){
