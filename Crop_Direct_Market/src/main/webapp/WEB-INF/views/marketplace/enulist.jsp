@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html class="no-js">
 <head>
 	<meta charset="utf-8">
@@ -27,7 +27,6 @@
     <!-- Hornet theme CSS -->
     <link href="css/style.css" rel="stylesheet">
 	<link href="css/colors.css" rel="stylesheet">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript">
@@ -107,7 +106,7 @@
 				<td>내용</td>
 				<td>작성일</td>
 				<td>상태</td>
-			<tr>
+			</tr>
 			<c:forEach items="${list}" var="e">
 			<tr>
 				<td>${e.enu_idx}</td>
@@ -117,7 +116,7 @@
 				<c:if test="${e.enu_confirm == '0'}"><td>대기중</td></c:if>
 				<c:if test="${e.enu_confirm == '1'}"><td>수락</td></c:if>
 				<c:if test="${e.enu_confirm == '2'}"><td>거절</td></c:if>
-			<tr>
+			</tr>
 			</c:forEach>
 		</table>
 			</div>
