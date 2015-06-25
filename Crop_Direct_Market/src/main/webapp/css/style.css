@@ -735,6 +735,8 @@ footer p {
     margin-top: 0;
 }
 
+
+/* CSSTableGenerator */
 .CSSTableGenerator {
 	margin:0px;padding:0px;
 	width:100%;
@@ -828,4 +830,36 @@ footer p {
 }
 .CSSTableGenerator tr:first-child td:last-child{
 	border-width:0px 0px 1px 1px;
+}
+
+/* table-hover */
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+  background-color: #f5f5f5;
+}
+.table-hover > tbody > tr > td.success:hover,
+.table-hover > tbody > tr > th.success:hover,
+.table-hover > tbody > tr.success:hover > td {
+  background-color: #caf4d1;
+  border-color: #b5efb5;
+}
+.table-hover > tbody > tr > td.danger:hover,
+.table-hover > tbody > tr > th.danger:hover,
+.table-hover > tbody > tr.danger:hover > td {
+  background-color: #ffc6d1;
+  border-color: #ffb7d1;
+}
+.table-hover > tbody > tr > td.warning:hover,
+.table-hover > tbody > tr > th.warning:hover,
+.table-hover > tbody > tr.warning:hover > td {
+  background-color: #ffeb99;
+  border-color: #ffd48a;
+}
+.personal-task.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+    background-color: #f7f8fc;
+}
+
+.personal-task.table-hover > tbody > tr:hover > td i{
+    color: #688a7e;
 }
