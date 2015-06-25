@@ -116,116 +116,22 @@ function resizeText() {
     <!-- Portfolio Wrap -->
     <div class="isotope" style="position: relative; overflow: hidden; height: 480px;" id="portfolio-wrap"> 
       
-      <!-- Portfolio Item With PrettyPhoto  -->
-      <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four   videography isotope-item">
-        <div class="portfolio-image"> <img src="img/portfolio_pic1.jpg"  alt="Portfolio 1"> </div>
-        <a title="Starbucks Coffee" rel="prettyPhoto[galname]" href="http://clapat.ro/themes/newave/images/portfolio/portfolio2.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Leica Camera</h4>
-            <p class="project-categories">Videography</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item With PrettyPhoto  --> 
+      <c:forEach items="${list}" var="n">
       
-      <!-- Portfolio Item Video Expander  -->
-      <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(337px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four  design isotope-item">
-        <div class="portfolio-image"> <img src="img/portfolio_pic2.jpg" alt="Portfolio 1"> </div>
-        <div class="project-overlay">
-          <div class="open-project-link"> <a class="open-project" href="http://clapat.ro/themes/newave/project-video-expander.html" title="Open Project"></a> </div>
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Foto Template</h4>
-            <p class="project-categories">Design</p>
-          </div>
-        </div>
-      </div>
-      <!--/Portfolio Item Video Expander  --> 
-      
-      <!-- Portfolio Item Normal Expander -->
-      <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(674px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four  design  isotope-item">
-        <div class="portfolio-image"> <img src="img/portfolio_pic3.jpg" alt="Portfolio 1"> </div>
-        <div class="project-overlay">
-          <div class="open-project-link"> <a class="open-project" href="http://clapat.ro/themes/newave/project-normal-expander-1.html" title="Open Project"></a> </div>
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Sony Phone</h4>
-            <p class="project-categories">Design</p>
-          </div>
-        </div>
-      </div>
-      <!--/Portfolio Item Normal Expander --> 
-      
-      <!-- Portfolio Item FullScreen Expander -->
-      <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four  photography  branding web isotope-item">
-        <div class="portfolio-image"> <img src="img/portfolio_pic4.jpg" alt="Portfolio 1"> </div>
-        <div class="project-overlay">
-          <div class="open-project-link"> <a class="open-project" href="http://clapat.ro/themes/newave/project-fullscreen-expander-1.html" title="Open Project"></a> </div>
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Nike Shoes</h4>
-            <p class="project-categories">Photography, Web, Branding</p>
-          </div>
-        </div>
-      </div>
-      <!-- Portfolio Item FullScreen Expander --> 
-      
-      <!-- Portfolio Item FullScreen Expander -->
-      <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four  design isotope-item">
-        <div class="portfolio-image"> <img src="img/portfolio_pic5.jpg" alt="Portfolio 1"> </div>
-        <div class="project-overlay">
-          <div class="open-project-link"> <a class="open-project" href="http://clapat.ro/themes/newave/project-fullscreen-expander-2.html" title="Open Project"></a> </div>
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Vinyl Record</h4>
-            <p class="project-categories">Design</p>
-          </div>
-        </div>
-      </div>
-      <!--/Portfolio Item FullScreen Expander --> 
-      
-      <!-- Portfolio Item Normal Expander -->
-      <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(337px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four  web isotope-item">
-        <div class="portfolio-image"> <img src="img/portfolio_pic6.jpg" alt="Portfolio 1"> </div>
-        <div class="project-overlay">
-          <div class="open-project-link"> <a class="open-project" href="http://clapat.ro/themes/newave/project-normal-expander-2.html" title="Open Project"></a> </div>
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">iPhone</h4>
-            <p class="project-categories">Web</p>
-          </div>
-        </div>
-      </div>
-      <!--/Portfolio Item Normal Expander --> 
-      
-      <!-- Portfolio Item External Project  -->
-      <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(674px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four  design web isotope-item">
-        <div class="portfolio-image"> <img src="img/portfolio_pic7.jpg" alt="Portfolio 1"> </div>
-        <a href="http://clapat.ro/themes/newave/project-external-1.html" class="external">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Nexus Phone</h4>
-            <p class="project-categories">Design, Web</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item External Project  --> 
-      
-      <!-- Portfolio Item With PrettyPhoto  -->
       <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four   photography isotope-item">
-        <div class="portfolio-image"> <img src="img/portfolio_pic8.jpg" alt="Portfolio 1"> </div>
-        <a title="Stereo Headphones" rel="prettyPhoto[galname]" href="http://clapat.ro/themes/newave/images/portfolio/portfolio8.jpg">
+        <div class="portfolio-image"> ${n.writedate}<img src="img/portfolio_pic8.jpg" alt="Portfolio 1"></div>
+        <a title="Stereo Headphones" rel="prettyPhoto[galname]" href="detailmarket.five?mar_id=${n.mar_id}">
         <div class="project-overlay">
+        
           <div class="project-info">
+          ${n.writedate}
             <div class="zoom-icon"></div>
-            <h4 class="project-name">Art Frame</h4>
+            <h4 class="project-name">${n.mar_subject}</h4>
             <p class="project-categories">Photography</p>
           </div>
         </div>
-        </a> </div>
+        </a></div>
+	</c:forEach>
       <!--/Portfolio Item With PrettyPhoto  --> 
       
     </div>
@@ -245,6 +151,7 @@ function resizeText() {
   
 </section>
 <!--/Portfolio --> 
+
 
 <!--new_portfolio--> 
 
@@ -425,24 +332,3 @@ $( window ).load(function() {
 </script>
 </body>
 </html>
-
-
-<%-- <table>
-<tr>
-				<th class="IDX">번호</th>
-				<th class="SUBJECT">제목</th>
-				<th class="USER_ID">작성자</th>
-				<th class="WRITEDATE">작성일</th>
-				<th class="COUNT">사진</th>
-</tr>
-<c:forEach items="${list}" var="n">
-				
-				<tr>
-					<td class="IDX">${n.mar_id}</td>
-					<td class="SUBJECT"><a href="detailmarket.five?mar_id=${n.mar_id}">${n.mar_subject}</a></td>
-					<td class="USER_ID">관리자</td>
-					<td class="WRITEDATE">${n.writedate}</td>
-					<td class="COUNT">${n.mar_photo}</td>
-				</tr>
-</c:forEach>
-</table> --%>
