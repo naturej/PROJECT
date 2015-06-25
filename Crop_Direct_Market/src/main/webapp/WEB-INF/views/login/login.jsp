@@ -56,12 +56,7 @@
                 <li><a href="MiddleTemperatureApi.five">중기기온조회</a></li>  
                 <li><a href="RealTime_Forecast_Api.five">동네실황조회</a></li>  
                 <li><a href="searchPriceApi.five">시세정보</a></li>  
-            <!--
-            	<li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li class="divider"></li>
-                <li><a href="#">One more separated link</a></li> 
-            -->
+            
               </ul>
            		</li>
            		    <li class="dropdown">

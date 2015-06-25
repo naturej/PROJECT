@@ -18,7 +18,8 @@
     <meta name="description" content="">
     <meta name="author" content="CSSNectar.com">
 	<title>일정관리</title>
-	
+	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 	<!-- Include CSS for JQuery Frontier Calendar plugin (Required for calendar plugin) -->
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/js/calendar/css/frontierCalendar/jquery-frontier-cal-1.3.2.css" />
 	
@@ -56,7 +57,7 @@
 	<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- Fonts -->
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/modernizr.custom.js"></script>
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<%=request.getContextPath()%>/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- Lightbox CSS -->
 	<link href="<%=request.getContextPath()%>/css/nivo-lightbox.css" rel="stylesheet" />
 	<link href="<%=request.getContextPath()%>/css/nivo-lightbox-theme/default/default.css" rel="stylesheet" type="text/css" />
@@ -77,13 +78,13 @@
 	<style type="text/css" media="screen">
 	body { font-size: 62.5%; }
 	.shadow {
-		-moz-box-shadow: 3px 3px 4px #aaaaaa;
-		-webkit-box-shadow: 3px 3px 4px #aaaaaa;
-		box-shadow: 3px 3px 4px #aaaaaa;
+		-moz-box-shadow: 3px 3px 4px #1ABC9C;
+		-webkit-box-shadow: 3px 3px 4px #1ABC9C;
+		box-shadow: 3px 3px 4px #1ABC9C;
 		/* For IE 8 */
-		-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#aaaaaa')";
+		-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#1ABC9C')";
 		/* For IE 5.5 - 7 */
-		filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#aaaaaa');
+		filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#1ABC9C');
 	}
 	</style>
 	
@@ -839,7 +840,7 @@
                 <li><a href="salboardlist.five">SALESBOARD</a></li>
                 <li><a href="marketlist.five">MARKET</a></li>
                 <li class="dropdown">
-             	 <a href="#" class="dropdown-toggle" data-toggle="dropdown">API<b class="caret"></b></a>
+             	 <a class="dropdown-toggle" data-toggle="dropdown">API<b class="caret"></b></a>
             	  <ul class="dropdown-menu">
                 <li><a href="searchPriceApi.five">시세정보</a></li>
                 <li><a href="MiddleForecastApi.five">중기예보</a></li>
@@ -868,7 +869,7 @@
         </div>
         <!-- /.container -->
     </nav>
-    <section id="contact" class="home-section text-center"  style="background-color: #aaaaaa;">
+    <section id="contact" class="home-section text-center" style="background:#ffffff;">
 
 		<div id="example" style="margin: auto; width:55%;">
 		<se:authorize ifAnyGranted="ROLE_SELLER,ROLE_CONSUMER,ROLE_ADMIN">
@@ -1026,18 +1027,18 @@
 			</div>	
 		</div>
 	</footer>
-<!-- 
-    Core JavaScript Files
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.easing.min.js"></script>
-	<script src="js/jquery.scrollTo.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/nivo-lightbox.min.js"></script>
-	<script src="js/stellar.js"></script>
-	<script src="js/wow.min.js"></script>
-    Custom Theme JavaScript
-    <script src="js/custom.js"></script> -->
+
+    <!-- Core JavaScript Files -->
+    <%-- <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script> --%>
+    <script src="<%=request.getContextPath()%>/js/jquery.easing.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery.scrollTo.js"></script>
+	<script src="<%=request.getContextPath()%>/js/owl.carousel.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/nivo-lightbox.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/stellar.js"></script>
+	<script src="<%=request.getContextPath()%>/js/wow.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="<%=request.getContextPath()%>/js/custom.js"></script>
 </body>
 
 </html>
