@@ -16,7 +16,7 @@
             	   FROM 
                		 (SELECT * 
                        FROM MARKET ORDER BY WRITEDATE DESC) N
-                )WHERE NUM BETWEEN 1 + (#{page}-1)*5 AND 5 + (#{page}-1)*5
+                )WHERE NUM BETWEEN 1 + (#{page}-1)*8 AND 8 + (#{page}-1)*8
     </select>
  
  	 <select id="detailmarket" resultType="kr.co.ohdeokrionline.model.vo.Market_DTO">
