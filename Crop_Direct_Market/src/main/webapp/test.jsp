@@ -10,7 +10,7 @@
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript">
 	function popup(){
-		window.open('popup.five','쪽지 보내기', 'width=300 height=200')
+		window.open('popup.five','쪽지 보내기', 'width=430, height=440, scrollbars=no')
 	}
 </script>
 </head>
