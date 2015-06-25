@@ -22,6 +22,7 @@
 		FROM SALBOARD S 
 		JOIN SHOPBAG SH
 		ON S.BO_NUM = SH.BO_NUM
+		ORDER BY S.USER_ID
 	</select>
 	 
  	<!-- 장바구니 넣기 -->
