@@ -8,19 +8,6 @@
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript">
-/* 	function yesEnuri() {	
-		alert('수락했습니다')
-		window.location = "yesEnuri.five?enu_idx="+${dto.enu_idx};
-		window.opener.location.reload();
- 		//window.close();//현재 문제  : close()를 사용하면 
- 					   // 주소 이동 이 전에 닫힌다.
- 		//window.close();
-	}
-	function noEnuri() {
-		alert('거절했습니다');
-		window.location = "noEnuri.five?enu_idx="+${dto.enu_idx};
-		window.opener.location.reload();
-	} */
 	function yesEnuri(enu_idx){
 		$.ajax({
 			url:'yesEnuri.five',
@@ -50,11 +37,7 @@
 </head>
 <body>
 	<form>
-		<table width="500" cellpadding="0" cellspacing="0" border="1">
-			<tr>
-				<td>글번호</td>
-				<td>${dto.enu_idx}</td>
-			</tr>
+		<table cellpadding="7" style="margin: 10px;">
 			<tr>
 				<td>보낸사람</td>
 				<td>${dto.user_id}</td>
