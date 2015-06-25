@@ -336,7 +336,6 @@ public class SalesBoardController {
 	// 에누리 수락
 	@RequestMapping("yesEnuri.five")
 	public String yesEnuri(String enu_idx){
-		System.out.println("window.close를 썼을 때 yesEnuri 요청");
 		Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
 		dao.yesEnuri(enu_idx);
 		//사용자 장바구니에 에누리 전달
