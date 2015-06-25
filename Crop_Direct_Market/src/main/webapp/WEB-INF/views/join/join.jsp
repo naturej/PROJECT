@@ -4,11 +4,12 @@
 <!DOCTYPE html>
 <html>
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript">
-	
+		var parameter = window.location.search.split('=')[1];
 		/* 유효성검사 */
 		function checkfield() {
-
 			if (document.joinForm.user_id.value == "") { //id값이 없을 경우
 				alert("아이디를 입력하세요"); //메세지 경고창을 띄운 후
 				document.joinForm.user_id.focus(); // id 텍스트박스에 커서를 위치
@@ -55,7 +56,39 @@
 				exit;
 
 			}
-
+			
+			if(parameter=='ROLE_SELLER'){
+				if (document.joinForm.farminfo.value == "") {
+					alert("농장 아이디를 입력하세요"); 
+					document.joinForm.farminfo.focus(); 
+					exit;
+				} else if (document.joinForm.farm_name.value == "") {
+					alert("농장 이름을 입력하세요"); 
+					document.joinForm.farm_name.focus(); 
+					exit;
+				} else if (document.joinForm.farm_add.value == "") {
+					alert("농장 주소를 입력하세요"); 
+					document.joinForm.farm_add.focus(); 
+					exit;
+				} else if (document.joinForm.farm_add_de.value == "") {
+					alert("농장 세부 주소를 입력하세요"); 
+					document.joinForm.farm_add_de.focus(); 
+					exit;
+				} else if (document.joinForm.pro_name.value == "") {
+					alert("농장 주요 작물을 입력하세요"); 
+					document.joinForm.pro_name.focus(); 
+					exit;
+				} else if (document.joinForm.farm_phon.value == "") {
+					alert("농장 전화번호를 입력하세요"); 
+					document.joinForm.farm_phon.focus(); 
+					exit;
+				} else if (document.joinForm.farm_comment.text == "") {
+					alert("농장 소개를 입력하세요"); 
+					document.joinForm.farm_comment.focus(); 
+					exit;
+				}
+			}
+			
 			if (document.joinForm.password.value != document.joinForm.password2.value) {
 				//비밀번호와 비밀번호확인의 값이 다를 경우
 
@@ -213,7 +246,7 @@
 					<!-- Email 입력 --> 
 					<div class="input-group">
 					<span class="input-group-addon">Email</span>
-					<input type="text" class="form-control" name="email1" id="password2" placeholder="Email" required />@
+					<input type="text" class="form-control" name="email1" placeholder="Email" required />@
 					<select name="email2" onchange="changeEmail(this.value)" >
 						<option value="" selected>이메일선택</option>
 						<option value="naver.com">naver.com</option>
@@ -246,147 +279,72 @@
 					<span class="input-group-addon">우편번호</span>
 					<input type="text" class="form-control" name="add_code" placeholder="AddressCode" required/>
 					</div>
+					<!-- 지역주소 -->
+					<div class="input-group">
+					<span class="input-group-addon">지역주소</span>
+					<input type="text" class="form-control" name="addr" placeholder="Address" required/>
+					</div>
+					<!-- 세부주소 -->
+					<div class="input-group">
+					<span class="input-group-addon">세부주소</span>
+					<input type="text" class="form-control" name="addd" placeholder="Address" required/>
+					</div>
+					<!-- 전화번호 -->
+					<div class="input-group">
+					<span class="input-group-addon">전화번호</span>
+					<input type="text" class="form-control" name="cell_phone" placeholder="phoneNumber" required/>
+					</div>
+					<!-- 유저사진등록 -->
+					<div class="input-group">
+					<span class="input-group-addon">사진</span>
+					<input type="file" class="form-control" name="file" placeholder="image" required/>
+					</div>
+					<hr>
+					<c:if test="${param.user == 'ROLE_SELLER'}">
+						<!-- 농장 ID 입력 --> 
+						<div class="input-group">
+						<span class="input-group-addon">농장 ID</span>
+						<input type="text" class="form-control" name="farminfo" placeholder="FarmID" required/>
+						</div>
+						<!-- 농장 이름 입력 --> 
+						<div class="input-group">
+						<span class="input-group-addon">농장 이름</span>
+						<input type="text" class="form-control" name="farm_name" placeholder="FarmName" required/>
+						</div>
+						<!-- 농장지역 -->
+						<div class="input-group">
+						<span class="input-group-addon">농장지역</span>
+						<input type="text" class="form-control" name="farm_add" placeholder="FarmAddress" required/>
+						</div>
+						<!-- 세부주소 -->
+						<div class="input-group">
+						<span class="input-group-addon">농장 세부주소</span>
+						<input type="text" class="form-control" name="farm_add_de" placeholder="FarmAddress" required/>
+						</div>
+						<!-- 농장 주요작물 -->
+						<div class="input-group">
+						<span class="input-group-addon">농장 주요작물</span>
+						<input type="text" class="form-control" name="pro_name" placeholder="Product" required/>
+						</div>
+						<!-- 농장 전화번호 -->
+						<div class="input-group">
+						<span class="input-group-addon">농장 전화번호</span>
+						<input type="text" class="form-control" name="farm_phon" placeholder="FarmPhoneNumber" required/>
+						</div>
+						<!-- 농장소개 -->
+						<div class="input-group">
+						<span class="input-group-addon">농장소개</span>
+						<textarea class="form-control" name="farm_comment" placeholder="FarmIntroduce" required></textarea>
+						</div>
+					</c:if>
 				</div>
 			</div>
+			<div class="col-md-6 col-lg-8">
+				<button type="button" class="btn btn-skin pull-center" onclick="checkfield()">가입확인</button>
+				<button type="reset" class="btn btn-skin pull-center">취 소</button>
+			</div>
 		</div>
-		<%-- <table>
-			<!-- ID 입력 --> 
-			<tr>
-				<td>ID</td>
-				<td><input type="text" name="user_id" placeholder="UserID"></td>
-			</tr>
-
-			<!-- 이름 입력 -->
-			<tr>
-				<td>이름</td>
-				<td><input type="text" name="user_name" placeholder="UserName"></td>
-			</tr>
-
-			<!-- 비밀번호 입력 -->
-			<tr>
-				<td>비밀번호</td>
-				<td><input type="password" name="password" id="password" placeholder="Password"></td>
-			</tr>
-
-			<!-- 비밀번호 입력 -->
-			<tr>
-				<td>비밀번호 확인</td>
-				<td><input type="password" name="password2" placeholder="Password"></td>
-			</tr>
-
-			<!-- Email 입력 -->
-			<tr>
-				<td>Email</td>
-				<td>
-					<input type="text" name="email1" placeholder="Email">@
-					<select name="email2" onchange="changeEmail(this.value)" >
-						<option value="" selected>이메일선택</option>
-						<option value="naver.com">naver.com</option>
-						<option value="dreamwiz.com">dreamwiz.com</option>
-						<option value="empal.com">empal.com</option>
-						<option value="hanmir.com">hanmir.com</option>
-						<option value="hanafos.com">hanafos.com</option>
-						<option value="hotmail.com">hotmail.com</option>
-						<option value="lycos.co.kr">lycos.co.kr</option>
-						<option value="nate.com">nate.com</option>
-						<option value="paran.com">paran.com</option>
-						<option value="netian.com">netian.com</option>
-						<option value="yahoo.co.kr">yahoo.co.kr</option>
-						<option value="kornet.net">kornet.net</option>
-						<option value="nownuri.net">nownuri.net</option>
-						<option value="unitel.co.kr">unitel.co.kr</option>
-						<option value="freechal.com">freechal.com</option>
-						<option value="korea.com">korea.com</option>
-						<option value="orgio.net">orgio.net</option>
-						<option value="chollian.net">chollian.net</option>
-						<option value="hitel.net">hitel.net</option>
-						<option value="1">직접입력</option>
-					</select> 
-					<input type="text" name="email3" style="display: none">
-					<input type="button" value="확인" onclick="comfirmemail()" >
-					<br>
-					<input type="text" name="email" readonly="readonly">
-				</td>
-			</tr>
-	
-			<!-- 우편번호  -->
-			<tr>
-				<td>우편번호</td>
-				<td><input type="text" name="add_code" placeholder="phoneNumber"></td>
-			</tr>
-			<!-- 지역주소등록 -->
-			<tr>
-				<td>지역주소</td>
-				<td><input type="text" name="addr" placeholder="address"></td>
-			</tr>
-	
-			<!-- 세부주소 -->
-			<tr>
-				<td>세부주소</td>
-				<td><input type="text" name="addd" placeholder="address"></td>
-			</tr>
-	
-			<!-- 전화번호  -->
-			<tr>
-				<td>전화번호</td>
-				<td><input type="text" name="cell_phone" placeholder="phoneNumber"></td>
-			</tr>
-
-			<!-- 유저사진등록 -->
-			<tr>
-				<td>사진</td>
-				<td><input type="file" name="file" placeholder="image"></td>
-			</tr>
-			<tr><td colspan="2"><hr></td></tr>
-			<c:if test="${param.user == 'ROLE_SELLER'}">
-				<!-- 농장 ID 입력 --> 
-				<tr>
-					<td>농장 ID</td>
-					<td><input type="text" name="farminfo" placeholder="FarmID"></td>
-				</tr>
-				
-				<!-- 농장 이름 입력 -->
-				<tr>
-					<td>농장 이름</td>
-					<td><input type="text" name="farm_name" placeholder="FarmName"></td>
-				</tr>
-				
-				<!-- 농장지역등록 -->
-				<tr>
-					<td>농장 지역</td>
-					<td><input type="text" name="farm_add" placeholder="FarmAddress"></td>
-				</tr>
 		
-				<!-- 세부주소 -->
-				<tr>
-					<td>농장 세부주소</td>
-					<td><input type="text" name="farm_add_de" placeholder="FarmAddress"></td>
-				</tr>
-				
-				<!-- 농장 주요작물 -->
-				<tr>
-					<td>농장 주요작물</td>
-					<td><input type="text" name="pro_name" placeholder="Product"></td>
-				</tr>
-				
-				<!-- 농장전화번호  -->
-				<tr>
-					<td>농장 전화번호</td>
-					<td><input type="text" name="farm_phon" placeholder="FarmPhoneNumber"></td>
-				</tr>
-				
-				<!-- 농장소개  -->
-				<tr>
-					<td>농장 소개</td>
-					<td><textarea name="farm_comment" placeholder="FarmIntroduce"></textarea></td>
-				</tr>
-			</c:if>
-			
-			<tr>
-				<td><input type="button" value="가입확인" onclick="checkfield()"></td>
-				<td><input type="reset" value="가입취소"></td>
-			</tr>
-		</table> --%>
 		<c:choose>
 			<c:when test="${param.user == 'ROLE_SELLER'}">
 				<input type="hidden" name="authority" value="ROLE_SELLER">
@@ -420,8 +378,7 @@
 	</footer>
 
     <!-- Core JavaScript Files -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    
     <script src="js/jquery.easing.min.js"></script>
 	<script src="js/jquery.scrollTo.js"></script>
 	<script src="js/owl.carousel.min.js"></script>

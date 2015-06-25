@@ -109,15 +109,24 @@
 			<br>
 			<hr>
 			</div>
-			 <div class="CSSTableGenerator" >
-				<table>
-				<c:forEach items="${list}" var="n">
+			
+			<table class="table table-hover">
+                              <thead>
+                              <tr>
+                                  <th>Num</th>
+                                  <th>Content</th>
+                                  <th>Date</th>
+                                  <th>Userid</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                <c:forEach items="${list}" var="n">
 				<tr>
-					<td>${n.re_idx}|${n.re_content}|${n.re_writedate}|${n.USER_ID}</td>
+					<td>${n.re_idx}</td><td>${n.re_content}</td><td>${n.re_writedate}</td><td>{n.USER_ID}</td>
 				</tr>
 				</c:forEach>
-				</table>
-				</div>
+                              </tbody>
+                          </table>
 				
 				<form action="reply.five?" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="idx" value="${boardDto.idx}">
