@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace=
+	"kr.co.ohdeokrionline.model.dao.SalesBoard_Dao">
+	
+	 	<!-- 총 판매글 수 -->	
+	 	<select id="getCount" resultType="Integer">
+		  SELECT COUNT(*) FROM SALBOARD
+		</select>
+	
+		<!-- 판매글 리스트 -->	
+		<select id="saleslist" parameterType="Integer" resultType="kr.co.ohdeokrionline.model.vo.SalesBoard_DTO">
+	
+			SELECT * FROM
+	               (SELECT ROWNUM NUM, N.* 
+	            	   FROM 
+	               		 (SELECT * 
+	                       FROM SALBOARD ORDER BY BO_NUM DESC) N
+	                )WHERE NUM BETWEEN 1 + (#{page}-1)*5 AND 5 + (#{page}-1)*5
+	    </select>
+		
+		<!-- 판매글 등록 -->
+		<insert id="insert" parameterType="kr.co.ohdeokrionline.model.vo.SalesBoard_DTO">
+	     INSERT INTO SALBOARD(BO_NUM,BO_SUBJECT,BO_CONTENT,BO_DATE,BO_PRICE,BO_PHOTO,USER_ID,UNIT,PRO_NAME,BO_SALNUM)
+	      VALUES(SAL_Seq.nextval,#{bo_subject},#{bo_content},SYSDATE,#{bo_price},#{bo_photo,jdbcType=VARCHAR},#{user_id},#{unit},#{pro_name},#{bo_salnum})     
+	     </insert>
+		
+		<!-- 판매글 상세보기 -->
+		<select id="salesdetail" resultType="kr.co.ohdeokrionline.model.vo.SalesBoard_DTO">
+	    	 SELECT * FROM SALBOARD WHERE BO_NUM=#{bo_num,jdbcType=INTEGER}
+	   	 </select>
+
+		<!--   판매글 수정하기   -->
+	   <update id="update">
+	       UPDATE SALBOARD SET BO_SUBJECT=#{bo_subject},BO_CONTENT=#{bo_content},BO_PRICE=#{bo_price},UNIT=#{unit},PRO_NAME=#{pro_name},
+	                      BO_PHOTO=#{bo_photo,jdbcType=VARCHAR},BO_SALNUM=#{bo_salnum} WHERE BO_NUM=#{bo_num}
+	   </update>
+		
+		<!--  판매글 삭제   -->
+		<delete id="delete" parameterType="STRING">
+		      DELETE SALBOARD WHERE BO_NUM=#{bo_num,jdbcType=INTEGER}
+		</delete>  
+	
+		<!-- UNIT LIST 출력 -->
+		<select id="unitlist" resultType="kr.co.ohdeokrionline.model.vo.Unit_DTO">
+			select * from unit
+		</select>
+		
+		<!-- SEPARATE LIST 출력 -->
+		<select id="seplist" resultType="kr.co.ohdeokrionline.model.vo.Separate_DTO">
+			 select * from separate
+		</select>
+		
+		<!-- PRODUCT LIST 출력 -->
+		<select id="prolist" resultType="kr.co.ohdeokrionline.model.vo.Product_DTO">
+			select p.PRO_NAME,p.PRO_PRICE,p.PRO_ID,p.PRO_COST from product p join separate s on p.PRO_ID=s.PRO_ID where s.PRO_SEP=#{pro_sep}
+		</select>
+		
+
+
+
+</mapper>
