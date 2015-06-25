@@ -94,13 +94,12 @@
 				</div>
 			</div>
 			
-   		 <div class="Board_Table" >
+   		 <div class="CSSTableGenerator" >
 			<table>
-				<tr><td>제목:${boardDto.subject}</td></tr>
-				<tr><td>글쓴이: ${boardDto.user_id}</td></tr>
-				<tr><td>작성일:${boardDto.writedate}</td></tr>
-				<tr><td>내용:${boardDto.content}</td></tr>
-				<tr><td>파일:${boardDto.filename}</td></tr>
+				<tr><td colspan="2">${boardDto.subject}</td></tr>
+				<tr><td>writer|${boardDto.user_id}</td><td>Date|${boardDto.writedate}</tr>
+				<tr><td colspan="2">${boardDto.content}</td></tr>
+				<tr><td colspan="2">첨부파일:${boardDto.filename}</td></tr>
 			</table>
 			
 				<a href="boardlist.five">목록</a>
@@ -114,27 +113,21 @@
 				<table>
 				<c:forEach items="${list}" var="n">
 				<tr>
-					<td>${n.re_idx}</td>
-					<td>${n.re_content}</td>
-					<td>${n.re_writedate}</td>
-					<td>${n.USER_ID}</td>
+					<td>${n.re_idx}|${n.re_content}|${n.re_writedate}|${n.USER_ID}</td>
 				</tr>
 				</c:forEach>
 				</table>
 				</div>
 				
-				<div class="CSSTableGenerator">	
 				<form action="reply.five?" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="idx" value="${boardDto.idx}">
-				<table>
-				<tr><td>작성자<input type="text" id="USER_ID" name="USER_ID" /></td></tr>
-				<tr><td><textarea id="re_content" name="re_content">내용</textarea></td></tr>
-				<tr><td><input type="submit" value="작성" /></td></tr>
-				</table>
+				<textarea id="re_content" name="re_content">내용</textarea>
+				<input type="text" id="USER_ID" name="USER_ID" />
+				<input type="submit" value="작성" />
+				
 				</form>	
 				</div>
 				</div>
-		</div>
 	</section>
 				
 </body>
