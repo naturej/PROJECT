@@ -16,38 +16,38 @@
 	<title>일정관리</title>
 	
 	<!-- Include CSS for JQuery Frontier Calendar plugin (Required for calendar plugin) -->
-	<link rel="stylesheet" type="text/css" href="js/calendar/css/frontierCalendar/jquery-frontier-cal-1.3.2.css" />
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/js/calendar/css/frontierCalendar/jquery-frontier-cal-1.3.2.css" />
 	
 	<!-- Include CSS for color picker plugin (Not required for calendar plugin. Used for example.) -->
-	<link rel="stylesheet" type="text/css" href="js/calendar/css/colorpicker/colorpicker.css" />
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/js/calendar/css/colorpicker/colorpicker.css" />
 	
 	<!-- Include CSS for JQuery UI (Required for calendar plugin.) -->
-	<link rel="stylesheet" type="text/css" href="js/calendar/css/jquery-ui/smoothness/jquery-ui-1.8.1.custom.css" />
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/js/calendar/css/jquery-ui/smoothness/jquery-ui-1.8.1.custom.css" />
 	
 	<!--
 	Include JQuery Core (Required for calendar plugin)
 	** This is our IE fix version which enables drag-and-drop to work correctly in IE. See README file in js/jquery-core folder. **
 	-->
-	<script type="text/javascript" src="js/calendar/js/jquery-core/jquery-1.4.2-ie-fix.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/calendar/js/jquery-core/jquery-1.4.2-ie-fix.min.js"></script>
 	
 	<!-- Include JQuery UI (Required for calendar plugin.) -->
-	<script type="text/javascript" src="js/calendar/js/jquery-ui/smoothness/jquery-ui-1.8.1.custom.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/calendar/js/jquery-ui/smoothness/jquery-ui-1.8.1.custom.min.js"></script>
 	
 	<!-- Include color picker plugin (Not required for calendar plugin. Used for example.) -->
-	<script type="text/javascript" src="js/calendar/js/colorpicker/colorpicker.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/calendar/js/colorpicker/colorpicker.js"></script>
 	
 	<!-- Include jquery tooltip plugin (Not required for calendar plugin. Used for example.) -->
-	<script type="text/javascript" src="js/calendar/js/jquery-qtip-1.0.0-rc3140944/jquery.qtip-1.0.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/calendar/js/jquery-qtip-1.0.0-rc3140944/jquery.qtip-1.0.js"></script>
 	
 	<!--
 		(Required for plugin)
 		Dependancies for JQuery Frontier Calendar plugin.
 	    ** THESE MUST BE INCLUDED BEFORE THE FRONTIER CALENDAR PLUGIN. **
 	-->
-	<script type="text/javascript" src="js/calendar/js/lib/jshashtable-2.1.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/calendar/js/lib/jshashtable-2.1.js"></script>
 	
 	<!-- Include JQuery Frontier Calendar plugin -->
-	<script type="text/javascript" src="js/calendar/js/frontierCalendar/jquery-frontier-cal-1.3.2.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/calendar/js/frontierCalendar/jquery-frontier-cal-1.3.2.js"></script>
 	
 </head>
 <body style="background-color: #aaaaaa;">
