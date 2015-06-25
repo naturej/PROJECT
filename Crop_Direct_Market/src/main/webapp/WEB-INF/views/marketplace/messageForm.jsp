@@ -12,10 +12,13 @@
 		window.close();
 	}
 </script>
+<link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 	<form action="sendMessage.five">
-		<table>
+		<h3 style="margin: 0">쪽지 보내기</h3>
+		<hr color="#1ABC9C">
+		<table cellpadding="7" style="margin: 10px;">
 			<tr>
 				<!-- 팝업 되기 전에 받아 온 정보를 가져와서 뿌려야 하는 데이터 -->
 				<td>받는사람</td>
@@ -30,8 +33,9 @@
 				<td><input type="text" name="me_subject"></td>
 			</tr>
 			<tr>
-				<td>내용</td>
-				<td><textarea name="me_content"></textarea></td>
+				<td colspan="2">
+					<textarea cols="50" rows="10" style="overflow-y:scroll" name="me_content"></textarea>
+				</td>
 			</tr>
 			<tr>
 				<td><input type="text" name="send_userid" value="gathering11" hidden><!-- 테스트용 고정 값 -->
@@ -42,9 +46,9 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">
-				<input type="submit" value="전송" onclick="sendmsg()">
-				<input type="button" value="닫기" onclick="window.close()">
+				<td style="padding-top: 0" colspan="2" align="center">
+					<input type="submit" value="전송" onclick="sendmsg()" class="btn_submit">
+					<input type="button" value="닫기" onclick="window.close()" class="btn_cancel">
 				</td>
 			</tr>
 		</table>
