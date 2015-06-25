@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.ohdeokrionline.model.dao.ReviewWrite_Dao">
+
+	<!-- 후기글 작성 -->
+	<insert id="reviewInsert" parameterType="kr.co.ohdeokrionline.model.vo.ReviewWrite_DTO" >
+		INSERT INTO
+		REVIEW(RE_ID, RE_CONTENT,RE_SCORE,USER_ID,BO_NUM)
+		VALUES(rev_seq.nextval,#{re_content},#{re_score},#{user_id},#{bo_num})
+	</insert>
+</mapper>

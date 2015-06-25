@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.ohdeokrionline.model.dao.SaleBoard_Dao">
+	<!-- 6번 글 전용 테스트 쿼리 -->
+	<select id="salDetail" resultType="kr.co.ohdeokrionline.model.vo.SaleBoard_DTO"><!-- 테스트용 상세보기 쿼리 -->
+		SELECT * FROM SALBOARD WHERE BO_NUM= 6
+	</select>
+	
+</mapper>
