@@ -39,6 +39,10 @@
 			$( "#dialog-confirm" ).dialog( "open" );
 		}
 	}
+	function Enuri(number,id,product){
+		window.open('enuri_sinchung.five?bo_num='+number+'&user_id='+id+'&pro_name='+product,'에누리 신청',
+	      'top=100px, left=100px, width=430 height=510 ')
+	}
 	
 	$(function() {
 		  $( "#dialog-confirm" ).dialog({
@@ -67,7 +71,7 @@
 </script>
 </head>
 <body>
-	<form id="shopbag">
+	<form>
             <table border="1">
             <tr><td>제목</td><td>${salboardDto.bo_subject}</td></tr>
             <tr><td>글쓴이</td><td>${salboardDto.user_id}</td></tr>
@@ -87,6 +91,7 @@
             <a href="salboardedit.five?bo_num=${salboardDto.bo_num}">수정</a>
             <a href="salboarddelete.five?bo_num=${salboardDto.bo_num}">삭제</a>
             <input type="button" id="opener" value="장바구니 담기" onclick="CheckForm()">
+            <input type="button" id="enuri" value="에누리 신청" onclick="Enuri('${salboardDto.bo_num}','${salboardDto.user_id}','${salboardDto.pro_name}')">
 <%--        
             <a href="review.five?idx=${salboardDto.idx}">리뷰쓰기</a>
 --%>
