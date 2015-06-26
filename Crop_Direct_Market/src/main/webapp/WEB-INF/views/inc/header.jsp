@@ -18,7 +18,7 @@
               <ul class="nav navbar-nav" style="background-color: #1ABC9C">
                 <li><a href="<%=request.getContextPath()%>/board/boardlist.five">BOARD</a></li>
                 <li><a href="<%=request.getContextPath()%>/salesboard/salboardlist.five">SALESBOARD</a></li>
-                <li><a href="marketlist.five">MARKET</a></li>
+                <li><a href="<%=request.getContextPath()%>/marketlist.five">MARKET</a></li>
                 <li class="dropdown">
              	 <a href="#" class="dropdown-toggle" data-toggle="dropdown">API<b class="caret"></b></a>
             	  <ul class="dropdown-menu">
@@ -33,7 +33,13 @@
            		    <li class="dropdown">
              	 <a href="#" class="dropdown-toggle" data-toggle="dropdown">MYPAGE<b class="caret"></b></a>
             	  <ul class="dropdown-menu">
-                <li><a href="mypage/schedule.five">일정</a></li>
+                <li><a href="<%=request.getContextPath()%>/mypage/schedule.five">일정</a></li>
+                <li><a href="<%=request.getContextPath()%>/salesboard/shopList.five">장바구니목록</a></li>
+                <li><a href="<%=request.getContextPath()%>/salesboard/enulist.five">에누리목록</a></li>
+                <li><a href="<%=request.getContextPath()%>/salesboard/receiveList.five">받은메세지목록</a></li>
+                <li><a href="<%=request.getContextPath()%>/salesboard/sendList.five">보낸메세지목록</a></li>
+                
+                
               </ul>
               <li><a href="login.five">LOGIN</a></li>
               <li><a href="<c:url value='/j_spring_security_logout' />">LOGOUT</a></li>
