@@ -12,6 +12,9 @@ public class Enuri_DTO {
 	private String enu_confirm;
 	private int enu_price;
 	
+	// 판매게시판
+	private String bo_subject;
+	private int bo_price;
 	
 	public Enuri_DTO(){}
 	
@@ -75,5 +78,22 @@ public class Enuri_DTO {
 	}
 	public void setEnu_price(int enu_price) {
 		this.enu_price = enu_price;
+	}
+	
+	//판매게시판
+	public String getBo_subject() {
+		return bo_subject;
+	}
+
+	public void setBo_subject(String bo_subject) {
+		this.bo_subject = bo_subject;
+	}
+
+	public int getBo_price() {
+		return bo_price;
+	}
+
+	public void setBo_price(int bo_price) {
+		this.bo_price = bo_price;
 	}
 }

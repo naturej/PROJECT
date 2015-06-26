@@ -28,15 +28,24 @@
 		SELECT * FROM ENURI ORDER BY ENU_IDX DESC
 	</select>
 	
-	<!-- 에누리 상세보기 -->
+<!-- 	 에누리 상세보기 
 	<select id="enuDetail" resultType="kr.co.ohdeokrionline.model.vo.Enuri_DTO">
 		SELECT * FROM ENURI WHERE ENU_IDX=#{enu_idx}
+	</select> 
+	-->
+	<!-- 에누리 상세보기 -->
+	<select id="enuDetail" resultType="kr.co.ohdeokrionline.model.vo.Enuri_DTO">
+		SELECT E.USER_ID,E.ENU_DATE,S.BO_SUBJECT,E.ENU_QUAN,E.ENU_PRICE,E.ENU_CONTENT,S.BO_PRICE,E.BO_NUM,E.ENU_CONFIRM,E.ENU_IDX
+		FROM ENURI E
+		JOIN SALBOARD S
+		ON E.BO_NUM=S.BO_NUM
+		WHERE E.ENU_IDX=#{enu_idx}
 	</select>
 	
 	<!-- 에누리 신청 -->
 	<insert id="insertEnuri" parameterType="kr.co.ohdeokrionline.model.vo.Enuri_DTO"><!-- 테스트용 상세보기 쿼리 -->
 		INSERT INTO ENURI(BO_NUM, USER_ID,ENU_CONTENT, ENU_QUAN, ENU_PRICE, ENU_IDX) 
-			VALUES(#{bo_num} ,	#{user_id} ,#{enu_content} ,#{enu_quan} ,#{enu_price} ,	ENU_SEQ.NEXTVAL )
+			VALUES(#{bo_num},#{user_id} ,#{enu_content} ,#{enu_quan} ,#{enu_price} ,	ENU_SEQ.NEXTVAL )
 	</insert>
 	
 	<!-- 에누리 수락 (1) -->
