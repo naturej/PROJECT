@@ -24,7 +24,7 @@
 }
 </style>
 </head>
-<body>
+<body style="overflow: hidden;">
 	<h3 style="margin: 5px;">에누리 신청하기</h3><span class="message">에누리 신청은 바로구매보다 기한이 걸릴 수 있습니다.</span>
 	<hr color="#1ABC9C">
    <form action="send_enuriMessage.five">

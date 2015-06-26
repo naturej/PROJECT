@@ -8,9 +8,13 @@
 <title>에누리 상세보기</title>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<link href="css/style.css" rel="stylesheet">
 <style type="text/css">
 	#origin_price{
 		text-decoration: line-through;
+	}
+	#enu_price{
+		color: #F24E4E;
 	}
 </style>
 <script type="text/javascript">
@@ -51,8 +55,10 @@
 	}
 </script>
 </head>
-<body>
+<body style="overflow: hidden;">
 	<form>
+		<h3 style="margin: 0">에누리 상세보기</h3>
+		<hr color="#1ABC9C">
 		<table cellpadding="7" style="margin: 10px;">
 			<tr>
 				<td>보낸사람</td>
@@ -74,17 +80,18 @@
 				<td>에누리 가격</td>
 				<td>
 					<c:set var="price" value="${dto.enu_quan*dto.bo_price}"></c:set>
-					<label id="origin_price">${price}</label> -> ${dto.enu_price}
+					<label id="origin_price">${price}</label> -> <label id="enu_price">${dto.enu_price}</label>
 				</td>
 			</tr>
 			<tr>
-				<td>내용</td>
-				<td>${dto.enu_content}</td>
+				<td colspan="2">
+					<textarea rows="10" cols="50" readonly="readonly">${dto.enu_content}</textarea>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="button" value="수락" onclick="yesEnuri(${dto.enu_idx})">
-					<input type="button" value="거절" onclick="noEnuri(${dto.enu_idx})">
+					<input type="button" class="btn_submit" value="수락" onclick="yesEnuri(${dto.enu_idx})">
+					<input type="button" class="btn_cancel" value="거절" onclick="noEnuri(${dto.enu_idx})">
 				</td>
 			</tr>
 		</table>

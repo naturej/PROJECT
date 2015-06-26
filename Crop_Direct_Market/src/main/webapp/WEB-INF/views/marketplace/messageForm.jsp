@@ -14,7 +14,7 @@
 </script>
 <link href="css/style.css" rel="stylesheet">
 </head>
-<body>
+<body style="overflow: hidden;">
 	<form action="sendMessage.five">
 		<h3 style="margin: 0">쪽지 보내기</h3>
 		<hr color="#1ABC9C">
