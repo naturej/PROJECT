@@ -20,13 +20,13 @@
 	  
 	
 	<!-- Tiles 설정 -->
-	<!-- <beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<beans:property name="definitions">
 			<beans:list>
-				<beans:value>/WEB-INF/spring/Tiles.xml</beans:value>
+				<beans:value>/WEB-INF/Tiles.xml</beans:value>
 			</beans:list>
 		</beans:property>
-	</beans:bean> -->
+	</beans:bean>
 	<!-- 2개의 viewResolver 설정하기
 	UrlBasedViewResolver :  request url을 사용하는 view resolver.
 	InternalResourceViewResolver :
@@ -35,10 +35,10 @@
 		jstlView, TilesView 를 지원한다.
 	-->
 	<!-- urlBasedViewResolver 설정하기 : Tiles -->
-	<!-- <beans:bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	<beans:bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<beans:property name="viewClass" 
 				  value="org.springframework.web.servlet.view.tiles2.TilesView" />
-	</beans:bean> -->
+	</beans:bean>
 	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />

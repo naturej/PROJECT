@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
-<!DOCTYPE html>
+<%-- <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
@@ -77,7 +77,7 @@
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
-    </nav>
+    </nav> --%>
 
 	<!-- Section: intro -->
     <section id="intro" class="intro">
@@ -94,8 +94,8 @@
 	<!-- /Section: intro -->
 
 	
-
-    <!-- Core JavaScript Files -->
+<!-- 
+    Core JavaScript Files
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
@@ -104,9 +104,9 @@
 	<script src="js/nivo-lightbox.min.js"></script>
 	<script src="js/stellar.js"></script>
 	<script src="js/wow.min.js"></script>
-    <!-- Custom Theme JavaScript -->
+    Custom Theme JavaScript
     <script src="js/custom.js"></script>
-
+ -->
 </body>
 
 </html>

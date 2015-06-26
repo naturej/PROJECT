@@ -29,7 +29,10 @@ public class ScheduleController {
 		
 		model.addAttribute("list", list);
 		model.addAttribute("user_id",principal.getName());
-		return "mypage/schedule";
+		//Tiles 적용 전 코드
+		//return "mypage/schedule";
+		//Tiles 적용
+		return "mypage.schedule";
 	}
 	
 	@RequestMapping("scheduleAdd.five")

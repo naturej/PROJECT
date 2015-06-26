@@ -9,8 +9,8 @@ public class IndexController {
 	public String index(){
 		System.out.println("index");
 		//Tiles 적용
-		//return "home.index";
+		return "home.index";
 		//Tiles 적용 전 코드
-		return "redirect:index.jsp";
+		//return "redirect:index.jsp";
 	}
 }

@@ -33,7 +33,10 @@ public class MemberController {
 	// 로그인
 	@RequestMapping(value="login.five",method=RequestMethod.GET)
 	public String login() {
-		return "login/login";
+		//Tiles 적용 전 코드
+		//return "login/login";
+		//Tiles 적용
+		return "login.login";
 	}
 	
 	@RequestMapping(value="login.five",method=RequestMethod.POST)
@@ -45,25 +48,37 @@ public class MemberController {
 				return "redirect:index.jsp";
 			}*/
 			if(passwordEncoder.matches(password, member.getPassword())){
-				return "redirect:index.jsp";
+				//Tiles 적용 전 코드
+				//return "redirect:index.five";
+				//Tiles 적용
+				return "home.index";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return "login/login";
+		//Tiles 적용 전 코드
+		//return "login/login";
+		//Tiles 적용
+		return "login.login";
 	}
 	
 	// 회원가입
 	@RequestMapping(value="joinSelect.five",method=RequestMethod.GET)
 	public String joinSelect() {
-		return "join/joinSelect";
+		//Tiles 적용 전 코드
+		//return "join/joinSelect";
+		//Tiles 적용
+		return "join.joinSelect";
 	}
 	
 	@RequestMapping(value="join.five",method=RequestMethod.GET)
 	public String joinForm(String user,Model model) {
 		model.addAttribute("user",user);
-		return "join/join";
+		//Tiles 적용 전 코드
+		//return "join/join";
+		//Tiles 적용
+		return "join.join";
 	}
 	
 	@RequestMapping(value="join.five",method=RequestMethod.POST)
@@ -98,15 +113,12 @@ public class MemberController {
 			dao3.insertAuth(authority);
 		}
 		
-		
-		
-		return "redirect:index.jsp";
+		//Tiles 적용 전 코드
+		//return "redirect:index.jsp";
+		//Tiles 적용
+		return "home.index";
 	}
 	
-	@RequestMapping("test.message")
-	public void insert() {
-		Message_Dao dao = sqlSession.getMapper(Message_Dao.class);
-	}
 	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
@@ -118,7 +130,10 @@ public class MemberController {
 			String bCryptString = passwordEncoder.encode(password);
 			System.out.println(bCryptString);
 			model.addAttribute("passwordEncoder", bCryptString);
-			return "join/encoder"; 
+			//Tiles 적용 전 코드
+			//return "join/encoder";
+			//Tiles 적용
+			return "join.encoder"; 
 		}
 		return "";
 	}

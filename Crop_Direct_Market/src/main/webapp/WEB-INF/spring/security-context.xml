@@ -22,7 +22,7 @@
 	-> <security:form-login login-page="/joinus/login.htm"/>
 -->
 	<security:http>
-		<security:form-login login-page="/login.five"
+		<security:form-login default-target-url="/index.five" login-page="/login.five"
 		authentication-failure-url="/login.five?error"/>
 		<security:logout invalidate-session="true" delete-cookies="true" logout-success-url="/index.five" />
 		<!-- 1단계 : 파일 별로 권한 설정 
@@ -37,7 +37,10 @@
 		aaaReg.htm , bbbb_Reg.htm 적용
 		-->
 		<!-- <security:intercept-url pattern="/customer/*Reg.htm" access="ROLE_USER"/> -->
-		
+		<security:intercept-url pattern="/*/*.five" access="ROLE_CONSUMER,ROLE_SELLER,ROLE_ADMIN"/>
+		<security:intercept-url pattern="/market/marketwrite.five" access="ROLE_ADMIN"/>
+		<security:intercept-url pattern="/salesboard/salboardwrite.five" access="ROLE_SELLER"/>
+		<security:intercept-url pattern="/salesboard/salboardedit.five" access="ROLE_SELLER"/>
 	</security:http>
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	<security:authentication-manager>

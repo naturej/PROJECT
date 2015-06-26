@@ -18,8 +18,6 @@
     <meta name="description" content="">
     <meta name="author" content="CSSNectar.com">
 	<title>일정관리</title>
-	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-    <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 	<!-- Include CSS for JQuery Frontier Calendar plugin (Required for calendar plugin) -->
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/js/calendar/css/frontierCalendar/jquery-frontier-cal-1.3.2.css" />
 	
@@ -53,24 +51,7 @@
 	
 	<!-- Include JQuery Frontier Calendar plugin -->
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/calendar/js/frontierCalendar/jquery-frontier-cal-1.3.2.js"></script>
-	<!-- bootstrap -->
-	<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <!-- Fonts -->
-    <script type="text/javascript" src="<%=request.getContextPath()%>/js/modernizr.custom.js"></script>
-    <link href="<%=request.getContextPath()%>/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- Lightbox CSS -->
-	<link href="<%=request.getContextPath()%>/css/nivo-lightbox.css" rel="stylesheet" />
-	<link href="<%=request.getContextPath()%>/css/nivo-lightbox-theme/default/default.css" rel="stylesheet" type="text/css" />
-    <!-- Carousel CSS -->
-	<link href="<%=request.getContextPath()%>/css/owl.carousel.css" rel="stylesheet" media="screen" />
-    <link href="<%=request.getContextPath()%>/css/owl.theme.css" rel="stylesheet" media="screen" />
-    <!-- Hornet animation CSS -->
-	<link href="<%=request.getContextPath()%>/css/animate.css" rel="stylesheet" />
-    <!-- Hornet slideshow CSS -->
-    <link href="<%=request.getContextPath()%>/css/slideshow.css" rel="stylesheet" />
-    <!-- Hornet theme CSS -->
-    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
-	<link href="<%=request.getContextPath()%>/css/colors.css" rel="stylesheet">
+	
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 
@@ -821,54 +802,7 @@
 		
 	});
 	</script>
-	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style="background-color: #1ABC9C">
-        <div class="container" >
-            <div class="navbar-header" >
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="<%=request.getContextPath()%>/index.jsp">
-                    <img src="<%=request.getContextPath()%>/img/logo.png" alt="Hornet" />
-                </a>
-            </div>
-
-            <!-- Nav Bar -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-              <ul class="nav navbar-nav" style="background-color: #1ABC9C">
-                
-                <li><a href="boardlist.five">BOARD</a></li>
-                <li><a href="salboardlist.five">SALESBOARD</a></li>
-                <li><a href="marketlist.five">MARKET</a></li>
-                <li class="dropdown">
-             	 <a class="dropdown-toggle" data-toggle="dropdown">API<b class="caret"></b></a>
-            	  <ul class="dropdown-menu">
-                <li><a href="searchPriceApi.five">시세정보</a></li>
-                <li><a href="MiddleForecastApi.five">중기예보</a></li>
-                <li><a href="MiddleForecastApi.five">중기육상예보</a></li>
-                <li><a href="MiddleTemperatureApi.five">중기기온조회</a></li>  
-                <li><a href="RealTime_Forecast_Api.five">동네실황조회</a></li>  
-                <li><a href="searchPriceApi.five">시세정보</a></li>  
-            <!--
-            	<li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li class="divider"></li>
-                <li><a href="#">One more separated link</a></li> 
-            -->
-              </ul>
-           		</li>
-           		    <li class="dropdown">
-             	 <a href="#" class="dropdown-toggle" data-toggle="dropdown">MYPAGE<b class="caret"></b></a>
-            	  <ul class="dropdown-menu">
-                <li><a href="<%=request.getContextPath()%>/mypage/schedule.five">일정</a></li>
-              </ul>
-              <li><a href="<%=request.getContextPath()%>/login.five">LOGIN</a></li>
-              <li><a href="<c:url value='j_spring_security_logout' />">LOGOUT</a></li>
-              </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+	
     <section id="contact" class="home-section text-center" style="background:#ffffff;">
 
 		<div id="example" style="margin: auto; width:55%;">
@@ -1008,37 +942,6 @@
 	
 	</section>
 	
-	<!-- footer -->
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 col-lg-12">
-					<div class="wow shake" data-wow-delay="0.4s">
-					<div class="page-scroll marginbot-30">
-						<a href="#intro" id="totop" class="btn btn-circle">
-							<i class="fa fa-angle-double-up animated"></i>
-						</a>
-					</div>
-					</div>
-					<p>Hornet by <a href="http://cssnectar.com/" target="_blank">CSS Nectar</a><br>
-&copy; Copyright 2015 All Rights Reserved</p>
-                    <p>Note:Images at demo are under cc licence and are not included in download package </p>
-				</div>
-			</div>	
-		</div>
-	</footer>
-
-    <!-- Core JavaScript Files -->
-    <%-- <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-    <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script> --%>
-    <script src="<%=request.getContextPath()%>/js/jquery.easing.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/jquery.scrollTo.js"></script>
-	<script src="<%=request.getContextPath()%>/js/owl.carousel.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/nivo-lightbox.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/stellar.js"></script>
-	<script src="<%=request.getContextPath()%>/js/wow.min.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="<%=request.getContextPath()%>/js/custom.js"></script>
 </body>
 
 </html>
