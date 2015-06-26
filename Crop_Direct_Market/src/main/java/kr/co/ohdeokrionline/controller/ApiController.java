@@ -1,5 +1,6 @@
 package kr.co.ohdeokrionline.controller;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,7 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+ 
 @Controller
 public class ApiController {
 	
@@ -23,7 +24,7 @@ public class ApiController {
 	//빠른 가격조회
 	@RequestMapping(value="searchPriceApi.five", method=RequestMethod.GET)
 	public String serachPriceGet(){
-		return "api/searchPriceApi";
+		return "api.searchPriceApi";
 	}
 	
 	@RequestMapping(value="searchPriceApi.five", method=RequestMethod.POST)
@@ -58,7 +59,7 @@ public class ApiController {
 	//중기일기예보
 	@RequestMapping(value="MiddleForecastApi.five", method=RequestMethod.GET)
 	public String MiddleForecastGet(){
-		return "api/MiddleForecastApi";
+		return "api.MiddleForecastApi";
 	}
 	
 	@RequestMapping(value="MiddleForecastApi.five", method=RequestMethod.POST)
@@ -94,7 +95,7 @@ public class ApiController {
 	//중기육삭예보(맑음 흐림 ...)
 	@RequestMapping(value="MiddleLandWeatherApi.five",method=RequestMethod.GET)
 	public String MiddleLandWeatherGet(){
-		return "api/MiddleLandWeatherApi";
+		return "api.MiddleLandWeatherApi";
 	}
 	
 	@RequestMapping(value="MiddleLandWeatherApi.five",method=RequestMethod.POST)
@@ -127,7 +128,7 @@ public class ApiController {
 	//중기기온조회
 	@RequestMapping(value="MiddleTemperatureApi.five", method=RequestMethod.GET)
 	public String MiddleTemperatureGet(){
-		return "api/MiddleTemperatureApi";
+		return "api.MiddleTemperatureApi";
 	}
 	
 	@RequestMapping(value="MiddleTemperatureApi.five", method=RequestMethod.POST)
@@ -159,7 +160,7 @@ public class ApiController {
 	//동네실황조회
 	@RequestMapping(value="RealTime_Forecast_Api.five", method=RequestMethod.GET)
 	public String RealTime_Forecast_Get(){
-		return "api/RealTime_Forecast_Api";
+		return "api.RealTime_Forecast_Api";
 	}
 	
 	@RequestMapping(value="RealTime_Forecast_Api.five", method=RequestMethod.POST)
@@ -191,5 +192,115 @@ public class ApiController {
 		
 		return "api/RealTime_Forecast_Api_Json";
 	}
+	
+	
+	//가격경매시장코드 추출
+	@RequestMapping(value="auction_farmApi.five", method=RequestMethod.GET)
+	public String auction_farmApi_Get(){
+		return "api.auction_farmApi";
+	}
+	
+	@RequestMapping(value="auction_farmApi.five", method=RequestMethod.POST)
+	public String auction_farmApi_Post(HttpServletRequest request, Model model) throws IOException{
+		
+		String date = request.getParameter("date");
+		String lcode = request.getParameter("lcode");
+		if(lcode != null){
+			 lcode =request.getParameter("lcode");		  
+		}else{
+			lcode ="";		
+		}
+		String mcode = request.getParameter("mcode");
+		if(mcode != null){
+			mcode =request.getParameter("mcode");		  
+		}else{
+			mcode ="";		
+		}
+		String scode = request.getParameter("scode");
+		if(scode != null){
+			scode =request.getParameter("scode");		  
+		}else{
+			scode ="";		
+		}
+
+		String URL ="http://openapi.okdab.com/price/realtime/pricexml_class_action.jsp?key=f4d62c3d49e62769df33d83aad60e8e49e78e3";
+		URL += "&date="+date+"&lcode="+lcode+"&mcode="+mcode+"&scode="+scode;
+		System.out.println(URL);  
+		
+		
+		StringBuffer sb = new StringBuffer(); 
+		URL naverUrl = new URL(URL);
+		
+		BufferedReader in = new BufferedReader(new InputStreamReader( naverUrl.openStream()));
+		String inputLine;
+		
+		while ((inputLine = in.readLine()) != null)
+		    sb.append( inputLine.trim());
+		
+		in.close();
+		
+		JSONObject jsonxml = (JSONObject)new XMLSerializer().read(sb.toString());
+		model.addAttribute("jsonxml",jsonxml);
+		
+		return "api/auction_farmApi_Json";
+	}
+	
+	//시장코드에 따른 경매 표시
+		@RequestMapping(value="auction_farmApi2.five", method=RequestMethod.GET)
+		public String auction_farmApi2_Get(){
+			return "api.auction_farmApi";
+		}
+		
+		@RequestMapping(value="auction_farmApi2.five", method=RequestMethod.POST)
+		public String auction_farmApi2_Post(HttpServletRequest request, Model model) throws IOException{
+			
+			
+			String date = request.getParameter("date");
+			String lcode = request.getParameter("lcode");
+			if(lcode != null){
+				 lcode =request.getParameter("lcode");		  
+			}else{
+				lcode ="";		
+			}
+			String mcode = request.getParameter("mcode");
+			if(mcode != null){
+				mcode =request.getParameter("mcode");		  
+			}else{
+				mcode ="";		
+			}
+			String scode = request.getParameter("scode");
+			if(scode != null){
+				scode =request.getParameter("scode");		  
+			}else{
+				scode ="";		
+			}String ccode = request.getParameter("ccode");
+			if(ccode != null){
+				ccode =request.getParameter("ccode");		  
+			}else{
+				ccode ="";		
+			}
+			   
+			
+			String URL ="http://openapi.okdab.com/price/realtime/pricexml_search_action.jsp?key=f4d62c3d49e62769df33d83aad60e8e49e78e3";
+			URL += "&date="+date+"&ccode="+ccode+"&lcode="+lcode+"&mcode="+mcode+"&scode="+scode;
+			System.out.println(URL);  
+			
+			
+			StringBuffer sb = new StringBuffer(); 
+			URL naverUrl = new URL(URL);
+			
+			BufferedReader in = new BufferedReader(new InputStreamReader( naverUrl.openStream()));
+			String inputLine;
+			
+			while ((inputLine = in.readLine()) != null)
+			    sb.append( inputLine.trim());
+			
+			in.close();
+			
+			JSONObject jsonxml = (JSONObject)new XMLSerializer().read(sb.toString());
+			model.addAttribute("jsonxml",jsonxml);
+			
+			return "api/auction_farmApi_Json2";
+		}
 }
  

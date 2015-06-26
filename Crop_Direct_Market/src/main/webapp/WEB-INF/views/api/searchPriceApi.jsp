@@ -4,28 +4,28 @@
 <html class="no-js" lang="en">
 <head>
 <!--css 설정  -->
-    <meta charset="utf-8">
+<!--     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta name="description" content="">
     <meta name="author" content="CSSNectar.com">
     <title>Hornet Bootstrap 3 One Page CSS Theme</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <!-- Fonts -->
+    Fonts
     <script type="text/javascript" src="js/modernizr.custom.js"></script>
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- Lightbox CSS -->
+    Lightbox CSS
 	<link href="css/nivo-lightbox.css" rel="stylesheet" />
 	<link href="css/nivo-lightbox-theme/default/default.css" rel="stylesheet" type="text/css" />
-    <!-- Carousel CSS -->
+    Carousel CSS
 	<link href="css/owl.carousel.css" rel="stylesheet" media="screen" />
     <link href="css/owl.theme.css" rel="stylesheet" media="screen" />
-    <!-- Hornet animation CSS -->
+    Hornet animation CSS
 	<link href="css/animate.css" rel="stylesheet" />
-    <!-- Hornet slideshow CSS -->
+    Hornet slideshow CSS
     <link href="css/slideshow.css" rel="stylesheet" />
-    <!-- Hornet theme CSS -->
+    Hornet theme CSS
     <link href="css/style.css" rel="stylesheet">
-	<link href="css/colors.css" rel="stylesheet">
+	<link href="css/colors.css" rel="stylesheet"> -->
 	
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">   
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -109,7 +109,7 @@
 </script> 
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+<%-- <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header page-scroll">
@@ -156,7 +156,7 @@
         </div>
         <!-- /.container -->
     </nav>
-
+ --%>
 	<!-- Section: services -->
     <section id="service" class="home-section text-center">
 		<div class="heading-about">
@@ -224,7 +224,7 @@
 
 	
 	
-
+<!-- 
 	<footer>
 		<div class="container">
 			<div class="row">
@@ -244,7 +244,7 @@
 		</div>
 	</footer>
 
-    <!-- Core JavaScript Files -->
+    Core JavaScript Files
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
@@ -253,9 +253,9 @@
 	<script src="js/nivo-lightbox.min.js"></script>
 	<script src="js/stellar.js"></script>
 	<script src="js/wow.min.js"></script>
-    <!-- Custom Theme JavaScript -->
+    Custom Theme JavaScript
     <script src="js/custom.js"></script>
-
+ -->
 </body>
 
 </html>

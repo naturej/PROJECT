@@ -23,11 +23,10 @@
              	 <a href="#" class="dropdown-toggle" data-toggle="dropdown">API<b class="caret"></b></a>
             	  <ul class="dropdown-menu">
                 <li><a href="searchPriceApi.five">시세정보</a></li>
-                <li><a href="MiddleForecastApi.five">중기예보</a></li>
-                <li><a href="MiddleForecastApi.five">중기육상예보</a></li>
-                <li><a href="MiddleTemperatureApi.five">중기기온조회</a></li>  
-                <li><a href="RealTime_Forecast_Api.five">동네실황조회</a></li>  
-                <li><a href="searchPriceApi.five">시세정보</a></li>  
+                 <li><a href="auction_farmApi.five">경매정보</a></li>
+                <li><a href="MiddleTemperatureApi.five">중기날씨조회</a></li>  
+                <li><a href="RealTime_Forecast_Api.five">실시간동네조회</a></li>  
+                 
               </ul>
            		</li>
            		    <li class="dropdown">
