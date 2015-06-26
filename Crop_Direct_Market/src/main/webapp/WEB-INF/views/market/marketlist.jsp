@@ -65,94 +65,88 @@ function resizeText() {
 </script>
 </head>
 <body>
-
 <!--new_portfolio--> 
-
 <!-- Portfolio -->
-<section id="Portfolio" class="content"> 
-  
-  <!-- Container -->
-  <div class="container portfolio-title"> 
+<section id="Portfolio" class="content">
+ 
+	<!-- Container -->
+	<div class="container portfolio-title"> 
     
     <!-- Section Title -->
     <div class="section-title">
-      <h2>Portfolio</h2>
+      	<h2>Portfolio</h2>
     </div>
     <!--/Section Title --> 
-    
-  </div>
-  <!-- Container -->
+  	</div>
+  	<!-- Container -->
   
-  <div class="portfolio-top"></div>
+  	<div class="portfolio-top"></div>
   
-  <!-- Portfolio Plus Filters -->
-  <div class="portfolio"> 
+  	<!-- Portfolio Plus Filters -->
+  	<div class="portfolio"> 
     
     <!-- Portfolio Filters -->
     <div id="filters" class="sixteen columns">
-      <ul class="clearfix">
-        <li><a id="all" href="#" data-filter="*" class="active">
-          <h5>All</h5>
-          </a></li>
-        <li><a class="" href="#" data-filter=".branding">
-          <h5>Branding</h5>
-          </a></li>
-        <li><a class="" href="#" data-filter=".design">
-          <h5>Design</h5>
-          </a></li>
-        <li><a class="" href="#" data-filter=".photography">
-          <h5>Photography</h5>
-          </a></li>
-        <li><a class="" href="#" data-filter=".videography">
-          <h5>Videography</h5>
-          </a></li>
-        <li><a class="" href="#" data-filter=".web">
-          <h5>Web</h5>
-          </a></li>
-      </ul>
+      	<ul class="clearfix">
+        	<li><a id="all" href="#" data-filter="*" class="active">
+          		<h5>All</h5>
+          	</a></li>
+        	<li><a class="" href="#" data-filter=".branding">
+          		<h5>Branding</h5>
+          	</a></li>
+        	<li><a class="" href="#" data-filter=".design">
+          		<h5>Design</h5>
+          	</a></li>
+        	<li><a class="" href="#" data-filter=".photography">
+          		<h5>Photography</h5>
+          	</a></li>
+        	<li><a class="" href="#" data-filter=".videography">
+          		<h5>Videography</h5>
+          	</a></li>
+        	<li><a class="" href="#" data-filter=".web">
+          		<h5>Web</h5>
+          	</a></li>
+      	</ul>
     </div>
     <!--/Portfolio Filters --> 
     
     <!-- Portfolio Wrap -->
     <div class="isotope" style="position: relative; overflow: hidden; height: 480px;" id="portfolio-wrap"> 
-      
-      <c:forEach items="${list}" var="n">
-      
-      <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four   photography isotope-item">
-        <div class="portfolio-image"> ${n.writedate}<img src="img/portfolio_pic8.jpg" alt="Portfolio 1"></div>
-        <a title="Stereo Headphones" rel="prettyPhoto[galname]" href="detailmarket.five?mar_id=${n.mar_id}">
-        <div class="project-overlay">
-        
-          <div class="project-info">
-          ${n.writedate}
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">${n.mar_subject}</h4>
-            <p class="project-categories">Photography</p>
-          </div>
-        </div>
-        </a></div>
-	</c:forEach>
-      <!--/Portfolio Item With PrettyPhoto  --> 
-      
-    </div>
+     	<c:forEach items="${list}" var="n">
+      		<div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four   photography isotope-item">
+        		<div class="portfolio-image"> ${n.writedate}<img src="img/portfolio_pic8.jpg" alt="Portfolio 1"></div>
+        		<a title="Stereo Headphones" rel="prettyPhoto[galname]" href="detailmarket.five?mar_id=${n.mar_id}">
+        		<div class="project-overlay">
+          			<div class="project-info">
+          				${n.writedate}
+            			<div class="zoom-icon"></div>
+            			<h4 class="project-name">${n.mar_subject}</h4>
+            			<p class="project-categories">Photography</p>
+          			</div>
+        		</div>
+        		</a></div>
+		</c:forEach>
+	</div>
     <!--/Portfolio Wrap --> 
-    
-  </div>
-  <!--/Portfolio Plus Filters -->
-  
-  <div class="portfolio-bottom"></div>
-  
-  <!-- Project Page Holder-->
-  <div id="project-page-holder">
-    <div class="clear"></div>
-    <div id="project-page-data"></div>
-  </div>
-  <!--/Project Page Holder--> 
-  
+  	</div>
+  	<!--/Portfolio Plus Filters -->
+  	<div class="portfolio-bottom" align="center">
+  		<br>
+  		<br>
+	   	<a class="strong" href="marketlist.five?pg=1">1</a>&nbsp;
+		<a href="marketlist.five?pg=2">2</a>&nbsp;
+		<a href="marketlist.five?pg=3">3</a>&nbsp;
+		<a href="marketlist.five?pg=4">4</a>&nbsp;
+		<a href="marketlist.five?pg=5">5</a>
+	</div>
+	<!-- Project Page Holder-->
+  	<div id="project-page-holder">
+    	<div class="clear"></div>
+    	<div id="project-page-data"></div>
+  	</div>
+  	<!--/Project Page Holder--> 
 </section>
 <!--/Portfolio --> 
-
-
 <!--new_portfolio--> 
 
 <script type="text/javascript">
@@ -161,9 +155,7 @@ function resizeText() {
         $('.res-nav_click').click(function(){
             $('.main-nav').slideToggle();
             return false    
-            
         });
-        
     });
 </script> 
 <script>
@@ -182,7 +174,7 @@ function resizeText() {
 	  section.className = 'wow lightSpeedIn';
       this.parentNode.insertBefore(section, this);
     };
-  </script> 
+</script> 
 <script type="text/javascript">
 	$(window).load(function(){
 		
@@ -203,7 +195,7 @@ function resizeText() {
 	})
 </script> 
 
-<!--<script type="text/javascript">
+<script type="text/javascript">
 
 $(window).load(function(){
   
@@ -249,9 +241,6 @@ $(window).load(function(){
 });
 
 </script>
-
-
---> 
 
 <script type="text/javascript">
 
