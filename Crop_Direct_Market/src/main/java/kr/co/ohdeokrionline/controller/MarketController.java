@@ -54,7 +54,7 @@ public class MarketController {
 	 @RequestMapping(value="marketwrite.five" , method=RequestMethod.GET)
 	 public String marketReg(){
 		 System.out.println("화면출력");
-			return "market/marketwrite";
+			return "market.marketwrite";
 	  }
 
 	 
@@ -100,7 +100,7 @@ public class MarketController {
 			
 			 Market_DTO marketDto = marketDao.detailmarket(mar_id);
 			 model.addAttribute("marketDto", marketDto);
-			 return "market/marketdetail"; 
+			 return "market.marketdetail"; 
 		 }
 		 
 			//글삭제하기

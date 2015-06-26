@@ -36,6 +36,7 @@
 <script type="text/javascript" src="js/jquery.isotope.js"></script>
 <script type="text/javascript" src="js/wow.js"></script>
 <script type="text/javascript" src="js/classie.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function(e) {
         $('.res-nav_click').click(function(){
@@ -158,7 +159,7 @@ function resizeText() {
         });
     });
 </script> 
-<script>
+<!-- <script>
     wow = new WOW(
       {
         animateClass: 'animated',
@@ -174,7 +175,7 @@ function resizeText() {
 	  section.className = 'wow lightSpeedIn';
       this.parentNode.insertBefore(section, this);
     };
-</script> 
+</script> --> 
 <script type="text/javascript">
 	$(window).load(function(){
 		
@@ -206,15 +207,9 @@ $(window).load(function(){
       columns = null;
 
   
-  $container.isotope({
-    // disable window resizing
-    resizable: true,
-    masonry: {
-      columnWidth: colW
-    }
-  });
+
   
-  $(window).smartresize(function(){
+ /*  $(window).smartresize(function(){
     // check if columns has changed
     var currentColumns = Math.floor( ( $body.width() -30 ) / colW );
     if ( currentColumns !== columns ) {
@@ -236,7 +231,7 @@ $(window).load(function(){
             filter: selector,
          });
          return false;
-    });
+    }); */
   
 });
 
