@@ -47,7 +47,7 @@ public class MarketController {
 			model.addAttribute("list", list);
 			//System.out.println(pg+" / "+f+" / "+q);
 			
-			return "market/marketlist";
+			return "market.marketlist";
 	 }
 
  

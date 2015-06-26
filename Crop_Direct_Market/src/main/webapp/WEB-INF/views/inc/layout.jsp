@@ -28,17 +28,6 @@
     <!-- Hornet theme CSS -->
     <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
 	<link href="<%=request.getContextPath()%>/css/colors.css" rel="stylesheet">
-</head>
-<body>
-	<!-- Header 영역 -->
-	<tiles:insertAttribute name="header"/>
-	
-	<!-- main 영역 -->
-	<tiles:insertAttribute name="content"/>
-	
-	<!-- footer 영역 -->
-	<tiles:insertAttribute name="footer"/>
-	
 	<!-- Core JavaScript Files -->
 	<script src="<%=request.getContextPath()%>/js/jquery.easing.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/jquery.scrollTo.js"></script>
@@ -48,5 +37,16 @@
 	<script src="<%=request.getContextPath()%>/js/wow.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="<%=request.getContextPath()%>/js/custom.js"></script>
+</head>
+
+<body>
+	<!-- Header 영역 -->
+	<tiles:insertAttribute name="header"/>
+	
+	<!-- main 영역 -->
+	<tiles:insertAttribute name="content"/>
+	
+	<!-- footer 영역 -->
+	<tiles:insertAttribute name="footer"/>
 </body>
 </html>
