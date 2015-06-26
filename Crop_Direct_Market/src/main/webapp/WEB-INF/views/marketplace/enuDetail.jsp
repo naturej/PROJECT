@@ -19,6 +19,7 @@
 </style>
 <script type="text/javascript">
 	function yesEnuri(enu_idx){
+		if(${dto.enu_confirm}==0){
 		$.ajax({
 			url:'yesEnuri.five',
 			data:{
@@ -39,9 +40,18 @@
  		alert('수락했습니다');
 		window.close();
 		window.opener.location.reload();
-		
+		} else if (${dto.enu_confirm}==1) {
+			alert('이미 수락하셨습니다');
+			window.close();
+			window.opener.location.reload();
+		} else{
+			alert('이미 거절하셨습니다');
+			window.close();
+			window.opener.location.reload();
+		}
 	}
 	function noEnuri(enu_idx){
+		if(${dto.enu_confirm}==0){
 		$.ajax({
 			url:'noEnuri.five',
 			data:{
@@ -52,6 +62,15 @@
  		alert('거절했습니다');
 		window.close();
 		window.opener.location.reload();
+		}else if (${dto.enu_confirm}==1) {
+			alert('이미 수락하셨습니다');
+			window.close();
+			window.opener.location.reload();
+		} else{
+			alert('이미 거절하셨습니다');
+			window.close();
+			window.opener.location.reload();
+		}
 	}
 </script>
 </head>
