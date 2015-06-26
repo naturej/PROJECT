@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -99,7 +100,7 @@
 				<td>에누리 가격</td>
 				<td>
 					<c:set var="price" value="${dto.enu_quan*dto.bo_price}"></c:set>
-					<label id="origin_price">${price}</label> -> <label id="enu_price">${dto.enu_price}</label>
+					<label id="origin_price"><fmt:formatNumber value="${price}" type="number" /></label> -> <label id="enu_price"><fmt:formatNumber value="${dto.enu_price}" type="number" /></label>
 				</td>
 			</tr>
 			<tr>
