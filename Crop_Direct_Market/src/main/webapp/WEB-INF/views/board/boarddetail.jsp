@@ -21,8 +21,7 @@
 				</div>
 			</div>
 			
-   		 <div class="CSSTableGenerator" >
-			<table>
+			<table class="table">
 				<tr><td colspan="2">${boardDto.subject}</td></tr>
 				<tr><td>${boardDto.user_id}</td><td>${boardDto.writedate}</tr>
 				<tr><td colspan="2">${boardDto.content}</td></tr>
@@ -35,9 +34,8 @@
 				<a href="reply.five?idx=${boardDto.idx}">댓글쓰기</a>
 			<br>
 			<hr>
-			</div>
 			
-			<table class="table table-hover">
+			<table class="table">
                               <thead>
                               <tr>
                                   <th>Num</th>
