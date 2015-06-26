@@ -14,7 +14,14 @@ public class Board_DTO {
 	private int filesize;
 	private String user_id;
 	private CommonsMultipartFile file;
+	private String editor1;
 	
+	public String getEditor1() {
+		return editor1;
+	}
+	public void setEditor1(String editor1) {
+		this.editor1 = editor1;
+	}
 	public int getIdx() {
 		return idx;
 	}

@@ -8,7 +8,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="<%=request.getContextPath()%>/index.five">
                     <img src="<%=request.getContextPath()%>/img/logo.png" alt="Hornet" />
                 </a>
             </div>
@@ -16,8 +16,8 @@
             <!-- Nav Bar -->
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
               <ul class="nav navbar-nav" style="background-color: #1ABC9C">
-                <li><a href="boardlist.five">BOARD</a></li>
-                <li><a href="salboardlist.five">SALESBOARD</a></li>
+                <li><a href="<%=request.getContextPath()%>/board/boardlist.five">BOARD</a></li>
+                <li><a href="<%=request.getContextPath()%>/salesboard/salboardlist.five">SALESBOARD</a></li>
                 <li><a href="marketlist.five">MARKET</a></li>
                 <li class="dropdown">
              	 <a href="#" class="dropdown-toggle" data-toggle="dropdown">API<b class="caret"></b></a>

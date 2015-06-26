@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Controller
+@RequestMapping("/salesboard/")
 public class SalesBoardController {
 	@Autowired
 	private SqlSession sqlSession;
@@ -67,13 +68,13 @@ public class SalesBoardController {
 	model.addAttribute("list", list);
 	//System.out.println(pg+" / "+f+" / "+q);
 	
-	return "salesboard/salboardlist";
+	return "salesboard.salboardlist";
 }
 	
 		//판매글등록
 		 @RequestMapping(value="salboardwrite.five" , method=RequestMethod.GET)
 		 public String salboardReg(){
-				return "salesboard/salboardwrite";
+				return "salesboard.salboardwrite";
 		  }
 
 	 	//판매글등록 처리(실제 글등록 처리)

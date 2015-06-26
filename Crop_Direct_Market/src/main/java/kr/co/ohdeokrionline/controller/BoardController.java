@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Controller
+@RequestMapping("/board/")
 public class BoardController {
+		
 		@Autowired
 		private SqlSession sqlsession;
 	
@@ -50,13 +52,13 @@ public class BoardController {
 			model.addAttribute("list", list);
 			//System.out.println(pg+" / "+f+" / "+q);
 			
-			return "board/boardlist";
+			return "board.boardlist";
 	 }
 
 		 //글등록
 		 @RequestMapping(value="boardwrite.five" , method=RequestMethod.GET)
 		 public String boardReg(){
-				return "board/boardwrite";
+				return "board.boardwrite";
 		  }
 	
 		 //글등록 처리(실제 글등록 처리)
@@ -64,6 +66,8 @@ public class BoardController {
 		 public String boardReg(Board_DTO n, HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException{
 					
 			 			CommonsMultipartFile file =n.getFile();
+			 			String con = n.getEditor1();
+			 			
 			 			System.out.println(file);
 			 			String fname = file.getOriginalFilename();
 				       if(file != null){
@@ -81,6 +85,7 @@ public class BoardController {
 				       System.out.println(fname);
 				       Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
 						n.setFilename(fname);
+						n.setContent(con);
 					  //n.setUser_id(principal.getName());
 				boardDao.insert(n);
 				return "redirect:boardlist.five"; //요청 주소
@@ -96,7 +101,7 @@ public class BoardController {
 			 model.addAttribute("boardDto", boardDto);
 			 model.addAttribute("list", list);
 			 
-			 return "board/boarddetail"; 
+			 return "board.boarddetail"; 
 		 }
 		 
 		//수정 실행문
@@ -131,7 +136,7 @@ public class BoardController {
 		 //댓글쓰기형식
 		 @RequestMapping(value="reply.five" , method=RequestMethod.GET)
 		 public String replyreg(){
-			 return "board/replywrite";
+			 return "board.replywrite";
 		 }
 		 //댓글쓰기처리
 		 @RequestMapping(value="reply.five" , method=RequestMethod.POST)
