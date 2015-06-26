@@ -30,6 +30,12 @@
 		INSERT INTO SHOPBAG(USER_ID,BO_NUM,SH_QUANTITY,SH_PRICE) 
 		VALUES(#{user_id},#{bo_num},#{sh_quantity},#{bo_price}*#{sh_quantity})
 	</insert>
+	
+	<!-- 에누리->장바구니 -->
+	<insert id="enuritoshop" parameterType="kr.co.ohdeokrionline.model.vo.ShoppingBasket_DTO">
+		INSERT INTO SHOPBAG(USER_ID,BO_NUM,SH_QUANTITY,SH_PRICE) 
+		VALUES(#{user_id},#{bo_num},#{enu_quan},#{enu_price})
+	</insert>
 
 	<!-- 장바구니 선택삭제 -->
 	<delete id="deleteshop">

@@ -339,7 +339,6 @@ public class SalesBoardController {
 		Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
 		dao.yesEnuri(enu_idx);
 		//사용자 장바구니에 에누리 전달
-		
 		return "marketplace/yesEnuri";
 	}
 	
@@ -385,6 +384,17 @@ public class SalesBoardController {
 		
 		ShoppingBasket_Dao dao = sqlSession.getMapper(ShoppingBasket_Dao.class);
 		dao.insertshop(dto);
+		
+		//return "redirect:salesdetail.five?bo_num="+dto.getBo_num();
+	}
+	
+	// 에누리 -> 장바구니 
+	@RequestMapping("enuritoShop.five")
+	public void enuritoShop(ShoppingBasket_DTO dto){
+		
+		ShoppingBasket_Dao dao = sqlSession.getMapper(ShoppingBasket_Dao.class);
+		dao.enuritoshop(dto);
+		System.out.println("에누리 수량 : " + dto.getEnu_quan() + "에누리가격 : " + dto.getEnu_price());
 		
 		//return "redirect:salesdetail.five?bo_num="+dto.getBo_num();
 	}

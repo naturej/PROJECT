@@ -16,6 +16,16 @@
 			},
 			dataType:'html'
 		});
+		$.ajax({
+			url:'enuritoShop.five',
+			data:{
+				user_id: "${dto.user_id}",
+				bo_num: "${dto.bo_num}",
+				enu_quan: "${dto.enu_quan}",
+				enu_price: "${dto.enu_price}"
+			},
+			dataType:'html'
+		});
  		alert('수락했습니다');
 		window.close();
 		window.opener.location.reload();

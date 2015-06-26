@@ -10,6 +10,8 @@ public interface ShoppingBasket_Dao {
 	public ArrayList<ShoppingBasket_DTO> shoplist() throws SQLException;
 	// 장바구니 넣기
 	public void insertshop(ShoppingBasket_DTO dto);
+	// 에누리 -> 장바구니
+	public void enuritoshop(ShoppingBasket_DTO dto);
 	// 장바구니 선택삭제
 	public void deleteshop(int bo_num);
 	// 장바구니 비우기

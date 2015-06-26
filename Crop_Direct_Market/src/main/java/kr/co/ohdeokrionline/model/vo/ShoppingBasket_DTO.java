@@ -12,6 +12,12 @@ public class ShoppingBasket_DTO {
 	private String bo_photo;
 	private int bo_price;
 	
+	// 에누리 컬럼
+	private int enu_quan;
+	private int enu_price;
+	
+	
+	// 장바구니
 	public String getUser_id() {
 		return user_id;
 	}
@@ -37,7 +43,7 @@ public class ShoppingBasket_DTO {
 		this.sh_price = sh_price;
 	}
 	
-	
+	// 판매게시판
 	public String getSell_id() {
 		return sell_id;
 	}
@@ -62,5 +68,18 @@ public class ShoppingBasket_DTO {
 	public void setBo_photo(String bo_photo) {
 		this.bo_photo = bo_photo;
 	}
-	
+		
+	// 에누리
+	public int getEnu_quan() {
+		return enu_quan;
+	}
+	public void setEnu_quan(int enu_quan) {
+		this.enu_quan = enu_quan;
+	}
+	public int getEnu_price() {
+		return enu_price;
+	}
+	public void setEnu_price(int enu_price) {
+		this.enu_price = enu_price;
+	}
 }
