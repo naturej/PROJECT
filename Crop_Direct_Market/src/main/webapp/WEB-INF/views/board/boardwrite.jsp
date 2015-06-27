@@ -20,13 +20,11 @@
 					<p>Board Write</p>
 					</div>
 					</div>
-				</div>
+				
                 <!-- Main content -->
                 <section class="content">
-                    <div class='row'>
-                        <div class='col-md-12'>
                             <div class='box box-info'>
-                                <div class='box-body pad'>
+                                <div class='box-body pad' align="center">
                                     <form action="" method="post" enctype="multipart/form-data">
                                     <table>
                                     <tr><td><label>Subject</label></td><td>
@@ -42,17 +40,15 @@
                                     	<tr><td><label>Input file</label></td><td>
                                     	<input type="file" id="file" name="file"></td></tr>
                                     </table>
-                                   
-                                     <div align="right">
+                                	<div align="right">
 	 									  	<button type="submit" class="btn btn-primary">Submit</button>
 	   								  </div>
 	   								   </form>
+	   								   
                                 </div>
                             </div><!-- /.box -->
-                        </div><!-- /.col-->
-                    </div><!-- ./row -->
                 </section><!-- /.content -->
-                
+                </div>
 		</div>
 	</div>
 	</div>

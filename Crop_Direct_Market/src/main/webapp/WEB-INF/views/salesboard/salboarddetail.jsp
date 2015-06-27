@@ -3,10 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<html class="no-js">
+<link href="css/table-base/bootstrap.min.css" rel="stylesheet">  
 <script type="text/javascript">
 	function onlyNumber(event){
 	    event = event || window.event;
@@ -67,7 +67,24 @@
 		});
 	
 </script>
+
+
+
 <div id="content">
+	 <section id="service" class="home-section text-center">
+		<div class="heading-about">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.4s">
+					<div class="section-heading">
+					<h2>Sales Board</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+					<p>농산물 판매 정보</p>
+					</div>
+					</div>
+				</div>
+			</div>
 	<form>
             <table class="table">
             <tr><td>제목</td><td>${salboardDto.bo_subject}</td></tr>
@@ -79,9 +96,10 @@
             <tr><td>단위</td><td>${salboardDto.bo_salnum}${salboardDto.unit}</td></tr>
             <tr><td>품종</td><td>${salboardDto.pro_name}</td></tr>
             <tr><td>단위</td><td><input type="number" min="1" id="sh_quantity" name="sh_quantity" onkeydown='return onlyNumber(event)'> 개</td></tr>
-            
-            
          </table>
+         
+         
+         
          	<input type="hidden" name="bo_num" value="${salboardDto.bo_num}">
          
             <a href="salboardlist.five">목록</a>
@@ -113,4 +131,7 @@
 	  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
 	  장바구니에 상품을 담았습니다. 상품을 확인하시겠습니까?</p>
 	</div>
+	</div>
+	</div>
+	</section>
 </div>

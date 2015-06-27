@@ -117,7 +117,7 @@ public class SalesBoardController {
 		 //List<B_reply_DTO> list = boardDao.re_list(idx);
 		 //model.addAttribute("list", list);
 		 
-		 return "salesboard/salboarddetail"; 
+		 return "salesboard.salboarddetail"; 
 	 }
 
  		 //수정 기존데이터 출력
@@ -126,7 +126,7 @@ public class SalesBoardController {
 			 	SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
 		 		SalesBoard_DTO salboardDto = salboardDao.salesdetail(bo_num);
 			 	model.addAttribute("salboardDto", salboardDto);
-			 	return "salesboard/salboardedit";
+			 	return "salesboard.salboardedit";
 			}
 		 
 		//수정 실행문
@@ -195,13 +195,13 @@ public class SalesBoardController {
 	// 테스트용 페이지 이동
 	@RequestMapping("test.five")
 	public String sendpage() {
-		return "marketplace/messagetestpage";
+		return "marketplace.messagetestpage";
 	}
 
 	// 메시지 발송창 팝업 
 	@RequestMapping("popup.five")
 	public String openpopup() {
-		return "marketplace/messageForm";
+		return "marketplace.messageForm";
 	}
 	
 	// 받은 메세지함
@@ -211,7 +211,7 @@ public class SalesBoardController {
 		Message_Dao dao =  sqlSession.getMapper(Message_Dao.class);
 		model.addAttribute("list",dao.listRec());
 		
-		return "marketplace/receivelist";
+		return "marketplace.receivelist";
 	}
 	
 	// 보낸 메세지함
@@ -221,7 +221,7 @@ public class SalesBoardController {
 		Message_Dao dao = sqlSession.getMapper(Message_Dao.class);
 		model.addAttribute("list",dao.listSend());
 		
-		return "marketplace/sendlist";
+		return "marketplace.sendlist";
 	}
 	
 	// 받은 메세지 상세보기
@@ -234,7 +234,7 @@ public class SalesBoardController {
 		dao.updateSend(me_num);
 		model.addAttribute("dto",dto);
 		
-		return "marketplace/receiveDetail";
+		return "marketplace.receiveDetail";
 	}
 	
 	// 보낸 메세지 상세보기
@@ -244,7 +244,7 @@ public class SalesBoardController {
 		Message_DTO dto = dao.sendDetail(me_num);
 		model.addAttribute("dto",dto);
 		
-		return "marketplace/sendDetail";
+		return "marketplace.sendDetail";
 	}
 	
 	// 메세지 보내기
@@ -280,13 +280,13 @@ public class SalesBoardController {
 		public String testdata(Model model) {
 			SaleBoard_Dao dao = sqlSession.getMapper(SaleBoard_Dao.class);
 			model.addAttribute("list", dao.salDetail());
-			return "marketplace/test_sellpage";
+			return "marketplace.test_sellpage";
 		}
 
 		// 에누리 신청 테스트 용 팝업 페이지 이동
 		@RequestMapping("enuri_sinchung.five")
 		public String openpopup_enuri() {
-			return "marketplace/message_enuriForm";
+			return "marketplace.message_enuriForm";
 		}
 		
 		//에누리 메시지 발송 메서드
@@ -310,7 +310,7 @@ public class SalesBoardController {
 //		model.addAttribute("bo_id",dao.bo_id(bo_num));
 //		model.addAttribute("bo_subject",dao.bo_subject(bo_num));
 		
-		return "marketplace/enulist";
+		return "marketplace.enulist";
 	} 
 		
 	// 에누리 상세보기
@@ -321,7 +321,7 @@ public class SalesBoardController {
 		Enuri_DTO dto = dao.enuDetail(enu_idx);
 		model.addAttribute("dto",dto);
 		
-		return "marketplace/enuDetail";
+		return "marketplace.enuDetail";
 	}
 	// 메세지 보내기
 /*			@Transactional
@@ -340,7 +340,7 @@ public class SalesBoardController {
 		Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
 		dao.yesEnuri(enu_idx);
 		//사용자 장바구니에 에누리 전달
-		return "marketplace/yesEnuri";
+		return "marketplace.yesEnuri";
 	}
 	
 	// 에누리 거절
@@ -349,7 +349,7 @@ public class SalesBoardController {
 		Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
 		dao.noEnuri(enu_idx);
 		
-		return "marketplace/noEnuri";
+		return "marketplace.noEnuri";
 	}
 	
 //	 평가등록
@@ -358,13 +358,13 @@ public class SalesBoardController {
 		System.out.println("point2");
 		ReviewWrite_Dao dao = sqlSession.getMapper(ReviewWrite_Dao.class);
 		dao.reviewInsert(dto);
-		return "marketplace/yesEnuri";
+		return "marketplace.yesEnuri";
 //		꺼져버리는 공통 페이지
 	}
 //	팝업창 띄우기
 	@RequestMapping("review_sinchung.five")
 	public String review_popup() {
-		return "marketplace/review";
+		return "marketplace.review";
 	}
 	
 	//장바구니 리스트
@@ -375,7 +375,7 @@ public class SalesBoardController {
 		System.out.println(list);
 		model.addAttribute("list",list);
 		
-		return "mypage/shoppingbasket";
+		return "mypage.shoppingbasket";
 	}
 	
 	// 장바구니 넣기

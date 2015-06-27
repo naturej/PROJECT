@@ -104,19 +104,32 @@ public class BoardController {
 			 return "board.boarddetail"; 
 		 }
 		 
+		//수정글
+			@RequestMapping(value={"boardedit.five"},method=RequestMethod.GET)   //=>customer/notice.htm
+			public String noticeEdit(String idx, Model model){
+				 Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
+				 Board_DTO boardDto = boardDao.detailboard(idx);
+				 model.addAttribute("boardDto", boardDto);
+			   	   return "board.boardedit";
+				}
+			  
+		 
+		 
 		//수정 실행문
 		@RequestMapping(value={"boardedit.five"},method=RequestMethod.POST)   //=>customer/notice.htm
 		public String noticeEdit(Board_DTO n, HttpServletRequest request) throws ClassNotFoundException, SQLException, IOException{
 			   
 				if(!n.getFile().isEmpty()){
 				   	String fname = n.getFile().getOriginalFilename();
+				   	String con = n.getEditor1();
 					String path = request.getServletContext().getRealPath("/board/upload");
 					String fpath = path + "\\" + fname;
 					//파일쓰기 작업
 					FileOutputStream fs = new FileOutputStream(fpath);
 					fs.write(n.getFile().getBytes());
 					fs.close();
-					n.setFilename(fname); //파일이름 
+					n.setFilename(fname); //파일이름
+					n.setContent(con);
 				}
 				Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
 				boardDao.update(n);	
@@ -132,12 +145,6 @@ public class BoardController {
 			return "redirect:boardlist.five";
 		}  
 		  
-		 
-		 //댓글쓰기형식
-		 @RequestMapping(value="reply.five" , method=RequestMethod.GET)
-		 public String replyreg(){
-			 return "board.replywrite";
-		 }
 		 //댓글쓰기처리
 		 @RequestMapping(value="reply.five" , method=RequestMethod.POST)
 		 public String replyreg(B_reply_DTO re){
