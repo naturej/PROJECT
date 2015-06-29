@@ -31,7 +31,7 @@
               </ul>
            		</li>
            		<li class="dropdown">
-             	<a class="dropdown-toggle" onmouseover="this.Dropdown">MYPAGE<b class="caret"></b></a>
+             	<a href="#" class="dropdown-toggle" data-toggle="dropdown">MYPAGE<b class="caret"></b></a>
             	<ul class="dropdown-menu">
                 	<li><a href="<%=request.getContextPath()%>/mypage/schedule.five">일정</a></li>
 	                <li><a href="<%=request.getContextPath()%>/salesboard/shopList.five">장바구니목록</a></li>
