@@ -14,4 +14,16 @@
 	<select id="login" resultType="kr.co.ohdeokrionline.model.vo.Member_DTO">
 		select * from users where user_id=#{user_id}
 	</select>
+	
+	<select id="getUser_idByEmail" resultType="string">
+		select user_id from users where email=#{email}
+	</select>
+	
+	<select id="getPwdByUser_idAndEmail" resultType="string">
+		select password from users where user_id=#{user_id} and email=#{email}
+	</select>
+	
+	<select id="check_user_id" resultType="string">
+		select user_id from users where user_id=#{user_id}
+	</select>
 </mapper>

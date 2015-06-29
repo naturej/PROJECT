@@ -140,4 +140,56 @@ public class MemberController {
 	String search(){
 		return "login.searchForm";
 	}
+	
+	@RequestMapping(value="id_search.five",method=RequestMethod.POST)
+	String id_search(String email,Model model){
+		System.out.println(email);
+		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
+		try {
+			String user_id = dao.getUser_idByEmail(email);
+			if(user_id != null){
+				model.addAttribute("user_id", user_id);
+				return "login/id_search";
+			}else{
+				model.addAttribute("user_id", "일치하는 email이 존재하지 않습니다.");
+				return "login/id_search";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	@RequestMapping(value="pwd_search.five",method=RequestMethod.POST)
+	String pwd_search(String user_id,String email){
+		System.out.println(user_id+"/"+email);
+		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
+		try {
+			String pwd = dao.getPwdByUser_idAndEmail(user_id, email);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@RequestMapping(value="check_user_id.five",method=RequestMethod.POST)
+	String check_user_id(String user_id,Model model){
+		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
+		try {
+			String checked = dao.check_user_id(user_id);
+			if(checked!=null){
+				model.addAttribute("user_id", "중복된 ID입니다. 다른 ID를 입력하십시오.");
+				return "login/id_search";
+			}else{
+				model.addAttribute("user_id", "사용 가능한 ID입니다.");
+				return "login/id_search";
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

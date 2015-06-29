@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>
 	<script type="text/javascript">
 		var parameter = window.location.search.split('=')[1];
 		/* 유효성검사 */
@@ -109,8 +112,6 @@
 				  url: "passwordEncoder.five",
 				  data: {password:$('#password').val()},
 				  success: function(data){
-					  console.log(data);
-					  alert(data);
 					  $('#password').val(data);
 					  document.joinForm.submit();
 				  }
@@ -119,6 +120,19 @@
 
 		}
 		
+		$(function(){
+			$('#check_user_id').click(function(){
+				$.ajax({
+					  type: "POST",
+					  url: "check_user_id.five",
+					  data: {user_id:$('#user_id').val()},
+					  success: function(data){
+						  $('#dialog').text(data);
+						  $('#dialog').dialog();
+					  }
+				});
+			});
+		});
 		
 		/* email 조합 */
 		function changeEmail(email_v) {
@@ -140,7 +154,7 @@
 	</script>
     
     <!-- Section: contact -->
-    <section id="contact" class="home-section text-center">
+    <section id="contact" class="home-section text-center" style="position: static">
     	<div class="boxed-grey">
 	
 	<!-- 회원가입 폼 -->
@@ -151,8 +165,8 @@
 					<!-- ID 입력 --> 
 					<div class="input-group">
 					<span class="input-group-addon">ID</span>
-					<input type="text" class="form-control" name="user_id" placeholder="UserID" required/>
-					<button type="button" class="btn btn-skin" onclick="">중복확인</button>
+					<input type="text" class="form-control" name="user_id" id="user_id" placeholder="UserID" required/>
+					<button type="button" class="btn btn-skin" id="check_user_id">중복확인</button>
 					</div>
 					<!-- 이름 입력 --> 
 					<div class="input-group">
@@ -282,3 +296,5 @@
 	</form>
 	</div>
 	</section>
+	<div id="dialog" title="title">
+	</div>

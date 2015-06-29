@@ -11,9 +11,11 @@
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" /> 
 		<put-attribute name="content" value="/{1}.jsp" /> 
 	</definition>
-	<definition name="*.*" template="/WEB-INF/views/inc/layout.jsp"> 
-		<!-- <put-attribute name="title"  value="welcome to kosta" /> 
-		<put-attribute name="css" value="{2}.css" />  -->
+	<definition name="login.searchForm" template="/WEB-INF/views/inc/searchForm_layout.jsp">
+		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/login/searchForm.jsp" />
+	</definition>
+	<definition name="*.*" template="/WEB-INF/views/inc/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />

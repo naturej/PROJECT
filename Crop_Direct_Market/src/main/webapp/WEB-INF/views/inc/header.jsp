@@ -39,7 +39,7 @@
 	                <li><a href="<%=request.getContextPath()%>/salesboard/receiveList.five">받은메세지목록</a></li>
 	                <li><a href="<%=request.getContextPath()%>/salesboard/sendList.five">보낸메세지목록</a></li>
                 </ul>
-              <li><a href="login.five">LOGIN</a></li>
+              <li><a href="<%=request.getContextPath()%>/login.five">LOGIN</a></li>
               <li><a href="<c:url value='/j_spring_security_logout' />">LOGOUT</a></li>
               </ul>
             </div>
