@@ -66,7 +66,6 @@
 </script>
 
 
-
 <div id="content">
 	 <section id="service" class="home-section text-center">
 		<div class="heading-about">
@@ -84,19 +83,18 @@
 			</div>
 	<form method="post">
             <table class="table">
-            <tr><td>제목</td><td>${salboardDto.bo_subject}</td></tr>
-            <tr><td>글쓴이</td><td>${salboardDto.user_id}</td></tr>
-            <tr><td>작성일</td><td>${salboardDto.bo_date}</td></tr>
-            <tr><td colspan="2"><img class="" src="<%=request.getContextPath()%>/salesboard/upload/${salboardDto.bo_photo}" alt="" width="400px" height="400px"></td></tr>
-            <tr><td>내용</td><td>${salboardDto.bo_content}</td></tr>
-            <tr><td>가격</td><td><input type="text" name="bo_price" value="${salboardDto.bo_price}"></td></tr>
+            <tr><td>제목</td><td colspan="2">${salboardDto.bo_subject}</td></tr>
+            <tr><td>글쓴이</td><td colspan="2">${salboardDto.user_id}</td></tr>
+            <tr><td>작성일</td><td colspan="2">${salboardDto.bo_date}</td></tr>
+            <tr><td rowspan="5"><img class="" src="<%=request.getContextPath()%>/salesboard/upload/${salboardDto.bo_photo}" alt="" width="400px" height="400px"></td>
+            <td>내용</td><td>${salboardDto.bo_content}</td></tr>
+            <tr><td>가격</td><td>${salboardDto.bo_price}</td></tr>
             <tr><td>단위</td><td>${salboardDto.bo_salnum}${salboardDto.unit}</td></tr>
             <tr><td>품종</td><td>${salboardDto.pro_name}</td></tr>
-            <tr><td>단위</td><td><input type="number" min="1" id="sh_quantity" name="sh_quantity" onkeydown='return onlyNumber(event)'> 개</td></tr>
+            <tr><td>구매수량</td><td><input type="number" min="1" id="sh_quantity" name="sh_quantity" onkeydown='return onlyNumber(event)'> 개</td></tr>
          </table>
-         
-         
-         
+  
+      
          	<input type="hidden" name="bo_num" value="${salboardDto.bo_num}">
          
             <a href="salboardlist.five">목록</a>

@@ -39,7 +39,7 @@
 				<tr>
 					<td class="bo_num">${n.bo_num}</td>
 					<td class="bo_subject"><a href="salesdetail.five?bo_num=${n.bo_num}">${n.bo_subject}${n.bo_photo}</a></td>
-					<td class="bo_photo"><img class="" src="/salboard/upload/${n.bo_photo}" alt="" width="200px" height="200px"></td>
+					<td class="bo_photo"><img class="" src="<%=request.getContextPath()%>/salesboard/upload/${n.bo_photo}" alt="" width="200px" height="200px"></td>
 					<td class="unit">${n.bo_salnum}${n.unit}</td>
 					<td class="bo_price">${n.bo_price}</td>
 					<td class="user_id">${n.user_id}</td>
@@ -47,6 +47,8 @@
 				</tr>
 			</c:forEach>
 			</table>
+			
+			<a href="<%=request.getContextPath()%>/salesboard/salboardwrite.five">글쓰기</a>
 	</div>
 	</div>
 	</section>
