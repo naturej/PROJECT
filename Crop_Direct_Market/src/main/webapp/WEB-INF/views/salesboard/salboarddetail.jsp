@@ -19,11 +19,6 @@
 
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript">
-
-	function popup(){
-		window.open('popup.five','쪽지 보내기', 'width=430, height=440, scrollbars=no')
-	}
-	
 	function onlyNumber(event){
 	    event = event || window.event;
 	    var keyID = (event.which) ? event.which : event.keyCode;
@@ -53,6 +48,11 @@
 			});
 		}
 	}
+
+	function popup(id){
+		window.open('popup.five?rec_userid='+id,'쪽지 보내기', 'width=430, height=440, scrollbars=no')
+	}
+	
 	function Enuri(number,id,product){
 		window.open('enuri_sinchung.five?bo_num='+number+'&user_id='+id+'&pro_name='+product,'에누리 신청',
 	      'top=100px, left=100px, width=430 height=510 ')
@@ -105,7 +105,7 @@
             <tr><td rowspan="8"><div id="img"><img class="" src="<%=request.getContextPath()%>/salesboard/upload/${salboardDto.bo_photo}" alt="" width="400px" height="400px"></div></td>
             <td>가격</td><td>${salboardDto.bo_price}</td></tr>
             <tr><td>농장명</td><td>${salboardDto.farminfo}</td></tr>
-            <tr><td>글쓴이</td><td colspan="2"><a href="#" onclick="popup()">${salboardDto.user_id}</a></td></tr>
+            <tr><td>글쓴이</td><td colspan="2"><a href="#" onclick="popup('${salboardDto.user_id}')">${salboardDto.user_id}</a></td></tr>
             <tr><td>원산지</td><td>${salboardDto.farm_add}</td></tr>
             <tr><td>단위</td><td>${salboardDto.bo_salnum}${salboardDto.unit}</td></tr>
             <tr><td>품종</td><td>${salboardDto.pro_name}</td></tr>

@@ -37,11 +37,11 @@
 			<tr>
 				<!-- 팝업 되기 전에 받아 온 정보를 가져와서 뿌려야 하는 데이터 -->
 				<td>받는사람</td>
-				<td>geatin(고정값)</td>
+				<td>${rec_userid}</td>
 			</tr>
 			<tr>
 				<td>보내는 사람</td>
-				<td>gathering11(고정값)</td>
+				<td>${send_userid}</td>
 			</tr>
 			<tr>
 				<td>제목</td>
@@ -53,7 +53,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td><input type="text" name="send_userid" value="gathering11" hidden><!-- 테스트용 고정 값 -->
+				<td><input type="text" name="send_userid" value="${send_userid}" hidden><!-- 테스트용 고정 값 -->
 				</td>
 				<td><input type="text" name="rec_userid" value="geatin" hidden><!-- 테스트용 고정 값 -->
 				</td>

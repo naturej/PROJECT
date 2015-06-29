@@ -202,7 +202,9 @@ public class SalesBoardController {
 
 	// 메시지 발송창 팝업 
 	@RequestMapping("popup.five")
-	public String openpopup() {
+	public String openpopup(Model model, Principal principal, String rec_userid) {
+		model.addAttribute("rec_userid", rec_userid);
+		model.addAttribute("send_userid", principal.getName());
 		return "marketplace.messageForm";
 	}
 	
