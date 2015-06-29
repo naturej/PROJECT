@@ -1,9 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="no-js">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<style type="text/css">
+	#img {
+		width: 400px;
+		height: 400px;
+		border-radius: 400px;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+</style>
+</head>
+<title>상세보기</title>
+
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript">
 	function onlyNumber(event){
 	    event = event || window.event;
@@ -29,9 +43,9 @@
 					sh_quantity:$("#sh_quantity").val(),
 					bo_price:"${salboardDto.bo_price}"
 				},
-				dataType:'html'
+				dataType:'html',
+				success: $( "#dialog-confirm" ).dialog( "open" )
 			});
-			$( "#dialog-confirm" ).dialog( "open" );
 		}
 	}
 	function Enuri(number,id,product){
@@ -64,8 +78,6 @@
 		});
 	
 </script>
-
-
 <div id="content">
 	 <section id="service" class="home-section text-center">
 		<div class="heading-about">
@@ -83,25 +95,27 @@
 			</div>
 	<form method="post">
             <table class="table">
-            <tr><td>제목</td><td colspan="2">${salboardDto.bo_subject}</td></tr>
-            <tr><td>글쓴이</td><td colspan="2">${salboardDto.user_id}</td></tr>
-            <tr><td>작성일</td><td colspan="2">${salboardDto.bo_date}</td></tr>
-            <tr><td rowspan="5"><img class="" src="<%=request.getContextPath()%>/salesboard/upload/${salboardDto.bo_photo}" alt="" width="400px" height="400px"></td>
-            <td>내용</td><td>${salboardDto.bo_content}</td></tr>
+            <tr><td><div align="left" style="height: 50px; font-size: 20px;">>&nbsp;${salboardDto.bo_subject}</div></td><td colspan="2">${salboardDto.bo_date}</td></tr>      
+            
+            <tr><td rowspan="6"><div id="img"><img class="" src="<%=request.getContextPath()%>/salesboard/upload/${salboardDto.bo_photo}" alt="" width="400px" height="400px"></div></td>
+            <td>글쓴이</td><td colspan="2">${salboardDto.user_id}</td></tr>
             <tr><td>가격</td><td>${salboardDto.bo_price}</td></tr>
             <tr><td>단위</td><td>${salboardDto.bo_salnum}${salboardDto.unit}</td></tr>
             <tr><td>품종</td><td>${salboardDto.pro_name}</td></tr>
             <tr><td>구매수량</td><td><input type="number" min="1" id="sh_quantity" name="sh_quantity" onkeydown='return onlyNumber(event)'> 개</td></tr>
+            <tr><td colspan="2"><a href="salboardlist.five">목록</a>
+            <a href="salboardedit.five?bo_num=${salboardDto.bo_num}">수정</a>
+            <a href="salboarddelete.five?bo_num=${salboardDto.bo_num}">삭제</a>
+            <input type="button" id="opener" value="장바구니 담기" onclick="CheckForm()">
+            <input type="button" id="enuri" value="에누리 신청" onclick="Enuri('${salboardDto.bo_num}','${salboardDto.user_id}','${salboardDto.pro_name}')"></td></tr>
+            <tr><td colspan="3" align="left">상세정보</td></tr>
+            <tr><td colspan="3">${salboardDto.bo_content}</td></tr>
          </table>
   
       
          	<input type="hidden" name="bo_num" value="${salboardDto.bo_num}">
          
-            <a href="salboardlist.five">목록</a>
-            <a href="salboardedit.five?bo_num=${salboardDto.bo_num}">수정</a>
-            <a href="salboarddelete.five?bo_num=${salboardDto.bo_num}">삭제</a>
-            <input type="button" id="opener" value="장바구니 담기" onclick="CheckForm()">
-            <input type="button" id="enuri" value="에누리 신청" onclick="Enuri('${salboardDto.bo_num}','${salboardDto.user_id}','${salboardDto.pro_name}')">
+            
 <%--        
             <a href="review.five?idx=${salboardDto.idx}">리뷰쓰기</a>
 --%>
@@ -130,3 +144,4 @@
 	</div>
 	</section>
 </div>
+</html>
