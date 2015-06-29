@@ -17,6 +17,10 @@ public class SalesBoard_DTO {
 	private String pro_name;
 	private int bo_salnum;
 	
+	//판매자 정보(FarmRecord_DTO)
+	private String farm_add;
+	private String farminfo;
+	
 	public int getBo_salnum() {
 		return bo_salnum;
 	}
@@ -84,7 +88,19 @@ public class SalesBoard_DTO {
 		this.file = file;
 	}
 	private CommonsMultipartFile file;
-	
-	
-	
+
+	// 판매자 정보
+
+	public String getFarm_add() {
+		return farm_add;
+	}
+	public void setFarm_add(String farm_add) {
+		this.farm_add = farm_add;
+	}
+	public String getFarminfo() {
+		return farminfo;
+	}
+	public void setFarminfo(String farminfo) {
+		this.farminfo = farminfo;
+	}
 }

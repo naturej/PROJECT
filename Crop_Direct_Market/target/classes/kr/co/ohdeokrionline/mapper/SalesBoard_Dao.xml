@@ -29,7 +29,12 @@
 		
 		<!-- 판매글 상세보기 -->
 		<select id="salesdetail" resultType="kr.co.ohdeokrionline.model.vo.SalesBoard_DTO">
-	    	 SELECT * FROM SALBOARD WHERE BO_NUM=#{bo_num,jdbcType=INTEGER}
+	    	SELECT * 
+			FROM SALBOARD S
+			JOIN FARMINFO F
+			ON S.USER_ID=F.USER_ID
+			WHERE BO_NUM=#{bo_num,jdbcType=INTEGER}
+	    	<!--  SELECT * FROM SALBOARD WHERE BO_NUM=#{bo_num,jdbcType=INTEGER} -->
 	   	 </select>
 
 		<!--   판매글 수정하기   -->

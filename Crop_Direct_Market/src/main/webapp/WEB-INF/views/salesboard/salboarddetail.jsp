@@ -19,6 +19,11 @@
 
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript">
+
+	function popup(){
+		window.open('popup.five','쪽지 보내기', 'width=430, height=440, scrollbars=no')
+	}
+	
 	function onlyNumber(event){
 	    event = event || window.event;
 	    var keyID = (event.which) ? event.which : event.keyCode;
@@ -97,9 +102,11 @@
             <table class="table">
             <tr><td><div align="left" style="height: 50px; font-size: 20px;">>&nbsp;${salboardDto.bo_subject}</div></td><td colspan="2">${salboardDto.bo_date}</td></tr>      
             
-            <tr><td rowspan="6"><div id="img"><img class="" src="<%=request.getContextPath()%>/salesboard/upload/${salboardDto.bo_photo}" alt="" width="400px" height="400px"></div></td>
-            <td>글쓴이</td><td colspan="2">${salboardDto.user_id}</td></tr>
-            <tr><td>가격</td><td>${salboardDto.bo_price}</td></tr>
+            <tr><td rowspan="8"><div id="img"><img class="" src="<%=request.getContextPath()%>/salesboard/upload/${salboardDto.bo_photo}" alt="" width="400px" height="400px"></div></td>
+            <td>가격</td><td>${salboardDto.bo_price}</td></tr>
+            <tr><td>농장명</td><td>${salboardDto.farminfo}</td></tr>
+            <tr><td>글쓴이</td><td colspan="2"><a href="#" onclick="popup()">${salboardDto.user_id}</a></td></tr>
+            <tr><td>원산지</td><td>${salboardDto.farm_add}</td></tr>
             <tr><td>단위</td><td>${salboardDto.bo_salnum}${salboardDto.unit}</td></tr>
             <tr><td>품종</td><td>${salboardDto.pro_name}</td></tr>
             <tr><td>구매수량</td><td><input type="number" min="1" id="sh_quantity" name="sh_quantity" onkeydown='return onlyNumber(event)'> 개</td></tr>
