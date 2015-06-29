@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="nowpage" value="${requestScope.page}" />
+<c:set var="maxpage" value="${requestScope.maxpage}" />
+<c:set var="startpage" value="${requestScope.startpage}" />
+<c:set var="endpage" value="${requestScope.endpage}" />
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- <head>
@@ -134,11 +139,32 @@ function resizeText() {
   	<div class="portfolio-bottom" align="center">
   		<br>
   		<br>
-	   	<a class="strong" href="marketlist.five?pg=1">1</a>&nbsp;
-		<a href="marketlist.five?pg=2">2</a>&nbsp;
-		<a href="marketlist.five?pg=3">3</a>&nbsp;
-		<a href="marketlist.five?pg=4">4</a>&nbsp;
-		<a href="marketlist.five?pg=5">5</a>
+	   	<c:choose>
+				<c:when test="${nowpage<=1}">
+				[이전]&nbsp;
+				</c:when>
+				<c:otherwise>
+					<a href="<%=request.getContextPath()%>/marketlist.five?pg=${nowpage-1}">[이전]</a>&nbsp;
+					</c:otherwise>
+				</c:choose>
+				<c:forEach var="i"  begin="${startpage}" end="${endpage}" step="1">
+				<c:choose>
+				<c:when test="${i==nowpage}">
+				[${i}]
+				</c:when>
+				<c:otherwise>
+					<a href="<%=request.getContextPath()%>/marketlist.five?pg=${i}">[${i}]</a>&nbsp;
+				</c:otherwise>
+				</c:choose>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${nowpage>=maxpage}">
+					[다음]
+					</c:when>
+					<c:otherwise>
+						<a href="<%=request.getContextPath()%>/marketlist.five?pg=${nowpage+1}">[다음]</a>&nbsp;
+					</c:otherwise>
+				</c:choose>
 	</div>
 	<!-- Project Page Holder-->
   	<div id="project-page-holder">

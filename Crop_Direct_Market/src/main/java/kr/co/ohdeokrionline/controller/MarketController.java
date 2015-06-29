@@ -7,7 +7,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import kr.co.ohdeokrionline.model.dao.Board_Dao;
 import kr.co.ohdeokrionline.model.dao.Market_Dao;
+import kr.co.ohdeokrionline.model.vo.Board_DTO;
 import kr.co.ohdeokrionline.model.vo.Market_DTO;
 
 import org.apache.ibatis.session.SqlSession;
@@ -24,27 +26,43 @@ public class MarketController {
 	private SqlSession sqlsession;
 	
 	 @RequestMapping("marketlist.five")
-	 public String marketlist(String pg,Model model) throws ClassNotFoundException, SQLException{
-		 	//(String pg , String f , String q , Model model)
+	 public String marketlist(String pg,Model model,HttpServletRequest request) throws ClassNotFoundException, SQLException{
+		 	
 		 	int page = 1;
-			//String field = "TITLE";
-			//String query ="%%";
-			if(pg != null && !pg.equals("")){
+			
+			if(pg != null && !pg.equals(""))
+			{
 				page = Integer.parseInt(pg);
 			}
-			//if(f != null && !f.equals("")){
-			//	field = f;
-			//}
-			//if(q != null && !q.equals("")){
-			//	query = q;
-			//}
-			//System.out.println(pg+" / "+f+" / "+q);
+			
 			System.out.println(page);
 			Market_Dao marketDao= sqlsession.getMapper(Market_Dao.class);
-			//System.out.println(pg+" / "+f+" / "+q);
-			//List<Board_DTO> list = boardDao.getBoardlist(page, field, query);
+			
+			int total = marketDao.getCount();
+			int listnum=10;
+			int maxpage=0;
+			
+			if(total%listnum!=0){
+				maxpage=total/listnum+1;
+			}else{
+				maxpage=total/listnum;
+			}
+			
+			int startpage =(int)((double)page/listnum+0.9);
+			int endpage=maxpage;
+			
+			if(endpage>startpage+10-1) endpage=startpage+10-1;
+			
+			
+			
 			List<Market_DTO> list = marketDao.getMarketlist(page);
 			model.addAttribute("list", list);
+
+			request.setAttribute("page",page);
+			request.setAttribute("maxpage", maxpage);
+			request.setAttribute("startpage", startpage);
+			request.setAttribute("endpage", endpage);
+			
 			//System.out.println(pg+" / "+f+" / "+q);
 			
 			return "market.marketlist";

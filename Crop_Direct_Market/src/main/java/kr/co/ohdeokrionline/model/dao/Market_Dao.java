@@ -7,9 +7,8 @@ import kr.co.ohdeokrionline.model.vo.Market_DTO;
 
 public interface Market_Dao {
 	//게시물 개수
-		public int getCount(String field, String query);
+		public int getCount();
 		//전체 게시물
-		//public List<Board_DTO> getBoardlist(int page, String field, String query);
 		public List<Market_DTO> getMarketlist(int page);
 		//게시물 삭제
 		public int delete(int mar_id);
@@ -21,5 +20,4 @@ public interface Market_Dao {
 		public void hitUp(int mar_id);
 		//게시물 입력
 		public int insert(Market_DTO market);
-
 }
