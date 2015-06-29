@@ -2,6 +2,7 @@ package kr.co.ohdeokrionline.controller;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -206,20 +207,22 @@ public class SalesBoardController {
 	
 	// 받은 메세지함
 	@RequestMapping("receiveList.five")
-	public String receiveList(Model model){
+	public String receiveList(Model model, Principal principal){
 		
 		Message_Dao dao =  sqlSession.getMapper(Message_Dao.class);
-		model.addAttribute("list",dao.listRec());
+		model.addAttribute("list",dao.listRec(principal.getName()));
+		System.out.println(principal.getName());
 		
 		return "marketplace.receivelist";
 	}
 	
 	// 보낸 메세지함
 	@RequestMapping("sendList.five")
-	public String sendList(Model model){
+	public String sendList(Model model, Principal principal){
 		
 		Message_Dao dao = sqlSession.getMapper(Message_Dao.class);
-		model.addAttribute("list",dao.listSend());
+		model.addAttribute("list",dao.listSend(principal.getName()));
+		System.out.println(principal.getName());
 		
 		return "marketplace.sendlist";
 	}

@@ -6,9 +6,9 @@ import kr.co.ohdeokrionline.model.vo.Message_DTO;
 
 public interface Message_Dao {
 	// 받은 메세지 목록
-	public ArrayList<Message_DTO> listRec();
+	public ArrayList<Message_DTO> listRec(String rec_userid);
 	// 보낸 메세지 목록
-	public ArrayList<Message_DTO> listSend();
+	public ArrayList<Message_DTO> listSend(String send_userid);
 	// 받은 메세지 상세보기
 	public Message_DTO recDetail(String me_num);
 	// 보낸 메세지 상세보기
