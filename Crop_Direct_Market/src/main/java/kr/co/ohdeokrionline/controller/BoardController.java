@@ -29,7 +29,7 @@ public class BoardController {
 		private SqlSession sqlsession;
 	
 			@RequestMapping("boardlist.five")
-			public String boardlist(String pg,Model model) throws ClassNotFoundException, SQLException{
+			public String boardlist(String pg,Model model,HttpServletRequest request) throws ClassNotFoundException, SQLException{
 		 	//(String pg , String f , String q , Model model)
 		 	int page = 1;
 			//String field = "TITLE";
@@ -48,8 +48,31 @@ public class BoardController {
 			Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
 			//System.out.println(pg+" / "+f+" / "+q);
 			//List<Board_DTO> list = boardDao.getBoardlist(page, field, query);
+			int total = boardDao.getCount();
+			int listnum=10;
+			int maxpage=0;
+			
+			if(total%listnum!=0){
+				maxpage=total/listnum+1;
+			}else{
+				maxpage=total/listnum;
+			}
+			
+			int startpage =(int)((double)page/listnum+0.9);
+			int endpage=maxpage;
+			
+			if(endpage>startpage+10-1) endpage=startpage+10-1;
+			
+			
+			
 			List<Board_DTO> list = boardDao.getBoardlist(page);
 			model.addAttribute("list", list);
+
+			request.setAttribute("page",page);
+			request.setAttribute("maxpage", maxpage);
+			request.setAttribute("startpage", startpage);
+			request.setAttribute("endpage", endpage);
+			
 			//System.out.println(pg+" / "+f+" / "+q);
 			
 			return "board.boardlist";

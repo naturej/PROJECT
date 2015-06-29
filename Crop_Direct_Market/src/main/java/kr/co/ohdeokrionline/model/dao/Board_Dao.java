@@ -8,7 +8,7 @@ import kr.co.ohdeokrionline.model.vo.Board_DTO;
 
 public interface Board_Dao {
 	//게시물 개수
-		public int getCount(String field, String query);
+		public int getCount();
 		//전체 게시물
 		//public List<Board_DTO> getBoardlist(int page, String field, String query);
 		public List<Board_DTO> getBoardlist(int page);

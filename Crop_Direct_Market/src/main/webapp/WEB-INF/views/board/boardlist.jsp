@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="nowpage" value="${requestScope.page}" />
+<c:set var="maxpage" value="${requestScope.maxpage}" />
+<c:set var="startpage" value="${requestScope.startpage}" />
+<c:set var="endpage" value="${requestScope.endpage}" />
+
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <div id="content">
@@ -22,7 +29,7 @@
 				<table class="table table-hover">
                   <thead>
 				<tr>
-				<td>IDX</td>
+				<td>IDX${np}</td>
 				<td>SUBEJCT</td>
 				<td>DATE</td>
 				<td>COUNT</td>
@@ -40,7 +47,37 @@
 			</c:forEach>
 			</tbody>
 			</table>
+
+				<c:choose>
+				<c:when test="${nowpage<=1}">
+				[이전]&nbsp;
+				</c:when>
+				<c:otherwise>
+					<a href="<%=request.getContextPath()%>/board/boardlist.five?pg=${nowpage-1}">[이전]</a>&nbsp;
+					</c:otherwise>
+				</c:choose>
+				<c:forEach var="i"  begin="${startpage}" end="${endpage}" step="1">
+				<c:choose>
+				<c:when test="${i==nowpage}">
+				[${i}]
+				</c:when>
+				<c:otherwise>
+					<a href="<%=request.getContextPath()%>/board/boardlist.five?pg=${i}">[${i}]</a>&nbsp;
+				</c:otherwise>
+				</c:choose>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${nowpage>=maxpage}">
+					[다음]
+					</c:when>
+					<c:otherwise>
+						<a href="<%=request.getContextPath()%>/board/boardlist.five?pg=${nowpage+1}">[다음]</a>&nbsp;
+					</c:otherwise>
+				</c:choose>
+			
+			
 			<a href="<%=request.getContextPath()%>/board/boardwrite.five">글쓰기</a>
+			
 	</div>
 	</div>
 	</section>

@@ -78,7 +78,7 @@ $(function(){
 	<select id="pro_name" name="pro_name"><option>${salboardDto.pro_name}</option></select>
 	
 	</td></tr>
-	<tr><td>파일</td><td colspan="3"><input type="file" name="file"><img class="" src="salesboard/upload/${salboardDto.bo_photo}" alt="" width="400px" height="400px"></td></tr>
+	<tr><td>파일</td><td colspan="3"><input type="file" name="file"><img class="" src="<%=request.getContextPath()%>/salesboard/upload/${salboardDto.bo_photo}" alt="" width="400px" height="400px"></td></tr>
 	<tr><td colspan="4"><input type="submit" value="작성" /></td></tr>
 	</table>
 	</form>

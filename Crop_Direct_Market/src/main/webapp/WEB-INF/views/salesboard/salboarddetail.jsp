@@ -90,7 +90,7 @@
             <tr><td>제목</td><td>${salboardDto.bo_subject}</td></tr>
             <tr><td>글쓴이</td><td>${salboardDto.user_id}</td></tr>
             <tr><td>작성일</td><td>${salboardDto.bo_date}</td></tr>
-            <tr><td colspan="2"><img class="" src="salesboard/upload/${salboardDto.bo_photo}" alt="" width="400px" height="400px"></td></tr>
+            <tr><td colspan="2"><img class="" src="<%=request.getContextPath()%>/salesboard/upload/${salboardDto.bo_photo}" alt="" width="400px" height="400px"></td></tr>
             <tr><td>내용</td><td>${salboardDto.bo_content}</td></tr>
             <tr><td>가격</td><td><input type="text" name="bo_price" value="${salboardDto.bo_price}"></td></tr>
             <tr><td>단위</td><td>${salboardDto.bo_salnum}${salboardDto.unit}</td></tr>
