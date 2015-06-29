@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	String user_id = (String)request.getAttribute("user_id");
-%>
+<%String user_id = (String)request.getAttribute("user_id");%>
 	
 	<link href="css/table-base/bootstrap.min.css" rel="stylesheet">
 	<link href="css/AdminLTE.css" rel="stylesheet">
@@ -26,17 +24,15 @@
                             <div class='box box-info'>
                                 <div class='box-body pad' align="center">
                                     <form action="" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" id="user_id" name="user_id" value="<%=user_id%>"/>                    
                                     <table>
                                     <tr><td><label>Subject</label></td><td>
 	   								 <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject ..."/></td></tr>
                                     <tr><td colspan="2">    
                                         <textarea id="editor1" name="editor1" rows="15" cols="80">
-                                            This is my textarea to be replaced with CKEditor.
+                                            내용을 입력하세요
                                         </textarea>
                                         </td></tr>    
-                                        <tr><td colspan="2">
-                                        <input type="text" id="user_id" name="user_id" class="form-control" placeholder="<%=user_id%>"/>                    
-                                    	</td></tr>
                                     	<tr><td><label>Input file</label></td><td>
                                     	<input type="file" id="file" name="file"></td></tr>
                                     </table>

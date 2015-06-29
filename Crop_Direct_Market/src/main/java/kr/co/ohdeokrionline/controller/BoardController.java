@@ -80,7 +80,8 @@ public class BoardController {
 
 		 //글등록
 		 @RequestMapping(value="boardwrite.five" , method=RequestMethod.GET)
-		 public String boardReg(){
+		 public String boardReg(Model model,Principal principal){
+			 	model.addAttribute("user_id",principal.getName());
 				return "board.boardwrite";
 		  }
 	

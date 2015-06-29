@@ -74,7 +74,8 @@ public class SalesBoardController {
 	
 		//판매글등록
 		 @RequestMapping(value="salboardwrite.five" , method=RequestMethod.GET)
-		 public String salboardReg(){
+		 public String salboardReg(Model model,Principal principal){
+			 	model.addAttribute("user_id",principal.getName());
 				return "salesboard.salboardwrite";
 		  }
 

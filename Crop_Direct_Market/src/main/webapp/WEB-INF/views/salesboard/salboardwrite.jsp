@@ -2,8 +2,12 @@
 	pageEncoding="UTF-8"%>
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link href="css/table-base/bootstrap.min.css" rel="stylesheet">
+<link href="css/AdminLTE.css" rel="stylesheet">
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<%String user_id = (String)request.getAttribute("user_id");%>
 <script type="text/javascript">
 $(function(){
 	  $.ajax({
@@ -38,6 +42,7 @@ $(function(){
     		 error: function (xhr,Options,thrownError) {}
  		});
 		  $('#sep').on("change",function(){
+			  console.log($('#sep').val());
 				$.ajax({
 					url:"prolist.five",
 					data:{pro_sep:$('#sep').val()},
@@ -55,28 +60,72 @@ $(function(){
 			  }); 
 		 }); 
 });
-</script>		
+</script>	
 
-	<form action="" method="post" enctype="multipart/form-data">
+	<div id="content">
+	<section id="service" class="home-section text-center">
+		<div class="heading-about">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.4s">
+					<div class="section-heading">
+					<h2>Sales Board</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+					<p>Sales Board Write</p>
+					</div>
+					</div>	
 	
+	 <!-- Main content -->
+                <section class="content">
+                            <div class='box box-info'>
+                                <div class='box-body pad' align="center">
+	
+	<form action="" method="post" enctype="multipart/form-data">
+	<input type="hidden" id="user_id" name="user_id" value="<%=user_id%>"/>
 	<div class="SALES_BOARD">
-	<table border="1">
-	<tr><td>제목</td><td colspan="3"><input type="text" name="bo_subject" /></td></tr>
-	<tr><td colspan="4"><textarea name="bo_content">내용</textarea></td></tr>
-	<tr><td>아이디</td><td colspan="3"><input type="text" name="user_id"/></td></tr>
-	<tr><td>가격</td><td colspan="3"><input type="text" name="bo_price" /></td></tr>
-	<tr><td>단위숫자</td><td><input type="text" name="bo_salnum"/></td><td>단위</td><td><select id="unit" name="unit"><option>단위</option>
-					</select>
+	<table>
+	<tr><td><label>제목</label></td><td colspan="4"><input class="form-control" type="text" name="bo_subject"/></td></tr>
+	<tr><td colspan="5">
+	<textarea id="editor1" name="editor1" rows="5" cols="80">
+      내용을 입력하세요
+    </textarea>
+	</td></tr>
+	<tr><td><label>가격</label></td><td><input class="form-control" type="text" name="bo_price" /></td>
+	<td><label>숫자 단위</label></td><td><input class="form-control" type="text" name="bo_salnum"/></td><td><select id="unit" name="unit"><option>단위</option>
+					</select></td>
 	</tr>
-	<tr><td>품명</td><td colspan="3">
+	<tr><td><label>품명</label></td><td colspan="4">
 	<select id="sep" name="sep"><option>분류</option></select>
 	
 	<select id="pro_name" name="pro_name"><option>품명</option></select>
 	
 	</td></tr>
-	<tr><td>파일</td><td colspan="3"><input type="file" name="file"></td></tr>
-	<tr><td colspan="4"><input type="submit" value="작성" /></td></tr>
+	<tr><td><label>파일</label></td><td colspan="4"><input type="file" name="file"></td></tr>
+	<tr><td colspan="5"><button type="submit" class="btn btn-primary">Submit</button></td></tr>
 	</table>
 	</div>
 	
 	</form>
+		</div>
+	</div>
+	</section>
+	</div>
+	</div>
+	</div>
+	</div>
+	</section>
+	</div>
+	<script src="<%=request.getContextPath()%>/js/ckeditor/ckeditor.js" type="text/javascript"></script>
+	 <script src="<%=request.getContextPath()%>/js/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            $(function() {
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace('editor1');
+                //bootstrap WYSIHTML5 - text editor
+                $(".textarea").wysihtml5();
+            });
+        </script>
+	
