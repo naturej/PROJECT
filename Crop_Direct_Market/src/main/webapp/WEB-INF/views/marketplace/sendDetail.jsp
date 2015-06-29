@@ -7,7 +7,22 @@
 <title>보낸 메세지 상세보기</title>
 </head>
 <body>
-	<table width="500" cellpadding="0" cellspacing="0" border="1">
+	<div id="content">
+		<section id="service" class="home-section text-center">
+		<div class="heading-about">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="wow bounceInDown" data-wow-delay="0.4s">
+							<div class="section-heading">
+								<h2>MESSAGE</h2>
+								<i class="fa fa-2x fa-angle-down"></i>
+								<p>보낸 메세지</p>
+							</div>
+						</div>
+					</div>
+				</div>
+					<table class="table table-hover">
 		<tr>
 			<td>글번호</td>
 			<td>${dto.me_num}</td>
@@ -33,5 +48,9 @@
 			<td>${dto.me_content}</td>
 		</tr>
 	</table>
+			</div>
+		</div>
+		</section>
+	</div>
 </body>
 </html>

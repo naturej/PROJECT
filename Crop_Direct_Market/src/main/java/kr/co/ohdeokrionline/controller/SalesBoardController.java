@@ -293,7 +293,7 @@ public class SalesBoardController {
 		@RequestMapping("enuri_sinchung.five")
 		public String openpopup_enuri(Model model, Principal principal) {
 			model.addAttribute("user_id", principal.getName());
-			return "marketplace.message_enuriForm";
+			return "marketplace/message_enuriForm";
 		}
 		
 		//에누리 메시지 발송 메서드

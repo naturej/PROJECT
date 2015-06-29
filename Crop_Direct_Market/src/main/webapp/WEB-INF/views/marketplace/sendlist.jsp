@@ -26,7 +26,6 @@
 				<table class="table table-hover">
 					<c:set var="m2" value="${list}" />
 					<tr>
-						<td>번호</td>
 						<td>받는사람</td>
 						<td>보내는사람</td>
 						<td>제목</td>
@@ -43,7 +42,6 @@
 						<c:otherwise>
 							<c:forEach items="${list}" var="m">
 								<tr>
-									<td>${m.me_num}</td>
 									<td>${m.rec_userid}</td>
 									<td>${m.send_userid}</td>
 									<td><a href="SendDetail.five?me_num=${m.me_num}">${m.me_subject}</a></td>

@@ -110,13 +110,14 @@
             <tr><td>단위</td><td>${salboardDto.bo_salnum}${salboardDto.unit}</td></tr>
             <tr><td>품종</td><td>${salboardDto.pro_name}</td></tr>
             <tr><td>구매수량</td><td><input type="number" min="1" id="sh_quantity" name="sh_quantity" onkeydown='return onlyNumber(event)'> 개</td></tr>
-            <tr><td colspan="2"><a href="salboardlist.five">목록</a>
-            <a href="salboardedit.five?bo_num=${salboardDto.bo_num}">수정</a>
-            <a href="salboarddelete.five?bo_num=${salboardDto.bo_num}">삭제</a>
+            <tr><td colspan="2">
             <input type="button" id="opener" value="장바구니 담기" onclick="CheckForm()">
             <input type="button" id="enuri" value="에누리 신청" onclick="Enuri('${salboardDto.bo_num}','${salboardDto.user_id}','${salboardDto.pro_name}')"></td></tr>
             <tr><td colspan="3" align="left">상세정보</td></tr>
             <tr><td colspan="3">${salboardDto.bo_content}</td></tr>
+            <tr><td colspan="3"><a href="salboardlist.five">목록</a>&nbsp;&nbsp;
+            <a href="salboardedit.five?bo_num=${salboardDto.bo_num}">수정</a>&nbsp;&nbsp;
+            <a href="salboarddelete.five?bo_num=${salboardDto.bo_num}">삭제</a></td></tr>
          </table>
   
       
