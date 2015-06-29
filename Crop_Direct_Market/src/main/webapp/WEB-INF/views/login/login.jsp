@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<script>
+	function openForm(){
+		window.open('searchForm.five','찾기','width=430 height=490');
+	}
+</script>
     <!-- Section: contact -->
     <section id="contact" class="home-section text-center">
     	<div class="boxed-grey">
@@ -33,6 +38,7 @@
                         </div>
                     </div>
                     <div class="col-md-6  col-lg-12">
+                    	<a href="#" onclick="openForm()"><button type="button" class="btn btn-skin">ID/PWD 찾기</button></a>
                         <a href="joinSelect.five"><button type="button" class="btn btn-skin pull-right">회원가입</button></a>
                         <button type="submit" class="btn btn-skin pull-right">
                             Login</button>

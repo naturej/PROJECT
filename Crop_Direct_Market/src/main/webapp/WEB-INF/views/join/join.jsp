@@ -109,6 +109,8 @@
 				  url: "passwordEncoder.five",
 				  data: {password:$('#password').val()},
 				  success: function(data){
+					  console.log(data);
+					  alert(data);
 					  $('#password').val(data);
 					  document.joinForm.submit();
 				  }

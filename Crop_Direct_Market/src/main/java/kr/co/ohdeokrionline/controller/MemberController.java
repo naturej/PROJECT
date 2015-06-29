@@ -83,7 +83,7 @@ public class MemberController {
 	
 	@RequestMapping(value="join.five",method=RequestMethod.POST)
 	public String joinInsert(Member_DTO member,FarmRecord_DTO farm,Authorities_DTO authority,HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException {
-		
+		System.out.println(member);
 		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
 		FarmRecord_Dao dao2 = sqlSession.getMapper(FarmRecord_Dao.class);
 		Authorities_Dao dao3 = sqlSession.getMapper(Authorities_Dao.class);
@@ -131,11 +131,13 @@ public class MemberController {
 			System.out.println(bCryptString);
 			model.addAttribute("passwordEncoder", bCryptString);
 			//Tiles 적용 전 코드
-			//return "join/encoder";
-			//Tiles 적용
-			return "join.encoder"; 
+			return "join/encoder";
 		}
 		return "";
 	}
 	
+	@RequestMapping(value="searchForm.five",method=RequestMethod.GET)
+	String search(){
+		return "login.searchForm";
+	}
 }

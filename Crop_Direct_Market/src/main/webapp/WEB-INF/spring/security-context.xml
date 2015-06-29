@@ -4,38 +4,11 @@
 	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
-<!-- 1단계 처리하기 
-	ROLE_USER 권한
-	ROLE_ADMIN 권한
-	
-	notice.jsp -> noticeDetail -> 인증(auto-config="true")
-	-> Spring 제공하는 login Form dlehd -> ID, PWD 검증
-	-> smlee, 1004 인증을 받으면 어떤 권한 : ROLE_USER 권한 흭득
-	
-	-> web.xml 필터 적용하기
-	-> 3.x.x => access="ROLE_USER"
--->
-
-<!-- 2단계 처리 
-	사용자가 정의한 loginForm 사용하기
-	-> auto-config="true"(x)
-	-> <security:form-login login-page="/joinus/login.htm"/>
--->
 	<security:http>
 		<security:form-login default-target-url="/index.five" login-page="/login.five"
 		authentication-failure-url="/login.five?error"/>
 		<security:logout invalidate-session="true" delete-cookies="true" logout-success-url="/index.five" />
-		<!-- 1단계 : 파일 별로 권한 설정 
-		<security:intercept-url pattern="/customer/noticeDetail.htm" access="ROLE_USER"/>
-		<security:intercept-url pattern="/customer/noticeReg.htm" access="ROLE_ADMIN"/> 
-		-->
-		<!-- 2단계 : Pattern 적용
-		<security:intercept-url pattern="/customer/*" access="ROLE_USER" /> => customer 폴더 모든 파일
-		<security:intercept-url pattern="/customer/**" access="ROLE_USER" /> => customer 폴더 안의 하위 폴더까지 포함 
-		<security:intercept-url pattern="/customer/*.htm" access="ROLE_USER" /> aaa.htm bbb.html
-		<security:intercept-url pattern="/customer/*Reg.htm" access="ROLE_USER" /> NoticeReg.htm, aa_Reg.htm
-		aaaReg.htm , bbbb_Reg.htm 적용
-		-->
+		
 		<!-- <security:intercept-url pattern="/customer/*Reg.htm" access="ROLE_USER"/> -->
 		<security:intercept-url pattern="/*/*.five" access="ROLE_CONSUMER,ROLE_SELLER,ROLE_ADMIN"/>
 		<security:intercept-url pattern="/market/marketwrite.five" access="ROLE_ADMIN"/>
