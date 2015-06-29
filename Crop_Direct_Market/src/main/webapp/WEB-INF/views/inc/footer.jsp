@@ -5,8 +5,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 col-lg-12">
-					<p>Hornet by <a href="http://cssnectar.com/" target="_blank">CSS Nectar</a><br>
-&copy; Copyright 2015 All Rights Reserved</p>
+					<p>ohdeokri online</p>
                     <p>Note:Images at demo are under cc licence and are not included in download package </p>
 				</div>
 			</div>	

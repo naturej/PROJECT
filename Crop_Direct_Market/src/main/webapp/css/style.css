@@ -1914,7 +1914,7 @@ form#contact-form input:focus,form#contact-form select:focus,form#contact-form t
 
 footer {
 	text-align: center;
-	padding: 10px 0 ;
+	padding: 11px 0 ;
 	z-index: 121;
 	position: relative;
 }
@@ -1947,7 +1947,7 @@ footer p {
     }
 	
     .intro {
-        height: 100%;
+        height: 83%;
         padding: 0;
     }
 
