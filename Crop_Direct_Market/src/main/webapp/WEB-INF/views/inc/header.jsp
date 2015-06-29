@@ -30,17 +30,15 @@
                  
               </ul>
            		</li>
-           		    <li class="dropdown">
-             	 <a href="#" class="dropdown-toggle" data-toggle="dropdown">MYPAGE<b class="caret"></b></a>
-            	  <ul class="dropdown-menu">
-                <li><a href="<%=request.getContextPath()%>/mypage/schedule.five">일정</a></li>
-                <li><a href="<%=request.getContextPath()%>/salesboard/shopList.five">장바구니목록</a></li>
-                <li><a href="<%=request.getContextPath()%>/salesboard/enulist.five">에누리목록</a></li>
-                <li><a href="<%=request.getContextPath()%>/salesboard/receiveList.five">받은메세지목록</a></li>
-                <li><a href="<%=request.getContextPath()%>/salesboard/sendList.five">보낸메세지목록</a></li>
-                
-                
-              </ul>
+           		<li class="dropdown">
+             	<a class="dropdown-toggle" onmouseover="this.Dropdown">MYPAGE<b class="caret"></b></a>
+            	<ul class="dropdown-menu">
+                	<li><a href="<%=request.getContextPath()%>/mypage/schedule.five">일정</a></li>
+	                <li><a href="<%=request.getContextPath()%>/salesboard/shopList.five">장바구니목록</a></li>
+	                <li><a href="<%=request.getContextPath()%>/salesboard/enulist.five">에누리목록</a></li>
+	                <li><a href="<%=request.getContextPath()%>/salesboard/receiveList.five">받은메세지목록</a></li>
+	                <li><a href="<%=request.getContextPath()%>/salesboard/sendList.five">보낸메세지목록</a></li>
+                </ul>
               <li><a href="login.five">LOGIN</a></li>
               <li><a href="<c:url value='/j_spring_security_logout' />">LOGOUT</a></li>
               </ul>
