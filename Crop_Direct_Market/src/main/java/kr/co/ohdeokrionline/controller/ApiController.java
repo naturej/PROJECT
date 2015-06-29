@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -245,7 +246,7 @@ public class ApiController {
 		return "api/auction_farmApi_Json";
 	}
 	
-	//시장코드에 따른 경매 표시
+	//추출된 가격경매시장코드 따른 경매 표시
 		@RequestMapping(value="auction_farmApi2.five", method=RequestMethod.GET)
 		public String auction_farmApi2_Get(){
 			return "api.auction_farmApi";
@@ -300,7 +301,50 @@ public class ApiController {
 			JSONObject jsonxml = (JSONObject)new XMLSerializer().read(sb.toString());
 			model.addAttribute("jsonxml",jsonxml);
 			
-			return "api/auction_farmApi_Json2";
+			return "api/auction_farmApi_Json";
+		}
+		
+		
+		
+		//오픈백과
+		@RequestMapping(value="OpenDB_Api.five", method=RequestMethod.GET)
+		public String OpenDB_Api_Get(){
+			return "api.OpenDB_Api";
+		}
+		
+		@RequestMapping(value="OpenDB_Api.five", method=RequestMethod.POST)
+		public String OpenDB_Api_Post(HttpServletRequest request, Model model) throws IOException{
+			
+			
+			String category = request.getParameter("category");
+			String searchname =request.getParameter("searchname");
+			searchname =  URLEncoder.encode(searchname, "UTF-8");
+			String _snum = request.getParameter("_snum");
+			String _enum = request.getParameter("_enum");
+			//System.out.println(work);
+			//System.out.println(type);
+			String URL ="http://openapi.okdab.com/open/open/opendicxml_category_find.jsp?key=f4d62c3d49e62769df33d83aad60e8e49e78e3";
+			URL += "&category="+category+"&searchname="+searchname+"&snum="+_snum+"&enum="+_enum;
+			
+			System.out.println(URL);  
+			
+			
+			StringBuffer sb = new StringBuffer(); 
+			URL naverUrl = new URL(URL);
+			
+			BufferedReader in = new BufferedReader(new InputStreamReader(naverUrl.openStream(),"UTF-8"));
+			String inputLine;
+			
+			while ((inputLine = in.readLine()) != null)
+			    sb.append( inputLine.trim());
+			
+			in.close();
+			
+			JSONObject jsonxml = (JSONObject)new XMLSerializer().read(sb.toString());
+			
+			model.addAttribute("jsonxml",jsonxml);
+			
+			return "api/OpenDB_Api_Json";
 		}
 }
  

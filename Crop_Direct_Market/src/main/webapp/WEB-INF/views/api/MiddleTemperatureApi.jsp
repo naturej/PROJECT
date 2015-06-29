@@ -284,9 +284,9 @@
 				<div class="col-lg-8 col-lg-offset-2">
 					<div class="wow bounceInDown" data-wow-delay="0.4s">
 						<div class="section-heading">
-							<h2>기온 예보</h2>
+							<h2>중기 날씨 예보</h2>
 							<i class="fa fa-2x fa-angle-down"></i>
-							<p>3일 이후 부터의 기온을 예보합니다</p>
+							<p>3일 이후 부터의 날씨을 예보합니다</p>
 						</div>
 					</div>
 				</div>
