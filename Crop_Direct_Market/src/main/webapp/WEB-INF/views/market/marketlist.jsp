@@ -39,7 +39,6 @@
 <script type="text/javascript" src="js/jquery-scrolltofixed.js"></script>
 <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="js/jquery.isotope.js"></script>
-<script type="text/javascript" src="js/wow.js"></script>
 <script type="text/javascript" src="js/classie.js"></script>
 
 <script type="text/javascript">
@@ -185,88 +184,22 @@ function resizeText() {
         });
     });
 </script> 
-<!-- <script>
-    wow = new WOW(
-      {
-        animateClass: 'animated',
-        offset:       100
-      }
-    );
-    wow.init();
-    document.getElementById('').onclick = function() {
-      var section = document.createElement('section');
-      section.className = 'wow fadeInDown';
-	  section.className = 'wow shake';
-	  section.className = 'wow zoomIn';
-	  section.className = 'wow lightSpeedIn';
-      this.parentNode.insertBefore(section, this);
-    };
-</script> --> 
-<script type="text/javascript">
-	$(window).load(function(){
-		
-		$('a').bind('click',function(event){
-			var $anchor = $(this);
-			
-			$('html, body').stop().animate({
-				scrollTop: $($anchor.attr('href')).offset().top - 91
-			}, 1500,'easeInOutExpo');
-			/*
-			if you don't want to use the easing effects:
-			$('html, body').stop().animate({
-				scrollTop: $($anchor.attr('href')).offset().top
-			}, 1000);
-			*/
-			event.preventDefault();
-		});
-	})
-</script> 
 
 <script type="text/javascript">
 
 $(window).load(function(){
   
-  
   var $container = $('.portfolioContainer'),
       $body = $('body'),
       colW = 350,
       columns = null;
-
-  
-
-  
- /*  $(window).smartresize(function(){
-    // check if columns has changed
-    var currentColumns = Math.floor( ( $body.width() -30 ) / colW );
-    if ( currentColumns !== columns ) {
-      // set new column count
-      columns = currentColumns;
-      // apply width to container manually, then trigger relayout
-      $container.width( columns * colW )
-        .isotope('reLayout');
-    }
-    
-  }).smartresize(); // trigger resize to set container width
-  $('.portfolioFilter a').click(function(){
-        $('.portfolioFilter .current').removeClass('current');
-        $(this).addClass('current');
- 
-        var selector = $(this).attr('data-filter');
-        $container.isotope({
-			
-            filter: selector,
-         });
-         return false;
-    }); */
-  
 });
 
 </script>
 
 <script type="text/javascript">
-
    
-  jQuery(document).ready(function($){     
+jQuery(document).ready(function($){     
 // Portfolio Isotope
 	var container = $('#portfolio-wrap');	
 	
