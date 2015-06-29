@@ -24,9 +24,9 @@ $(function(){
 			  type: "POST",
 			  url: "pwd_search.five",
 			  data: {user_id:$('#user_id').val(),
-				  	email:$('#email').val()},
+				  	email:$('#email2').val()},
 			  success: function(data){
-				  
+				  $('#dialog').text(data).dialog();
 			  }
 		});
 	});

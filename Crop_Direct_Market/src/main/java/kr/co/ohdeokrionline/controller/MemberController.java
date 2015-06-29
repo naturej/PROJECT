@@ -1,7 +1,15 @@
 package kr.co.ohdeokrionline.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import kr.co.ohdeokrionline.model.dao.Authorities_Dao;
 import kr.co.ohdeokrionline.model.dao.FarmRecord_Dao;
 import kr.co.ohdeokrionline.model.dao.Member_Dao;
-import kr.co.ohdeokrionline.model.dao.Message_Dao;
 import kr.co.ohdeokrionline.model.vo.Authorities_DTO;
 import kr.co.ohdeokrionline.model.vo.FarmRecord_DTO;
 import kr.co.ohdeokrionline.model.vo.Member_DTO;
@@ -126,6 +133,11 @@ public class MemberController {
 	@RequestMapping(value="passwordEncoder.five",method={RequestMethod.GET,RequestMethod.POST})
 	String passwordEncoder(@RequestParam(value="password",required=false,defaultValue="")String password, Model model) throws IOException{
 		if(StringUtils.hasText(password)){
+			Writer wr = new FileWriter("C:\\Users\\KOSTA\\Documents\\tmp.txt");
+			BufferedWriter bwr = new BufferedWriter(wr);
+			bwr.write(password);
+			bwr.newLine();
+			bwr.close();
 			// 암호화 작업
 			String bCryptString = passwordEncoder.encode(password);
 			System.out.println(bCryptString);
@@ -162,13 +174,27 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="pwd_search.five",method=RequestMethod.POST)
-	String pwd_search(String user_id,String email){
+	String pwd_search(String user_id,String email,Model model){
 		System.out.println(user_id+"/"+email);
 		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
 		try {
+			Reader fr = new FileReader("C:\\Users\\KOSTA\\Documents\\tmp.txt");
+			BufferedReader br = new BufferedReader(fr);
 			String pwd = dao.getPwdByUser_idAndEmail(user_id, email);
-			
-		} catch (SQLException e) {
+			String str;
+			if(pwd!=null){
+				while((str=br.readLine())!=null){
+					if(passwordEncoder.matches(str, pwd)){
+						model.addAttribute("user_id", str);
+						return "login/id_search";
+					}
+					System.out.println(str);
+				}
+			}else{
+				model.addAttribute("user_id", "일치하지않습니다.");
+				return "login/id_search";
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;

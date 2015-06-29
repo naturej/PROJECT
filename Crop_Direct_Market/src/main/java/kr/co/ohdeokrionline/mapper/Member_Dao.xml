@@ -20,7 +20,7 @@
 	</select>
 	
 	<select id="getPwdByUser_idAndEmail" resultType="string">
-		select password from users where user_id=#{user_id} and email=#{email}
+		select password from users where user_id=#{param1} and email=#{param2}
 	</select>
 	
 	<select id="check_user_id" resultType="string">
