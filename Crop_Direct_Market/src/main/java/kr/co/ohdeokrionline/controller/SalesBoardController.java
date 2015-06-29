@@ -288,7 +288,8 @@ public class SalesBoardController {
 
 		// 에누리 신청 테스트 용 팝업 페이지 이동
 		@RequestMapping("enuri_sinchung.five")
-		public String openpopup_enuri() {
+		public String openpopup_enuri(Model model, Principal principal) {
+			model.addAttribute("user_id", principal.getName());
 			return "marketplace.message_enuriForm";
 		}
 		
@@ -383,8 +384,8 @@ public class SalesBoardController {
 	
 	// 장바구니 넣기
 	@RequestMapping(value="shopInsert.five",method=RequestMethod.POST)
-	public void insertShop(ShoppingBasket_DTO dto){
-		dto.setUser_id("gathering11");	// 지금은 고정값.. 나중에 principal.getName()
+	public void insertShop(ShoppingBasket_DTO dto, Principal principal){
+		dto.setUser_id(principal.getName());	// 지금은 고정값.. 나중에 principal.getName()
 		
 		ShoppingBasket_Dao dao = sqlSession.getMapper(ShoppingBasket_Dao.class);
 		dao.insertshop(dto);

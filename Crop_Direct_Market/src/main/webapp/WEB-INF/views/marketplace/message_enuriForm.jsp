@@ -1,3 +1,4 @@
+<%@page import="java.security.Principal"%>
 <%@page import="javax.websocket.Session"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
@@ -68,7 +69,7 @@
          </tr>
          <tr>
             <td>보내는 사람</td>
-            <td><input type="text" name="user_id" value="gathering11" readonly="readonly">(고정값)</td>
+            <td><input type="text" name="user_id" value="${user_id}" readonly="readonly"></td>
          </tr>
          <tr>
             <td colspan="2"><textarea cols="50" rows="10" name="enu_content" id="enu_content"></textarea></td>

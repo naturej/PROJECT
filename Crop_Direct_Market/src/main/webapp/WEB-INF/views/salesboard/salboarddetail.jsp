@@ -27,7 +27,7 @@
 				type:'post',
 				url:'shopInsert.five',
 				data:{
-					user_id:"gathering11",	//나중에 바꿈..
+					user_id: principal.getName(),
 					bo_num:"${salboardDto.bo_num}",
 					sh_quantity:$("#sh_quantity").val(),
 					bo_price:"${salboardDto.bo_price}"
