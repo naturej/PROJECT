@@ -5,7 +5,7 @@
     <!-- Section: contact -->
     <section id="contact" class="home-section text-center">
     	<div class="boxed-grey">
-			<div class="row">
+			<div class="row" style="height:294px">
 				<div class="col-md-6  col-lg-12">
 					<a href="join.five?user=ROLE_SELLER"><button type="button" class="btn btn-skin">판매자</button></a>
 					<a href="join.five?user=ROLE_CONSUMER"><button type="button" class="btn btn-skin">소비자</button></a>
