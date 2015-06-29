@@ -1,15 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<link href="css/table-base/bootstrap.min.css" rel="stylesheet">
+	<link href="css/AdminLTE.css" rel="stylesheet">
 	
-	<form action="" method="post" enctype="multipart/form-data">
-		<table>
-			<tr><td>제목<input type="text" id="mar_subject" name="mar_subject" /></td></tr>
-			<tr><td>내용<textarea id="content" name="mar_content" id="mar_content"></textarea></td></tr>
-			<tr><td>시간<input type="text" name="mar_time" id="mar_time"></td></tr>
-			<tr><td>장터날짜<input type="text" id="mar_date" name="mar_date" /></td></tr>
-			<tr><td>장터위치<input type="text" id="mar_location" name="mar_location" /></td></tr>
-			<tr><td>최대입점수<input type="text" name="mar_maxshop" id="mar_maxshop"></td></tr>
-			<tr><td>사진<input type="file" name="file" id="mar_photo"></td></tr>
-			<tr><td><input type="submit" value="작성" /></td></tr>
-		</table>
+	<div id="content">
+	<section id="service" class="home-section text-center">
+		<div class="heading-about">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.4s">
+					<div class="section-heading">
+					<h2>Market</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+					<p>Market Write</p>
+					</div>
+					</div>
+				
+                <!-- Main content -->
+                <section class="content">
+                            <div class='box box-info'>
+                                <div class='box-body pad' align="center">
+                                    <form action="" method="post" enctype="multipart/form-data">
+                                    <table>
+                                    <tr><td><label>Subject</label></td><td>
+	   								 <input type="text" class="form-control" id="mar_subject" name="mar_subject" placeholder="Subject ..."/></td></tr>
+                                    	<tr><td><label>시간</label></td><td>
+                                    	<input type="text" class="form-control" id="mar_time" name="mar_time" placeholder="Time ..."/></td></tr>
+										<tr><td><label>장터날짜</label></td><td>
+										<input type="text" class="form-control" id="mar_date" name="mar_date" placeholder="Date ..."/></td></tr>
+										<tr><td><label>장터위치</label></td><td>
+										<input type="text" class="form-control" id="mar_location" name="mar_location" placeholder="Location ..."/></td></tr>
+										<tr><td><label>최대입점수</label></td><td>
+										<input type="text" class="form-control" id="mar_maxshop" name="mar_maxshop" placeholder="MaxShop ..."/></td></tr>
+                                  	  	<tr><td colspan="2">    
+                                        <textarea id="mar_content" name="mar_content" rows="15" cols="80">
+                                        </textarea>
+                                        </td></tr>    
+                                    	<tr><td><label>Input file</label></td><td>
+                                    	<input type="file" id="file" name="file"></td></tr>
+                                    </table>
+                                	<div align="right">
+	 									  	<button type="submit" class="btn btn-primary">Submit</button>
+	   								  </div>
+	   								   </form>
+	   								   
+                                </div>
+                            </div><!-- /.box -->
+                </section><!-- /.content -->
+                </div>
+		</div>
+	</div>
+	</div>
+	</section>
+	</div>
+	 <script src="<%=request.getContextPath()%>/js/ckeditor/ckeditor.js" type="text/javascript"></script>
+	 <script src="<%=request.getContextPath()%>/js/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            $(function() {
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace('mar_content');
+                //bootstrap WYSIHTML5 - text editor
+                $(".textarea").wysihtml5();
+            });
+        </script>	
 	</form>

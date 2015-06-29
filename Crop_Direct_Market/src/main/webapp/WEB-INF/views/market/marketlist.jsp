@@ -8,25 +8,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, maximum-scale=1">
-<title>Homepage</title>
-<link rel="icon" href="favicon.png" type="image/png">
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="css/linecons.css" rel="stylesheet" type="text/css">
-<link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-<link href="css/responsive.css" rel="stylesheet" type="text/css">
-<link href="css/animate.css" rel="stylesheet" type="text/css">
 
-<link href='http://fonts.googleapis.com/css?family=Lato:400,900,700,700italic,400italic,300italic,300,100italic,100,900italic' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Dosis:400,500,700,800,600,300,200' rel='stylesheet' type='text/css'>
-
-[if IE]><style type="text/css">.pie {behavior:url(PIE.htc);}</style><![endif]
-
-</script>
-</head> -->
 <link rel="icon" href="favicon.png" type="image/png">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -93,22 +75,22 @@ function resizeText() {
     <!-- Portfolio Filters -->
     <div id="filters" class="sixteen columns">
       	<ul class="clearfix">
-        	<li><a id="all" href="#" data-filter="*" class="active">
+        	<li><a id="all" href="" data-filter="*" class="active">
           		<h5>All</h5>
           	</a></li>
-        	<li><a class="" href="#" data-filter=".branding">
+        	<li><a class="" href="" data-filter=".branding">
           		<h5>Branding</h5>
           	</a></li>
-        	<li><a class="" href="#" data-filter=".design">
+        	<li><a class="" href="" data-filter=".design">
           		<h5>Design</h5>
           	</a></li>
-        	<li><a class="" href="#" data-filter=".photography">
+        	<li><a class="" href="" data-filter=".photography">
           		<h5>Photography</h5>
           	</a></li>
-        	<li><a class="" href="#" data-filter=".videography">
+        	<li><a class="" href="" data-filter=".videography">
           		<h5>Videography</h5>
           	</a></li>
-        	<li><a class="" href="#" data-filter=".web">
+        	<li><a class="" href="" data-filter=".web">
           		<h5>Web</h5>
           	</a></li>
       	</ul>
@@ -164,6 +146,7 @@ function resizeText() {
 						<a href="<%=request.getContextPath()%>/marketlist.five?pg=${nowpage+1}">[다음]</a>&nbsp;
 					</c:otherwise>
 				</c:choose>
+				<a href="<%=request.getContextPath()%>/marketwrite.five">글쓰기</a>
 	</div>
 	<!-- Project Page Holder-->
   	<div id="project-page-holder">
