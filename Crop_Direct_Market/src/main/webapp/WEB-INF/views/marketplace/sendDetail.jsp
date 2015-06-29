@@ -24,18 +24,6 @@
 				</div>
 					<table class="table table-hover">
 		<tr>
-			<td>글번호</td>
-			<td>${dto.me_num}</td>
-		</tr>
-		<tr>
-			<td>제목</td>
-			<td>${dto.me_subject}</td>
-		</tr>
-		<tr>
-			<td>보낸사람</td>
-			<td>${dto.send_userid}</td>
-		</tr>
-		<tr>
 			<td>받는사람</td>
 			<td>${dto.rec_userid}</td>
 		</tr>
@@ -44,8 +32,17 @@
 			<td>${dto.me_date}</td>
 		</tr>
 		<tr>
-			<td>내용</td>
-			<td>${dto.me_content}</td>
+			<td>제목</td>
+			<td>${dto.me_subject}</td>
+		</tr>
+		<tr>
+			<td colspan="2">${dto.me_content}</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<a href="sendList.five">목록</a>&nbsp;&nbsp;
+				<a href="deleteSend.five?me_num=${dto.me_num}">삭제</a>&nbsp;&nbsp;
+			</td>
 		</tr>
 	</table>
 			</div>
