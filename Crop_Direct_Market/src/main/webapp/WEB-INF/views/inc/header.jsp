@@ -34,6 +34,7 @@
              	<a href="#" class="dropdown-toggle" data-toggle="dropdown">MYPAGE<b class="caret"></b></a>
             	<ul class="dropdown-menu">
                 	<li><a href="<%=request.getContextPath()%>/mypage/schedule.five">일정</a></li>
+                	<li><a href="sellermanage.five">판매관리</a></li>
 	                <li><a href="<%=request.getContextPath()%>/salesboard/shopList.five">장바구니목록</a></li>
 	                <li><a href="<%=request.getContextPath()%>/salesboard/enulist.five">에누리목록</a></li>
 	                <li><a href="<%=request.getContextPath()%>/salesboard/receiveList.five">받은메세지목록</a></li>
