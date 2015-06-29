@@ -8,7 +8,22 @@
 <title>받은 메세지함</title>
 </head>
 <body>
-<table width="500" cellpadding="0" cellspacing="0" border="1">
+<div id="content">
+	<section id="service" class="home-section text-center">
+			<div class="heading-about">
+				<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="wow bounceInDown" data-wow-delay="0.4s">
+						<div class="section-heading">
+						<h2>MESSAGE</h2>
+						<i class="fa fa-2x fa-angle-down"></i>
+						<p>받은 메세지함</p>
+						</div>
+						</div>
+					</div>
+				</div>
+			<table class="table table-hover">
 	<tr>
 		<td>번호</td>
 		<td>받는사람</td>
@@ -28,5 +43,9 @@
 	<tr>
 	</c:forEach>
 </table>
+	</div>
+	</div>
+	</section>
+</div>
 </body>
 </html>
