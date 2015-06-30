@@ -67,7 +67,7 @@ body {
 							"2d");
 					window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
 						responsive : true
-					});
+					}); 
 					
 				}; 
 			</script> 
