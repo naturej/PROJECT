@@ -68,6 +68,7 @@ body {
 					window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
 						responsive : true
 					});
+					
 				};
 			</script> 
 </body>
