@@ -115,6 +115,9 @@
 					<input type="button" class="btn_submit" value="수락" onclick="yesEnuri(${dto.enu_idx})">
 					<input type="button" class="btn_cancel" value="거절" onclick="noEnuri(${dto.enu_idx})">				
 				</se:authorize>
+				<se:authorize ifAllGranted="ROLE_CONSUMER">
+				<input type="button" class="btn_cancel" value="닫기" onclick="window.close()">
+				</se:authorize>
 				</td>
 			</tr>
 		</table>
