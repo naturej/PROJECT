@@ -55,7 +55,7 @@
 			<tr>
 				<td>번호</td>
 				<td>보내는사람</td>
-				<td>내용</td>
+				<td>제목</td>
 				<td>작성일</td>
 				<td>상태</td>
 			</tr>
@@ -63,7 +63,7 @@
 			<tr>
 				<td>${e.enu_idx}</td>
 				<td>${e.user_id}</td>
-				<td><a href="#" onclick="popup('${e.enu_idx}')">${e.enu_content}</a></td>
+				<td><a href="#" onclick="popup('${e.enu_idx}')">RE:${e.bo_subject}</a></td>
 				<td>${e.enu_date}</td>
 				<c:if test="${e.enu_confirm == '0'}"><td>대기중</td></c:if>
 				<c:if test="${e.enu_confirm == '1'}"><td>수락</td></c:if>
