@@ -7,7 +7,6 @@
 <script>
 $(function(){
 	$('#id_search').click(function(){
-		alert('id');
 		$.ajax({
 			  type: "POST",
 			  url: "id_search.five",
@@ -19,7 +18,6 @@ $(function(){
 	});
 	
 	$('#pwd_search').click(function(){
-		alert('pwd');
 		$.ajax({
 			  type: "POST",
 			  url: "pwd_search.five",

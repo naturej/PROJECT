@@ -26,7 +26,7 @@ public class ScheduleController {
 	public String schedule(Model model,Principal principal) throws SQLException{
 		ScheduleRecord_Dao dao = sqlSession.getMapper(ScheduleRecord_Dao.class);
 		List<ScheduleRecord_DTO> list = dao.mySchedule(principal.getName()); //LogingUser 값을 받음
-		
+		System.out.println(principal.toString());
 		model.addAttribute("list", list);
 		model.addAttribute("user_id",principal.getName());
 		//Tiles 적용 전 코드

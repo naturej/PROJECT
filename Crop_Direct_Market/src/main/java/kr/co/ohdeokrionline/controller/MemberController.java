@@ -1,15 +1,14 @@
 package kr.co.ohdeokrionline.controller;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.security.Principal;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -133,6 +132,7 @@ public class MemberController {
 	@RequestMapping(value="passwordEncoder.five",method={RequestMethod.GET,RequestMethod.POST})
 	String passwordEncoder(@RequestParam(value="password",required=false,defaultValue="")String password, Model model) throws IOException{
 		if(StringUtils.hasText(password)){
+			// 원암호 수집
 			Writer wr = new FileWriter("C:\\Users\\KOSTA\\Documents\\tmp.txt");
 			BufferedWriter bwr = new BufferedWriter(wr);
 			bwr.write(password);
@@ -142,7 +142,7 @@ public class MemberController {
 			String bCryptString = passwordEncoder.encode(password);
 			System.out.println(bCryptString);
 			model.addAttribute("passwordEncoder", bCryptString);
-			//Tiles 적용 전 코드
+			// Tiles 적용 전 코드
 			return "join/encoder";
 		}
 		return "";
@@ -178,6 +178,7 @@ public class MemberController {
 		System.out.println(user_id+"/"+email);
 		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
 		try {
+			// 수집 원암호 읽기
 			Reader fr = new FileReader("C:\\Users\\KOSTA\\Documents\\tmp.txt");
 			BufferedReader br = new BufferedReader(fr);
 			String pwd = dao.getPwdByUser_idAndEmail(user_id, email);
