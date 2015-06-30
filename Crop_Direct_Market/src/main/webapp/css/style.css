@@ -286,8 +286,7 @@ img {
 	#portfolio-wrap .one-four {
 		margin: 0!important;
 		line-height:0;
-		width: 25%;
-		padding: 0;
+		width: 25%		padding: 0;
 		position:relative;
 	}
 	
@@ -303,7 +302,7 @@ img {
 	}
 	.portfolio-item .portfolio-image img {
 		width: 100%;
-		height: auto;
+		height: 250;
 	}
 
 	.portfolio-item:hover .project-overlay {
