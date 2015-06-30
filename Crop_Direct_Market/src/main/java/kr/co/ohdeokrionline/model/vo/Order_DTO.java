@@ -3,188 +3,156 @@ package kr.co.ohdeokrionline.model.vo;
 import java.util.Date;
 
 public class Order_DTO {
-	private String OR_ID;
-	private int OR_QUAN;
-	private int BO_NUM;
-	private Date OR_DATE;
-	private String BUY_USERID;
-	private int OR_COST;
-	private String OR_STATE;
-	private String SELL_USERID;
-	private String BO_CONTENT;
-	private String BO_SUBJECT;
-	private String BO_PHOTO;
-	private int BO_PRICE;
-	private Date BO_DATE;
-	private String USER_ID;
-	private String UNIT;
-	private String PRO_NAME;
+
 	
-	public Order_DTO(){}
-
-	public String getOR_ID() {
-		return OR_ID;
+	// ORDERLIST TABLE
+	String or_id;
+	int bo_num;
+	int or_quan;
+	Date or_date;
+	String buy_userid;
+	int or_cost;
+	String or_state;
+	String sell_userid;
+	String or_addd;
+	String or_addr;
+	
+	public String getOr_addd() {
+		return or_addd;
 	}
-
-	public void setOR_ID(String oR_ID) {
-		OR_ID = oR_ID;
+	public void setOr_addd(String or_addd) {
+		this.or_addd = or_addd;
 	}
-
-	public int getOR_QUAN() {
-		return OR_QUAN;
+	public String getOr_addr() {
+		return or_addr;
 	}
-
-	public void setOR_QUAN(int oR_QUAN) {
-		OR_QUAN = oR_QUAN;
+	public void setOr_addr(String or_addr) {
+		this.or_addr = or_addr;
 	}
-
-	public int getBO_NUM() {
-		return BO_NUM;
+	public String getOr_id() {
+		return or_id;
 	}
-
-	public void setBO_NUM(int bO_NUM) {
-		BO_NUM = bO_NUM;
+	public void setOr_id(String or_id) {
+		this.or_id = or_id;
 	}
-
-	public Date getOR_DATE() {
-		return OR_DATE;
+	public int getBo_num() {
+		return bo_num;
 	}
-
-	public void setOR_DATE(Date oR_DATE) {
-		OR_DATE = oR_DATE;
+	public void setBo_num(int bo_num) {
+		this.bo_num = bo_num;
 	}
-
-	public String getBUY_USERID() {
-		return BUY_USERID;
+	public int getOr_quan() {
+		return or_quan;
 	}
-
-	public void setBUY_USERID(String bUY_USERID) {
-		BUY_USERID = bUY_USERID;
+	public void setOr_quan(int or_quan) {
+		this.or_quan = or_quan;
 	}
-
-	public int getOR_COST() {
-		return OR_COST;
+	public Date getOr_date() {
+		return or_date;
 	}
-
-	public void setOR_COST(int oR_COST) {
-		OR_COST = oR_COST;
+	public void setOr_date(Date or_date) {
+		this.or_date = or_date;
 	}
-
-	public String getOR_STATE() {
-		return OR_STATE;
+	public String getBuy_userid() {
+		return buy_userid;
 	}
-
-	public void setOR_STATE(String oR_STATE) {
-		OR_STATE = oR_STATE;
+	public void setBuy_userid(String buy_userid) {
+		this.buy_userid = buy_userid;
 	}
-
-	public String getSELL_USERID() {
-		return SELL_USERID;
+	public int getOr_cost() {
+		return or_cost;
 	}
-
-	public void setSELL_USERID(String sELL_USERID) {
-		SELL_USERID = sELL_USERID;
+	public void setOr_cost(int or_cost) {
+		this.or_cost = or_cost;
 	}
-
-	public String getBO_CONTENT() {
-		return BO_CONTENT;
+	public String getOr_state() {
+		return or_state;
 	}
-
-	public void setBO_CONTENT(String bO_CONTENT) {
-		BO_CONTENT = bO_CONTENT;
+	public void setOr_state(String or_state) {
+		this.or_state = or_state;
 	}
-
-	public String getBO_SUBJECT() {
-		return BO_SUBJECT;
+	public String getSell_userid() {
+		return sell_userid;
 	}
-
-	public void setBO_SUBJECT(String bO_SUBJECT) {
-		BO_SUBJECT = bO_SUBJECT;
+	public void setSell_userid(String sell_userid) {
+		this.sell_userid = sell_userid;
 	}
+	
+	
+	//
+	   private String bo_content;
+	   private String bo_subject;
+	   private String bo_photo;
+	   private int bo_price;
+	   private Date bo_date;
+	   private String user_id;
+	   private String unit;
+	   private String pro_name;
 
-	public String getBO_PHOTO() {
-		return BO_PHOTO;
+	public String getBo_content() {
+		return bo_content;
 	}
-
-	public void setBO_PHOTO(String bO_PHOTO) {
-		BO_PHOTO = bO_PHOTO;
+	public void setBo_content(String bo_content) {
+		this.bo_content = bo_content;
 	}
-
-	public int getBO_PRICE() {
-		return BO_PRICE;
+	public String getBo_subject() {
+		return bo_subject;
 	}
-
-	public void setBO_PRICE(int bO_PRICE) {
-		BO_PRICE = bO_PRICE;
+	public void setBo_subject(String bo_subject) {
+		this.bo_subject = bo_subject;
 	}
-
-	public Date getBO_DATE() {
-		return BO_DATE;
+	public String getBo_photo() {
+		return bo_photo;
 	}
-
-	public void setBO_DATE(Date bO_DATE) {
-		BO_DATE = bO_DATE;
+	public void setBo_photo(String bo_photo) {
+		this.bo_photo = bo_photo;
 	}
-
-	public String getUSER_ID() {
-		return USER_ID;
+	public int getBo_price() {
+		return bo_price;
 	}
-
-	public void setUSER_ID(String uSER_ID) {
-		USER_ID = uSER_ID;
+	public void setBo_price(int bo_price) {
+		this.bo_price = bo_price;
 	}
-
-	public String getUNIT() {
-		return UNIT;
+	public Date getBo_date() {
+		return bo_date;
 	}
-
-	public void setUNIT(String uNIT) {
-		UNIT = uNIT;
+	public void setBo_date(Date bo_date) {
+		this.bo_date = bo_date;
 	}
-
-	public String getPRO_NAME() {
-		return PRO_NAME;
+	public String getUser_id() {
+		return user_id;
 	}
-
-	public void setPRO_NAME(String pRO_NAME) {
-		PRO_NAME = pRO_NAME;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-
-	public Order_DTO(String oR_ID, int oR_QUAN, int bO_NUM, Date oR_DATE,
-			String bUY_USERID, int oR_COST, String oR_STATE,
-			String sELL_USERID, String bO_CONTENT, String bO_SUBJECT,
-			String bO_PHOTO, int bO_PRICE, Date bO_DATE, String uSER_ID,
-			String uNIT, String pRO_NAME) {
-		super();
-		OR_ID = oR_ID;
-		OR_QUAN = oR_QUAN;
-		BO_NUM = bO_NUM;
-		OR_DATE = oR_DATE;
-		BUY_USERID = bUY_USERID;
-		OR_COST = oR_COST;
-		OR_STATE = oR_STATE;
-		SELL_USERID = sELL_USERID;
-		BO_CONTENT = bO_CONTENT;
-		BO_SUBJECT = bO_SUBJECT;
-		BO_PHOTO = bO_PHOTO;
-		BO_PRICE = bO_PRICE;
-		BO_DATE = bO_DATE;
-		USER_ID = uSER_ID;
-		UNIT = uNIT;
-		PRO_NAME = pRO_NAME;
+	public String getUnit() {
+		return unit;
 	}
-
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+	public String getPro_name() {
+		return pro_name;
+	}
+	public void setPro_name(String pro_name) {
+		this.pro_name = pro_name;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "Order_DTO [OR_ID=" + OR_ID + ", OR_QUAN=" + OR_QUAN
-				+ ", BO_NUM=" + BO_NUM + ", OR_DATE=" + OR_DATE
-				+ ", BUY_USERID=" + BUY_USERID + ", OR_COST=" + OR_COST
-				+ ", OR_STATE=" + OR_STATE + ", SELL_USERID=" + SELL_USERID
-				+ ", BO_CONTENT=" + BO_CONTENT + ", BO_SUBJECT=" + BO_SUBJECT
-				+ ", BO_PHOTO=" + BO_PHOTO + ", BO_PRICE=" + BO_PRICE
-				+ ", BO_DATE=" + BO_DATE + ", USER_ID=" + USER_ID + ", UNIT="
-				+ UNIT + ", PRO_NAME=" + PRO_NAME + "]";
-	};
+		return "Order_DTO [or_id=" + or_id + ", bo_num=" + bo_num
+				+ ", or_quan=" + or_quan + ", or_date=" + or_date
+				+ ", buy_userid=" + buy_userid + ", or_cost=" + or_cost
+				+ ", or_state=" + or_state + ", sell_userid=" + sell_userid
+				+ ", or_addd=" + or_addd + ", or_addr=" + or_addr
+				+ ", bo_content=" + bo_content + ", bo_subject=" + bo_subject
+				+ ", bo_photo=" + bo_photo + ", bo_price=" + bo_price
+				+ ", bo_date=" + bo_date + ", user_id=" + user_id + ", unit="
+				+ unit + ", pro_name=" + pro_name + "]";
+	}
+	
+	
 	
 	
 	

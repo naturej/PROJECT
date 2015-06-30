@@ -11,4 +11,39 @@
 	<update id="orderstatechange">
 		update orderlist set or_state='확인' where or_id=#{order_num}
 	</update>
+	
+	<!-- 주문 입력 -->
+  	<insert id="insert" parameterType="kr.co.ohdeokrionline.model.vo.Board_DTO">
+	      INSERT INTO ORDERLIST(OR_ID,BO_NUM,OR_QUAN,OR_DATE,BUY_USERID,OR_COST,SELL_USERID,OR_STATE)
+	      VALUES(#{or_id},#{bo_num},#{or_quan},SYSDATE,#{buy_userid},#{or_cost},#{sell_userid},'WAIT')   
+	     </insert>
+	     
+<!-- 주문 번호 생성 -->	    
+	<select id="orid" resultType="STRING">
+	 SELECT to_date(SYSDATE,'YYYY-MM-DD')||'-'|| ROUND(DBMS_RANDOM.VALUE(100000, 999999),0) as OR_ID FROM DUAL
+	</select>
+
+
+<!-- 주문생성 후 장바구니 삭제 -->
+	<delete id="delshopbag" parameterType="kr.co.ohdeokrionline.model.vo.ShoppingBasket_DTO">
+	DELETE SHOPBAG WHERE USER_ID=#{user_id} AND BO_NUM=#{bo_num} AND SH_QUANTITY=#{sh_quantity}
+	</delete>
+
+<!-- 주문생성, 장바구니 삭제후 다시 장바구니 LIST 비동기 출력 -->
+		<select id="shopbaglist" parameterType="STRING" resultType="kr.co.ohdeokrionline.model.vo.ShoppingBasket_DTO">
+		SELECT S.BO_NUM AS BO_NUM,
+			   S.BO_SUBJECT AS BO_SUBJECT,
+			   S.BO_PHOTO AS BO_PHOTO,
+			   S.BO_PRICE AS BO_PRICE,
+			   S.USER_ID AS SELL_ID,
+			   SH.USER_ID AS USER_ID, 
+			   SH.SH_QUANTITY AS SH_QUANTITY, 
+			   SH.SH_PRICE AS SH_PRICE
+		FROM SALBOARD S 
+		JOIN SHOPBAG SH
+		ON S.BO_NUM = SH.BO_NUM
+		WHERE s.USER_ID = #{user_id}
+		</select>
+	
+	
 </mapper>
