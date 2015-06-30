@@ -41,6 +41,12 @@
 							<li><a href="<%=request.getContextPath()%>/api/OpenDB_Api.five">오픈백과</a></li>
 						</ul>
 					</dd>
+					<li class="dropdown">
+             	<a href="#" class="dropdown-toggle" data-toggle="dropdown">농장관리<b class="caret"></b></a>
+            	<ul class="dropdown-menu">
+                	<li><a href="<%=request.getContextPath()%>/farmmanage/daecha.five">새 대차대조표</a></li>
+                	<li><a href="<%=request.getContextPath()%>/farmmanage/daechaStatics.five">대차대조표 확인</a></li>
+                </ul>
 				</li>
 
 
