@@ -33,6 +33,15 @@ public class SalesBoard_DTO {
 	public int getBo_num() {
 		return bo_num;
 	}
+	
+	public CommonsMultipartFile getFile() {
+		return file;
+	}
+	public void setFile(CommonsMultipartFile file) {
+		this.file = file;
+	}
+	private CommonsMultipartFile file;
+	
 	public void setBo_num(int bo_num) {
 		this.bo_num = bo_num;
 	}
