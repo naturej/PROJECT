@@ -49,32 +49,52 @@ public class SalesBoardController {
 //	HashMap<String, String> input = new HashMap<String, String>();
 	//판매글 리스트 출력
 	@RequestMapping("salboardlist.five")
-		public String salboardlist(String pg,Model model) throws ClassNotFoundException, SQLException{
- 	//(String pg , String f , String q , Model model)
- 	int page = 1;
-	//String field = "TITLE";
-	//String query ="%%";
-	if(pg != null && !pg.equals("")){
-		page = Integer.parseInt(pg);
-	}
-	//if(f != null && !f.equals("")){
-	//	field = f;
-	//}
-	//if(q != null && !q.equals("")){
-	//	query = q;
-	//}
-	//System.out.println(pg+" / "+f+" / "+q);
-	System.out.println(page);
-	SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
-	//System.out.println(pg+" / "+f+" / "+q);
-	//List<Board_DTO> list = boardDao.getBoardlist(page, field, query);
-	List<SalesBoard_DTO> list = salboardDao.saleslist(page);
-	model.addAttribute("list", list);
-	//System.out.println(pg+" / "+f+" / "+q);
-	
-	return "salesboard.salboardlist";
-}
-	
+	public String salboardlist(String pg,Model model,HttpServletRequest request) throws ClassNotFoundException, SQLException{
+		//(String pg , String f , String q , Model model)
+		int page = 1;
+		//String field = "TITLE";
+		//String query ="%%";
+		if(pg != null && !pg.equals("")){
+			page = Integer.parseInt(pg);
+		}
+		//if(f != null && !f.equals("")){
+		//	field = f;
+		//}
+		//if(q != null && !q.equals("")){
+		//	query = q;
+		//}
+		//System.out.println(pg+" / "+f+" / "+q);
+		System.out.println(page);
+		SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
+		
+		int total = salboardDao.getCount();
+		int listnum=10;
+		int maxpage=0;
+		
+		if(total%listnum!=0){
+			maxpage=total/listnum+1;
+		}else{
+			maxpage=total/listnum;
+		}
+		
+		int startpage =(int)((double)page/listnum+0.9);
+		int endpage=maxpage;
+		
+		if(endpage>startpage+10-1) endpage=startpage+10-1;
+		
+		List<SalesBoard_DTO> list = salboardDao.saleslist(page);
+		model.addAttribute("list", list);
+		
+		request.setAttribute("page",page);
+		request.setAttribute("maxpage", maxpage);
+		request.setAttribute("startpage", startpage);
+		request.setAttribute("endpage", endpage);
+		
+		//System.out.println(pg+" / "+f+" / "+q);
+		
+		return "salesboard.salboardlist";
+		}
+		
 		//판매글등록
 		 @RequestMapping(value="salboardwrite.five" , method=RequestMethod.GET)
 		 public String salboardReg(Model model,Principal principal){

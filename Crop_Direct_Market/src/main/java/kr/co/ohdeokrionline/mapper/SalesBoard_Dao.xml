@@ -23,9 +23,10 @@
 		
 		<!-- 판매글 등록 -->
 		<insert id="insert" parameterType="kr.co.ohdeokrionline.model.vo.SalesBoard_DTO">
-	     INSERT INTO SALBOARD(BO_NUM,BO_SUBJECT,BO_CONTENT,BO_DATE,BO_PRICE,BO_PHOTO,USER_ID,UNIT,PRO_NAME,BO_SALNUM)
-	      VALUES(SAL_Seq.nextval,#{bo_subject},#{bo_content},SYSDATE,#{bo_price},#{bo_photo,jdbcType=VARCHAR},#{user_id},#{unit},#{pro_name},#{bo_salnum})     
+	     INSERT INTO SALBOARD(BO_NUM,BO_SUBJECT,BO_CONTENT,BO_DATE,BO_PRICE,BO_PHOTO,USER_ID,UNIT,PRO_NAME,BO_SALNUM,SEP)
+	      VALUES(SAL_Seq.nextval,#{bo_subject},#{editor1},SYSDATE,#{bo_price},#{bo_photo,jdbcType=VARCHAR},#{user_id},#{unit},#{pro_name},#{bo_salnum},#{sep})     
 	     </insert>
+		
 		
 		<!-- 판매글 상세보기 -->
 		<select id="salesdetail" resultType="kr.co.ohdeokrionline.model.vo.SalesBoard_DTO">

@@ -10,7 +10,7 @@ import kr.co.ohdeokrionline.model.vo.Unit_DTO;
 
 public interface SalesBoard_Dao {
 
-	public int getCount(String field, String query);
+	public int getCount();
 	//전체 게시물
 	//public List<Board_DTO> getBoardlist(int page, String field, String query);
 	public List<SalesBoard_DTO> saleslist(int page);

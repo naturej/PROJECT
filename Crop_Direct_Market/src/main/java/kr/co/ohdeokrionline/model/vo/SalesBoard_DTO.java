@@ -8,13 +8,14 @@ public class SalesBoard_DTO {
 
 	private int bo_num;
 	private String bo_subject;
-	private String bo_content;
+	private String editor1;
 	private String bo_photo;
 	private int bo_price;
 	private Date bo_date;
 	private String user_id;
 	private String unit;
 	private String pro_name;
+	private String sep;
 	private int bo_salnum;
 	
 	//판매자 정보(FarmRecord_DTO)
@@ -39,11 +40,11 @@ public class SalesBoard_DTO {
 	public void setBo_subject(String bo_subject) {
 		this.bo_subject = bo_subject;
 	}
-	public String getBo_content() {
-		return bo_content;
+	public String getEditor1() {
+		return editor1;
 	}
-	public void setBo_content(String bo_content) {
-		this.bo_content = bo_content;
+	public void setEditor1(String editor1) {
+		this.editor1 = editor1;
 	}
 	public String getBo_photo() {
 		return bo_photo;
@@ -80,6 +81,12 @@ public class SalesBoard_DTO {
 	}
 	public void setPro_name(String pro_name) {
 		this.pro_name = pro_name;
+	}
+	public String getSep() {
+		return sep;
+	}
+	public void setSep(String sep) {
+		this.sep = sep;
 	}
 	public CommonsMultipartFile getFile() {
 		return file;
