@@ -29,17 +29,24 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactoryBean"/>
 	</bean>
-	
+
 	<!-- Mail -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-	  <property name="host" value="mail.mycompany.com"/>
+		<property name="host" value="smtp.gmail.com" />
+		<property name="username" value="sangmoon3665@gmail.com" />
+		<property name="password" value="a5002489" />
+		<property name="port" value="25" />
+		<property name="protocol" value="smtp"></property>
+		<property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
 	</bean>
 	<bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
-	  <property name="from" value="customerservice@mycompany.com"/>
-	  <property name="subject" value="Your order"/>
+		<property name="from" value="sangmoon3665@gmail.com" />
+		<property name="subject" value="Your order" />
 	</bean>
-	<!-- <bean id="orderManager" class="com.mycompany.businessapp.support.SimpleOrderManager">
-	  <property name="mailSender" ref="mailSender"/>
-	  <property name="templateMessage" ref="templateMessage"/>
-	</bean> -->
 </beans>

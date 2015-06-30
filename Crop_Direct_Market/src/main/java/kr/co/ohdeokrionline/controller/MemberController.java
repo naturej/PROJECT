@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
-import java.security.Principal;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +21,8 @@ import kr.co.ohdeokrionline.model.vo.Member_DTO;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,14 +31,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 
 @Controller
 public class MemberController {
 	@Autowired
 	private SqlSession sqlSession;
 
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private MailSender mailSender;
+	@Autowired
+	private SimpleMailMessage templateMessage;
+	
 	// 로그인
 	@RequestMapping(value="login.five",method=RequestMethod.GET)
 	public String login() {
@@ -128,9 +135,6 @@ public class MemberController {
 	}
 	
 	
-	@Autowired
-	BCryptPasswordEncoder passwordEncoder;
-	
 	@RequestMapping(value="passwordEncoder.five",method={RequestMethod.GET,RequestMethod.POST})
 	String passwordEncoder(@RequestParam(value="password",required=false,defaultValue="")String password, Model model) throws IOException{
 		if(StringUtils.hasText(password)){
@@ -185,15 +189,19 @@ public class MemberController {
 			BufferedReader br = new BufferedReader(fr);
 			String pwd = dao.getPwdByUser_idAndEmail(user_id, email);
 			
+			SimpleMailMessage msg = new SimpleMailMessage(templateMessage);
 			
 			String str;
 			if(pwd!=null){
 				while((str=br.readLine())!=null){
 					if(passwordEncoder.matches(str, pwd)){
+						System.out.println(str);
+						msg.setTo(email);
+						msg.setText(user_id+" 님의 비밀번호는 "+str+" 입니다.");
+						mailSender.send(msg);
 						model.addAttribute("user_id", str);
 						return "login/id_search";
 					}
-					System.out.println(str);
 				}
 			}else{
 				model.addAttribute("user_id", "일치하지않습니다.");
