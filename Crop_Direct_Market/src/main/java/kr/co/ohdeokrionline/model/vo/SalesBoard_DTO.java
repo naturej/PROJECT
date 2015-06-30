@@ -8,6 +8,8 @@ public class SalesBoard_DTO {
 
 	private int bo_num;
 	private String bo_subject;
+	private String bo_content;
+	
 	private String editor1;
 	private String bo_photo;
 	private int bo_price;
@@ -24,6 +26,12 @@ public class SalesBoard_DTO {
 	
 	public int getBo_salnum() {
 		return bo_salnum;
+	}
+	public String getBo_content() {
+		return bo_content;
+	}
+	public void setBo_content(String bo_content) {
+		this.bo_content = bo_content;
 	}
 	public void setBo_salnum(int bo_salnum) {
 		this.bo_salnum = bo_salnum;
