@@ -59,12 +59,8 @@
 			
 			if(parameter=='ROLE_SELLER'){
 				if (document.joinForm.farminfo.value == "") {
-					alert("농장 아이디를 입력하세요"); 
-					document.joinForm.farminfo.focus(); 
-					exit;
-				} else if (document.joinForm.farm_name.value == "") {
 					alert("농장 이름을 입력하세요"); 
-					document.joinForm.farm_name.focus(); 
+					document.joinForm.farminfo.focus(); 
 					exit;
 				} else if (document.joinForm.farm_add.value == "") {
 					alert("농장 주소를 입력하세요"); 

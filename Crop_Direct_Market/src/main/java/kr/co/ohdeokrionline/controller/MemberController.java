@@ -30,6 +30,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 
 @Controller
 public class MemberController {
@@ -180,9 +182,10 @@ public class MemberController {
 		try {
 			// 수집 원암호 읽기
 			Reader fr = new FileReader("C:\\Users\\"+System.getenv("USERNAME")+"\\git\\PROJECT\\Crop_Direct_Market\\src\\main\\webapp\\etc\\tmp.txt");
-			System.out.println();
 			BufferedReader br = new BufferedReader(fr);
 			String pwd = dao.getPwdByUser_idAndEmail(user_id, email);
+			
+			
 			String str;
 			if(pwd!=null){
 				while((str=br.readLine())!=null){

@@ -15,7 +15,6 @@ public class FarmRecord_DTO {
 	// null
 	private String farminfo;
 	private String pro_name;
-	private String farm_name;
 	private String farm_phon;
 	private String farm_comment;
 	private String farm_add;
@@ -39,14 +38,6 @@ public class FarmRecord_DTO {
 
 	public void setPro_name(String pro_name) {
 		this.pro_name = pro_name;
-	}
-
-	public String getFarm_name() {
-		return farm_name;
-	}
-
-	public void setFarm_name(String farm_name) {
-		this.farm_name = farm_name;
 	}
 
 	public String getFarm_phon() {
@@ -100,7 +91,7 @@ public class FarmRecord_DTO {
 	@Override
 	public String toString() {
 		return "FarmRecord_DTO [farminfo=" + farminfo + ", pro_name="
-				+ pro_name + ", farm_name=" + farm_name + ", farm_phon="
+				+ pro_name + ", farm_phon="
 				+ farm_phon + ", farm_comment=" + farm_comment + ", farm_add="
 				+ farm_add + ", farm_add_de=" + farm_add_de + ", user_id="
 				+ user_id + ", farm_photo=" + farm_photo + "]";
