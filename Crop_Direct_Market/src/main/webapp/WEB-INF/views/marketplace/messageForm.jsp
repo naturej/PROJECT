@@ -53,9 +53,9 @@
 				</td>
 			</tr>
 			<tr>
-				<td><input type="text" name="send_userid" value="${send_userid}" hidden><!-- 테스트용 고정 값 -->
+				<td><input type="text" name="send_userid" value="${send_userid}" hidden>
 				</td>
-				<td><input type="text" name="rec_userid" value="geatin" hidden><!-- 테스트용 고정 값 -->
+				<td><input type="text" name="rec_userid" value="${rec_userid}" hidden>
 				</td>
 				<td><input type="text" name="ME_DATE" value="sysdate" hidden><!-- 테스트용 고정 값 -->
 				</td>
