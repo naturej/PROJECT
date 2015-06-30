@@ -67,7 +67,7 @@ public class BoardController {
 			
 			List<Board_DTO> list = boardDao.getBoardlist(page);
 			model.addAttribute("list", list);
-
+			System.out.println(page+maxpage+startpage+endpage);
 			request.setAttribute("page",page);
 			request.setAttribute("maxpage", maxpage);
 			request.setAttribute("startpage", startpage);

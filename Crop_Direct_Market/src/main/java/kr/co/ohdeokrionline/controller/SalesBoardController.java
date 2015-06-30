@@ -68,6 +68,7 @@ public class SalesBoardController {
 		SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
 		
 		int total = salboardDao.getCount();
+		System.out.println(total);
 		int listnum=8;
 		int maxpage=0;
 		
@@ -84,7 +85,7 @@ public class SalesBoardController {
 		
 		List<SalesBoard_DTO> list = salboardDao.saleslist(page);
 		model.addAttribute("list", list);
-		
+		System.out.println("page : "+page+" maxpage : "+maxpage+" startpage : "+startpage+" endpage : "+endpage);
 		request.setAttribute("page",page);
 		request.setAttribute("maxpage", maxpage);
 		request.setAttribute("startpage", startpage);

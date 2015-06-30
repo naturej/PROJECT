@@ -39,7 +39,8 @@ public class MarketController {
 			Market_Dao marketDao= sqlsession.getMapper(Market_Dao.class);
 			
 			int total = marketDao.getCount();
-			int listnum=10;
+			System.out.println(total);
+			int listnum=8;
 			int maxpage=0;
 			
 			if(total%listnum!=0){
@@ -51,13 +52,14 @@ public class MarketController {
 			int startpage =(int)((double)page/listnum+0.9);
 			int endpage=maxpage;
 			
-			if(endpage>startpage+10-1) endpage=startpage+10-1;
+			if(endpage>startpage+8-1) endpage=startpage+8-1;
 			
 			
 			
 			List<Market_DTO> list = marketDao.getMarketlist(page);
 			model.addAttribute("list", list);
-
+			System.out.println("page : "+page+" maxpage : "+maxpage+" startpage : "+startpage+" endpage : "+endpage);
+			
 			request.setAttribute("page",page);
 			request.setAttribute("maxpage", maxpage);
 			request.setAttribute("startpage", startpage);

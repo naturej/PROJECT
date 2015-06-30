@@ -79,20 +79,20 @@ function resizeText() {
         	<li><a id="all" href="" data-filter="*" class="active">
           		<h5>All</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".branding">
-          		<h5>Branding</h5>
+        	<li><a class="" href="" data-filter=".곡류">
+          		<h5>곡류</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".design">
-          		<h5>Design</h5>
+        	<li><a class="" href="" data-filter=".콩류">
+          		<h5>콩류</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".photography">
-          		<h5>Photography</h5>
+        	<li><a class="" href="" data-filter=".구근류">
+          		<h5>구근류</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".videography">
-          		<h5>Videography</h5>
+        	<li><a class="" href="" data-filter=".채소">
+          		<h5>채소</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".web">
-          		<h5>Web</h5>
+        	<li><a class="" href="" data-filter=".ddd">
+          		<h5>ddd</h5>
           	</a></li>
       	</ul>
     </div>
@@ -109,7 +109,7 @@ function resizeText() {
           				${n.user_id}
             			<div class="zoom-icon"></div>
             			<h4 class="project-name">${n.bo_subject}</h4>
-            			<p class="project-categories">Photography</p>
+            			<p class="project-categories">Ddd</p>
           			</div>
         		</div>
         		</a></div>
@@ -135,16 +135,20 @@ function resizeText() {
 				[${i}]
 				</c:when>
 				<c:otherwise>
-					<a href="<%=request.getContextPath()%>/salboardlist.five?pg=${i}">[${i}]</a>&nbsp;
+					<a href="<%=request.getContextPath()%>/salesboard/salboardlist.five?pg=${i}">[${i}]</a>&nbsp;
 				</c:otherwise>
 				</c:choose>
 				</c:forEach>
 				<c:choose>
 					<c:when test="${nowpage>=maxpage}">
 					[다음]
+					${requestScope.page}
+					${requestScope.maxpage}
+					${requestScope.startpage}
+					${requestScope.endpage}
 					</c:when>
 					<c:otherwise>
-						<a href="<%=request.getContextPath()%>/salboardlist.five?pg=${nowpage+1}">[다음]</a>&nbsp;
+						<a href="<%=request.getContextPath()%>/salesboard/salboardlist.five?pg=${nowpage+1}">[다음]</a>&nbsp;
 					</c:otherwise>
 				</c:choose>
 				<a href="<%=request.getContextPath()%>/salesboard/salboardwrite.five">글쓰기</a>
@@ -158,7 +162,6 @@ function resizeText() {
 </section>
 <!--/Portfolio --> 
 <!--new_portfolio--> 
-
 
 <script type="text/javascript">
     $(document).ready(function(e) {
@@ -258,3 +261,4 @@ $( window ).load(function() {
 	return false;
 });
 </script>
+</html>
