@@ -1,7 +1,6 @@
 package kr.co.ohdeokrionline.controller;
 
 import java.io.IOException;
-
 import java.security.Principal;
 import java.util.List;
 
@@ -42,4 +41,18 @@ public class OrderContorller {
 		System.out.println(dao.orderstatechange(order_num));
 		response.getWriter().write(dao.orderstatechange(order_num));
 	}
+	
+//	주문관리
+	@RequestMapping("ordermanage.five")
+	public String ordermanage(Model model,Principal principal) throws IOException{
+		String buy_userid = principal.getName();
+		System.out.println("ordermanage");
+		Order_Dao orderdao = sqlsession.getMapper(Order_Dao.class);
+		List<Order_DTO> orderlist = orderdao.orderlist(buy_userid); 
+		model.addAttribute("orderlist",orderlist);
+         return "mypage.ordermanage";
+	}
+	
+	
+	
 }

@@ -25,7 +25,7 @@ public interface Order_Dao {
 	public List<ShoppingBasket_DTO> shopbaglist(String user_id);
 	
 	//주문 LIST 출력문
-	public List<Order_DTO> orderlist(String user_id);
+	public List<Order_DTO> orderlist(String buy_userid);
 	
 	
 }

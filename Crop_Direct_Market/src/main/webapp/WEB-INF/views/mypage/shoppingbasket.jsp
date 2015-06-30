@@ -26,11 +26,21 @@
 	}	
 	
 	
+	$(function(){
+		$('#ormbtn').click(function(){
+			 location.href = $('#loc').val()+"/manage/ordermanage.five";
+		})
+		$('#shopbtn').click(function(){
+			 location.reload();
+		})
+		
+	})
+	
 </script>
 </head>
 <script type="text/javascript">
 $(function(){
-	$('#order').click(function(){
+	$('#frbtn').click(function(){
 		var obj = document.getElementsByName("shoplist");
 		var list = [];
 	 $.each(obj,function(index,ob){
@@ -49,20 +59,7 @@ $(function(){
 				data:{list:JSON.stringify(list)},
 				dataType:"html",
 				success : function(responseData){
-					alert("주문완료되었습니다.");
-				       var output = "";
-		                var shoplist = JSON.parse(responseData);
-		                $.each(shoplist,function(index,items){
-		                	console.log(items.bo_price+items.sh_quantity+items.sell_id+items.user_id);
-		                	output+=
-		                	"<table><tr><td>"+
-		                	"</td>"+
-		                	"<td>"+items.user_id+"</td><td>"+items.bo_subject+"</td><td>"+items.bo_price+"</td><td>"+
-		                	items.sh_quantity+"</td><td>"+items.sh_price+"</td><td>"+items.sell_id+"</td>"+
-		                	"<td></td></tr></table>";
-		                });
-		                $("#shoplistview").empty();
-		                $("#shoplistview").html(output);
+
 				},
 		    error: function (xhr,Options,thrownError) {} 
 		  }); 
@@ -71,7 +68,7 @@ $(function(){
 </script>
 <body>
 
-					  <!-- Modal -->
+
 					  <div class="modal fade" id="myModal" role="dialog">
 					    <div class="modal-dialog">
 					    
@@ -79,21 +76,21 @@ $(function(){
 					      <div class="modal-content">
 					        <div class="modal-header">
 					          <button type="button" class="close" data-dismiss="modal">&times;</button>
-					          <h4 class="modal-title">배송지 정보 선택</h4>
+					          <h4 class="modal-title">주문완료</h4>
 					        </div>
 					        <div class="modal-body">
-					          <p>Some text in the modal.</p>
-					          <label>배송지 입력</label><input type="text" ><br>
-					          <label>세부배송지 입력</label><input type="text" >
+					          <h3>주문 관리 페이지로 이동하시겠습니까?</h3>
+					          
 					        </div>
 					        <div class="modal-footer">
-					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        <input type="hidden" id="loc" name="loc" value="<%=request.getContextPath()%>">
+					          <button type="button" class="btn btn-default" data-dismiss="modal" id="ormbtn" name="ormbtn">주문관리이동</button>
+					          <button type="button" class="btn btn-default" data-dismiss="modal" id="shopbtn" name="shopbtn">장바구이동</button>
 					        </div>
 					      </div>
 					      
 					    </div>
 					  </div>
-					  
 
 
 <div id="content">
@@ -111,7 +108,6 @@ $(function(){
 						</div>
 					</div>
 				</div>
-	<form action="" name="frm" >
 	
 	<div>
 	
@@ -126,17 +122,12 @@ $(function(){
 		<td>판매자</td>
 		<td>삭제</td>
 	</tr>
-	</table>
-	
-	
-	<div id="shoplistview">
-	<table class="table table-hover" id="basket">
 	<c:set var="sum" value="0"/>
 	<c:forEach items="${list}" var="e">
 	<c:set var="sum" value="${sum + e.sh_price}"></c:set>
 	<tr>
 		<td><input type="checkbox" name="shoplist" id="shoplist" checked="checked"
-		 class="shap" value="${e.bo_num},${e.bo_price},${e.sh_quantity},${e.sell_id}"></td>
+		 class="shap" value="${e.bo_num},${e.sh_price},${e.sh_quantity},${e.sell_id}"></td>
 		<td>${e.user_id}</td>
 		<td>${e.bo_subject}</td>
 		<td>${e.bo_price}</td>
@@ -146,17 +137,12 @@ $(function(){
 		<td><a href="" onclick="deleteshop('${e.bo_num}')">x</a></td>
 	</tr>
 	</c:forEach>
-	</table>
-	</div>
-	
-	<table>
 	<tr>
 		<td colspan="8" align="right">
 			총가격 : ${sum} 
 		</td>
 	</tr>
-	</table>
-
+</table>
 		<div align="center">
 			<input type="button" value="선택상품 삭제">
 			<input type="button" value="선택상품 주문" name="order" id="order" ><!-- 주문으로 넘어가게 -->
@@ -166,7 +152,6 @@ $(function(){
 		</div>
 </div>
 
-</form>
 
 	</div>
 	</div>

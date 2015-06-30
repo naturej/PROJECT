@@ -55,7 +55,7 @@
           O.OR_QUAN AS OR_QUAN,
           O.SELL_USERID AS SELL_USERID,
           O.OR_STATE AS OR_STATE
-          FROM ORDERLIST O JOIN SALBOARD S on O.BO_NUM=S.BO_NUM where O.BUY_USERID=#{user_id}
+          FROM ORDERLIST O JOIN SALBOARD S on O.BO_NUM=S.BO_NUM where O.BUY_USERID=#{buy_userid}
 	</select>
 	
 </mapper>
