@@ -22,6 +22,7 @@
 		FROM SALBOARD S 
 		JOIN SHOPBAG SH
 		ON S.BO_NUM = SH.BO_NUM
+		WHERE SH.USER_ID=#{user_id, jdbcType=VARCHAR}
 		ORDER BY S.USER_ID
 	</select>
 	 

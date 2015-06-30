@@ -7,7 +7,7 @@ import kr.co.ohdeokrionline.model.vo.ShoppingBasket_DTO;
 
 public interface ShoppingBasket_Dao {
 	// 장바구니 리스트 보여주기
-	public ArrayList<ShoppingBasket_DTO> shoplist() throws SQLException;
+	public ArrayList<ShoppingBasket_DTO> shoplist(String user_id) throws SQLException;
 	// 장바구니 넣기
 	public void insertshop(ShoppingBasket_DTO dto);
 	// 에누리 -> 장바구니

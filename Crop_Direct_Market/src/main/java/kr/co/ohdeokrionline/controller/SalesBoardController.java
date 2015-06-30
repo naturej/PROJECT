@@ -376,9 +376,9 @@ public class SalesBoardController {
 	
 	//장바구니 리스트
 	@RequestMapping("shopList.five")
-	public String shoplist(Model model) throws SQLException{
+	public String shoplist(Model model, Principal principal) throws SQLException{
 		ShoppingBasket_Dao dao = sqlSession.getMapper(ShoppingBasket_Dao.class);
-		ArrayList<ShoppingBasket_DTO> list = dao.shoplist();
+		ArrayList<ShoppingBasket_DTO> list = dao.shoplist(principal.getName());
 		System.out.println(list);
 		model.addAttribute("list",list);
 		
