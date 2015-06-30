@@ -24,6 +24,8 @@ public interface Order_Dao {
 	//주문 완료 후 장바구니 LIST 비동기 처리
 	public List<ShoppingBasket_DTO> shopbaglist(String user_id);
 	
+	//주문 LIST 출력문
+	public List<Order_DTO> orderlist(String user_id);
 	
 	
 }

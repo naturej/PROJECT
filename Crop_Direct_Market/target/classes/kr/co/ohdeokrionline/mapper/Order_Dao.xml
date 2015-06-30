@@ -45,5 +45,17 @@
 		WHERE s.USER_ID = #{user_id}
 		</select>
 	
+	<!-- 주문list 출력 -->
+	<select id="orderlist" resultType="kr.co.ohdeokrionline.model.vo.Order_DTO">
+		  SELECT O.OR_ID AS OR_ID, 
+          O.OR_DATE AS OR_DATE,
+          S.BO_SUBJECT AS BO_SUBJECT,
+          S.PRO_NAME AS PRO_NAME,
+          O.OR_COST AS OR_COST,
+          O.OR_QUAN AS OR_QUAN,
+          O.SELL_USERID AS SELL_USERID,
+          O.OR_STATE AS OR_STATE
+          FROM ORDERLIST O JOIN SALBOARD S on O.BO_NUM=S.BO_NUM where O.BUY_USERID=#{user_id}
+	</select>
 	
 </mapper>

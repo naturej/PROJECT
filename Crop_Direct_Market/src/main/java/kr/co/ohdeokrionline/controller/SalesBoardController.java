@@ -464,10 +464,10 @@ public class SalesBoardController {
 		ShoppingBasket_Dao dao = sqlSession.getMapper(ShoppingBasket_Dao.class);
 		dao.deleteall();
 	}
-	
-	
+
+	//주문 처리
 	@RequestMapping(value="orderinsert.five", method=RequestMethod.POST)
-	public String orderinsert(Order_DTO order, String list,Principal principal,HttpServletResponse res) throws IOException{
+	public String orderinsert(Model model,Order_DTO order, String list,Principal principal,HttpServletResponse res) throws IOException{
 				List<String> checklist = JSONArray.fromObject(list);
 				ShoppingBasket_DTO shopbag = new ShoppingBasket_DTO();
 				Order_Dao orderdao = sqlSession.getMapper(Order_Dao.class);
@@ -492,10 +492,11 @@ public class SalesBoardController {
 				 orderdao.delshopbag(shopbag);
 				 System.out.println("장바구니 삭제 성공");
 					}
-		         return "mypage.orderlist";
+				String user_id = principal.getName();
+				List<Order_DTO> orderlist = orderdao.orderlist(user_id); 
+				model.addAttribute("orderlist",orderlist);
+		         return "mypage.ordermanage";
 				}
-					
-	
 	
 	
 }
