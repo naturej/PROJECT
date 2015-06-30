@@ -69,7 +69,7 @@ body {
 						responsive : true
 					});
 					
-				};
+				}; 
 			</script> 
 </body>
 </html>
