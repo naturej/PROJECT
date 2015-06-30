@@ -8,8 +8,8 @@
 
 	
 <!--날씨아이콘 css 설정  -->
-<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">  
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/weather-icons-master/css/weather-icons.css"  type="text/css">
+<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">  
+<link rel="stylesheet" href="../css/weather-icons-master/css/weather-icons.css"  type="text/css">
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 
 
@@ -26,7 +26,7 @@
 		
 		//비동기로 위도,경도 좌표를 position.json 에서 뽑아냄
 		$.ajax({
-			url : 'position.json',
+			url : '../position.json',
 			success : function(data) { //서버가 보낸 data
 				
 				

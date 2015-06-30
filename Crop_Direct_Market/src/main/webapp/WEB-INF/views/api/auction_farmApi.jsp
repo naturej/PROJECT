@@ -7,7 +7,7 @@
 <head>
 
 	
-<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">   
+<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">   
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 
 
@@ -161,7 +161,7 @@
 																									success : function(data) { //서버가 보낸 data
 																										data = JSON.parse(data);
 																										console.log(data);
-																										console.log(data.result.length);
+																										console.log(data.totalcount);
 																										
 																										/////////////////도매장소에 따른 정보
 																											$('#result_table').empty();
@@ -177,15 +177,23 @@
 																														"<td align='center'>품종</td>"+
 																														"<td align='center'>거래량</td>"+
 																														"<td align='center'>규격</td>");
-																										
-																											for (var i = 0; i < data.result.length; i++) {
+																											
+																											for (var i = 0; i < data.totalcount; i++) {
 																												$('#result_table').append("<tr id="+i+"></tr>")
-																												for ( var _result in data.result[i]) {
-																													//console.log(data.result[i][_result]+"/"+i);
-																													$('#' + i).append(
-																															"<td align='center'>" + data.result[i][_result]
-																																	+ "</td>");
-																												}
+																												if(data.totalcount==1){
+																													for ( var _result in data.result) {
+																														//console.log(data.result[i][_result]+"/"+i);
+																														$('#' + i).append(
+																																"<td align='center'>" + data.result[_result]
+																																		+ "</td>");
+																													}
+																												}	
+																													for ( var _result in data.result[i]) {
+																														//console.log(data.result[i][_result]+"/"+i);
+																														$('#' + i).append(
+																																"<td align='center'>" + data.result[i][_result]
+																																		+ "</td>");
+																													}
 																											}
 																											
 																											

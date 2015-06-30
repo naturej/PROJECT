@@ -23,7 +23,7 @@ function kkk(i){
 	
 	$.ajax({
 		type : "POST",
-		url : 'Ex15_xml_to_json.jsp',
+		url : 'OpenDB_Api.five',
 		data : form_data,
 		//datatype : "json",
 		success : function(data) { //서버가 보낸 data
@@ -126,7 +126,7 @@ function kkk(i){
  
 				$.ajax({
 					type : "POST",
-					url : 'Ex15_xml_to_json.jsp',
+					url : 'OpenDB_Api.five',
 					data : form_data,
 					//datatype : "json",
 					success : function(data) { //서버가 보낸 data
@@ -245,6 +245,7 @@ function kkk(i){
 			</div>
 			</div>
 		</div>
+
 		<div class="container">
 		<div class="row">
 			<div class="col-lg-2 col-lg-offset-5">
@@ -252,86 +253,77 @@ function kkk(i){
 			</div>
 		</div>
         <div class="row">
-            
-				<div class="wow fadeInLeft" data-wow-delay="0.2s">
 
-					
-<form id="priceform"  method="post">
-	<table>
-		<tr>
-			<td>카테고리
-				<select id="category">
-					<option>선택</option>
-					<option value="110">농가경영/경영체</option>
-					<option value="111">유통/무역</option>
-					<option value="112">가공/유통/경영 용어사전</option>
-					<option value="113">관광휴양</option>
-					<option value="114">산악/레저</option>
-					<option value="115">체험/축제/행사</option>
-					<option value="116">관광/휴양/레저 용어사전</option>
-					<option value="117">기관/협회/단체</option>
-					<option value="118">생활/문화</option>
-					<option value="119">영농기반</option>
-					<option value="120">인물/교육</option>
-					<option value="121">정책/법령/민원</option>
-					<option value="122">농림일반 용어사전</option>
-					<option value="123">산림기계/장비</option>
-					<option value="124">산림조성/보호</option>
-					<option value="125">임산물/나무</option>
-					<option value="126">산림자원 용어사전</option>
-					<option value="127">곤충자원</option>
-					<option value="128">균류자원</option>
-					<option value="129">식물자원</option>
-					<option value="130">생물자원 용어사전</option>
-					<option value="131">농기자재/비료</option>
-					<option value="132">병해충/잡초</option>
-					<option value="133">작물재배</option>
-					<option value="134">종자/육묘</option>
-					<option value="135">작물농업 용어사전</option>
-					<option value="136">가축 품종/사육</option>
-					<option value="137">구제역</option>
-					<option value="138">질병/약품</option>
-					<option value="139">축산/사육 용어사전</option>
-					<option value="140">국제농업협상</option>
-					<option value="141">북한농업</option>
-					<option value="142">해외국가농업</option>
-					<option value="143">해외농업동향</option>
-					<option value="144">해외/북한농업 용어사전</option>
-				</select>
-			</td>
-			<td>보여주는 단위
-				<select id="page_Num">
-					<option value="5">5</option>
-					<option value="10">10</option>
-					<option value="15">15</option>
-					<option value="20">20</option>
-				</select>
-			</td>
-			<td>검색
-				<input type="text" id="searchname" >
-			</td>
-			
-			
-			<td>
-				<input type="hidden" id="_snum" value="1" readonly="readonly">
-			</td>
-			<td>
-				<input type="hidden" id="_enum" value="5" readonly="readonly">
-			</td>
-			<td>
-				<input type="button" id="buttonprice" value="검색">
-			</td>
-		</tr>
-	</table>
-</form>	
-<hr>
-	<table id="table" border="1"  style="border-collapse:collapse" >
+			<div class="wow fadeInLeft" data-wow-delay="0.2s">
+
+
+				
+					<table>
+						<tr>
+							<td>카테고리 <select id="category">
+									<option>선택</option>
+									<option value="110">농가경영/경영체</option>
+									<option value="111">유통/무역</option>
+									<option value="112">가공/유통/경영 용어사전</option>
+									<option value="113">관광휴양</option>
+									<option value="114">산악/레저</option>
+									<option value="115">체험/축제/행사</option>
+									<option value="116">관광/휴양/레저 용어사전</option>
+									<option value="117">기관/협회/단체</option>
+									<option value="118">생활/문화</option>
+									<option value="119">영농기반</option>
+									<option value="120">인물/교육</option>
+									<option value="121">정책/법령/민원</option>
+									<option value="122">농림일반 용어사전</option>
+									<option value="123">산림기계/장비</option>
+									<option value="124">산림조성/보호</option>
+									<option value="125">임산물/나무</option>
+									<option value="126">산림자원 용어사전</option>
+									<option value="127">곤충자원</option>
+									<option value="128">균류자원</option>
+									<option value="129">식물자원</option>
+									<option value="130">생물자원 용어사전</option>
+									<option value="131">농기자재/비료</option>
+									<option value="132">병해충/잡초</option>
+									<option value="133">작물재배</option>
+									<option value="134">종자/육묘</option>
+									<option value="135">작물농업 용어사전</option>
+									<option value="136">가축 품종/사육</option>
+									<option value="137">구제역</option>
+									<option value="138">질병/약품</option>
+									<option value="139">축산/사육 용어사전</option>
+									<option value="140">국제농업협상</option>
+									<option value="141">북한농업</option>
+									<option value="142">해외국가농업</option>
+									<option value="143">해외농업동향</option>
+									<option value="144">해외/북한농업 용어사전</option>
+							</select>
+							</td>
+							<td>보여주는 단위 <select id="page_Num">
+									<option value="5">5</option>
+									<option value="10">10</option>
+									<option value="15">15</option>
+									<option value="20">20</option>
+							</select>
+							</td>
+							<td>검색 <input type="text" id="searchname">
+							</td>
+
+
+							<td><input type="hidden" id="_snum" value="1"
+								readonly="readonly"></td>
+							<td><input type="hidden" id="_enum" value="5"
+								readonly="readonly"></td>
+							<td><input type="button" id="buttonprice" value="검색">
+							</td>
+						</tr>
+					</table>
 		
-	</table>
-	<div id="div">
-		
-		
-	</div>
+				<hr>
+				<table id="table" border="1" style="border-collapse: collapse">
+
+				</table>
+				<div id="div"></div>
 
 
 				<!--  <div class="service-box">
@@ -341,10 +333,10 @@ function kkk(i){
 						<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
 					</div>
                 </div> -->
-				</div>
-          
-			
-        </div>		
+			</div>
+
+
+		</div>		
 		</div>
 	</section>
 	<!-- /Section: services -->

@@ -1,0 +1,6 @@
+* {padding:0; margin:0}
+.dropdown dt:hover { font-weight:bold;}
+.dropdown dd {position:absolute; overflow:hidden;  display:none;   }
+
+.dropdown a, .dropdown a:active, .dropdown a:visited {display:block; padding:5px;   }
+

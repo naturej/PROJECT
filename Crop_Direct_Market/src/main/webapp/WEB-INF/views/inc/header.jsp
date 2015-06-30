@@ -2,6 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
+
+
+
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/dropdown.css" type="text/css" />
+<script type="text/javascript" src="<%=request.getContextPath() %>/css/dropdown.js"></script>
+
+
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation"  style="background-color: #1ABC9C">
         <div class="container">
             <div class="navbar-header">
@@ -19,6 +26,26 @@
                 <li><a href="<%=request.getContextPath()%>/board/boardlist.five">BOARD</a></li>
                 <li><a href="<%=request.getContextPath()%>/salesboard/salboardlist.five">SALESBOARD</a></li>
                 <li><a href="<%=request.getContextPath()%>/marketlist.five">MARKET</a></li>
+                
+                <li class="dropdown">
+					<dt id="one-ddheader" onmouseover="ddMenu('one',1)"
+						onmouseout="ddMenu('one',-1)">
+						<a style="padding: 15px;">API<b class="caret"></b></a>
+					</dt>
+					<dd id="one-ddcontent" onmouseover="cancelHide('one')"
+						onmouseout="ddMenu('one',-1)">
+						<ul style="background: #99DDD0; width: 120px;">
+							<li><a href="<%=request.getContextPath()%>/api/searchPriceApi.five">시세정보</a></li>
+			                <li><a href="<%=request.getContextPath()%>/api/auction_farmApi.five">경매정보</a></li>
+			                <li><a href="<%=request.getContextPath()%>/api/MiddleTemperatureApi.five">중기날씨조회</a></li>  
+			                <li><a href="<%=request.getContextPath()%>/api/RealTime_Forecast_Api.five">실시간동네조회</a></li>
+			                <li><a href="<%=request.getContextPath()%>/api/OpenDB_Api.five">오픈백과</a></li>   
+						</ul>
+					</dd>
+				</li>
+                
+                
+<!--                 
                 <li class="dropdown">
              	 <a href="#" class="dropdown-toggle" data-toggle="dropdown">API<b class="caret"></b></a>
             	  <ul class="dropdown-menu">
@@ -29,17 +56,40 @@
                 <li><a href="OpenDB_Api.five">오픈백과</a></li>   
                  
               </ul>
-           		</li>
-           		<li class="dropdown">
+           		</li> -->
+           		
+           		
+				<li class="dropdown">
+					<dt id="two-ddheader"  onmouseover="ddMenu('two',1)"
+						onmouseout="ddMenu('two',-1)"><a style="padding: 15px;">MYPAGE<b class="caret"></b></a></dt>
+					<dd id="two-ddcontent" onmouseover="cancelHide('two')"
+						onmouseout="ddMenu('two',-1)">
+
+						<ul style="background:#99DDD0; width:120px;">
+							<li><a href="<%=request.getContextPath()%>/mypage/schedule.five">일정</a></li>
+							<li><a href="<%=request.getContextPath()%>/manage/sellermanage.five">판매관리</a></li>
+			                <li><a href="<%=request.getContextPath()%>/salesboard/shopList.five">장바구니목록</a></li>
+			                <li><a href="<%=request.getContextPath()%>/salesboard/enulist.five">에누리목록</a></li>
+			                <li><a href="<%=request.getContextPath()%>/salesboard/receiveList.five">받은메세지목록</a></li>
+			                <li><a href="<%=request.getContextPath()%>/salesboard/sendList.five">보낸메세지목록</a></li>
+						</ul>
+					</dd>
+				</li>
+           		
+           	           		
+           		
+<%--            		<li class="dropdown">
              	<a href="#" class="dropdown-toggle" data-toggle="dropdown">MYPAGE<b class="caret"></b></a>
             	<ul class="dropdown-menu">
                 	<li><a href="<%=request.getContextPath()%>/mypage/schedule.five">일정</a></li>
-                	<li><a href="<%=request.getContextPath()%>/manage/sellermanage.five">판매관리</a></li>
+                	<li><a href="sellermanage.five">판매관리</a></li>
 	                <li><a href="<%=request.getContextPath()%>/salesboard/shopList.five">장바구니목록</a></li>
 	                <li><a href="<%=request.getContextPath()%>/salesboard/enulist.five">에누리목록</a></li>
 	                <li><a href="<%=request.getContextPath()%>/salesboard/receiveList.five">받은메세지목록</a></li>
 	                <li><a href="<%=request.getContextPath()%>/salesboard/sendList.five">보낸메세지목록</a></li>
                 </ul>
+                </li> --%>
+                
               <li><a href="<%=request.getContextPath()%>/login.five">LOGIN</a></li>
               <li><a href="<c:url value='/j_spring_security_logout' />">LOGOUT</a></li>
               </ul>
