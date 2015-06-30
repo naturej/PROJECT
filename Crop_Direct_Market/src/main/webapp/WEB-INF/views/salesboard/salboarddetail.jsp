@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html class="no-js">
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<head>
+ -->
 <style type="text/css">
 	#img {
 		width: 400px;
@@ -13,11 +11,17 @@
 		margin: 0 auto;
 		overflow: hidden;
 	}
+	
+	div #dialog-confirm {
+		position: static;
+	}
 </style>
-</head>
+
 <title>상세보기</title>
 
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>
 <script type="text/javascript">
 	function onlyNumber(event){
 	    event = event || window.event;
@@ -83,8 +87,8 @@
 		});
 	
 </script>
-<div id="content">
-	 <section id="service" class="home-section text-center">
+
+	 <section id="service" class="home-section text-center"  style="position: static">
 		<div class="heading-about">
 			<div class="container">
 			<div class="row">
@@ -144,12 +148,13 @@
 --%>
 	</form>
 	
+	
+	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+	</div>
 	<div id="dialog-confirm" title="장바구니 담기">
 	  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
 	  장바구니에 상품을 담았습니다. 상품을 확인하시겠습니까?</p>
 	</div>
-	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-	</div>
 	</section>
-</div>
-</html>
+
+
