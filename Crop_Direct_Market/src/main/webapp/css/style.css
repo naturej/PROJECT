@@ -1032,8 +1032,8 @@ hr {
 		position: relative;
 	}
 	.portfolio-item .portfolio-image img {
-		width: 100%;
-		height: auto;
+		width: 337px;
+		height: 300px;
 	}
 
 	.portfolio-item:hover .project-overlay {
