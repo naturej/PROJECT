@@ -142,10 +142,6 @@ function resizeText() {
 				<c:choose>
 					<c:when test="${nowpage>=maxpage}">
 					[다음]
-					${requestScope.page}
-					${requestScope.maxpage}
-					${requestScope.startpage}
-					${requestScope.endpage}
 					</c:when>
 					<c:otherwise>
 						<a href="<%=request.getContextPath()%>/salesboard/salboardlist.five?pg=${nowpage+1}">[다음]</a>&nbsp;
