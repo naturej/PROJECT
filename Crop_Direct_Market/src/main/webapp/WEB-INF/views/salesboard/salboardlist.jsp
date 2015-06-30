@@ -147,7 +147,7 @@ function resizeText() {
 						<a href="<%=request.getContextPath()%>/salboardlist.five?pg=${nowpage+1}">[다음]</a>&nbsp;
 					</c:otherwise>
 				</c:choose>
-				<a href="<%=request.getContextPath()%>/salboardwrite.five">글쓰기</a>
+				<a href="<%=request.getContextPath()%>/salesboard/salboardwrite.five">글쓰기</a>
 	</div>
 	<!-- Project Page Holder-->
   	<div id="project-page-holder">
