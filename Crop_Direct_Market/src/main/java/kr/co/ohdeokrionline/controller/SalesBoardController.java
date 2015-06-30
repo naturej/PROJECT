@@ -69,7 +69,7 @@ public class SalesBoardController {
 		
 		int total = salboardDao.getCount();
 		System.out.println(total);
-		int listnum=8;
+		int listnum=16;
 		int maxpage=0;
 		
 		if(total%listnum!=0){
@@ -81,7 +81,7 @@ public class SalesBoardController {
 		int startpage =(int)((double)page/listnum+0.9);
 		int endpage=maxpage;
 		
-		if(endpage>startpage+8-1) endpage=startpage+8-1;
+		if(endpage>startpage+16-1) endpage=startpage+16-1;
 		
 		List<SalesBoard_DTO> list = salboardDao.saleslist(page);
 		model.addAttribute("list", list);

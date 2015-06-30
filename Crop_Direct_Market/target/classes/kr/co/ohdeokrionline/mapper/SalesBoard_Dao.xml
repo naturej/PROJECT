@@ -18,7 +18,7 @@
 	            	   FROM 
 	               		 (SELECT * 
 	                       FROM SALBOARD ORDER BY BO_NUM DESC) N
-	                )WHERE NUM BETWEEN 1 + (#{page}-1)*8 AND 8 + (#{page}-1)*8
+	                )WHERE NUM BETWEEN 1 + (#{page}-1)*16 AND 16 + (#{page}-1)*16
 	    </select>
 		
 		<!-- 판매글 등록 -->
