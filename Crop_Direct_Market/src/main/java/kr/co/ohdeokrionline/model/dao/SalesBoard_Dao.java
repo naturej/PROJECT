@@ -20,6 +20,8 @@ public interface SalesBoard_Dao {
 	public int update(SalesBoard_DTO salesboard);
 	//게시물 상세
 	public SalesBoard_DTO salesdetail(String bo_num);
+	//리뷰리스트
+	public List<SalesBoard_DTO> reviewlist(String bo_num);
 	//게시물 입력
 	public int insert(SalesBoard_DTO salesboard);
 	

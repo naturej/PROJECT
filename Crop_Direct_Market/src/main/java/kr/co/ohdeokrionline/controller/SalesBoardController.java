@@ -405,17 +405,16 @@ public class SalesBoardController {
 	
 //	 평가등록
 	@RequestMapping("reviewReg.five")
-	public String insertReview(ReviewWrite_DTO dto) {
+	public void insertReview(ReviewWrite_DTO dto) {
 		System.out.println("point2");
 		ReviewWrite_Dao dao = sqlSession.getMapper(ReviewWrite_Dao.class);
 		dao.reviewInsert(dto);
-		return "marketplace.yesEnuri";
-//		꺼져버리는 공통 페이지
 	}
 //	팝업창 띄우기
 	@RequestMapping("review_sinchung.five")
-	public String review_popup() {
-		return "marketplace.review";
+	public String review_popup(Model model, Principal principal) {
+		model.addAttribute("user_id",principal.getName());
+		return "marketplace/review";
 	}
 	
 	//장바구니 리스트

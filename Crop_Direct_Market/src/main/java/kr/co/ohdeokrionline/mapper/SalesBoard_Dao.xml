@@ -28,6 +28,7 @@
 	     </insert>
 		
 		
+				
 		<!-- 판매글 상세보기 -->
 		<select id="salesdetail" resultType="kr.co.ohdeokrionline.model.vo.SalesBoard_DTO">
 	    	SELECT * 
@@ -37,6 +38,18 @@
 			WHERE BO_NUM=#{bo_num,jdbcType=INTEGER}
 	    	<!--  SELECT * FROM SALBOARD WHERE BO_NUM=#{bo_num,jdbcType=INTEGER} -->
 	   	 </select>
+	   	 
+	   	<!-- 리뷰보기 -->
+	   	<select id="reviewlist" resultType="kr.co.ohdeokrionline.model.vo.SalesBoard_DTO">
+	   		SELECT R.RE_ID AS RE_ID, R.RE_CONTENT AS RE_CONTENT, R.RE_SCORE AS RE_SCORE, R.USER_ID AS REVIEW_ID, R.RE_DATE AS RE_DATE
+			FROM SALBOARD S
+			JOIN FARMINFO F
+			ON S.USER_ID=F.USER_ID
+	        JOIN REVIEW R
+	        ON S.BO_NUM=R.BO_NUM
+			WHERE S.BO_NUM=#{bo_num,jdbcType=INTEGER}
+			ORDER BY RE_ID DESC
+	   	</select>
 
 		<!--   판매글 수정하기   -->
 	   <update id="update">
