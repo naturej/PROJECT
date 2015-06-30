@@ -2,11 +2,9 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+ <section id="service" class="home-section text-center"  style="position: static">
 	<table border="1">
 		<tr><td>제목:${marketDto.mar_subject}</td></tr>
 		<tr><td>장터일시:${marketDto.mar_date}</td></tr>
@@ -18,6 +16,4 @@
 	</table>
 	<a href="">참가등록</a>
 	<a href="marketdelete.five?mar_id=${marketDto.mar_id}">삭제</a>
-
-</body>
-</html>
+</section>

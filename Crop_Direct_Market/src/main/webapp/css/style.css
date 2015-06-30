@@ -245,7 +245,7 @@ img {
 	}
 	
 	#filters ul li a:hover h5, #filters ul li a.active h5 {
-		background: #7cc576;
+		background: #1ABC9C;
     color: #fff;
     text-decoration: none;
 	}
@@ -975,7 +975,7 @@ hr {
 	}
 	
 	#filters ul li a:hover h5, #filters ul li a.active h5 {
-		background: #7cc576;
+		background: #1ABC9C;
     color: #fff;
     text-decoration: none;
 	}
