@@ -91,8 +91,8 @@ function resizeText() {
         	<li><a class="" href="" data-filter=".채소">
           		<h5>채소</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".ddd">
-          		<h5>ddd</h5>
+        	<li><a class="" href="" data-filter=".과실류">
+          		<h5>과실류</h5>
           	</a></li>
       	</ul>
     </div>
@@ -101,7 +101,7 @@ function resizeText() {
     <!-- Portfolio Wrap -->
     <div class="isotope" style="position: relative; overflow: hidden; height: 480px;" id="portfolio-wrap"> 
      	<c:forEach items="${list}" var="n">
-      		<div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four   photography isotope-item">
+      		<div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four   ${n.sep} isotope-item">
         		<div class="portfolio-image"> ${n.user_id}<img src="<%=request.getContextPath()%>/salesboard/upload/${n.bo_photo}" alt="Portfolio 1"></div>
         		<a title="Stereo Headphones" rel="prettyPhoto[galname]" href="salesdetail.five?bo_num=${n.bo_num}">
         		<div class="project-overlay">
@@ -109,7 +109,7 @@ function resizeText() {
           				${n.user_id}
             			<div class="zoom-icon"></div>
             			<h4 class="project-name">${n.bo_subject}</h4>
-            			<p class="project-categories">Ddd</p>
+            			<p class="project-categories">${n.sep}</p>
           			</div>
         		</div>
         		</a></div>
