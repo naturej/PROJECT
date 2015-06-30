@@ -26,4 +26,8 @@
 	<select id="check_user_id" resultType="string">
 		select user_id from users where user_id=#{user_id}
 	</select>
+	
+	<select id="check_email" resultType="string">
+		select email from users where email=#{email}
+	</select>
 </mapper>

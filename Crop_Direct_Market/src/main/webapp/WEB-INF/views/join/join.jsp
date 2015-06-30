@@ -132,25 +132,42 @@
 					  }
 				});
 			});
+			
+			/* email 조합 */
+			$('#email2').change(function(){
+				var email_v = $('#email2').val();
+				if (email_v == "1") {
+					$('#email3').show();
+					$('#email3').val("");
+				} else {
+					$('#email3').hide();
+					$('#email3').val(email_v);
+				}
+			});
+			
+			/* 조합한 email 표시 */
+			$('#check_email').click(function(){
+				var email = $('#email1').val()+'@'+$('#email3').val();
+				$.ajax({
+					  type: "POST",
+					  url: "check_email.five",
+					  data: {email:email},
+					  success: function(data){
+						  if(data=="사용 가능한 Email입니다."){
+							  $('#dialog').text(data);
+							  $('#dialog').dialog();
+							  $('#email').val(email);
+						  }else{
+							  $('#dialog').text(data);
+							  $('#dialog').dialog();
+							  $('#email').val("");
+						  }
+					  }
+				});
+			});
 		});
 		
-		/* email 조합 */
-		function changeEmail(email_v) {
-			if (email_v == "1") {
-				document.joinForm.email3.style.display="inline";
-				document.joinForm.email3.value = "";
-			} else {
-				document.joinForm.email3.style.display="none";
-				document.joinForm.email3.value = email_v;
-			}
 		
-		}
-		
-		/* 조합한 email 표시 */
-		function comfirmemail(){
-			document.joinForm.email.style.display="inline";
-			document.joinForm.email.value = document.joinForm.email1.value+"@"+document.joinForm.email3.value;
-		}
 	</script>
     
     <!-- Section: contact -->
@@ -186,8 +203,8 @@
 					<!-- Email 입력 --> 
 					<div class="input-group">
 					<span class="input-group-addon">Email</span>
-					<input type="text" class="form-control" name="email1" placeholder="Email" required />@
-					<select name="email2" onchange="changeEmail(this.value)" >
+					<input type="text" class="form-control" name="email1" id="email1" placeholder="Email" required />@
+					<select name="email2" id="email2" >
 						<option value="" selected>이메일선택</option>
 						<option value="naver.com">naver.com</option>
 						<option value="dreamwiz.com">dreamwiz.com</option>
@@ -210,9 +227,9 @@
 						<option value="hitel.net">hitel.net</option>
 						<option value="1">직접입력</option>
 					</select> 
-					<input type="text" class="form-control" name="email3" style="display: none">
-					<input type="button" value="확인" onclick="comfirmemail()" >
-					<input type="text" class="form-control" name="email" readonly="readonly">
+					<input type="text" class="form-control" name="email3" id="email3" style="display: none">
+					<input type="button" value="확인" id="check_email" >
+					<input type="text" class="form-control" name="email" id="email" readonly="readonly">
 					</div>
 					<!-- 우편번호 입력 --> 
 					<div class="input-group">
@@ -241,15 +258,10 @@
 					</div>
 					<hr>
 					<c:if test="${param.user == 'ROLE_SELLER'}">
-						<!-- 농장 ID 입력 --> 
-						<div class="input-group">
-						<span class="input-group-addon">농장 ID</span>
-						<input type="text" class="form-control" name="farminfo" placeholder="FarmID" required/>
-						</div>
 						<!-- 농장 이름 입력 --> 
 						<div class="input-group">
 						<span class="input-group-addon">농장 이름</span>
-						<input type="text" class="form-control" name="farm_name" placeholder="FarmName" required/>
+						<input type="text" class="form-control" name="farminfo" placeholder="FarmID" required/>
 						</div>
 						<!-- 농장지역 -->
 						<div class="input-group">

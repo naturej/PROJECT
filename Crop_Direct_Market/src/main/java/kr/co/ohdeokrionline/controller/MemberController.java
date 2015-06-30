@@ -219,4 +219,23 @@ public class MemberController {
 		}
 		return null;
 	}
+	
+	@RequestMapping(value="check_email.five",method=RequestMethod.POST)
+	String check_email(String email,Model model){
+		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
+		try {
+			String checked = dao.check_email(email);
+			if(checked!=null){
+				model.addAttribute("user_id", "중복된 Email입니다. 다른 Email를 입력하십시오.");
+				return "login/id_search";
+			}else{
+				model.addAttribute("user_id", "사용 가능한 Email입니다.");
+				return "login/id_search";
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

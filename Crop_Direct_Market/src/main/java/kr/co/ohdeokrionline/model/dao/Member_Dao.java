@@ -10,4 +10,5 @@ public interface Member_Dao {
 	String getUser_idByEmail(String email) throws SQLException;
 	String getPwdByUser_idAndEmail(String user_id,String email) throws SQLException;
 	String check_user_id(String user_id) throws SQLException;
+	String check_email(String email) throws SQLException;
 }
