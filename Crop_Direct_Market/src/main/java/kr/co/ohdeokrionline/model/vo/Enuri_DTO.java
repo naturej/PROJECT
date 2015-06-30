@@ -15,6 +15,7 @@ public class Enuri_DTO {
 	// 판매게시판
 	private String bo_subject;
 	private int bo_price;
+	private String sell_id;
 	
 	public Enuri_DTO(){}
 	
@@ -96,4 +97,13 @@ public class Enuri_DTO {
 	public void setBo_price(int bo_price) {
 		this.bo_price = bo_price;
 	}
+
+	public String getSell_id() {
+		return sell_id;
+	}
+
+	public void setSell_id(String sell_id) {
+		this.sell_id = sell_id;
+	}
+
 }

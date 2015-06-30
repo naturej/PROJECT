@@ -306,16 +306,36 @@ public class SalesBoardController {
 			return null;
 		}
 	
-	// 에누리 리스트
-	@Transactional
-	@RequestMapping("enulist.five")
-	public String enuList(Model model){
+//	// 에누리 리스트 
+//	@Transactional
+//	@RequestMapping("enulist.five")
+//	public String enuList(Model model){
+//		
+//		Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
+//		model.addAttribute("list",dao.enuList());
+////		salesboard 완성된 이후
+////		model.addAttribute("bo_id",dao.bo_id(bo_num));
+////		model.addAttribute("bo_subject",dao.bo_subject(bo_num));
+//		
+//		return "marketplace.enulist";
+//	} 
+	
+	// 에누리 리스트 (판매자)
+	@RequestMapping("enulistRec.five")
+	public String enuListRec(Model model, Principal principal){
 		
 		Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
-		model.addAttribute("list",dao.enuList());
-//		salesboard 완성된 이후
-//		model.addAttribute("bo_id",dao.bo_id(bo_num));
-//		model.addAttribute("bo_subject",dao.bo_subject(bo_num));
+		model.addAttribute("list",dao.enuListRec(principal.getName()));
+		
+		return "marketplace.enulist";
+	} 
+	
+	// 에누리 리스트 (소비자)
+	@RequestMapping("enulistSend.five")
+	public String enuListSend(Model model, Principal principal){
+		
+		Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
+		model.addAttribute("list",dao.enuListSend(principal.getName()));
 		
 		return "marketplace.enulist";
 	} 

@@ -3,36 +3,32 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.ohdeokrionline.model.dao.Enuri_Dao">
-	<!-- 판매글 아이디 가져오기 -->
-	<!-- salboard 완성된 이후
-	<select id="bo_id" parameterType="java.util.HashMap" >
-	SELECT DISTINCT(S.USER_ID)
-	FROM SALBOARD S
-	JOIN ENURI E
-	ON S.BO_NUM = E.BO_NUM
-	WHERE E.BO_NUM=#{bo_num}
-	</select>
-	 -->
-	<!-- 판매글 제목 가져오기-->
-	<!-- salboard 완성된 이후
-	<select id="bo_subject" parameterType="java.util.HashMap" >
-	SELECT DISTINCT(S.BO_SUBJECT)
-	FROM SALBOARD S
-	JOIN ENURI E
-	ON S.BO_NUM = E.BO_NUM
-	WHERE E.BO_NUM=#{bo_num}
-	</select>
-	 -->
+
 	<!-- 에누리 목록 -->
-	<select id="enuList" resultType="kr.co.ohdeokrionline.model.vo.Enuri_DTO">
+<!-- 	<select id="enuRecList" resultType="kr.co.ohdeokrionline.model.vo.Enuri_DTO">
 		SELECT * FROM ENURI ORDER BY ENU_IDX DESC
-	</select>
+	</select> -->
 	
-<!-- 	 에누리 상세보기 
-	<select id="enuDetail" resultType="kr.co.ohdeokrionline.model.vo.Enuri_DTO">
-		SELECT * FROM ENURI WHERE ENU_IDX=#{enu_idx}
-	</select> 
-	-->
+	<!-- 에누리 받은 목록(판매자) -->
+	<select id="enuListRec" resultType="kr.co.ohdeokrionline.model.vo.Enuri_DTO">
+		SELECT * 
+		FROM ENURI E
+		JOIN SALBOARD S
+		ON E.BO_NUM=S.BO_NUM
+		WHERE S.USER_ID=#{sell_id, jdbcType=VARCHAR}
+		ORDER BY ENU_IDX DESC
+	</select>
+
+	<!-- 에누리 보낸 목록(소비자) -->
+	<select id="enuListSend" resultType="kr.co.ohdeokrionline.model.vo.Enuri_DTO">
+		SELECT * 
+		FROM ENURI E
+		JOIN SALBOARD S
+		ON E.BO_NUM=S.BO_NUM
+		WHERE E.USER_ID=#{user_id, jdbcType=VARCHAR}
+		ORDER BY ENU_IDX DESC
+	</select>
+
 	<!-- 에누리 상세보기 -->
 	<select id="enuDetail" resultType="kr.co.ohdeokrionline.model.vo.Enuri_DTO">
 		SELECT E.USER_ID,E.ENU_DATE,S.BO_SUBJECT,E.ENU_QUAN,E.ENU_PRICE,E.ENU_CONTENT,S.BO_PRICE,E.BO_NUM,E.ENU_CONFIRM,E.ENU_IDX

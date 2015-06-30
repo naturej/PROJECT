@@ -56,7 +56,12 @@
 							<li><a href="<%=request.getContextPath()%>/mypage/schedule.five">일정</a></li>
 							<li><a href="<%=request.getContextPath()%>/manage/sellermanage.five">판매관리</a></li>
 							<li><a href="<%=request.getContextPath()%>/salesboard/shopList.five">장바구니목록</a></li>
-							<li><a href="<%=request.getContextPath()%>/salesboard/enulist.five">에누리목록</a></li>
+							<se:authorize ifAllGranted="ROLE_SELLER">
+								<li><a href="<%=request.getContextPath()%>/salesboard/enulistRec.five">에누리목록</a></li>
+							</se:authorize>
+							<se:authorize ifAllGranted="ROLE_CONSUMER">
+								<li><a href="<%=request.getContextPath()%>/salesboard/enulistSend.five">에누리목록</a></li>
+							</se:authorize>
 							<li><a href="<%=request.getContextPath()%>/salesboard/receiveList.five">받은메세지목록</a></li>
 							<li><a href="<%=request.getContextPath()%>/salesboard/sendList.five">보낸메세지목록</a></li>
 						</ul>
