@@ -47,13 +47,16 @@ body {
 			<script>
 			var dir=${dir};
 			var indir=${indir};
+			var total= parseInt(dir)+parseInt(indir);
+			var perdir = Math.round(parseInt(dir)/parseInt(total)*100);
+			var perindir =Math.round(parseInt(indir)/parseInt(total)*100);
 				var doughnutData = [ {
-					value : dir,
+					value : perdir,
 					color : "#F7464A",
 					highlight : "#FF5A5E",
 					label : "직거래"
 				}, {
-					value : indir,
+					value : perindir,
 					color : "#46BFBD",
 					highlight : "#5AD3D1",
 					label : "온라인거래"
