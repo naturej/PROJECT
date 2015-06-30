@@ -148,12 +148,14 @@
 			/* 조합한 email 표시 */
 			$('#check_email').click(function(){
 				var email = $('#email1').val()+'@'+$('#email3').val();
+				
 				$.ajax({
 					  type: "POST",
 					  url: "check_email.five",
 					  data: {email:email},
 					  success: function(data){
-						  if(data=="사용 가능한 Email입니다."){
+						  console.log()
+						  if(data.trim()=='사용 가능한 Email입니다.'){
 							  $('#dialog').text(data);
 							  $('#dialog').dialog();
 							  $('#email').val(email);
