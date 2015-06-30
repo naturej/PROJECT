@@ -76,11 +76,11 @@ String result= year+" "+month+" "+day+" ";
 				</tr>
 				<tr>
 					<th>1.매출</th>
-					<td><input type="text" id="income" readonly></td>
+					<td><input type="text" id="income" readonly value="0"></td>
 				</tr>		
 				<tr>
 					<td>총 상품매출</td>
-					<td><input type="text" id="sellproduct" readonly></td>
+					<td><input type="text" id="sellproduct" readonly value="0"></td>
 				</tr>	
 				<tr>
 					<td>온라인 상품매출</td>
@@ -88,59 +88,59 @@ String result= year+" "+month+" "+day+" ";
 				</tr>
 				<tr>
 					<td>직거래 상품매출</td>
-					<td><input type="text" id="direct"></td>
+					<td><input type="text" id="direct" value="0"></td>
 				</tr>	
 				<tr>
 					<th>2.매출원가</th>
-					<td><input type="text" id="originprice" readonly></td>
+					<td><input type="text" id="originprice" readonly value="0"></td>
 				</tr>		
 				<tr>
 					<td>상품매출원가</td>
-					<td><input type="text" id="productoriginprice"></td>
+					<td><input type="text" id="productoriginprice" value="0"></td>
 				</tr>		
 				<tr>
 					<td>기초재고액</td>
-					<td><input type="text" id="stackmoney"></td>
+					<td><input type="text" id="stackmoney" value="0"></td>
 				</tr>		
 				<tr>
 					<td>기말재고액</td>
-					<td><input type="text" id="lastmoney"></td>
+					<td><input type="text" id="lastmoney" value="0"></td>
 				</tr>
 				<tr>
 					<th>3.매출 총 이익</th>
-					<td><input type="text" id="selltotalincome" ></td>
+					<td><input type="text" id="selltotalincome" value="0" ></td>
 				</tr>		
 				<tr>
 					<th>4.판매비 및 일반관리비</th>
-					<td><input type="text" id="generalprice" readonly></td>
+					<td><input type="text" id="generalprice" readonly value="0"></td>
 				</tr>		
 				<tr>
 					<td>소모품비</td>
-					<td><input type="text" id="consumeprice"></td>
+					<td><input type="text" id="consumeprice" value="0"></td>
 				</tr>		
 				<tr>
 					<td>임대비</td>
-					<td><input type="text" id="rental"></td>
+					<td><input type="text" id="rental" value="0"></td>
 				</tr>		
 				<tr>
 					<td>잡비</td>
-					<td><input type="text" id="etcprice"></td>
+					<td><input type="text" id="etcprice" value="0"></td>
 				</tr>		
 				<tr>
 					<th>5.영업손익</th>
-					<td><input type="text" id="businessresult" readonly></td>
+					<td><input type="text" id="businessresult" readonly value="0"></td>
 				</tr>				
 				<tr>
 					<th>6.영업 외 비용</th>
-					<td><input type="text" id="businessoutprice" readonly></td>
+					<td><input type="text" id="businessoutprice" readonly value="0"></td>
 				</tr>		
 				<tr>
 					<td>이자비용</td>
-					<td><input type="text" id="interestexpense"></td>
+					<td><input type="text" id="interestexpense" value="0"></td>
 				</tr>		
 				<tr>
 					<td>잡손실</td>
-					<td><input type="text" id="etcprice2"></td>
+					<td><input type="text" id="etcprice2" value="0"></td>
 				</tr>		
 				<tr>
 					<td align="right" colspan="2"><input type="button" value="등록"></td>

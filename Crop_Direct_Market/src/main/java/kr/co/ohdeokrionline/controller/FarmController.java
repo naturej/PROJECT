@@ -30,6 +30,8 @@ public class FarmController {
 //		결제 상태가 '확인'인 값만 불러오기 table에 쏴주기
 //		
 		BalanceSheet_Dao dao = sqlsession.getMapper(BalanceSheet_Dao.class);
+		System.out.println("1단계");
+		System.out.println(dao.totalsell(principal.getName()));
 		model.addAttribute("totalsell", dao.totalsell(principal.getName()));
         return "mypage.daecha";
 	}
