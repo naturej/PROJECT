@@ -135,9 +135,11 @@ public class SalesBoardController {
  		public String salesdetail(String bo_num, Model model) throws ClassNotFoundException, SQLException{
  		System.out.println("상세보기 controller 진입");
  		SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
+ 		List<SalesBoard_DTO> reviewDto = salboardDao.reviewlist(bo_num);
  		SalesBoard_DTO salboardDto = salboardDao.salesdetail(bo_num);
  		System.out.println("mapper소환 Dto에 bo_num");
 		 model.addAttribute("salboardDto", salboardDto);
+		 model.addAttribute("list",reviewDto);
 		 
 		 //review 목록
 		 //List<B_reply_DTO> list = boardDao.re_list(idx);
