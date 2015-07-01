@@ -8,5 +8,5 @@ import java.util.Map;
 public interface BalanceSheet_Dao {
 	int totalsell(String sell_user);
 	HashMap<String, Integer>sellpercent(String sell_user);
-	List<HashMap<String, Integer>> sellrec(String sell_user);
+	ArrayList<HashMap<String, Integer>> sellrec(String sell_user);
 }

@@ -2,6 +2,8 @@ package kr.co.ohdeokrionline.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +48,13 @@ public class FarmController {
 		model.addAttribute("indir", map.get("INDIR"));
 		
 		System.out.println(dao.sellrec(principal.getName()));
+		ArrayList<HashMap<String, Integer>> arr = dao.sellrec(principal.getName());
+		System.out.println(arr.get(0).get("COST"));
+		System.out.println(arr.get(0).get("MONTH"));
+		for(int i =0 ; i<6 ; i++){
+			model.addAttribute("c"+i,arr.get(i).get("COST"));
+			model.addAttribute("m"+i,arr.get(i).get("MONTH"));
+		}
 		return "mypage.daechaStats";
 	}
 }

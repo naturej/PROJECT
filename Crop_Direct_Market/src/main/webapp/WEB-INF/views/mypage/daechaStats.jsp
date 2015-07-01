@@ -39,20 +39,24 @@ body {
 			<table class="table table-hover">
 				<tr>
 					<td>온라인/직거래 비율</td>
-					<td>월별 매출현황</td>
+					<td>최근 6개월 월별 매출현황</td>
 				</tr>
 				<tr>
 					<td>
 						<div style="margin-top: 50%;">
 							<canvas id="canvas" width=200 height="200" />
 						</div>
+						<div><br>
+							<span>&lt;온라인 직거래 비율></span>
+						</div>
 					</td>
-					<td>
+					<td rowspan="2">
 						<div>
 							<canvas id="canvas2" height="450" width="600" />
 						</div>
 					</td>
 				</tr>
+				
 			</table>
 			<script>
 				var dir = ${dir};
@@ -98,44 +102,27 @@ String result= year+" "+month+" "+day+" ";
 					return Math.round(Math.random() * 100)
 				};
 				var lineChartData = {
-					labels : [ "<%=year+"1월"%>","<%=year+"2월"%>","<%=year+"3월"%>","<%=year+"4월"%>",
-					           "<%=year+"5월"%>","<%=year+"6월"%>","<%=year+"7월"%>","<%=year+"8월"%>",
-					           "<%=year+"9월"%>","<%=year+"10월"%>","<%=year+"1월"%>","<%=year+"12월"%>"],
+					labels : [ "<%=year%>${m0}월","<%=year%>${m1}월","<%=year%>${m2}월",
+					           "<%=year%>${m3}월","<%=year%>${m4}월","<%=year%>${m5}월"],
 					datasets : [
 							{
 								label : "My First dataset",
-								fillColor : "rgba(220,220,220,0.2)",
-								strokeColor : "rgba(220,220,220,1)",
-								pointColor : "rgba(220,220,220,1)",
-								pointStrokeColor : "#fff",
-								pointHighlightFill : "#fff",
+								fillColor : "rgba(150,220,220,0.2)",
+								strokeColor : "rgba(220,150,220,2)",
+								pointColor : "rgba(220,0,220,2)",
+								pointStrokeColor : "#000",
+								pointHighlightFill : "#000",
 								pointHighlightStroke : "rgba(220,220,220,1)",
-								data : [ randomScalingFactor(),
-										randomScalingFactor(),
-										randomScalingFactor(),
-										randomScalingFactor(),
-										randomScalingFactor(),
-										randomScalingFactor(),
-										randomScalingFactor() ]
-							},
-							{
-								label : "My Second dataset",
-								fillColor : "rgba(151,187,205,0.2)",
-								strokeColor : "rgba(151,187,205,1)",
-								pointColor : "rgba(151,187,205,1)",
-								pointStrokeColor : "#fff",
-								pointHighlightFill : "#fff",
-								pointHighlightStroke : "rgba(151,187,205,1)",
-								data : [ randomScalingFactor(),
-										randomScalingFactor(),
-										randomScalingFactor(),
-										randomScalingFactor(),
-										randomScalingFactor(),
-										randomScalingFactor(),
-										randomScalingFactor() ]
-							} ]
+								data : [ "${c0}",
+								         "${c1}",
+								         "${c2}",
+								         "${c3}",
+								         "${c4}",
+								         "${c5}"]
+							}]
 
 				}
 			</script>
+			
 </body>
 </html>
