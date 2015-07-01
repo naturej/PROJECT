@@ -79,7 +79,7 @@
 	
 	function Enuri(number,id,product){
 		window.open('enuri_sinchung.five?bo_num='+number+'&user_id='+id+'&pro_name='+product,'에누리 신청',
-	      'top=100px, left=100px, width=430 height=510 ')
+	      'top=100px, left=100px, width=430 height=510')
 	}
 	
 	$(function() {
