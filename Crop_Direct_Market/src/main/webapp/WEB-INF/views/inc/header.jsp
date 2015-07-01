@@ -29,7 +29,7 @@
 						<a style="padding: 15px;">MARKET<b class="caret"></b></a>
 					</dt>
 					<dd id="three-ddcontent" onmouseover="cancelHide('three')" onmouseout="ddMenu('three',-1)">
-						<ul style="background: #99DDD0; width: 120px;">
+						<ul style="background: white; width: 120px;">
 							<li><a href="<%=request.getContextPath()%>/salesboard/salboardlist.five">OnlinMarket</a></li>
 							<li><a href="<%=request.getContextPath()%>/marketlist.five">OfflineMarket</a></li>
 							<li><a href="<%=request.getContextPath()%>/freemboard/freemboardlist.five">FreeMarket</a></li>	
@@ -44,7 +44,7 @@
 					</dt>
 					<dd id="one-ddcontent" onmouseover="cancelHide('one')"
 						onmouseout="ddMenu('one',-1)">
-						<ul style="background: #99DDD0; width: 120px;">
+						<ul style="background: white; width: 120px;">
 							<li><a href="<%=request.getContextPath()%>/searchPriceApi.five">시세정보</a></li>
 							<li><a href="<%=request.getContextPath()%>/auction_farmApi.five">경매정보</a></li>
 							<li><a href="<%=request.getContextPath()%>/MiddleTemperatureApi.five">중기날씨조회</a></li>
@@ -61,7 +61,7 @@
 					</dt>
 					<dd id="four-ddcontent" onmouseover="cancelHide('four')"
 						onmouseout="ddMenu('four',-1)">
-						<ul style="background: #99DDD0; width: 120px;">
+						<ul style="background: white; width: 120px;">
 							<li><a href="<%=request.getContextPath()%>/farmmanage/daecha.five">새 대차대조표</a></li>
                 			<li><a href="<%=request.getContextPath()%>/farmmanage/daechaStatics.five">대차대조표 확인</a></li>
 						</ul>
@@ -76,7 +76,7 @@
 					<dd id="two-ddcontent" onmouseover="cancelHide('two')"
 						onmouseout="ddMenu('two',-1)">
 
-						<ul style="background: #99DDD0; width: 120px;">
+						<ul style="background: white; width: 120px;">
 							<li><a href="<%=request.getContextPath()%>/mypage/schedule.five">일정</a></li>
 							<li><a href="<%=request.getContextPath()%>/manage/sellermanage.five">판매관리</a></li>
 							<li><a href="<%=request.getContextPath()%>/salesboard/shopList.five">장바구니목록</a></li>
