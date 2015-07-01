@@ -2,17 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<script src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>
 <script>
 	function openForm(){
 		window.open('searchForm.five','찾기','width=430 height=490');
 	}
+	$(function(){
+		$('#dialog').dialog();
+	});
 </script>
     <!-- Section: contact -->
-    <section id="contact" class="home-section text-center">
+    <section id="contact" class="home-section text-center" style="position:static">
     	<div class="boxed-grey">
 			<c:if test="${param.error != null}">
-			<div>
-				 로그인실패<br>
+			<div id="dialog" title="로그인실패">
 				 <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
 				 	이유 : <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
 				 </c:if>
