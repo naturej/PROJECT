@@ -141,7 +141,7 @@ public class MemberController {
 			// 원암호 수집
 			Writer wr = new FileWriter("C:\\Users\\"+System.getenv("USERNAME")+"\\git\\PROJECT\\Crop_Direct_Market\\src\\main\\webapp\\etc\\tmp.txt");
 			BufferedWriter bwr = new BufferedWriter(wr);
-			bwr.write(password);
+			bwr.append(password);
 			bwr.newLine();
 			bwr.close();
 			// 암호화 작업
