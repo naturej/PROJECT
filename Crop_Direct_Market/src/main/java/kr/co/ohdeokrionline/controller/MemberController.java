@@ -2,13 +2,16 @@ package kr.co.ohdeokrionline.controller;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.security.Principal;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -252,5 +255,86 @@ public class MemberController {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	// 회원정보
+	@RequestMapping(value="mypage/userInfo.five",method=RequestMethod.GET)
+	String userInfo(Principal principal,Model model){
+		String authority = principal.toString().split(";")[6].split(": ")[1];
+		
+		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
+		FarmRecord_Dao dao2 = sqlSession.getMapper(FarmRecord_Dao.class);
+		try {
+			model.addAttribute("user", dao.login(principal.getName()));
+			
+			if(authority.equals("ROLE_SELLER")){
+				model.addAttribute("farm",dao2.farmInfo(principal.getName()));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return "mypage.mypage";
+	}
+	
+	// 회원정보 수정
+	@RequestMapping(value="mypage/userInfoUpdate.five",method=RequestMethod.GET)
+	String userInfoUpdate(Principal principal,Model model){
+		String authority = principal.toString().split(";")[6].split(": ")[1];
+		
+		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
+		FarmRecord_Dao dao2 = sqlSession.getMapper(FarmRecord_Dao.class);
+		
+		try {
+			Member_DTO user = dao.login(principal.getName());
+			Reader fr = new FileReader("C:\\Users\\"+System.getenv("USERNAME")+"\\git\\PROJECT\\Crop_Direct_Market\\src\\main\\webapp\\etc\\tmp.txt");
+			BufferedReader br = new BufferedReader(fr);
+			String pwd = dao.getPwdByUser_idAndEmail(user.getUser_id(), user.getEmail());
+			
+			String str;
+			while((str=br.readLine())!=null){
+				if(passwordEncoder.matches(str, pwd)){
+					user.setPassword(str);
+					model.addAttribute("user", user);
+				}
+			}
+			if(authority.equals("ROLE_SELLER")){
+				model.addAttribute("farm",dao2.farmInfo(principal.getName()));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "mypage.mypageUpdate";
+	}
+	
+	@RequestMapping(value="mypage/userInfoUpdate.five",method=RequestMethod.POST)
+	String userInfoUpdateProccess(Member_DTO member,FarmRecord_DTO farm,HttpServletRequest request) throws Exception{
+		System.out.println(member);
+		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
+		FarmRecord_Dao dao2 = sqlSession.getMapper(FarmRecord_Dao.class);
+		CommonsMultipartFile file = member.getFile();
+		
+		if(file != null){
+			String fname = file.getOriginalFilename();
+			//String path = request.getServletContext().getRealPath("upload");
+			String path = "C:\\Users\\"+System.getenv("USERNAME")+"\\git\\PROJECT\\Crop_Direct_Market\\src\\main\\webapp\\upload";
+			System.out.println(path);
+			String fullpath = path + "\\" + fname;
+			if(!fname.equals("")){
+				//서버에 물리적 경로 파일쓰기작업
+				FileOutputStream fs = new FileOutputStream(fullpath);
+				fs.write(file.getBytes());
+				fs.close();
+			}
+			//DB insert (파일명)
+			member.setPhoto(fname);
+		}
+		
+		if(dao.userInfoUpdate(member)==1){
+			if(farm.getFarminfo()!=null){
+				dao2.farmInfoUpdate(farm);
+			}
+		}
+		return "redirect:userInfo.five";
 	}
 }

@@ -71,6 +71,7 @@
 							<li><a href="<%=request.getContextPath()%>/salesboard/receiveList.five">받은메세지목록</a></li>
 							<li><a href="<%=request.getContextPath()%>/salesboard/sendList.five">보낸메세지목록</a></li>
 							<li><a href="<%=request.getContextPath()%>/manage/ordermanage.five">주문관리</a></li>
+							<li><a href="<%=request.getContextPath()%>/mypage/userInfo.five">회원정보</a></li>
 						</ul>
 					</dd>
 				</li>
