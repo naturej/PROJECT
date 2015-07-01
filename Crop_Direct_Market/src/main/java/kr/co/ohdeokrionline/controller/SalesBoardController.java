@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ohdeokrionline.model.dao.Enuri_Dao;
 import kr.co.ohdeokrionline.model.dao.Message_Dao;
+import kr.co.ohdeokrionline.model.dao.Report_Dao;
 import kr.co.ohdeokrionline.model.dao.ReviewWrite_Dao;
 import kr.co.ohdeokrionline.model.dao.SaleBoard_Dao;
 import kr.co.ohdeokrionline.model.dao.SalesBoard_Dao;
@@ -23,6 +24,7 @@ import kr.co.ohdeokrionline.model.dao.ShoppingBasket_Dao;
 import kr.co.ohdeokrionline.model.vo.Enuri_DTO;
 import kr.co.ohdeokrionline.model.vo.Message_DTO;
 import kr.co.ohdeokrionline.model.vo.Product_DTO;
+import kr.co.ohdeokrionline.model.vo.Report_DTO;
 import kr.co.ohdeokrionline.model.vo.ReviewWrite_DTO;
 import kr.co.ohdeokrionline.model.vo.SalesBoard_DTO;
 import kr.co.ohdeokrionline.model.vo.Separate_DTO;
@@ -464,6 +466,20 @@ public class SalesBoardController {
 	public void deleteall(){
 		ShoppingBasket_Dao dao = sqlSession.getMapper(ShoppingBasket_Dao.class);
 		dao.deleteall();
+	}
+	
+	// 신고 팝업
+	@RequestMapping("reportPopup.five")
+	public String reportPopup(Model model, Principal principal){
+		model.addAttribute("user_send",principal.getName());
+		return "marketplace.reportForm";
+	} 
+
+	// 신고하기
+	@RequestMapping("reportInsert.five")
+	public void reportInsert(Report_DTO dto){
+		Report_Dao dao = sqlSession.getMapper(Report_Dao.class);
+		dao.reportInsert(dto);
 	}
 
 	//주문 처리

@@ -5,6 +5,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function report() {
+		if($("#rep_content").val() == ""){
+			alert('내용을 입력하세요');
+		}else{
+			$.ajax({
+				url:'reportInsert.five',
+				data:$("#report").serialize(),
+				dataType:'html'
+			});
+	 		alert('신고 완료');
+	 		window.close();
+	 		window.opener.location.reload();
+		}
+	}
+</script>
 </head>
 <body>
 <h3 style="margin: 0">신고하기</h3>
