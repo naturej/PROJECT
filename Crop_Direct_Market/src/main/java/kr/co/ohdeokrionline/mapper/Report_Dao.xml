@@ -9,4 +9,8 @@
 		VALUES(#{user_send, jdbcType=VARCHAR},#{bo_num},#{user_rec, jdbcType=VARCHAR},#{rep_content, jdbcType=VARCHAR},SYSDATE)
 	</insert>
 
+	<!-- 신고 리스트 -->
+	<select id="reportList" resultType="kr.co.ohdeokrionline.model.vo.Report_DTO">
+		SELECT * FROM REPORT ORDER BY USER_REC
+	</select>
 </mapper>

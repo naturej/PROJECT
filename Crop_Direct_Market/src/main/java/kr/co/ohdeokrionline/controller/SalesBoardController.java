@@ -482,6 +482,16 @@ public class SalesBoardController {
 		dao.reportInsert(dto);
 		System.out.println("신고완료");
 	}
+	
+	// 신고 리스트
+	@RequestMapping("reportList.five")
+	public String reportList(Model model){
+		Report_Dao dao = sqlSession.getMapper(Report_Dao.class);
+		ArrayList<Report_DTO> list = dao.reportList();
+		model.addAttribute("list",list);
+		
+		return "mypage.reportList";
+	}
 
 	//주문 처리
 	@RequestMapping(value="orderinsert.five", method=RequestMethod.POST)
