@@ -25,6 +25,7 @@
 				<li><a href="<%=request.getContextPath()%>/board/boardlist.five">BOARD</a></li>
 				<li><a href="<%=request.getContextPath()%>/salesboard/salboardlist.five">SALESBOARD</a></li>
 				<li><a href="<%=request.getContextPath()%>/marketlist.five">MARKET</a></li>
+				<li><a href="<%=request.getContextPath()%>/freemboard/freemboardlist.five">FREEMARKET</a></li>
 
 				<li class="dropdown">
 					<dt id="one-ddheader" onmouseover="ddMenu('one',1)"
