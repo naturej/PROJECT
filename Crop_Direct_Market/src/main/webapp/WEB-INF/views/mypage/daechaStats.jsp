@@ -10,16 +10,13 @@
 <head>
 <title>Doughnut Chart</title>
 <script src="<%=request.getContextPath()%>/js/Chart.js"></script>
-<style>
-body {
-	padding: 0;
-	margin: 0;
-}
-
-#canvas-holder {
-	width: 30%;
-}
-</style>
+<%
+	Calendar cal = Calendar.getInstance();
+	String year = cal.get(Calendar.YEAR) + "년";
+	String month = cal.get(Calendar.MONTH) + 1 + "월";
+	String day = cal.get(Calendar.DAY_OF_MONTH) + "일";
+	String result = year + " " + month + " " + day + " ";
+%>
 </head>
 <body>
 	<section id="service" class="home-section text-center">
@@ -91,12 +88,6 @@ body {
 
 				};
 			</script>
-			<% Calendar cal= Calendar.getInstance();
-String year=cal.get(Calendar.YEAR)+"년";
-String month=cal.get(Calendar.MONTH)+1+"월";
-String day =cal.get(Calendar.DAY_OF_MONTH)+"일";
-String result= year+" "+month+" "+day+" ";
-%>
 			<script>
 				var randomScalingFactor = function() {
 					return Math.round(Math.random() * 100)
