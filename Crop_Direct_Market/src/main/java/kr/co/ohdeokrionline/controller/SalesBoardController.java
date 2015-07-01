@@ -472,7 +472,7 @@ public class SalesBoardController {
 	@RequestMapping("reportPopup.five")
 	public String reportPopup(Model model, Principal principal){
 		model.addAttribute("user_send",principal.getName());
-		return "marketplace/reportForm";
+		return "marketplace.reportForm";
 	} 
 
 	// 신고하기
