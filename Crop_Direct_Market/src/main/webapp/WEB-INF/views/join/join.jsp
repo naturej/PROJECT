@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script>
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>
 	<script type="text/javascript">
@@ -165,7 +166,90 @@
 			});
 		});
 		
-		
+		function execDaumPostcode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var fullAddr = ''; // 최종 주소 변수
+	                var extraAddr = ''; // 조합형 주소 변수
+
+	                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    fullAddr = data.roadAddress;
+
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    fullAddr = data.jibunAddress;
+	                }
+
+	                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    //법정동명이 있을 경우 추가한다.
+	                    if(data.bname !== ''){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있을 경우 추가한다.
+	                    if(data.buildingName !== ''){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+	                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+	                }
+
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById("add_code").value = data.postcode1+'-'+data.postcode2;
+	                //document.getElementById("postcode2").value = data.postcode2;
+	                document.getElementById("addr").value = fullAddr;
+
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementById("addd").focus();
+	            }
+	        }).open();
+	    }
+		function execDaumPostcode2() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var fullAddr = ''; // 최종 주소 변수
+	                var extraAddr = ''; // 조합형 주소 변수
+
+	                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    fullAddr = data.roadAddress;
+
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    fullAddr = data.jibunAddress;
+	                }
+
+	                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    //법정동명이 있을 경우 추가한다.
+	                    if(data.bname !== ''){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있을 경우 추가한다.
+	                    if(data.buildingName !== ''){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+	                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+	                }
+
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                //document.getElementById("add_code").value = data.postcode1+'-'+data.postcode2;
+	                //document.getElementById("postcode2").value = data.postcode2;
+	                document.getElementById("farm_add").value = fullAddr;
+
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementById("farm_add_de").focus();
+	            }
+	        }).open();
+	    }
 	</script>
     
     <!-- Section: contact -->
@@ -175,13 +259,13 @@
 	<!-- 회원가입 폼 -->
 	<form action="" method="post" name="joinForm" enctype="multipart/form-data" >
 		<div class="row">
-			<div class="col-md-6 col-lg-6">
+			<div class="col-md-4 col-lg-4">
 				<div class="form-group">
 					<!-- ID 입력 --> 
 					<div class="input-group">
 					<span class="input-group-addon">ID</span>
 					<input type="text" class="form-control" name="user_id" id="user_id" placeholder="UserID" required/>
-					<button type="button" class="btn btn-skin" id="check_user_id">중복확인</button>
+					<input type="button" class="btn btn-skin" id="check_user_id" value="중복확인"/>
 					</div>
 					<!-- 이름 입력 --> 
 					<div class="input-group">
@@ -202,7 +286,7 @@
 					<div class="input-group">
 					<span class="input-group-addon">Email</span>
 					<input type="text" class="form-control" name="email1" id="email1" placeholder="Email" required />@
-					<select name="email2" id="email2" >
+					<select name="email2" id="email2" class="">
 						<option value="" selected>이메일선택</option>
 						<option value="naver.com">naver.com</option>
 						<option value="dreamwiz.com">dreamwiz.com</option>
@@ -226,23 +310,24 @@
 						<option value="1">직접입력</option>
 					</select> 
 					<input type="text" class="form-control" name="email3" id="email3" style="display: none">
-					<input type="button" value="확인" id="check_email" >
+					<input type="button" class="btn btn-skin" value="확인" id="check_email" >
 					<input type="text" class="form-control" name="email" id="email" readonly="readonly">
 					</div>
 					<!-- 우편번호 입력 --> 
 					<div class="input-group">
 					<span class="input-group-addon">우편번호</span>
-					<input type="text" class="form-control" name="add_code" placeholder="AddressCode" required/>
+					<input type="text" class="form-control" name="add_code" id="add_code" placeholder="AddressCode" required readonly="readonly"/>
+					<input type="button" class="btn btn-skin " onclick="execDaumPostcode()" value="우편번호 찾기">
 					</div>
 					<!-- 지역주소 -->
 					<div class="input-group">
 					<span class="input-group-addon">지역주소</span>
-					<input type="text" class="form-control" name="addr" placeholder="Address" required/>
+					<input type="text" class="form-control" name="addr" id="addr" placeholder="Address" required readonly="readonly"/>
 					</div>
 					<!-- 세부주소 -->
 					<div class="input-group">
 					<span class="input-group-addon">세부주소</span>
-					<input type="text" class="form-control" name="addd" placeholder="Address" required/>
+					<input type="text" class="form-control" name="addd" id="addd" placeholder="Address" required/>
 					</div>
 					<!-- 전화번호 -->
 					<div class="input-group">
@@ -261,15 +346,19 @@
 						<span class="input-group-addon">농장 이름</span>
 						<input type="text" class="form-control" name="farminfo" placeholder="FarmID" required/>
 						</div>
+						<div class="input-group">
+						<span class="input-group-addon">우편번호</span>
+						<input type="button" class="btn btn-skin " onclick="execDaumPostcode2()" value="우편번호 찾기">
+						</div>
 						<!-- 농장지역 -->
 						<div class="input-group">
 						<span class="input-group-addon">농장지역</span>
-						<input type="text" class="form-control" name="farm_add" placeholder="FarmAddress" required/>
+						<input type="text" class="form-control" name="farm_add" id="farm_add" placeholder="FarmAddress" required readonly="readonly"/>
 						</div>
 						<!-- 세부주소 -->
 						<div class="input-group">
 						<span class="input-group-addon">농장 세부주소</span>
-						<input type="text" class="form-control" name="farm_add_de" placeholder="FarmAddress" required/>
+						<input type="text" class="form-control" name="farm_add_de" id="farm_add_de" placeholder="FarmAddress" required readonly="readonly"/>
 						</div>
 						<!-- 농장 주요작물 -->
 						<div class="input-group">
@@ -289,10 +378,7 @@
 					</c:if>
 				</div>
 			</div>
-			<div class="col-md-6 col-lg-8">
-				<button type="button" class="btn btn-skin pull-center" onclick="checkfield()">가입확인</button>
-				<button type="reset" class="btn btn-skin pull-center">취 소</button>
-			</div>
+			
 		</div>
 		
 		<c:choose>
@@ -304,6 +390,10 @@
 			</c:otherwise>
 		</c:choose>
 	</form>
+	<div class="col-md-4 col-lg-4">
+		<button type="button" class="btn btn-skin pull-center" onclick="checkfield()">가입확인</button>
+		<button type="reset" class="btn btn-skin pull-center">취 소</button>
+	</div>
 	</div>
 	</section>
 	<div id="dialog" title="title">
