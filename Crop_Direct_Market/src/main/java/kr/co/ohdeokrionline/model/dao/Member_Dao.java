@@ -2,6 +2,7 @@ package kr.co.ohdeokrionline.model.dao;
 
 import java.sql.SQLException;
 
+import kr.co.ohdeokrionline.model.vo.FarmRecord_DTO;
 import kr.co.ohdeokrionline.model.vo.Member_DTO;
 
 public interface Member_Dao {
@@ -11,4 +12,5 @@ public interface Member_Dao {
 	String getPwdByUser_idAndEmail(String user_id,String email) throws SQLException;
 	String check_user_id(String user_id) throws SQLException;
 	String check_email(String email) throws SQLException;
+	int userInfoUpdate(Member_DTO member) throws ClassNotFoundException, SQLException;
 }

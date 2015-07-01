@@ -1588,8 +1588,8 @@ hr {
 /* ///////////////////////  General Section   /////////////////////// */
 
 .home-section {
-    padding-top: 110px;
-    padding-bottom: 110px;
+    padding-top: 100px;
+    padding-bottom: 40px;
 	display:block;
     position:relative;
     z-index:120;
@@ -1946,7 +1946,7 @@ footer p {
     }
 	
     .intro {
-        height: 83%;
+        height: 72%;
         padding: 0;
     }
 

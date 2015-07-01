@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.ohdeokrionline.model.dao.Freem_Dao">
+	
+		 <!--   게시판 글 수  -->	
+		 <select id="getCount" resultType="Integer">
+		  SELECT COUNT(*) FROM FREEM
+		</select>
+		
+		 <!--   게시판 리스트  -->	
+	    <select id="getFreemlist" parameterType="Integer" resultType="kr.co.ohdeokrionline.model.vo.Freem_DTO">
+	
+	     SELECT * FROM
+	               (SELECT ROWNUM NUM, N.* 
+	            	   FROM 
+	               		 (SELECT * 
+	                       FROM FREEM ORDER BY WRITEDATE DESC) N
+	                )WHERE NUM BETWEEN 1 + (#{page}-1)*10 AND 10 + (#{page}-1)*10
+	    </select>
+	 	
+	 	 <!--   게시판 상세보기 -->	
+	 	 <select id="detailboard" resultType="kr.co.ohdeokrionline.model.vo.Freem_DTO">
+	     SELECT * FROM BOARD WHERE FM_ID=#{fm_id}
+	    </select>
+	    	    
+	    <!--   게시판 글 쓰기 -->	
+	    <insert id="insert" parameterType="kr.co.ohdeokrionline.model.vo.Freem_DTO">
+	      INSERT INTO FREEM(FM_ID,FM_DATE,FM_LOCATION,FM_TIME,FM_PHOTO,FM_CONTENT,FM_SUBJECT,FARMINFO,PRO_NAME,WRITEDATE)
+	      VALUES(FM_Seq.nextval,#{fm_date},#{fm_location},#{fm_time},#{fm_photo,jdbcType=VARCHAR},#{fm_content},#{fm_subject},#{farminfo},#{pro_name},SYSDATE)   
+	     </insert>
+	     
+	    <!--   U update   -->
+	   <update id="update" >
+	       UPDATE FREEM SET FM_SUBJECT=#{subject},FM_CONTENT=#{content}, 
+	                      FM_PHOTO=#{fm_photo,jdbcType=VARCHAR} WHERE FM_ID=#{fm_id,jdbcType=INTEGER}
+	   </update>
+		
+		<!--   D delete   -->
+		<delete id="delete" parameterType="STRING">
+		      DELETE FREEM WHERE FM_ID=#{fm_id,jdbcType=INTEGER}
+		</delete>  
+		
+	
+</mapper>

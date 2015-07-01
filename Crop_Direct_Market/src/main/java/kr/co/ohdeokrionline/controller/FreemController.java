@@ -14,6 +14,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.ohdeokrionline.model.vo.Freem_DTO;
+import kr.co.ohdeokrionline.model.dao.Freem_Dao;
+
 import kr.co.ohdeokrionline.model.dao.Enuri_Dao;
 import kr.co.ohdeokrionline.model.dao.Message_Dao;
 import kr.co.ohdeokrionline.model.dao.Report_Dao;
@@ -42,34 +45,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Controller
-@RequestMapping("/salesboard/")
-public class SalesBoardController {
+@RequestMapping("/freemboard/")
+public class FreemController {
 	@Autowired
 	private SqlSession sqlSession;
 	
-//	salesboard 완성된 이후
-//	HashMap<String, String> input = new HashMap<String, String>();
 	//판매글 리스트 출력
-	@RequestMapping("salboardlist.five")
-	public String salboardlist(String pg,Model model,HttpServletRequest request) throws ClassNotFoundException, SQLException{
-		//(String pg , String f , String q , Model model)
+	@RequestMapping("freemboardlist.five")
+	public String freemboardlist(String pg,Model model,HttpServletRequest request) throws ClassNotFoundException, SQLException{
+		
 		int page = 1;
-		//String field = "TITLE";
-		//String query ="%%";
 		if(pg != null && !pg.equals("")){
 			page = Integer.parseInt(pg);
 		}
-		//if(f != null && !f.equals("")){
-		//	field = f;
-		//}
-		//if(q != null && !q.equals("")){
-		//	query = q;
-		//}
-		//System.out.println(pg+" / "+f+" / "+q);
+
 		System.out.println(page);
-		SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
+		Freem_Dao freemDao= sqlSession.getMapper(Freem_Dao.class);
 		
-		int total = salboardDao.getCount();
+		int total = freemDao.getCount();
 		System.out.println(total);
 		int listnum=16;
 		int maxpage=0;
@@ -85,7 +78,7 @@ public class SalesBoardController {
 		
 		if(endpage>startpage+16-1) endpage=startpage+16-1;
 		
-		List<SalesBoard_DTO> list = salboardDao.saleslist(page);
+		List<Freem_DTO> list = freemDao.getFreemlist(page);
 		model.addAttribute("list", list);
 		System.out.println("page : "+page+" maxpage : "+maxpage+" startpage : "+startpage+" endpage : "+endpage);
 		request.setAttribute("page",page);
@@ -95,25 +88,25 @@ public class SalesBoardController {
 		
 		//System.out.println(pg+" / "+f+" / "+q);
 		
-		return "salesboard.salboardlist";
+		return "freemboard.freemboardlist";
 		}
 		
 		//판매글등록
-		 @RequestMapping(value="salboardwrite.five" , method=RequestMethod.GET)
-		 public String salboardReg(Model model,Principal principal){
+		 @RequestMapping(value="freemboardwrite.five" , method=RequestMethod.GET)
+		 public String freemboardReg(Model model,Principal principal){
 			 	model.addAttribute("user_id",principal.getName());
-				return "salesboard.salboardwrite";
+				return "freemboard.freemboardwrite";
 		  }
 
 	 	//판매글등록 처리(실제 글등록 처리)
-	 	@RequestMapping(value="salboardwrite.five",method=RequestMethod.POST)
-	 	public String salboardReg(SalesBoard_DTO n, HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException{
+	 	@RequestMapping(value="freembaordboardwrite.five",method=RequestMethod.POST)
+	 	public String salboardReg(Freem_DTO n, HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException{
 				
 		 			CommonsMultipartFile file =n.getFile();
 		 			System.out.println(file);
 		 			String fname = file.getOriginalFilename();
-			       if(file != null){
-					String path = request.getServletContext().getRealPath("/salesboard/upload");
+		 			if(file != null){
+					String path = request.getServletContext().getRealPath("/freemboard/upload");
 					String fullpath = path + "\\" + fname;
 					
 					if(!fname.equals("")){
@@ -125,11 +118,11 @@ public class SalesBoardController {
 			       }
 			      
 			       System.out.println(fname);
-			       SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
-					n.setBo_photo(fname);
+			       Freem_Dao freemDao= sqlSession.getMapper(Freem_Dao.class);
+					n.setFm_photo(fname);
 				  //n.setUser_id(principal.getName());
-					salboardDao.insert(n);
-					return "redirect:salboardlist.five"; //요청 주소
+					freemDao.insert(n);
+					return "redirect:freemboardlist.five"; //요청 주소
 	 		}	
 	
 	 	//판매글상세보기
@@ -472,7 +465,7 @@ public class SalesBoardController {
 	@RequestMapping("reportPopup.five")
 	public String reportPopup(Model model, Principal principal){
 		model.addAttribute("user_send",principal.getName());
-		return "marketplace.reportForm";
+		return "marketplace/reportForm";
 	} 
 
 	// 신고하기
@@ -481,16 +474,6 @@ public class SalesBoardController {
 		Report_Dao dao = sqlSession.getMapper(Report_Dao.class);
 		dao.reportInsert(dto);
 		System.out.println("신고완료");
-	}
-	
-	// 신고 리스트
-	@RequestMapping("reportList.five")
-	public String reportList(Model model){
-		Report_Dao dao = sqlSession.getMapper(Report_Dao.class);
-		ArrayList<Report_DTO> list = dao.reportList();
-		model.addAttribute("list",list);
-		
-		return "mypage.reportList";
 	}
 
 	//주문 처리

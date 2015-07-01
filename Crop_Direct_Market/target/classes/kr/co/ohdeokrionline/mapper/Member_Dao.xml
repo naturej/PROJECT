@@ -30,4 +30,10 @@
 	<select id="check_email" resultType="string">
 		select email from users where email=#{email}
 	</select>
+	
+	<update id="userInfoUpdate" parameterType="kr.co.ohdeokrionline.model.vo.Member_DTO">
+		update users
+		set password=#{password},email=#{email},photo=#{photo},addr=#{addr},addd=#{addd},cell_phone=#{cell_phone},add_code=#{add_code}
+		where user_id=#{user_id}
+	</update>
 </mapper>
