@@ -73,7 +73,7 @@
 							<li><a href="<%=request.getContextPath()%>/manage/ordermanage.five">주문관리</a></li>
 							<li><a href="<%=request.getContextPath()%>/mypage/userInfo.five">회원정보</a></li>
 							<se:authorize ifAllGranted="ROLE_ADMIN">
-								<li><a href="<%=request.getContextPath()%>/mypage/reportList.five">신고목록</a></li>
+								<li><a href="<%=request.getContextPath()%>/salesboard/reportList.five">신고목록</a></li>
 							</se:authorize>
 						</ul>
 					</dd>
