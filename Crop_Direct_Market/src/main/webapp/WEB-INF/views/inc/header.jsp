@@ -23,10 +23,20 @@
 			class="collapse navbar-collapse navbar-right navbar-main-collapse">
 			<ul class="nav navbar-nav" style="background-color: #1ABC9C">
 				<li><a href="<%=request.getContextPath()%>/board/boardlist.five">BOARD</a></li>
-				<li><a href="<%=request.getContextPath()%>/salesboard/salboardlist.five">SALESBOARD</a></li>
-				<li><a href="<%=request.getContextPath()%>/marketlist.five">MARKET</a></li>
-				<li><a href="<%=request.getContextPath()%>/freemboard/freemboardlist.five">FREEMARKET</a></li>
 
+				<li class="dropdown">
+					<dt id="three-ddheader" onmouseover="ddMenu('three',1)"	onmouseout="ddMenu('three',-1)">
+						<a style="padding: 15px;">MARKET<b class="caret"></b></a>
+					</dt>
+					<dd id="three-ddcontent" onmouseover="cancelHide('three')" onmouseout="ddMenu('three',-1)">
+						<ul style="background: #99DDD0; width: 120px;">
+							<li><a href="<%=request.getContextPath()%>/salesboard/salboardlist.five">OnlinMarket</a></li>
+							<li><a href="<%=request.getContextPath()%>/marketlist.five">OfflineMarket</a></li>
+							<li><a href="<%=request.getContextPath()%>/freemboard/freemboardlist.five">FreeMarket</a></li>	
+						</ul>
+					</dd>
+				</li>
+				
 				<li class="dropdown">
 					<dt id="one-ddheader" onmouseover="ddMenu('one',1)"
 						onmouseout="ddMenu('one',-1)">
@@ -42,14 +52,21 @@
 							<li><a href="<%=request.getContextPath()%>/OpenDB_Api.five">오픈백과</a></li>
 						</ul>
 					</dd>
-					<li class="dropdown">
-             	<a href="#" class="dropdown-toggle" data-toggle="dropdown">농장관리<b class="caret"></b></a>
-            	<ul class="dropdown-menu">
-                	<li><a href="<%=request.getContextPath()%>/farmmanage/daecha.five">새 대차대조표</a></li>
-                	<li><a href="<%=request.getContextPath()%>/farmmanage/daechaStatics.five">대차대조표 확인</a></li>
-                </ul>
 				</li>
-
+				
+				<li class="dropdown">
+					<dt id="four-ddheader" onmouseover="ddMenu('four',1)"
+						onmouseout="ddMenu('four',-1)">
+						<a style="padding: 15px;">농장관리<b class="caret"></b></a>
+					</dt>
+					<dd id="four-ddcontent" onmouseover="cancelHide('four')"
+						onmouseout="ddMenu('four',-1)">
+						<ul style="background: #99DDD0; width: 120px;">
+							<li><a href="<%=request.getContextPath()%>/farmmanage/daecha.five">새 대차대조표</a></li>
+                			<li><a href="<%=request.getContextPath()%>/farmmanage/daechaStatics.five">대차대조표 확인</a></li>
+						</ul>
+					</dd>
+				</li>
 
 				<li class="dropdown">
 					<dt id="two-ddheader" onmouseover="ddMenu('two',1)"
