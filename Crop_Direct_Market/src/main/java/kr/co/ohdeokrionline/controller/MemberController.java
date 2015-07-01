@@ -134,7 +134,7 @@ public class MemberController {
 		return "home.index";
 	}
 	
-	
+	// 비밀번호 암호화
 	@RequestMapping(value="passwordEncoder.five",method={RequestMethod.GET,RequestMethod.POST})
 	String passwordEncoder(@RequestParam(value="password",required=false,defaultValue="")String password, Model model) throws IOException{
 		if(StringUtils.hasText(password)){
@@ -154,6 +154,7 @@ public class MemberController {
 		return "";
 	}
 	
+	// ID, 비밀번호 찾기
 	@RequestMapping(value="searchForm.five",method=RequestMethod.GET)
 	String search(){
 		return "login.searchForm";
@@ -195,11 +196,12 @@ public class MemberController {
 			if(pwd!=null){
 				while((str=br.readLine())!=null){
 					if(passwordEncoder.matches(str, pwd)){
-						System.out.println(str);
+						String str2 = str.replace(str.substring(str.length()-2, str.length()), "**");
+						System.out.println(str2);
 						msg.setTo(email);
-						msg.setText(user_id+" 님의 비밀번호는 "+str+" 입니다.");
+						msg.setText(user_id+" 님의 비밀번호는 "+str2+" 입니다.");
 						mailSender.send(msg);
-						model.addAttribute("user_id", str);
+						model.addAttribute("user_id", "메일이 발송되었습니다.");
 						return "login/id_search";
 					}
 				}
@@ -213,6 +215,7 @@ public class MemberController {
 		return null;
 	}
 	
+	// 중복체크
 	@RequestMapping(value="check_user_id.five",method=RequestMethod.POST)
 	String check_user_id(String user_id,Model model){
 		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);

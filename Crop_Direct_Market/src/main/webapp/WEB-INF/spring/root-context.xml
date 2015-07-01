@@ -47,6 +47,6 @@
 	</bean>
 	<bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
 		<property name="from" value="sangmoon3665@gmail.com" />
-		<property name="subject" value="Your order" />
+		<property name="subject" value="Your Password from OhdeokriOnline" />
 	</bean>
 </beans>
