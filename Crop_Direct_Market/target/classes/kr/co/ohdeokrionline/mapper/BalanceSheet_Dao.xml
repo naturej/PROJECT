@@ -5,10 +5,21 @@
 <mapper namespace=
 	"kr.co.ohdeokrionline.model.dao.BalanceSheet_Dao">
 	<resultMap type="java.util.HashMap" id="hashmap"/>
+	<resultMap type="java.util.ArrayList" id="arraylist"/>
 	<select id="totalsell" resultType="Integer">
 		select nvl(sum(or_cost), 0) from orderlist where or_state='확인' and sell_userid=#{sell_user}
 	</select>
 	<select id="sellpercent" resultType="hashmap">
 		select nvl(sum(sal_on), 0) as indir, nvl(sum(sal_mar), 0) as dir from balance where user_id=#{seller_user}
 	</select>
+	
+ 	<select id="sellrec" resultType="hashmap">
+		SELECT SUM(OR_COST) AS COST, TO_CHAR(OR_DATE,'MM') AS MONTH
+		FROM orderlist WHERE SELL_USERID=#{seller_user} AND or_state='WAIT' and TO_CHAR(OR_DATE,'MM')
+		IN (<![CDATA[SELECT DISTINCT TO_CHAR(OR_DATE,'MM') AS OR_DATE FROM orderlist
+			WHERE TO_CHAR(SYSDATE,'MM')-TO_CHAR(OR_DATE,'MM') < 6]]>) 
+		GROUP BY TO_CHAR(OR_DATE,'MM') ORDER BY TO_CHAR(OR_DATE,'MM')  
+	</select> 
+	
+	
 </mapper>
