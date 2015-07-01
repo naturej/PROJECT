@@ -1,5 +1,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%> 
+<%@page import="java.util.Calendar" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,6 +17,8 @@
 
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
 
@@ -41,6 +44,15 @@
 <!--div 드래그 이동에 들어갈 날씨 위젯 스크립트  -->
 <script>
 $(function() {
+		
+		$('#click_on_off').click(function(){
+			 //console.log(on_off);
+		     if(on_off.style.display=="block"){ 
+		    	 on_off.style.display = "none"; 
+		   	 }else{ 
+		   		on_off.style.display = "block"; 
+		   	 }
+		});
 	
 	console.log("<%=request.getContextPath()%>");
         $('#widget_layer').draggable();
@@ -592,29 +604,38 @@ $(function() {
 
 <%
 Date d = new Date();
+Calendar time=Calendar.getInstance ( );  
+
 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 SimpleDateFormat sdf1 = new SimpleDateFormat("HH00");
+  
+time.add(Calendar.HOUR_OF_DAY, -1 ); 
+int Day_time = time.get( Calendar.HOUR_OF_DAY);
 
+System.out.println("현재시간 : "+ sdf1.format(Day_time));
 System.out.println("현재시간 : "+ sdf1.format(d));
+
 String base_date=sdf.format(d);  
-String base_time="0800";//sdf1.format(d) ;  
+String base_time=sdf1.format(Day_time) ;  
 %>
 </script>
 </head>
 <body>
-
+ 
 	<div id=widget_layer>
-		<input type="text" id="text_search" style="width: 50px"/>
-		<input type="button"id="button_search" value="동/읍 검색" /> 
-		<select id="select_search" style="width: 180px"><option>선택하세요</option></select>
-		<input type="hidden" id="search_nx" readonly="readonly">
-		<input type="hidden" id="search_ny" readonly="readonly">
-		<input type="hidden" id="base_date" value="<%=base_date%>">
-		<input type="hidden" id="base_time" value="<%=base_time%>">
 		
-		
-		<table id="drag" class="table table-bordered">  <!-- class="table table-striped" -->
-	  	</table>
+			<input type="text" id="text_search" style="width: 50px"/>
+			<input type="button"id="button_search" value="동/읍 검색" /> 
+			<select id="select_search" style="width: 150px"><option>선택하세요</option></select>
+			<input type="hidden" id="search_nx" readonly="readonly">
+			<input type="hidden" id="search_ny" readonly="readonly">
+			<input type="hidden" id="base_date" value="<%=base_date%>">
+			<input type="hidden" id="base_time" value="<%=base_time%>">
+			<span class="glyphicon glyphicon-off" aria-hidden="true" id="click_on_off" style="float: right;"></span> 
+		<div id="on_off" style="display:none">	
+			<table id="drag" class="table table-bordered">  <!-- class="table table-striped" -->
+	  		</table>
+	  	</div>
 	</div>
 
 </body>

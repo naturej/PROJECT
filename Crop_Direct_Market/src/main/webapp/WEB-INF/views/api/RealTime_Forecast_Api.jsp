@@ -1,5 +1,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
+<%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -425,13 +426,22 @@
 	
 <%
 	Date d = new Date();
+	Calendar time=Calendar.getInstance ( );  
+	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 	SimpleDateFormat sdf1 = new SimpleDateFormat("HH00");
-
+	
+	time.add(Calendar.HOUR_OF_DAY, -1 ); 
+	int Day_time = time.get( Calendar.HOUR_OF_DAY);
+	
 	System.out.println("현재시간 : "+ sdf1.format(d));
+	System.out.println("현재시간 : "+ sdf1.format(d));
+	
 	String base_date=sdf.format(d);  
-	String base_time=sdf1.format(d) ;  
+	String base_time=sdf1.format(Day_time) ;
 %>
+
+
 
 </script> 
 </head>
