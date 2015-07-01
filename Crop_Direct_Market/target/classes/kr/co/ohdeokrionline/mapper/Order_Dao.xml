@@ -14,8 +14,8 @@
 	
 	<!-- 주문 입력 -->
   	<insert id="insert" parameterType="kr.co.ohdeokrionline.model.vo.Board_DTO">
-	      INSERT INTO ORDERLIST(OR_ID,BO_NUM,OR_QUAN,OR_DATE,BUY_USERID,OR_COST,SELL_USERID,OR_STATE)
-	      VALUES(#{or_id},#{bo_num},#{or_quan},SYSDATE,#{buy_userid},#{or_cost},#{sell_userid},'WAIT')   
+	      INSERT INTO ORDERLIST(OR_ID,BO_NUM,OR_QUAN,OR_DATE,BUY_USERID,OR_COST,SELL_USERID,OR_STATE,OR_HOW,ADD_CODE,OR_ADDD,OR_ADDR)
+	      VALUES(#{or_id},#{bo_num},#{or_quan},SYSDATE,#{buy_userid},#{or_cost},#{sell_userid},'입금대기',#{or_how},#{add_code},#{or_addd},#{or_addr})   
 	     </insert>
 	     
 <!-- 주문 번호 생성 -->	    
@@ -54,8 +54,10 @@
           O.OR_COST AS OR_COST,
           O.OR_QUAN AS OR_QUAN,
           O.SELL_USERID AS SELL_USERID,
-          O.OR_STATE AS OR_STATE
+          O.OR_STATE AS OR_STATE,
+          O.OR_HOW AS OR_HOW
           FROM ORDERLIST O JOIN SALBOARD S on O.BO_NUM=S.BO_NUM where O.BUY_USERID=#{buy_userid}
+          ORDER BY O.OR_DATE DESC
 	</select>
 	
 </mapper>

@@ -1,7 +1,10 @@
 package kr.co.ohdeokrionline.model.dao;
 
+import kr.co.ohdeokrionline.model.vo.Member_DTO;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import kr.co.ohdeokrionline.model.vo.ShoppingBasket_DTO;
 
@@ -16,4 +19,6 @@ public interface ShoppingBasket_Dao {
 	public void deleteshop(int bo_num);
 	// 장바구니 비우기
 	public void deleteall();
+	// 회원 정보 보여주기(배송주소)
+	public List<Member_DTO> meminfo(String user_id);
 }	

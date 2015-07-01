@@ -11,6 +11,7 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
+
 <div id="content">
 	<section id="service" class="home-section text-center">
 			<div class="heading-about">
@@ -36,6 +37,7 @@
 			<td>구매갯수</td>
 			<td>판매자</td>
 			<td>총가격</td>
+			<td>배송방법</td>
 			<td>주문상태</td>
 			</tr>
 			<c:set var="sum" value="0"/>
@@ -49,6 +51,7 @@
 			<td>${ord.or_quan}</td>
 			<td>${ord.sell_userid}</td>
 			<td>${ord.or_cost}</td>
+			<td>${ord.or_how}</td>
 			<td>${ord.or_state}</td>
 			</tr>
 			</c:forEach>
@@ -56,6 +59,12 @@
 			<td colspan="8">총 가격:${sum}</td>
 			</tr>
 			</table>	
+			
+						
+			
+			
+			
+			
 			</div>
 		</div>
 	</section>

@@ -16,7 +16,21 @@ public class Order_DTO {
 	String sell_userid;
 	String or_addd;
 	String or_addr;
+	String or_how;
+	String add_code;
 	
+	public String getAdd_code() {
+		return add_code;
+	}
+	public void setAdd_code(String add_code) {
+		this.add_code = add_code;
+	}
+	public String getOr_how() {
+		return or_how;
+	}
+	public void setOr_how(String or_how) {
+		this.or_how = or_how;
+	}
 	public String getOr_addd() {
 		return or_addd;
 	}

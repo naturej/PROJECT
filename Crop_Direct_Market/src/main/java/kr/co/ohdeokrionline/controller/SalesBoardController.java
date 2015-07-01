@@ -1,5 +1,6 @@
 package kr.co.ohdeokrionline.controller;
 
+import kr.co.ohdeokrionline.model.vo.Member_DTO;
 import kr.co.ohdeokrionline.model.vo.Order_DTO;
 import kr.co.ohdeokrionline.model.dao.Order_Dao;
 
@@ -202,6 +203,7 @@ public class SalesBoardController {
 		//품종 select tag 
 		 @RequestMapping("seplist.five")  
 		 public void seplist(HttpServletResponse response) throws IOException{
+		
 			 response.setContentType("text/html;charset=utf-8");
 			 SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
 		 List<Separate_DTO> list = salboardDao.seplist();
@@ -426,8 +428,10 @@ public class SalesBoardController {
 	public String shoplist(Model model, Principal principal) throws SQLException{
 		ShoppingBasket_Dao dao = sqlSession.getMapper(ShoppingBasket_Dao.class);
 		ArrayList<ShoppingBasket_DTO> list = dao.shoplist(principal.getName());
+		List<Member_DTO> meminfo = dao.meminfo(principal.getName());
 		System.out.println(list);
 		model.addAttribute("list",list);
+		model.addAttribute("meminfo",meminfo);
 		
 		return "mypage.shoppingbasket";
 	}
@@ -493,38 +497,55 @@ public class SalesBoardController {
 		return "mypage.reportList";
 	}
 
-	//주문 처리
-	@RequestMapping(value="orderinsert.five", method=RequestMethod.POST)
-	public String orderinsert(Model model,Order_DTO order, String list,Principal principal,HttpServletResponse res) throws IOException{
-				List<String> checklist = JSONArray.fromObject(list);
-				ShoppingBasket_DTO shopbag = new ShoppingBasket_DTO();
-				Order_Dao orderdao = sqlSession.getMapper(Order_Dao.class);
-				String orid = orderdao.orid();
-				System.out.println(checklist);
-				for(int i=0;i<checklist.size();i++){
-					System.out.println(checklist.size());
-				
-				// 주문list 생성 				
-				 order.setBo_num(Integer.parseInt(checklist.get(i).split(",")[0]));	
-				 order.setOr_cost(Integer.parseInt(checklist.get(i).split(",")[1]));
-				 order.setOr_quan(Integer.parseInt(checklist.get(i).split(",")[2]));
-				 order.setSell_userid(checklist.get(i).split(",")[3]);
-				 order.setBuy_userid(principal.getName());
-				 order.setOr_id(orid);
-				 orderdao.insert(order); 
-				 System.out.println("주문 list 삽입성공");
-				//주문 한 내용 장바구니 삭제 
-				 shopbag.setUser_id(principal.getName());
-				 shopbag.setBo_num(Integer.parseInt(checklist.get(i).split(",")[0]));
-				 shopbag.setSh_quantity(Integer.parseInt(checklist.get(i).split(",")[2]));
-				 orderdao.delshopbag(shopbag);
-				 System.out.println("장바구니 삭제 성공");
+		//주문 처리
+		@RequestMapping(value="orderinsert.five", method=RequestMethod.POST)
+		public String orderinsert(Model model,Order_DTO order,String list,Principal principal,HttpServletResponse res,String add_code,String addd,String addr) throws IOException{
+					
+					List<String> checklist = JSONArray.fromObject(list);
+					ShoppingBasket_DTO shopbag = new ShoppingBasket_DTO();
+					Order_Dao orderdao = sqlSession.getMapper(Order_Dao.class);
+					String orid = orderdao.orid();
+					System.out.println(checklist);
+					for(int i=0;i<checklist.size();i+=2){
+						System.out.println(checklist.size());
+						System.out.println(checklist.get(i+1));
+					// 주문list 생성 				
+					 order.setBo_num(Integer.parseInt(checklist.get(i).split(",")[0]));	
+					 order.setOr_cost(Integer.parseInt(checklist.get(i).split(",")[1]));
+					 order.setOr_quan(Integer.parseInt(checklist.get(i).split(",")[2]));
+					 order.setSell_userid(checklist.get(i).split(",")[3]);
+					 order.setBuy_userid(principal.getName());
+					 order.setOr_id(orid);
+					 order.setOr_how(checklist.get(i+1));
+					 //택배면 택배주소 들어가게 insert
+					 if(checklist.get(i+1).equals("택배")){
+						 System.out.println(checklist.get(i+1));
+						 System.out.println(add_code);
+						 System.out.println(addd);
+						 System.out.println(addr);
+						 order.setAdd_code(add_code);
+						 order.setOr_addd(addd);
+						 order.setOr_addr(addr);
+					 }else{
+						 order.setAdd_code("직거래");
+						 order.setOr_addd("직거래");
+						 order.setOr_addr("직거래");
+					 }
+					 
+					 orderdao.insert(order); 
+					 System.out.println("주문 list 삽입성공");
+					//주문 한 내용 장바구니 삭제 
+					 shopbag.setUser_id(principal.getName());
+					 shopbag.setBo_num(Integer.parseInt(checklist.get(i).split(",")[0]));
+					 shopbag.setSh_quantity(Integer.parseInt(checklist.get(i).split(",")[2]));
+					 orderdao.delshopbag(shopbag);
+					 System.out.println("장바구니 삭제 성공");
+						}
+					String user_id = principal.getName();
+					List<Order_DTO> orderlist = orderdao.orderlist(user_id); 
+					model.addAttribute("orderlist",orderlist);
+			         return "mypage.ordermanage";
 					}
-				String user_id = principal.getName();
-				List<Order_DTO> orderlist = orderdao.orderlist(user_id); 
-				model.addAttribute("orderlist",orderlist);
-		         return "mypage.ordermanage";
-				}
 	
 	
 }
