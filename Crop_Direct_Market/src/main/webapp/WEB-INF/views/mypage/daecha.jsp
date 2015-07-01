@@ -13,7 +13,6 @@ String year=cal.get(Calendar.YEAR)+"년";
 String month=cal.get(Calendar.MONTH)+1+"월";
 String day =cal.get(Calendar.DAY_OF_MONTH)+"일";
 String result= year+" "+month+" "+day+" ";
-
 %>
 <script type="text/javascript">
 	

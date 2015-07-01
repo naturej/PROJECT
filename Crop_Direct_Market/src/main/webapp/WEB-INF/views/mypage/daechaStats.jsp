@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -6,11 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	$(function() {
-	});
-</script>
-<!doctype html>
 <head>
 <title>Doughnut Chart</title>
 <script src="<%=request.getContextPath()%>/js/Chart.js"></script>
@@ -35,21 +31,36 @@ body {
 						<div class="section-heading">
 							<h2>대차대조 입력</h2>
 							<i class="fa fa-2x fa-angle-down"></i>
-							<p>온라인/직거래 판매비율</p>
+							<p>대차대조 통계</p>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div id="canvas-holder">
-				<canvas id="chart-area" width="500" height="500" />
-			</div>
-
+			<table class="table table-hover">
+				<tr>
+					<td>온라인/직거래 비율</td>
+					<td>월별 매출현황</td>
+				</tr>
+				<tr>
+					<td>
+						<div style="margin-top: 50%;">
+							<canvas id="canvas" width=200 height="200" />
+						</div>
+					</td>
+					<td>
+						<div>
+							<canvas id="canvas2" height="450" width="600" />
+						</div>
+					</td>
+				</tr>
+			</table>
 			<script>
-			var dir=${dir};
-			var indir=${indir};
-			var total= parseInt(dir)+parseInt(indir);
-			var perdir = Math.round(parseInt(dir)/parseInt(total)*100);
-			var perindir =Math.round(parseInt(indir)/parseInt(total)*100);
+				var dir = ${dir};
+				var indir = ${indir};
+				var total = parseInt(dir) + parseInt(indir);
+				var perdir = Math.round(parseInt(dir) / parseInt(total) * 100);
+				var perindir = Math.round(parseInt(indir) / parseInt(total)
+						* 100);
 				var doughnutData = [ {
 					value : perdir,
 					color : "#F7464A",
@@ -63,13 +74,68 @@ body {
 				} ];
 
 				window.onload = function() {
-					var ctx = document.getElementById("chart-area").getContext(
-							"2d");
+					var ctx = document.getElementById("canvas")
+							.getContext("2d");
 					window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
 						responsive : true
-					}); 
-					
-				}; 
-			</script> 
+					});
+					var ctx = document.getElementById("canvas2").getContext(
+							"2d");
+					window.myLine = new Chart(ctx).Line(lineChartData, {
+						responsive : true
+					});
+
+				};
+			</script>
+			<% Calendar cal= Calendar.getInstance();
+String year=cal.get(Calendar.YEAR)+"년";
+String month=cal.get(Calendar.MONTH)+1+"월";
+String day =cal.get(Calendar.DAY_OF_MONTH)+"일";
+String result= year+" "+month+" "+day+" ";
+%>
+			<script>
+				var randomScalingFactor = function() {
+					return Math.round(Math.random() * 100)
+				};
+				var lineChartData = {
+					labels : [ "<%=year+"1월"%>","<%=year+"2월"%>","<%=year+"3월"%>","<%=year+"4월"%>",
+					           "<%=year+"5월"%>","<%=year+"6월"%>","<%=year+"7월"%>","<%=year+"8월"%>",
+					           "<%=year+"9월"%>","<%=year+"10월"%>","<%=year+"1월"%>","<%=year+"12월"%>"],
+					datasets : [
+							{
+								label : "My First dataset",
+								fillColor : "rgba(220,220,220,0.2)",
+								strokeColor : "rgba(220,220,220,1)",
+								pointColor : "rgba(220,220,220,1)",
+								pointStrokeColor : "#fff",
+								pointHighlightFill : "#fff",
+								pointHighlightStroke : "rgba(220,220,220,1)",
+								data : [ randomScalingFactor(),
+										randomScalingFactor(),
+										randomScalingFactor(),
+										randomScalingFactor(),
+										randomScalingFactor(),
+										randomScalingFactor(),
+										randomScalingFactor() ]
+							},
+							{
+								label : "My Second dataset",
+								fillColor : "rgba(151,187,205,0.2)",
+								strokeColor : "rgba(151,187,205,1)",
+								pointColor : "rgba(151,187,205,1)",
+								pointStrokeColor : "#fff",
+								pointHighlightFill : "#fff",
+								pointHighlightStroke : "rgba(151,187,205,1)",
+								data : [ randomScalingFactor(),
+										randomScalingFactor(),
+										randomScalingFactor(),
+										randomScalingFactor(),
+										randomScalingFactor(),
+										randomScalingFactor(),
+										randomScalingFactor() ]
+							} ]
+
+				}
+			</script>
 </body>
 </html>

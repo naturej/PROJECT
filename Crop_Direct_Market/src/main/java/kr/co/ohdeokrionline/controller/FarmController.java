@@ -43,7 +43,6 @@ public class FarmController {
 		BalanceSheet_Dao dao = sqlsession.getMapper(BalanceSheet_Dao.class);
 		Map<String, Integer> map = dao.sellpercent(principal.getName());
 		System.out.println(map);
-		
 		model.addAttribute("dir", map.get("DIR"));
 		model.addAttribute("indir", map.get("INDIR"));
 		return "mypage.daechaStats";

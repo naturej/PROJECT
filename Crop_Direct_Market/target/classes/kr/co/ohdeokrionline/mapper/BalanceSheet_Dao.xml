@@ -8,8 +8,7 @@
 	<select id="totalsell" resultType="Integer">
 		select nvl(sum(or_cost), 0) from orderlist where or_state='확인' and sell_userid=#{sell_user}
 	</select>
-	
 	<select id="sellpercent" resultType="hashmap">
-		select nvl(sal_on, 0) as indir, nvl(sal_mar, 0) as dir from balance where user_id=#{sell_user}
+		select nvl(sum(sal_on), 0) as indir, nvl(sum(sal_mar), 0) as dir from balance where user_id=#{seller_user}
 	</select>
 </mapper>
