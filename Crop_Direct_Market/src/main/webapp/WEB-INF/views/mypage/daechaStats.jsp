@@ -107,9 +107,9 @@ String result= year+" "+month+" "+day+" ";
 					datasets : [
 							{
 								label : "My First dataset",
-								fillColor : "rgba(150,220,220,0.2)",
-								strokeColor : "rgba(220,150,220,2)",
-								pointColor : "rgba(220,0,220,2)",
+								fillColor : "rgba(100,170,170,0.2)",
+								strokeColor : "rgba(100,0,0,2)",
+								pointColor : "rgba(150,0,0,2)",
 								pointStrokeColor : "#000",
 								pointHighlightFill : "#000",
 								pointHighlightStroke : "rgba(220,220,220,1)",
@@ -119,7 +119,24 @@ String result= year+" "+month+" "+day+" ";
 								         "${c3}",
 								         "${c4}",
 								         "${c5}"]
-							}]
+							},
+							{
+								label : "My First dataset",
+								fillColor : "rgba(222,220,220,0.2)",
+								strokeColor : "rgba(180,50,0,2)",
+								pointColor : "rgba(140,50,0,2)",
+								pointStrokeColor : "#000",
+								pointHighlightFill : "#000",
+								pointHighlightStroke : "rgba(220,220,220,1)",
+								data : [ 
+								         "${c1}",
+								         "${c2}",
+								         "${c3}",
+								         "${c4}",
+								         "${c5}",
+								         "0"]
+							}
+							]
 
 				}
 			</script>
