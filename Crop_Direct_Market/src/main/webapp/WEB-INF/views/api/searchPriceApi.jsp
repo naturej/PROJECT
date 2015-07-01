@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
 
-<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">   
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" type="text/css">   
+<!--위제에 같은 스크립트가 있어서 충돌 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script> -->
 
 <!--Api 데이터를 요청하는 함수  -->
 <script type="text/javascript">
@@ -24,7 +26,7 @@
 			success : function(data) { //서버가 보낸 즉 응답받은 data
 
 				data = JSON.parse(data);
-				//console.log(data); 
+				console.log(data); 
 					
 				$('#table').empty(); //테이블을 비워 데이터 출력 겹치는것을 방지
 				//화면에 뿌릴 데이터의 컬럼명을 for문으로 뿌림
@@ -61,7 +63,8 @@
 				success : function(data) { //서버가 보낸 data
 					
 					data = JSON.parse(data);
-
+					console.log(data); 
+					
 					$('#table').empty();
 					
 					for ( var _title in data.title) {

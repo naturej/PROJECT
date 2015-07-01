@@ -2,16 +2,18 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
 
-	
 <!--날씨아이콘 css 설정  -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">  
-<link rel="stylesheet" href="../css/weather-icons-master/css/weather-icons.css"  type="text/css">
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" type="text/css">  
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/weather-icons-master/css/weather-icons.css"  type="text/css">
 
+
+
+  
 
 <!--Api 데이터를 요청하는 함수  -->
 <script type="text/javascript">
@@ -26,7 +28,7 @@
 		
 		//비동기로 위도,경도 좌표를 position.json 에서 뽑아냄
 		$.ajax({
-			url : '../position.json',
+			url : 'position.json',
 			success : function(data) { //서버가 보낸 data
 				
 				
@@ -213,6 +215,7 @@
 						var category = data.body.items[i].category; 
 						var weather_icon = "";
 						var obsrValue = data.body.items[i].obsrValue;
+						
 						
 						//기온
 					 	if(category=="T1H"){
@@ -423,11 +426,11 @@
 <%
 	Date d = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-	SimpleDateFormat sdf1 = new SimpleDateFormat("hh00");
-	
+	SimpleDateFormat sdf1 = new SimpleDateFormat("HH00");
+
 	System.out.println("현재시간 : "+ sdf1.format(d));
 	String base_date=sdf.format(d);  
-	String base_time=sdf1.format(d);   
+	String base_time=sdf1.format(d) ;  
 %>
 
 </script> 
@@ -435,6 +438,10 @@
 
 <body>
 
+
+
+	
+   
 	<!-- Section: services -->
     <section id="service" class="home-section text-center">
 		<div class="heading-about">
@@ -467,7 +474,7 @@
 			<tr>
 				<td width=190>지역
 					<select id="large" >
-						<option>선택하세요  </option>
+						<option>선택하세요</option>
 					</select>
 				</td>
 				<td width=190>시,군
@@ -497,7 +504,7 @@
 	</form>	
 	<hr>
 
-		<table id="table"class="table table-striped" >
+		<table id="table" class="table table-striped" >
 			
 		</table>
 				
@@ -519,6 +526,8 @@
 
 	
 	
+
+
 
 	
 

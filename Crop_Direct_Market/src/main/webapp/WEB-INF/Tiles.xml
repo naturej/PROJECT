@@ -8,8 +8,10 @@
 	<!-- return home.index -->
 	<definition name="home.*" template="/WEB-INF/views/inc/layout.jsp"> 
 		<put-attribute name="header"  value="/WEB-INF/views/inc/header.jsp" /> 
-		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" /> 
-		<put-attribute name="content" value="/{1}.jsp" /> 
+		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" /> 		
+		<put-attribute name="content" value="/{1}.jsp" />	
+		<put-attribute name="widget" value="/WEB-INF/views/inc/Widget_Forecast_Api.jsp" />			
+		  
 	</definition>
 	<definition name="login.searchForm" template="/WEB-INF/views/inc/searchForm_layout.jsp">
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
@@ -18,6 +20,7 @@
 	<definition name="*.*" template="/WEB-INF/views/inc/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
-		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />	
+		<put-attribute name="widget" value="/WEB-INF/views/inc/Widget_Forecast_Api.jsp" />	
 	</definition>
-</tiles-definitions>
+</tiles-definitions> 

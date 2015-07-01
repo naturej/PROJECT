@@ -2,13 +2,14 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
 
 	
-<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">   
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" type="text/css">   
+
 
 
 <script type="text/javascript">

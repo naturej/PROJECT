@@ -34,11 +34,11 @@
 					<dd id="one-ddcontent" onmouseover="cancelHide('one')"
 						onmouseout="ddMenu('one',-1)">
 						<ul style="background: #99DDD0; width: 120px;">
-							<li><a href="<%=request.getContextPath()%>/api/searchPriceApi.five">시세정보</a></li>
-							<li><a href="<%=request.getContextPath()%>/api/auction_farmApi.five">경매정보</a></li>
-							<li><a href="<%=request.getContextPath()%>/api/MiddleTemperatureApi.five">중기날씨조회</a></li>
-							<li><a href="<%=request.getContextPath()%>/api/RealTime_Forecast_Api.five">실시간동네조회</a></li>
-							<li><a href="<%=request.getContextPath()%>/api/OpenDB_Api.five">오픈백과</a></li>
+							<li><a href="<%=request.getContextPath()%>/searchPriceApi.five">시세정보</a></li>
+							<li><a href="<%=request.getContextPath()%>/auction_farmApi.five">경매정보</a></li>
+							<li><a href="<%=request.getContextPath()%>/MiddleTemperatureApi.five">중기날씨조회</a></li>
+							<li><a href="<%=request.getContextPath()%>/RealTime_Forecast_Api.five">실시간동네조회</a></li>
+							<li><a href="<%=request.getContextPath()%>/OpenDB_Api.five">오픈백과</a></li>
 						</ul>
 					</dd>
 					<li class="dropdown">

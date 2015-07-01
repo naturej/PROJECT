@@ -72,34 +72,33 @@ function kkk(i){
 						"<tr id='tr"+i+"'></tr>");
 			}
 			for(i=0; i<data.totalcount; i++){
-				
-				if(data.totalcount==1){
-					$('#tr'+i).append(
-							"<td>" + data.result.classname + "</td>");
-					
-					$('#tr'+i).append(
-							"<td>" + data.result.subject + "</td>");
-					
-					$('#tr'+i).append(
-							"<td><img alt='' width='50px' height='50px' src='"+data.result.summaryimg+"'></td>");
-					
-					$('#tr'+i).append(
-							"<td>" + data.result.summary + "</td>");
-					
-				}else{
-					
-					$('#tr'+i).append(
-							"<td>" + data.result[i].classname + "</td>");
-					
-					$('#tr'+i).append(
-							"<td>" + data.result[i].subject + "</td>");
-					
-					$('#tr'+i).append(
-							"<td><img alt='' width='50px' height='50px' src='"+data.result[i].summaryimg+"'></td>");
-					
-					$('#tr'+i).append(
-							"<td>" + data.result[i].summary + "</td>");
-				}
+				  if(data.totalcount==1){
+						$('#tr'+i).append(
+								"<td style='width: 10%'>" + data.result.classname + "</td>");
+						
+						$('#tr'+i).append(
+								"<td style='width: 12%'>" + data.result.subject + "</td>");
+						
+						$('#tr'+i).append(
+								"<td style='width: 10%'><img alt='' width='100%' height='auto' src='"+data.result.summaryimg+"'></td>");
+						
+						$('#tr'+i).append(
+								"<td style='width: 68%'>" + data.result.summary + "</td>");
+						
+					}else{
+						
+						$('#tr'+i).append(
+								"<td style='width: 10%'>" + data.result[i].classname + "</td>");
+						
+						$('#tr'+i).append(
+								"<td style='width: 12%'>" + data.result[i].subject + "</td>");
+						
+						$('#tr'+i).append(
+								"<td style='width: 10%'><img alt='' width='100%' height='auto' src='"+data.result[i].summaryimg+"'></td>");
+						
+						$('#tr'+i).append(
+								"<td style='width: 68%'>" + data.result[i].summary + "</td>");
+					}
 			}
 			
 			
@@ -180,30 +179,30 @@ function kkk(i){
 						for(i=0; i<data.totalcount; i++){
 						  if(data.totalcount==1){
 								$('#tr'+i).append(
-										"<td>" + data.result.classname + "</td>");
+										"<td style='width: 10%'>" + data.result.classname + "</td>");
 								
 								$('#tr'+i).append(
-										"<td>" + data.result.subject + "</td>");
+										"<td style='width: 12%'>" + data.result.subject + "</td>");
 								
 								$('#tr'+i).append(
-										"<td><img alt='' width='50px' height='50px' src='"+data.result.summaryimg+"'></td>");
+										"<td style='width: 10%'><img alt='' width='100%' height='auto' src='"+data.result.summaryimg+"'></td>");
 								
 								$('#tr'+i).append(
-										"<td>" + data.result.summary + "</td>");
+										"<td style='width: 68%'>" + data.result.summary + "</td>");
 								
 							}else{
 								
 								$('#tr'+i).append(
-										"<td>" + data.result[i].classname + "</td>");
+										"<td style='width: 10%'>" + data.result[i].classname + "</td>");
 								
 								$('#tr'+i).append(
-										"<td>" + data.result[i].subject + "</td>");
+										"<td style='width: 12%'>" + data.result[i].subject + "</td>");
 								
 								$('#tr'+i).append(
-										"<td><img alt='' width='50px' height='50px' src='"+data.result[i].summaryimg+"'></td>");
+										"<td style='width: 10%'><img alt='' width='100%' height='auto' src='"+data.result[i].summaryimg+"'></td>");
 								
 								$('#tr'+i).append(
-										"<td>" + data.result[i].summary + "</td>");
+										"<td style='width: 68%'>" + data.result[i].summary + "</td>");
 							}
 						}
 						
@@ -310,7 +309,7 @@ function kkk(i){
 							</td>
 
 
-							<td><input type="hidden" id="_snum" value="1"
+							<td ><input type="hidden" id="_snum" value="1"
 								readonly="readonly"></td>
 							<td><input type="hidden" id="_enum" value="5"
 								readonly="readonly"></td>
@@ -320,9 +319,10 @@ function kkk(i){
 					</table>
 		
 				<hr>
-				<table id="table" border="1" style="border-collapse: collapse">
+				<table id="table" class="table table-striped"  style="text-align:left;">
 
 				</table>
+				<br>
 				<div id="div"></div>
 
 
