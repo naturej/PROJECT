@@ -25,6 +25,7 @@
 				<li><a href="<%=request.getContextPath()%>/board/boardlist.five">BOARD</a></li>
 				<li><a href="<%=request.getContextPath()%>/salesboard/salboardlist.five">SALESBOARD</a></li>
 				<li><a href="<%=request.getContextPath()%>/marketlist.five">MARKET</a></li>
+				<li><a href="<%=request.getContextPath()%>/freemboard/freemboardlist.five">FREEMARKET</a></li>
 
 				<li class="dropdown">
 					<dt id="one-ddheader" onmouseover="ddMenu('one',1)"
@@ -71,6 +72,10 @@
 							<li><a href="<%=request.getContextPath()%>/salesboard/receiveList.five">받은메세지목록</a></li>
 							<li><a href="<%=request.getContextPath()%>/salesboard/sendList.five">보낸메세지목록</a></li>
 							<li><a href="<%=request.getContextPath()%>/manage/ordermanage.five">주문관리</a></li>
+							<li><a href="<%=request.getContextPath()%>/mypage/userInfo.five">회원정보</a></li>
+							<se:authorize ifAllGranted="ROLE_ADMIN">
+								<li><a href="<%=request.getContextPath()%>/salesboard/reportList.five">신고목록</a></li>
+							</se:authorize>
 						</ul>
 					</dd>
 				</li>
