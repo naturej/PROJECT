@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  -->
@@ -70,6 +71,10 @@
 	
 	function review_popup(bo_num,product){
 		window.open('review_sinchung.five?bo_num='+bo_num+'&product='+product,'평가하기', 'width=430, height=440, scrollbars=no')
+	}
+	
+	function report_popup(bo_num,product,bo_subject,user_rec){
+		window.open('reportPopup.five?bo_num='+bo_num+'&product='+product+'&bo_subject'+bo_subject+'&user_rec'+user_rec,'신고하기','width=430, height=440, scrollbars=no')
 	}
 	
 	function Enuri(number,id,product){
@@ -257,8 +262,13 @@
             <tr><td colspan="4"><a href="" onclick="review_popup('${salboardDto.bo_num}','${salboardDto.pro_name}')">리뷰쓰기</a></td></tr>
             <tr><td colspan="4">
 	            <a href="salboardlist.five">목록</a>&nbsp;&nbsp;
-	            <a href="salboardedit.five?bo_num=${salboardDto.bo_num}">수정</a>&nbsp;&nbsp;
-	            <a href="salboarddelete.five?bo_num=${salboardDto.bo_num}">삭제</a>
+	            <se:authorize ifAllGranted="ROLE_SELLER">
+					<a href="salboardedit.five?bo_num=${salboardDto.bo_num}">수정</a>&nbsp;&nbsp;
+	            	<a href="salboarddelete.five?bo_num=${salboardDto.bo_num}">삭제</a>			
+				</se:authorize>
+	            <se:authorize ifAllGranted="ROLE_CONSUMER">
+					<a href="report_popup('${salboardDto.bo_num}','${salboardDto.pro_name}','${salboardDto.bo_subject}','${salboardDto.user_id}')">신고하기</a>			
+				</se:authorize>
             </td></tr>
          </table>
   
