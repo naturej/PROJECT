@@ -74,7 +74,7 @@
 	}
 	
 	function report_popup(bo_num,product,bo_subject,user_rec){
-		window.open('reportPopup.five?bo_num='+bo_num+'&product='+product+'&bo_subject'+bo_subject+'&user_rec'+user_rec,'신고하기','width=430, height=440, scrollbars=no')
+		window.open('reportPopup.five?bo_num='+bo_num+'&product='+product+'&bo_subject='+bo_subject+'&user_rec='+user_rec,'신고하기','width=430, height=440, scrollbars=no')
 	}
 	
 	function Enuri(number,id,product){
@@ -267,7 +267,7 @@
 	            	<a href="salboarddelete.five?bo_num=${salboardDto.bo_num}">삭제</a>			
 				</se:authorize>
 	            <se:authorize ifAllGranted="ROLE_CONSUMER">
-					<a href="report_popup('${salboardDto.bo_num}','${salboardDto.pro_name}','${salboardDto.bo_subject}','${salboardDto.user_id}')">신고하기</a>			
+					<a href="" onclick="report_popup('${salboardDto.bo_num}','${salboardDto.pro_name}','${salboardDto.bo_subject}','${salboardDto.user_id}')">신고하기</a>			
 				</se:authorize>
             </td></tr>
          </table>

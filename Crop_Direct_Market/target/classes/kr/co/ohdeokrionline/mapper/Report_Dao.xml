@@ -2,10 +2,11 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.ohdeokrionline.model.Report_Dao">
+<mapper namespace="kr.co.ohdeokrionline.model.dao.Report_Dao">
+	<!-- 신고 작성 -->
 	<insert id="reportInsert" parameterType="kr.co.ohdeokrionline.model.vo.Report_DTO">
 		INSERT INTO REPORT(USER_SEND,BO_NUM,USER_REC,REP_CONTENT,REP_DATE) 
-		VALUES(#{user_send},#{bo_num},#{user_rec},#{rep_content},SYSDATE);
+		VALUES(#{user_send, jdbcType=VARCHAR},#{bo_num},#{user_rec, jdbcType=VARCHAR},#{rep_content, jdbcType=VARCHAR},SYSDATE)
 	</insert>
 
 </mapper>

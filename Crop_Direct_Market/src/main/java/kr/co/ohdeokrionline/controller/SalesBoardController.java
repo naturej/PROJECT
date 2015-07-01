@@ -480,6 +480,7 @@ public class SalesBoardController {
 	public void reportInsert(Report_DTO dto){
 		Report_Dao dao = sqlSession.getMapper(Report_Dao.class);
 		dao.reportInsert(dto);
+		System.out.println("신고완료");
 	}
 
 	//주문 처리

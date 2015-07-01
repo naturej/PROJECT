@@ -31,12 +31,14 @@
 		<tr><td><%=request.getParameter("product")%></td></tr>
 		<tr><td>신고자 : ${user_send}</td></tr>
 		<tr><td>
-		<textarea rows="10" cols="50" name="rep_content"></textarea>
+		<textarea rows="10" cols="50" id="rep_content" name="rep_content"></textarea>
 		</td></tr>
 	</table>
 	<input hidden name="bo_num" value="${param.bo_num}" /> 
-    <input hidden name="user_send" value="${user_id}" />
+    <input hidden name="user_send" value="${user_send}" />
     <input hidden name="user_rec" value="${param.user_rec}" />
+    <input type="button" value="신고작성" onclick="report()" />
+    <input type="button" value="취소" onclick="window.close()" />
 </form>
 </body>
 </html>
