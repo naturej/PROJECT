@@ -144,6 +144,10 @@ public class SalesBoardController {
 		 model.addAttribute("salboardDto", salboardDto);
 		 model.addAttribute("list",reviewDto);
 		 
+		 Order_Dao orderDao = sqlSession.getMapper(Order_Dao.class);
+		 String buyUser = orderDao.buyUser(bo_num);
+		 model.addAttribute("buyUser",buyUser);
+		 
 		 //review 목록
 		 //List<B_reply_DTO> list = boardDao.re_list(idx);
 		 //model.addAttribute("list", list);
