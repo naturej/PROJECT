@@ -60,4 +60,10 @@
           ORDER BY O.OR_DATE DESC
 	</select>
 	
+	<!-- 실구매자 확인 -->
+	<select id="orderlist" >
+	SELECT BUY_USERID 
+  	FROM ORDERLIST
+  	WHERE BO_NUM=#{bo_num} AND OR_STATE='배송완료'
+  	</select>
 </mapper>
