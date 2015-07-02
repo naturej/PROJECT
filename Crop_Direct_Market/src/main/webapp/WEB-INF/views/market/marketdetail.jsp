@@ -5,11 +5,23 @@
 
 <style type="text/css">
 	#img {
-		width: 320px;
-		height: 320px;
-		border-radius: 300px;
+		width: 400px;
+		height: 400px;
+		border-radius: 400px;
 		margin: 0 auto;
 		overflow: hidden;
+	}
+	
+	div #dialog-confirm {
+		position: static;
+	}
+	
+	.buyUser {
+		padding: 2px;
+		background-color: #1ABC9C;
+		color: white;
+		font-size: 12px;
+		border-radius: 4px;
 	}
 </style>
 
@@ -92,18 +104,19 @@
 			<form method="post">
             	<table class="table">
             		<tr><td colspan="3"><div align="center" style="height: 30px; font-size: 20px;">>&nbsp;${marketDto.mar_subject}</div></td></tr>      
-            		<tr><td colspan="3"><div id="img"><img class="" src="<%=request.getContextPath()%>/market/upload/${marketDto.mar_photo}" alt="" width=300px height=300pxss></div></td></tr>
-	            	<tr><td width="430px"></td><td align="left" colspan="2">위치 : ${marketDto.mar_location}</td></tr>
-		            <tr><td width="430px"></td><td align="left" colspan="2">날짜 : ${marketDto.mar_date}</td></tr>
-		            <tr><td width="430px"></td><td align="left" colspan="2">시간 : ${marketDto.mar_time}</td></tr>
-		            <tr><td width="430px"></td><td align="left" colspan="2">입점수 : 0/${marketDto.mar_maxshop}</td></tr>
+            		<tr><td colspan="3"><div id="img"><img class="" src="<%=request.getContextPath()%>/market/upload/${marketDto.mar_photo}" alt="" width=400px height=400px></div></td></tr>
+	            	<tr><td width="35%"></td><td align="left" colspan="2">위치 : ${marketDto.mar_location}</td></tr>
+		            <tr><td width="35%"></td><td align="left" colspan="2">날짜 : ${marketDto.mar_date}</td></tr>
+		            <tr><td width="35%"></td><td align="left" colspan="2">시간 : ${marketDto.mar_time}</td></tr>
+		            <tr><td width="35%"></td><td align="left" colspan="2">입점수 : 0/${marketDto.mar_maxshop}</td></tr>
            			<tr><td colspan="2" align="center"><b><<상세정보>></b></td></tr>
             		<tr><td colspan="2">${marketDto.mar_content}</td></tr>
-            <tr><td colspan="3"><a href="" onclick="review_popup('${salboardDto.bo_num}','${salboardDto.pro_name}')">리뷰쓰기</a></td></tr>
             <tr><td colspan="3">
 	            <a href="marketlist.five">목록</a>&nbsp;&nbsp;
-	            <a href="">참가등록</a>
 	            <se:authorize ifAllGranted="ROLE_SELLER">
+					<a href="">참가등록</a>		
+				</se:authorize>
+	            <se:authorize ifAllGranted="ROLE_ADMIN">
 					<a href="marketdelete.five?mar_id=${marketDto.mar_id}">수정</a>&nbsp;&nbsp;
 	            	<a href="marketdelete.five?mar_id=${marketDto.mar_id}">삭제</a>		
 				</se:authorize>
