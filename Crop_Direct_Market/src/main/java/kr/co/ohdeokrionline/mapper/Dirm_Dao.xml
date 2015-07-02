@@ -10,5 +10,18 @@
 	</insert>
 	
 	<!-- 직거래 쪽지 목록 -->
-	<select id="dirmlist"></select>
+	<select id="dirmList" resultType="kr.co.ohdeokrionline.model.vo.Dirm_DTO">
+	SELECT * FROM DIRM WHERE USER_REC=#{user_rec} ORDER BY DIRMNO DESC
+	</select>
+	
+	<!-- 직거래 상세보기 -->
+	<select id="dirmDetail" resultType="kr.co.ohdeokrionline.model.vo.Dirm_DTO">
+		SELECT * FROM DIRM WHERE DIRMNO=#{dirmno}
+	</select>
+	
+	<!-- 직거래 승인 (1) -->
+	<update id="yesDirm">
+		UPDATE DIRM SET DIRM_CONFIRM=1 WHERE DIRMNO=#{dirmno}
+	</update>
+	
 </mapper>
