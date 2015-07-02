@@ -56,6 +56,14 @@
 				document.joinForm.add_code.focus();
 				exit;
 
+			} else if (document.joinForm.accountnum.value==""){
+				alert("계좌를 입력하세요");
+				document.joinForm.accountnum.focus();
+				exit;
+			} else if (document.joinForm.bank.value==""){
+				alert("은행를 입력하세요");
+				document.joinForm.bank.focus();
+				exit;
 			}
 			
 			if(parameter=='ROLE_SELLER'){
@@ -358,7 +366,7 @@
 						<!-- 세부주소 -->
 						<div class="input-group">
 						<span class="input-group-addon">농장 세부주소</span>
-						<input type="text" class="form-control" name="farm_add_de" id="farm_add_de" placeholder="FarmAddress" required readonly="readonly"/>
+						<input type="text" class="form-control" name="farm_add_de" id="farm_add_de" placeholder="FarmAddress" required/>
 						</div>
 						<!-- 농장 주요작물 -->
 						<div class="input-group">
@@ -376,6 +384,17 @@
 						<textarea class="form-control" name="farm_comment" placeholder="FarmIntroduce" required></textarea>
 						</div>
 					</c:if>
+					<hr>
+					<!-- 계좌 등록 -->
+					<div class="input-group">
+					<span class="input-group-addon">은 행</span>
+					<input type="text" class="form-control" name="bank" placeholder="Bank" required/>
+					</div>
+					<!-- 계좌 등록 -->
+					<div class="input-group">
+					<span class="input-group-addon">계 좌</span>
+					<input type="text" class="form-control" name="accountnum" placeholder="Account" required/>
+					</div>
 				</div>
 			</div>
 			

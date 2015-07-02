@@ -320,6 +320,17 @@
 						<textarea class="form-control" name="farm_comment" placeholder="FarmIntroduce" required>${farm.farm_comment}</textarea>
 						</div>
 					</se:authorize>
+					<hr>
+					<!-- 계좌 등록 -->
+					<div class="input-group">
+					<span class="input-group-addon">은 행</span>
+					<input type="text" class="form-control" name="bank" value="${account.bank}" placeholder="Bank" required/>
+					</div>
+					<!-- 계좌 등록 -->
+					<div class="input-group">
+					<span class="input-group-addon">계 좌</span>
+					<input type="text" class="form-control" name="accountnum" value="${account.accountnum}" placeholder="Account" required/>
+					</div>
 				</div>
 			</div>
 			</form>

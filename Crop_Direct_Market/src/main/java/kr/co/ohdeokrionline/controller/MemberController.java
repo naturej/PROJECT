@@ -15,9 +15,11 @@ import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 
+import kr.co.ohdeokrionline.model.dao.Account_Dao;
 import kr.co.ohdeokrionline.model.dao.Authorities_Dao;
 import kr.co.ohdeokrionline.model.dao.FarmRecord_Dao;
 import kr.co.ohdeokrionline.model.dao.Member_Dao;
+import kr.co.ohdeokrionline.model.vo.Account_DTO;
 import kr.co.ohdeokrionline.model.vo.Authorities_DTO;
 import kr.co.ohdeokrionline.model.vo.FarmRecord_DTO;
 import kr.co.ohdeokrionline.model.vo.Member_DTO;
@@ -100,11 +102,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="join.five",method=RequestMethod.POST)
-	public String joinInsert(Member_DTO member,FarmRecord_DTO farm,Authorities_DTO authority,HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException {
+	public String joinInsert(Member_DTO member,FarmRecord_DTO farm,Authorities_DTO authority,Account_DTO account,HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException {
 		System.out.println(member);
 		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
 		FarmRecord_Dao dao2 = sqlSession.getMapper(FarmRecord_Dao.class);
 		Authorities_Dao dao3 = sqlSession.getMapper(Authorities_Dao.class);
+		Account_Dao dao4 = sqlSession.getMapper(Account_Dao.class);
 		CommonsMultipartFile file = member.getFile();
 		
 		if(file != null){
@@ -129,6 +132,7 @@ public class MemberController {
 			}
 			System.out.println(authority);
 			dao3.insertAuth(authority);
+			dao4.insertAccount(account);
 		}
 		
 		//Tiles 적용 전 코드
@@ -264,12 +268,16 @@ public class MemberController {
 		
 		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
 		FarmRecord_Dao dao2 = sqlSession.getMapper(FarmRecord_Dao.class);
+		Account_Dao dao3 = sqlSession.getMapper(Account_Dao.class);
+		
 		try {
-			model.addAttribute("user", dao.login(principal.getName()));
+			String user_id = principal.getName();
+			model.addAttribute("user", dao.login(user_id));
 			
 			if(authority.equals("ROLE_SELLER")){
-				model.addAttribute("farm",dao2.farmInfo(principal.getName()));
+				model.addAttribute("farm",dao2.farmInfo(user_id));
 			}
+			model.addAttribute("account", dao3.getAccountByUser_id(user_id));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -284,9 +292,11 @@ public class MemberController {
 		
 		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
 		FarmRecord_Dao dao2 = sqlSession.getMapper(FarmRecord_Dao.class);
+		Account_Dao dao3 = sqlSession.getMapper(Account_Dao.class);
 		
 		try {
-			Member_DTO user = dao.login(principal.getName());
+			String user_id = principal.getName();
+			Member_DTO user = dao.login(user_id);
 			Reader fr = new FileReader("C:\\Users\\"+System.getenv("USERNAME")+"\\git\\PROJECT\\Crop_Direct_Market\\src\\main\\webapp\\etc\\tmp.txt");
 			BufferedReader br = new BufferedReader(fr);
 			String pwd = dao.getPwdByUser_idAndEmail(user.getUser_id(), user.getEmail());
@@ -299,8 +309,9 @@ public class MemberController {
 				}
 			}
 			if(authority.equals("ROLE_SELLER")){
-				model.addAttribute("farm",dao2.farmInfo(principal.getName()));
+				model.addAttribute("farm",dao2.farmInfo(user_id));
 			}
+			model.addAttribute("account", dao3.getAccountByUser_id(user_id));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -308,10 +319,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="mypage/userInfoUpdate.five",method=RequestMethod.POST)
-	String userInfoUpdateProccess(Member_DTO member,FarmRecord_DTO farm,HttpServletRequest request) throws Exception{
+	String userInfoUpdateProccess(Member_DTO member,FarmRecord_DTO farm,Account_DTO account,HttpServletRequest request) throws Exception{
 		System.out.println(member);
 		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
 		FarmRecord_Dao dao2 = sqlSession.getMapper(FarmRecord_Dao.class);
+		Account_Dao dao3 = sqlSession.getMapper(Account_Dao.class);
 		CommonsMultipartFile file = member.getFile();
 		
 		if(file != null){
@@ -334,6 +346,7 @@ public class MemberController {
 			if(farm.getFarminfo()!=null){
 				dao2.farmInfoUpdate(farm);
 			}
+			dao3.updateAccount(account);
 		}
 		return "redirect:userInfo.five";
 	}
