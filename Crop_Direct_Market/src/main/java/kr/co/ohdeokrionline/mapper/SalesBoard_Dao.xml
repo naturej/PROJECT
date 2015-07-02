@@ -78,6 +78,10 @@
 		</select>
 		
 
-
+		<update id="soldUpdate" parameterType="kr.co.ohdeokrionline.model.vo.SalesBoard_DTO">
+			update salboard
+			set sold=#{sold}
+			where bo_num=#{bo_num,jdbcType=INTEGER}
+		</update>
 
 </mapper>

@@ -27,6 +27,9 @@
 				 		<c:when test="${fail eq 'Bad credentials' }">
 				 			잘못된 자격 증명입니다.
 				 		</c:when>
+				 		<c:otherwise>
+				 			reason : ${fail}
+				 		</c:otherwise>
 				 	</c:choose>
 				 </c:if>
 			</div>

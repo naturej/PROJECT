@@ -103,7 +103,12 @@ function resizeText() {
      	<c:forEach items="${list}" var="n">
       		<div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four   ${n.sep} isotope-item">
         		<div class="portfolio-image"><img src="<%=request.getContextPath()%>/salesboard/upload/${n.bo_photo}" alt="Portfolio 1"></div>
-        		<a title="Stereo Headphones" rel="prettyPhoto[galname]" href="salesdetail.five?bo_num=${n.bo_num}">
+        		<c:choose>
+        			<c:when test="${n.sold eq '1'}"></c:when>
+        			<c:otherwise>
+	        			<a title="Stereo Headphones" rel="prettyPhoto[galname]" href="salesdetail.five?bo_num=${n.bo_num}">
+	        		</c:otherwise>
+        		</c:choose>
         		<div class="project-overlay">
           			<div class="project-info">
           				${n.user_id}

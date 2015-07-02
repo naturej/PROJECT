@@ -552,4 +552,14 @@ public class SalesBoardController {
 					}
 	
 	
+		@RequestMapping("sold.five")
+		public String sold(SalesBoard_DTO sales){
+			SalesBoard_Dao dao = sqlSession.getMapper(SalesBoard_Dao.class);
+			try {
+				dao.soldUpdate(sales);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return "mypage/manage_async";
+		}
 }

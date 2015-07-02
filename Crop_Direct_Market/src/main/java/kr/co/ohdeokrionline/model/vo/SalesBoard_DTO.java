@@ -19,6 +19,7 @@ public class SalesBoard_DTO {
 	private String pro_name;
 	private String sep;
 	private int bo_salnum;
+	private String sold;
 	
 	//리뷰(ReviewWrite_DTO)
 	private int re_id;
@@ -152,6 +153,14 @@ public class SalesBoard_DTO {
 	}
 	public void setFarminfo(String farminfo) {
 		this.farminfo = farminfo;
+	}
+
+	public String getSold() {
+		return sold;
+	}
+
+	public void setSold(String sold) {
+		this.sold = sold;
 	}
 	
 	

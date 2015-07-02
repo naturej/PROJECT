@@ -90,6 +90,20 @@
 	      'top=100px, left=100px, width=430 height=510')
 	}
 	
+	function sold(bo_num){
+		$.ajax({
+			type: "POST",
+			url: "sold.five",
+			data: {
+				bo_num : bo_num,
+				sold : '1'	
+			},
+			success: function(data){
+				location.href="salboardlist.five";
+			}
+		});
+	}
+	
 	$(function() {
 		  $( "#dialog-confirm" ).dialog({
 			autoOpen: false,
@@ -141,7 +155,13 @@
             <tr><td>원산지</td><td colspan="2">${salboardDto.farm_add}</td></tr>
             <tr><td>단위</td><td colspan="2">${salboardDto.bo_salnum}${salboardDto.unit}</td></tr>
             <tr><td>품종</td><td colspan="2">${salboardDto.pro_name}</td></tr>
-            <tr><td>구매수량</td><td colspan="2"><input type="number" min="1" id="sh_quantity" name="sh_quantity" onkeydown='return onlyNumber(event)'> 개</td></tr>
+            <tr><td>구매수량</td><td colspan="2"><input type="number" min="1" id="sh_quantity" name="sh_quantity" onkeydown='return onlyNumber(event)'> 개
+	            	<se:authentication property="name" var="LoginUser" />
+	            	<c:if test="${LoginUser eq salboardDto.user_id}">
+	            		<input type="button" class="btn-xs btn-danger" value="매 진" onclick="sold('${salboardDto.bo_num}')"/>
+	            	</c:if>
+            	</td>
+            </tr>
             <tr><td colspan="3">
             <input type="button" id="opener" value="장바구니 담기" onclick="CheckForm()">
             <input type="button" id="enuri" value="에누리 신청" onclick="Enuri('${salboardDto.bo_num}','${salboardDto.user_id}','${salboardDto.pro_name}')"></td></tr>

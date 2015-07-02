@@ -1,5 +1,6 @@
 package kr.co.ohdeokrionline.model.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,6 @@ public interface SalesBoard_Dao {
 	//리뷰리스트
 	//public List<B_reply_DTO> re_list(String idx);
 	
-	
+	int soldUpdate(SalesBoard_DTO salesboard) throws SQLException;
 	
 }
