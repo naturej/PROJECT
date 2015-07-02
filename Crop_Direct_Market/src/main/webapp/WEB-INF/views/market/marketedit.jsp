@@ -3,7 +3,7 @@
 <link href="css/table-base/bootstrap.min.css" rel="stylesheet">
 	<link href="css/AdminLTE.css" rel="stylesheet">
 	
-	<div id="content">
+
 	<section id="service" class="home-section text-center">
 		<div class="heading-about">
 			<div class="container">
@@ -54,7 +54,7 @@
 	</div>
 	</div>
 	</section>
-	</div>
+
 	 <script src="<%=request.getContextPath()%>/js/ckeditor/ckeditor.js" type="text/javascript"></script>
 	 <script src="<%=request.getContextPath()%>/js/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
         

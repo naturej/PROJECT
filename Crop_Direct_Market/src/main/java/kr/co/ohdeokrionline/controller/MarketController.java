@@ -153,16 +153,16 @@ public class MarketController {
 					String path = request.getServletContext().getRealPath("/market/upload");
 					String fpath = path + "\\" + fname;
 					//파일쓰기 작업
-					FileOutputStream fs = new FileOutputStream(fpath);
+					FileOutputStream fs = new FileOutputStream(path);
 					fs.write(n.getFile().getBytes());
 					fs.close();
 					n.setMar_photo(fname); //파일이름
 					n.setMar_content(con);
 				}
 				Market_Dao marketDao= sqlsession.getMapper(Market_Dao.class);
-				marketDao.update(n);	
-		   	   return "market.marketdetail.five?mar_id="+n.getMar_id();
+				marketDao.update(n);
+				System.out.println("11");
+		   	   return "redirect:marketdetail.five?mar_id="+n.getMar_id();
 			}
-		  
 	}
 
