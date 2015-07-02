@@ -2,7 +2,7 @@ package kr.co.ohdeokrionline.model.vo;
 
 import java.sql.Date;
 
-public class DIRM_DTO {	/*직거래 쪽지 테이블*/
+public class Dirm_DTO {	/*직거래 쪽지 테이블*/
 	private int dirmno;	/*직거래 쪽지 번호*/
 	private String user_send; /*보내는 사람*/
 	private String user_rec; /*받는 사람*/
