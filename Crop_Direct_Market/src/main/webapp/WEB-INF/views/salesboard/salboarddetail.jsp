@@ -17,6 +17,14 @@
 	div #dialog-confirm {
 		position: static;
 	}
+	
+	.buyUser {
+		padding: 2px;
+		background-color: #1ABC9C;
+		color: white;
+		font-size: 12px;
+		border-radius: 4px;
+	}
 </style>
 
 <title>상세보기</title>
@@ -155,7 +163,7 @@
 									<td>
 									<c:choose>
 										<c:when test="${r.review_id eq buyUser}">
-											(실구매자평) ${r.re_content}
+											<span class="buyUser">실구매자평</span> ${r.re_content}
 										</c:when>
 										<c:otherwise>
 											${r.re_content}
