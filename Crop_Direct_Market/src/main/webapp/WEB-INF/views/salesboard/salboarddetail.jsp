@@ -154,7 +154,7 @@
 								<tr>
 									<td>
 									<c:choose>
-										<c:when test="${r.re_content eq buyUser}">
+										<c:when test="${r.review_id eq buyUser}">
 											(실구매자평) ${r.re_content}
 										</c:when>
 										<c:otherwise>
