@@ -152,7 +152,16 @@
             	<c:otherwise>
 							<c:forEach items="${list}" var="r">
 								<tr>
-									<td>${r.re_content}</td>
+									<td>
+									<c:choose>
+										<c:when test="${r.re_content eq buyUser}">
+											(실구매자평) ${r.re_content}
+										</c:when>
+										<c:otherwise>
+											${r.re_content}
+										</c:otherwise>
+									</c:choose>
+									</td>
 									<c:set var="rs" value="${r.re_score}" />
 									<%-- <td>${r.re_score}</td> --%>
 									<c:choose>
