@@ -54,6 +54,7 @@
 					</dd>
 				</li>
 				
+				<se:authorize ifAllGranted="ROLE_SELLER">
 				<li class="dropdown">
 					<dt id="four-ddheader" onmouseover="ddMenu('four',1)"
 						onmouseout="ddMenu('four',-1)">
@@ -67,7 +68,8 @@
 						</ul>
 					</dd> 
 				</li>
-
+				</se:authorize>
+				
 				<li class="dropdown">
 					<dt id="two-ddheader" onmouseover="ddMenu('two',1)"
 						onmouseout="ddMenu('two',-1)">
@@ -91,6 +93,7 @@
 							<li><a href="<%=request.getContextPath()%>/manage/ordermanage.five">주문관리</a></li>
 							<li><a href="<%=request.getContextPath()%>/mypage/userInfo.five">회원정보</a></li>
 							<se:authorize ifAllGranted="ROLE_ADMIN">
+								<li><a href="<%=request.getContextPath()%>/admin/memberManage.five">회원관리</a></li>
 								<li><a href="<%=request.getContextPath()%>/salesboard/reportList.five">신고목록</a></li>
 							</se:authorize>
 						</ul>

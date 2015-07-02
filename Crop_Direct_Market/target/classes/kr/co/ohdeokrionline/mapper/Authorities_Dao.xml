@@ -7,4 +7,8 @@
 	<insert id="insertAuth" parameterType="kr.co.ohdeokrionline.model.vo.Authorities_DTO">
 		insert into Authorities(authority,user_id) values(#{authority},#{user_id})
 	</insert>
+	
+	<select id="getAuthAll" resultType="kr.co.ohdeokrionline.model.vo.Authorities_DTO">
+		select * from authorities
+	</select>
 </mapper>

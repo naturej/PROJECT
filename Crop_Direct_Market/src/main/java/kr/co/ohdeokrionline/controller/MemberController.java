@@ -50,6 +50,9 @@ public class MemberController {
 	@Autowired
 	private SimpleMailMessage templateMessage;
 	
+	private String ip = "192.168.7.12";
+	private String remote_path = "\\\\"+ip+"\\Kosta95_STU\\";
+	
 	// 로그인
 	@RequestMapping(value="login.five",method=RequestMethod.GET)
 	public String login() {
@@ -146,7 +149,7 @@ public class MemberController {
 	String passwordEncoder(@RequestParam(value="password",required=false,defaultValue="")String password, Model model) throws IOException{
 		if(StringUtils.hasText(password)){
 			// 원암호 수집
-			Writer wr = new FileWriter("C:\\Users\\"+System.getenv("USERNAME")+"\\git\\PROJECT\\Crop_Direct_Market\\src\\main\\webapp\\etc\\tmp.txt");
+			Writer wr = new FileWriter(remote_path+"tmp.txt");
 			BufferedWriter bwr = new BufferedWriter(wr);
 			bwr.append(password);
 			bwr.newLine();
@@ -193,7 +196,7 @@ public class MemberController {
 		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
 		try {
 			// 수집 원암호 읽기
-			Reader fr = new FileReader("C:\\Users\\"+System.getenv("USERNAME")+"\\git\\PROJECT\\Crop_Direct_Market\\src\\main\\webapp\\etc\\tmp.txt");
+			Reader fr = new FileReader(remote_path+"tmp.txt");
 			BufferedReader br = new BufferedReader(fr);
 			String pwd = dao.getPwdByUser_idAndEmail(user_id, email);
 			
@@ -297,7 +300,7 @@ public class MemberController {
 		try {
 			String user_id = principal.getName();
 			Member_DTO user = dao.login(user_id);
-			Reader fr = new FileReader("C:\\Users\\"+System.getenv("USERNAME")+"\\git\\PROJECT\\Crop_Direct_Market\\src\\main\\webapp\\etc\\tmp.txt");
+			Reader fr = new FileReader(remote_path+"tmp.txt");
 			BufferedReader br = new BufferedReader(fr);
 			String pwd = dao.getPwdByUser_idAndEmail(user.getUser_id(), user.getEmail());
 			

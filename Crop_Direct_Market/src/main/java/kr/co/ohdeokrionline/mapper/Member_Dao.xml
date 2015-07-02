@@ -36,4 +36,8 @@
 		set password=#{password},email=#{email},photo=#{photo},addr=#{addr},addd=#{addd},cell_phone=#{cell_phone},add_code=#{add_code}
 		where user_id=#{user_id}
 	</update>
+	
+	<select id="getUserAll" resultType="kr.co.ohdeokrionline.model.vo.Member_DTO">
+		select user_id,enabled from users
+	</select>
 </mapper>
