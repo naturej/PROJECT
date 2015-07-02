@@ -27,5 +27,7 @@ public interface Order_Dao {
 	//주문 LIST 출력문
 	public List<Order_DTO> orderlist(String buy_userid);
 	
+	//실구매자 아이디 출력
+	public String buyUser(String bo_num);
 	
 }
