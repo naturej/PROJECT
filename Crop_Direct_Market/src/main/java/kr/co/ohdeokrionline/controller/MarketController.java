@@ -88,7 +88,7 @@ public class MarketController {
 			 			System.out.println(file);
 			 			String fname = file.getOriginalFilename();
 				       if(file != null){
-						String path = request.getServletContext().getRealPath("/WEB-INF/views/market/upload");
+						String path = request.getServletContext().getRealPath("/WEB-INF/market/upload");
 						String fullpath = path + "\\" + fname;
 						System.out.println(fname);
 						System.out.println(path);
