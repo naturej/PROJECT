@@ -31,4 +31,11 @@ public class UserManage_DTO {
 		this.reportcount = reportcount;
 	}
 	
+	@Override
+	public String toString() {
+		return "UserManage_DTO [user_id=" + user_id + ", authority="
+				+ authority + ", enabled=" + enabled + ", reportcount="
+				+ reportcount + "]";
+	}
+	
 }

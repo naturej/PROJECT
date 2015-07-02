@@ -7,4 +7,5 @@ import kr.co.ohdeokrionline.model.vo.UserManage_DTO;
 
 public interface UserManage_Dao {
 	List<UserManage_DTO> user() throws SQLException;
+	
 }

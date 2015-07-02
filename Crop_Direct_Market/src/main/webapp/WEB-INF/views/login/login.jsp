@@ -19,7 +19,15 @@
 			<c:if test="${param.error != null}">
 			<div id="dialog" title="로그인실패">
 				 <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
-				 	이유 : <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+				 	<c:set value="${SPRING_SECURITY_LAST_EXCEPTION.message}" var="fail"/>
+				 	<c:choose>
+				 		<c:when test="${fail eq 'User is disabled' }">
+				 			정지된 계정입니다.
+				 		</c:when>
+				 		<c:when test="${fail eq 'Bad credentials' }">
+				 			잘못된 자격 증명입니다.
+				 		</c:when>
+				 	</c:choose>
 				 </c:if>
 			</div>
 			</c:if>

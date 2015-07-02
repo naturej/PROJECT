@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -30,5 +31,23 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		return "mypage.memberManage";
+	}
+	
+	@RequestMapping("enabledChange.five")
+	String enableChange(UserManage_DTO user,Model model){
+		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
+		
+		try {
+			dao.enabledUpdate(user);
+			if(user.getEnabled().equals("0")){
+				model.addAttribute("msg", "0");
+			}else if(user.getEnabled().equals("1")){
+				model.addAttribute("msg", "1");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "mypage/manage_async";
 	}
 }

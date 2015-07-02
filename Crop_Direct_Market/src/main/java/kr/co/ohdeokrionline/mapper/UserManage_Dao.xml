@@ -7,4 +7,5 @@
 	<select id="user" resultType="kr.co.ohdeokrionline.model.vo.UserManage_DTO">
 		select * from user_manage
 	</select>
+	
 </mapper>

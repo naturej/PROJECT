@@ -40,4 +40,10 @@
 	<select id="getUserAll" resultType="kr.co.ohdeokrionline.model.vo.Member_DTO">
 		select user_id,enabled from users
 	</select>
+	
+	<update id="enabledUpdate" parameterType="kr.co.ohdeokrionline.model.vo.UserManage_DTO">
+		update users
+		set enabled=#{enabled}
+		where user_id=#{user_id}
+	</update>
 </mapper>
