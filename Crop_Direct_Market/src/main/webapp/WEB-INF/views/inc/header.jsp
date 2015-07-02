@@ -63,7 +63,7 @@
 						onmouseout="ddMenu('four',-1)">
 						<ul style="background: white; width: 120px;">
 							<li><a href="<%=request.getContextPath()%>/farmmanage/daecha.five">새 대차대조표</a></li>
-                			<li><a href="<%=request.getContextPath()%>/farmmanage/daechaStatics.five">대차대조표 확인</a></li>
+                			<li><a href="<%=request.getContextPath()%>/farmmanage/daechaStatics.five">매출기록 확인</a></li>
 						</ul>
 					</dd>
 				</li>

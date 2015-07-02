@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <head>
 <title>Doughnut Chart</title>
 <script src="<%=request.getContextPath()%>/js/Chart.js"></script>
@@ -26,9 +27,9 @@
 				<div class="col-lg-8 col-lg-offset-2">
 					<div class="wow bounceInDown" data-wow-delay="0.4s">
 						<div class="section-heading">
-							<h2>대차대조 입력</h2>
+							<h2>매출 통계</h2>
 							<i class="fa fa-2x fa-angle-down"></i>
-							<p>대차대조 통계</p>
+							<p></p>
 						</div>
 					</div>
 				</div>
@@ -43,8 +44,8 @@
 						<div style="margin-top: 50%;">
 							<canvas id="canvas" width=200 height="200" />
 						</div>
-						<div><br>
-							<span>&lt;온라인 직거래 비율></span>
+						<div>
+							<br> <span>&lt;온라인 직거래 비율></span>
 						</div>
 					</td>
 					<td rowspan="2">
@@ -53,7 +54,7 @@
 						</div>
 					</td>
 				</tr>
-				
+
 			</table>
 			<script>
 				var dir = ${dir};
@@ -112,25 +113,23 @@
 								         "${c5}"]
 							},
 							{
-								label : "My First dataset",
+			
+				label : "My First dataset",
 								fillColor : "rgba(222,220,220,0.2)",
 								strokeColor : "rgba(180,50,0,2)",
 								pointColor : "rgba(140,50,0,2)",
 								pointStrokeColor : "#000",
 								pointHighlightFill : "#000",
 								pointHighlightStroke : "rgba(220,220,220,1)",
-								data : [ 
-								         "${c1}",
-								         "${c2}",
-								         "${c3}",
-								         "${c4}",
-								         "${c5}",
-								         "0"]
-							}
-							]
+								data : [ "${c1}", "${c2}", "${c3}", "${c4}",
+										"${c5}", "0" ]
+							} ]
 
 				}
 			</script>
-			
+		</div>
+	</div>
+	</section>
+
 </body>
 </html>
