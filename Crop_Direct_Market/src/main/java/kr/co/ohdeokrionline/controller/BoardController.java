@@ -174,7 +174,7 @@ public class BoardController {
 		 public String replyreg(B_reply_DTO re){
 			 Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
 			 boardDao.re_insert(re);
-			 return "redirect:detailboard.five?idx="+re.getIdx();
+			 return null;
 		 } 
 		 
 	}

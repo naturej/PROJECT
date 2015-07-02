@@ -29,12 +29,12 @@
       VALUES(MAR_Seq.nextval,#{mar_date},#{mar_location},SYSDATE,#{mar_time},#{mar_photo},#{mar_content},#{mar_maxshop},#{mar_subject})   
      </insert>
      
-	    <!--   U update   
-	   <update id="update" >
-	       UPDATE BOARD SET SUBJECT=#{subject}, CONTENT=#{content}, 
-	                      FILENAME=#{filename ,jdbcType=VARCHAR} WHERE IDX=#{idx}
-	    </update>
-		-->
+	 <update id="update" >
+	       UPDATE MARKET SET MAR_SUBJECT=#{mar_subject}, MAR_CONTENT=#{mar_content}, MAR_DATE=#{mar_date},
+	                      MAR_PHOTO=#{mar_photo ,jdbcType=VARCHAR}, MAR_TIME=#{mar_time}, MAR_LOCATION=#{mar_location},
+	                      MAR_MAXSHOP=#{mar_maxshop} WHERE MAR_ID=#{mar_id}
+	  </update>
+		
 	<!--   D delete   -->
 		<delete id="delete" parameterType="STRING">
 		      DELETE MARKET WHERE MAR_ID=#{mar_id}

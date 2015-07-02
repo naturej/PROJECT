@@ -13,6 +13,7 @@ public class Market_DTO {
 	private String mar_time;
 	private String mar_photo;
 	private String writedate;
+	private String editor1;
 	
 	private int mar_maxshop;
 	private CommonsMultipartFile file;
@@ -83,5 +84,12 @@ public class Market_DTO {
 	}
 	public void setFile(CommonsMultipartFile file) {
 		this.file = file;
+	}
+	public String getEditor1() {
+		// TODO Auto-generated method stub
+		return editor1;
+	}
+	public void setEditor1(String editor1) {
+		this.editor1 = editor1;
 	}
 }

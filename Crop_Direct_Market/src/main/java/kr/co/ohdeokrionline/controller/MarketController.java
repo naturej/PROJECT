@@ -132,6 +132,37 @@ public class MarketController {
 			//Tiles 로 바뀌지 않는다 (요청 주소)
 			return "redirect:marketlist.five";
 		}  
-	 
+		//수정글
+			@RequestMapping(value={"marketedit.five"},method=RequestMethod.GET)   //=>customer/notice.htm
+			public String noticeEdit(int mar_id, Model model){
+				 Market_Dao marketDao= sqlsession.getMapper(Market_Dao.class);
+				 Market_DTO marketDto = marketDao.detailmarket(mar_id);
+				 model.addAttribute("marketDto", marketDto);
+			   	   return "market.marketedit";
+				}
+			  
+		 
+		 
+		//수정 실행문
+		@RequestMapping(value={"marketedit.five"},method=RequestMethod.POST)   //=>customer/notice.htm
+		public String noticeEdit(Market_DTO n, HttpServletRequest request) throws ClassNotFoundException, SQLException, IOException{
+			   
+				if(!n.getFile().isEmpty()){
+				   	String fname = n.getFile().getOriginalFilename();
+				   	String con = n.getEditor1();
+					String path = request.getServletContext().getRealPath("/market/upload");
+					String fpath = path + "\\" + fname;
+					//파일쓰기 작업
+					FileOutputStream fs = new FileOutputStream(fpath);
+					fs.write(n.getFile().getBytes());
+					fs.close();
+					n.setMar_photo(fname); //파일이름
+					n.setMar_content(con);
+				}
+				Market_Dao marketDao= sqlsession.getMapper(Market_Dao.class);
+				marketDao.update(n);	
+		   	   return "market.marketdetail.five?mar_id="+n.getMar_id();
+			}
+		  
 	}
 

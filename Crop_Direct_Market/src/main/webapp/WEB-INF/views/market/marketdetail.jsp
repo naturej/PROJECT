@@ -117,7 +117,7 @@
 					<a href="">참가등록</a>		
 				</se:authorize>
 	            <se:authorize ifAllGranted="ROLE_ADMIN">
-					<a href="marketdelete.five?mar_id=${marketDto.mar_id}">수정</a>&nbsp;&nbsp;
+					<a href="marketedit.five?mar_id=${marketDto.mar_id}">수정</a>&nbsp;&nbsp;
 	            	<a href="marketdelete.five?mar_id=${marketDto.mar_id}">삭제</a>		
 				</se:authorize>
             </td></tr>
