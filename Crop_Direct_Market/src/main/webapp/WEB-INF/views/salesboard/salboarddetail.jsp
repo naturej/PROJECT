@@ -66,7 +66,7 @@
 	}
 
 	function popup(id){
-		window.open('popup.five?rec_userid='+id,'쪽지 보내기', 'width=430, height=440, scrollbars=no')
+		window.open('popup.five?rec_userid='+id,'쪽지 보내기', 'width=430, height=485, scrollbars=no')
 	}
 	
 	function review_popup(bo_num,product){
