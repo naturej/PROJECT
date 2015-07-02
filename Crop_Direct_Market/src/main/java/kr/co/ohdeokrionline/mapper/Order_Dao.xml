@@ -62,8 +62,14 @@
 	
 	<!-- 실구매자 확인 -->
 	<select id="buyUser" parameterType="String" resultType="String">
-	SELECT BUY_USERID 
-  	FROM ORDERLIST
-  	WHERE BO_NUM=#{bo_num} AND OR_STATE='배송완료'
-  	</select>
+		SELECT BUY_USERID 
+	  	FROM ORDERLIST
+	  	WHERE BO_NUM=#{bo_num} AND OR_STATE='배송완료'
+  	</select> 
+  	
+<!--   	<select id="buyUser" resultType="String"> -->
+<!-- 	SELECT COUNT(BUY_USERID) -->
+<!--   	FROM ORDERLIST -->
+<!--   	WHERE BO_NUM= #{param1} AND OR_STATE='배송완료' AND BUY_USERID=#{param2} -->
+<!--   	</select> -->
 </mapper>

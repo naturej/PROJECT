@@ -161,14 +161,14 @@
 							<c:forEach items="${list}" var="r">
 								<tr>
 									<td>
-									<c:choose>
-										<c:when test="${r.review_id eq buyUser}">
-											<span class="buyUser">실구매자평</span> ${r.re_content}
-										</c:when>
-										<c:otherwise>
-											${r.re_content}
-										</c:otherwise>
-									</c:choose>
+									<c:forEach items="${buyList}" var="b">
+										<c:choose>
+											<c:when test="${r.review_id eq b}">
+												<span class="buyUser">실구매자평</span>
+											</c:when>
+										</c:choose>
+									</c:forEach>
+										${r.re_content}
 									</td>
 									<c:set var="rs" value="${r.re_score}" />
 									<%-- <td>${r.re_score}</td> --%>

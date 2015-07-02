@@ -135,7 +135,9 @@ public class SalesBoardController {
 	
 	 	//판매글상세보기
  		@RequestMapping("salesdetail.five")
- 		public String salesdetail(String bo_num, Model model) throws ClassNotFoundException, SQLException{
+ 		public String salesdetail(HttpServletRequest request,Model model) throws ClassNotFoundException, SQLException{
+ 		String bo_num=request.getParameter("bo_num");
+ 		
  		System.out.println("상세보기 controller 진입");
  		SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
  		List<SalesBoard_DTO> reviewDto = salboardDao.reviewlist(bo_num);
@@ -145,13 +147,11 @@ public class SalesBoardController {
 		 model.addAttribute("list",reviewDto);
 		 
 		 Order_Dao orderDao = sqlSession.getMapper(Order_Dao.class);
-		 String buyUser = orderDao.buyUser(bo_num);
-		 model.addAttribute("buyUser",buyUser);
-		 
-		 //review 목록
-		 //List<B_reply_DTO> list = boardDao.re_list(idx);
-		 //model.addAttribute("list", list);
-		 
+		 System.out.println("bo_num : " + bo_num);
+		 List<String> buyList = orderDao.buyUser(bo_num);
+		 System.out.println("buyList : "+buyList.toString());
+		 model.addAttribute("buyList",buyList);
+
 		 return "salesboard.salboarddetail"; 
 	 }
 
