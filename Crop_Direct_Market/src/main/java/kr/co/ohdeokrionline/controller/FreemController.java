@@ -126,21 +126,15 @@ public class FreemController {
 	 		}	
 	
 	 	//판매글상세보기
- 		@RequestMapping("salesdetail.five")
- 		public String salesdetail(String bo_num, Model model) throws ClassNotFoundException, SQLException{
+ 		@RequestMapping("freemboarddetail.five")
+ 		public String salesdetail(String fm_id, Model model) throws ClassNotFoundException, SQLException{
  		System.out.println("상세보기 controller 진입");
- 		SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
- 		List<SalesBoard_DTO> reviewDto = salboardDao.reviewlist(bo_num);
- 		SalesBoard_DTO salboardDto = salboardDao.salesdetail(bo_num);
+ 		Freem_Dao freemDao= sqlSession.getMapper(Freem_Dao.class);
+ 		Freem_DTO freemDto = freemDao.detailboard(fm_id);
  		System.out.println("mapper소환 Dto에 bo_num");
-		 model.addAttribute("salboardDto", salboardDto);
-		 model.addAttribute("list",reviewDto);
+		 model.addAttribute("freemDto", freemDto);
 		 
-		 //review 목록
-		 //List<B_reply_DTO> list = boardDao.re_list(idx);
-		 //model.addAttribute("list", list);
-		 
-		 return "salesboard.salboarddetail"; 
+		 return "freemboard.freemboarddetail"; 
 	 }
 
  		 //수정 기존데이터 출력
