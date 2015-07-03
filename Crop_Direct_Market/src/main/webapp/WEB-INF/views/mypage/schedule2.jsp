@@ -36,16 +36,55 @@
 				header: {
 					left: 'prev,next today',
 					center: 'title',
-					right: 'month,agendaWeek,agendaDay'
+					right: 'month'
 				},
 				defaultDate: '<%=date%>',
+				selectable: true,
+				selectHelper: true,
+				select: function(start, end) {
+					var title = prompt('Event Title:');
+					if(title==null){return false;}
+					$('#editDialog').dialog({title:title});
+					var eventData;
+					/* if (title) {
+						eventData = {
+							title: title,
+							start: start,
+							end: end
+						};
+						$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+					} */
+					$('#calendar').fullCalendar('unselect');
+				},
 				editable: true,
-				eventLimit: true, // allow "more" link when too many events
-				events: list
+				eventLimit: true // allow "more" link when too many events
+				//events: list
 			});
+			var eventData = list;
+			$.each(list,function(idx,schedule){
+				if(schedule.user_id=='admin'){
+					schedule.color='#da3f3a';
+				}
+				$('#calendar').fullCalendar('renderEvent', schedule, true);
+			});
+			
+			
 			$('#agenda.fc-content').click(function(){
-				console.log($(this));
-				$('#dialog').dialog();
+				var title = $(this)[0].textContent.trim();
+				$.each(list,function(idx,schedule){
+					if(title==schedule.title){
+						console.log(schedule);
+						$('#end').val(schedule.end);
+						$('#start').val(schedule.start);
+						$('#user_id').val(schedule.user_id);
+						$('#pro_name').val(schedule.pro_name);
+						$('#content').val(schedule.content);
+						$('#dialog').dialog({
+							title:schedule.title
+						});
+					}
+				});
+				
 			});
 		});
 	
@@ -59,21 +98,71 @@
 	</style>
 <section id="contact" class="home-section text-center" style="position:static">
 	<div id='calendar' ></div>
-	<div id="dialog">
+	<div id="dialog" style="display:none">
 		<form method="post" action="">
 			<div class="row">
 				<div class="col-md-6 col-lg-12">
 					<div class="form-group">
-						<label for="email">TITLE</label>
+						<label for="start">START</label>
 						<div class="input-group">
 							<span class="input-group-addon">
-							<span class="glyphicon glyphicon-envelope"></span> 
-							</span> <input type="text" class="form-control" name="title" id="title"/>
+							<span class="glyphicon glyphicon-play"></span> 
+							</span> <input type="text" class="form-control" name="start" id="start" readonly="readonly"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="end">END</label>
+						<div class="input-group">
+							<span class="input-group-addon">
+							<span class="glyphicon glyphicon-stop"></span> 
+							</span> <input type="text" class="form-control" name="end" id="end" readonly="readonly"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="user_id">WRITER</label>
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </span>
+							<input type="text" class="form-control" name="user_id" id="user_id" readonly="readonly"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="pro_name">CROP</label>
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-leaf"></span> </span>
+							<input type="text" class="form-control" name="pro_name" id="pro_name" readonly="readonly"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="content">CONTENT</label>
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-comment"></span> </span>
+							<textarea class="form-control" name="content" id="content" readonly="readonly"></textarea>
 						</div>
 					</div>
 				</div>
-				<hr>
+			</div>
+		</form>
+	</div>
+	<div id="editDialog" style="display:none">
+		<form method="post" action="">
+			<div class="row">
 				<div class="col-md-6 col-lg-12">
+					<div class="form-group">
+						<label for="start">START</label>
+						<div class="input-group">
+							<span class="input-group-addon">
+							<span class="glyphicon glyphicon-play"></span> 
+							</span> <input type="text" class="form-control" name="start" id="start"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="end">END</label>
+						<div class="input-group">
+							<span class="input-group-addon">
+							<span class="glyphicon glyphicon-stop"></span> 
+							</span> <input type="text" class="form-control" name="end" id="end"/>
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="user_id">WRITER</label>
 						<div class="input-group">
@@ -84,8 +173,15 @@
 					<div class="form-group">
 						<label for="pro_name">CROP</label>
 						<div class="input-group">
-							<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> </span>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-leaf"></span> </span>
 							<input type="text" class="form-control" name="pro_name" id="pro_name"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="content">CONTENT</label>
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-comment"></span> </span>
+							<textarea class="form-control" name="content" id="content"></textarea>
 						</div>
 					</div>
 				</div>
