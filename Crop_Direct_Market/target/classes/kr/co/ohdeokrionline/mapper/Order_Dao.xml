@@ -6,10 +6,10 @@
 	"kr.co.ohdeokrionline.model.dao.Order_Dao">
 	
 	<select id="sellermanage" resultType="kr.co.ohdeokrionline.model.vo.Order_DTO">
-		select * from orderlist o join salboard s on o.bo_num=s.bo_num where SELL_USERID=#{user_id}
+		select o.or_id, s.bo_subject, s.pro_name, o.or_quan, o.or_cost, o.buy_userid, o.or_state, o.or_addr, s.bo_num from orderlist o join salboard s on o.bo_num=s.bo_num where SELL_USERID=#{user_id}
 	</select>
 	<update id="orderstatechange">
-		update orderlist set or_state='확인' where or_id=#{order_num}
+		update orderlist set or_state='배송' where or_id=#{param1} and bo_num=#{param2}
 	</update>
 	
 	<!-- 주문 입력 -->
@@ -67,9 +67,16 @@
 	  	WHERE BO_NUM=#{bo_num} AND OR_STATE='배송완료'
   	</select> 
   	
-<!--   	<select id="buyUser" resultType="String"> -->
-<!-- 	SELECT COUNT(BUY_USERID) -->
-<!--   	FROM ORDERLIST -->
-<!--   	WHERE BO_NUM= #{param1} AND OR_STATE='배송완료' AND BUY_USERID=#{param2} -->
-<!--   	</select> -->
+  	<!-- 판매자 계좌 확인 -->
+  	<select id="seller_account" resultType="kr.co.ohdeokrionline.model.vo.Account_DTO">
+		SELECT *
+	  	FROM account
+	  	WHERE user_id=#{sell_userid}
+  	</select>
+
+	<!-- 소비자가 입금 했을 때 -->
+	<update id="moneychecking" >
+		update orderlist set or_state='입금확인 중' where or_id=#{param1}
+		and bo_num=#{param2}
+	</update>
 </mapper>

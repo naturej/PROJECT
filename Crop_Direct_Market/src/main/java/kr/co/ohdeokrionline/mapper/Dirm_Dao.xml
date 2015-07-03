@@ -5,8 +5,8 @@
 <mapper namespace="kr.co.ohdeokrionline.model.dao.Dirm_Dao">
 	<!-- 직거래 쪽지 보내기 -->
 	<insert id="insertDirm" parameterType="kr.co.ohdeokrionline.model.vo.Dirm_DTO">
-	INSERT INTO DIRM(DIRMNO,USER_SEND,USER_REC,DIRM_SUB,DIRM_CONTENT,PRO_ID,DIRM_STARTDATE,DIRM_ENDDATE,DIRM_CONFIRM)
-	VALUES(dirm_seq.nextval,#{user_send},#{user_rec},#{dirm_sub},#{dirm_content},#{pro_id},#{dirm_startdate},#{dirm_enddate},#{dirm_confirm})
+	INSERT INTO DIRM(DIRMNO,USER_SEND,USER_REC,DIRM_SUB,DIRM_CONTENT,PRO_ID,DIRM_STARTDATE,DIRM_ENDDATE)
+	VALUES(dirm_seq.nextval,#{user_send},#{user_rec},#{dirm_sub},#{dirm_content},#{pro_id},#{dirm_startdate},#{dirm_enddate})
 	</insert>
 	
 	<!-- 직거래 쪽지 목록 -->

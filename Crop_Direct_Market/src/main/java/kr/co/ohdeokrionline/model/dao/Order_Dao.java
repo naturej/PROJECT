@@ -1,5 +1,6 @@
 package kr.co.ohdeokrionline.model.dao;
 
+import kr.co.ohdeokrionline.model.vo.Account_DTO;
 import kr.co.ohdeokrionline.model.vo.ShoppingBasket_DTO;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface Order_Dao {
 	
 //	판매자의 판매상태 보여주는 페이지
 	List<Order_DTO> sellermanage(String user_id);
-	int orderstatechange(String order_num);
+	int orderstatechange(String order_num, int bo_num);
 	
 	//주문 입력
 	public int insert(Order_DTO order);
@@ -29,6 +30,14 @@ public interface Order_Dao {
 	
 	//실구매자 아이디 출력
 	public List<String> buyUser(String bo_num);
+	
+	
+//	구매자 입금 상태 변경(대기->입금확인 중)
+	public int moneychecking(String order_id, int bo_num);
+	
+//	판매자 계좌 정보 확인 쿼리
+	public List<Account_DTO> seller_account(String sell_userid);
+	
 	// 실구매자 여부 출력
 	// public String buyUser(String bo_num, String buy_userid);
 	
