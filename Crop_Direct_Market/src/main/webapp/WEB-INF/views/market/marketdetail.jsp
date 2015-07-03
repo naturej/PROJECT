@@ -54,10 +54,38 @@
 					if(data!=null){
 						alert("참가 등록이 되었습니다.");
 						parti.value = "등록완료";
+						parti.onclick = "";
+						$("#person").html(window.parseInt($("#person").text())+1);
 					}
 		        }});
 	};
 	
+	function partici(mar_id)
+	{
+	   	$.ajax({
+				url:"marketpart2.five",
+				data:{"mar_id" : mar_id,
+				},
+				dataType:"html",
+				success : function(data){
+					if(data!=null){
+						part.type = "text";
+					}
+		        }});
+	};
+	function partici2(mar_id)
+	{
+	   	$.ajax({
+				url:"marketpart2.five",
+				data:{"mar_id" : mar_id,
+				},
+				dataType:"html",
+				success : function(data){
+					if(data!=null){
+						part.type = "hidden";
+					}
+		        }});
+	};
 	
 	
 </script>
@@ -83,12 +111,21 @@
 	            	<tr><td width="35%"></td><td align="left" colspan="2">위치 : ${marketDto.mar_location}</td></tr>
 		            <tr><td width="35%"></td><td align="left" colspan="2">날짜 : ${marketDto.mar_date}</td></tr>
 		            <tr><td width="35%"></td><td align="left" colspan="2">시간 : ${marketDto.mar_time}</td></tr>
-		            <tr><td width="35%"></td><td align="left" colspan="2">입점수 : <a href=0/${marketDto.mar_maxshop}>${requestScope.person}/${marketDto.mar_maxshop}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		            <tr><td width="35%"></td><td align="left" colspan="2">입점수 : <a onmouseover="part.value='${marketDto.mar_parti}'" onmouseout="part.value=''"><span id="person">${requestScope.person}</span>/${marketDto.mar_maxshop}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		            	<se:authentication property="name" var="LoginUser" />
-						   	<se:authorize ifAnyGranted="ROLE_SELLER">
+						   	
 								|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="button" value="참가등록" id="parti" name="parti" onclick="marketparti('${marketDto.mar_id}','${LoginUser}')">	
-							</se:authorize>
+								<c:choose>
+									<c:when test="${requestScope.person >= marketDto.mar_maxshop}">
+										참가등록 완료!!
+									</c:when>
+									<c:otherwise>
+										<se:authorize ifAnyGranted="ROLE_SELLER">
+											<input type="button" value="참가등록" id="parti" name="parti" onclick="marketparti('${marketDto.mar_id}','${LoginUser}')" >	
+										</se:authorize>
+									</c:otherwise>
+								</c:choose><br>
+						<input type="text" style="border:none" size="100" id="part" name="part">
 					</td></tr>
            			<tr><td colspan="2" align="center"><b><<상세정보>></b></td></tr>
             		<tr><td colspan="2">${marketDto.mar_content}</td></tr>
@@ -100,7 +137,6 @@
 				</se:authorize>
             </td></tr>
          </table>
-  
       
          	<input type="hidden" name="bo_num" value="${salboardDto.bo_num}">
          <br>

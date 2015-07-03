@@ -119,7 +119,7 @@ public class MarketController {
 			 Market_Dao marketDao= sqlsession.getMapper(Market_Dao.class);
 
 			 System.out.println("index : " + mar_id);
-			 int person = 1+marketDao.getCount2(mar_id);
+			 int person = marketDao.getCount2(mar_id);
 			 System.out.println("index : " + person);
 			 request.setAttribute("person", person);
 			 Market_DTO marketDto = marketDao.detailmarket(mar_id);
@@ -134,11 +134,21 @@ public class MarketController {
 			 	String mar_parti = ", "+request.getParameter("mar_parti");
 				System.out.println(mar_id);
 				System.out.println(mar_parti);
-				
 				Market_Dao market_dao = sqlsession.getMapper(Market_Dao.class);
-				
 				response.getWriter().write(market_dao.updatepart(mar_id,mar_parti));
+				int person = market_dao.getCount2(mar_id);
+				request.setAttribute("person", person);
 		}
+		 @RequestMapping(value={"marketpart2.five"})
+			public void marketparti2(HttpServletResponse response, HttpServletRequest request) throws IOException{
+			 	System.out.println(request.getParameter("mar_id"));
+			 	System.out.println(request.getParameter("mar_parti"));
+			 	int mar_id = Integer.parseInt(request.getParameter("mar_id"));
+				System.out.println(mar_id);
+				Market_Dao market_dao = sqlsession.getMapper(Market_Dao.class);
+				market_dao.getCount2(mar_id);
+		}
+		 
 			//글삭제하기
 		 @RequestMapping("marketdelete.five") 
 		public String noticeDel(int mar_id) throws ClassNotFoundException, SQLException{

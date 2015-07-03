@@ -121,24 +121,24 @@ function resizeText() {
   		<br>
   		<br>
 	   	<c:choose>
-				<c:when test="${nowpage<=1}">
+			<c:when test="${nowpage<=1}">
 				[이전]&nbsp;
-				</c:when>
-				<c:otherwise>
-					<a href="<%=request.getContextPath()%>/marketlist.five?pg=${nowpage-1}">[이전]</a>&nbsp;
-					</c:otherwise>
-				</c:choose>
-				<c:forEach var="i"  begin="${startpage}" end="${endpage}" step="1">
-				<c:choose>
+			</c:when>
+			<c:otherwise>
+				<a href="<%=request.getContextPath()%>/marketlist.five?pg=${nowpage-1}">[이전]</a>&nbsp;
+			</c:otherwise>
+		</c:choose>
+		<c:forEach var="i"  begin="${startpage}" end="${endpage}" step="1">
+			<c:choose>
 				<c:when test="${i==nowpage}">
-				[${i}]
+					[${i}]
 				</c:when>
 				<c:otherwise>
 					<a href="<%=request.getContextPath()%>/marketlist.five?pg=${i}">[${i}]</a>&nbsp;
 				</c:otherwise>
-				</c:choose>
-				</c:forEach>
-				<c:choose>
+			</c:choose>
+		</c:forEach>
+		<c:choose>
 					<c:when test="${nowpage>=maxpage}">
 					[다음]
 					</c:when>
