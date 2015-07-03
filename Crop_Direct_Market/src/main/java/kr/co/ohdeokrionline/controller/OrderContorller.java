@@ -63,10 +63,13 @@ public class OrderContorller {
          return "mypage.ordermanage";
 	}
 	
+//	1추가
+//	판매자 계좌 정보확인 
 	@RequestMapping("seller_account.five") 
 	public String sellerinfo(Model model, HttpServletRequest request) throws IOException{
 		Order_Dao dao = sqlsession.getMapper(Order_Dao.class);
 		String seller=request.getParameter("seller");
+		System.out.println(dao.seller_account(seller));
 		model.addAttribute("account", dao.seller_account(seller));
 		model.addAttribute("seller",seller);
          return "mypage/account_info";

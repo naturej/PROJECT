@@ -31,7 +31,15 @@
 			$.ajax({
 				type:'post',
 				url : 'dirm_sinchung.five',
-				data:$("#dirm").serialize(),
+				data: {
+					user_send : "${user_send}",
+					user_rec : "${param.user_rec}",
+					dirm_sub : $("#dirm_sub").val(),
+					dirm_content : $("#dirm_content").val(),
+					pro_id : "${param.pro_id}",
+					dirm_startdate : dirm_startdate,
+					dirm_enddate : dirm_enddate
+				},
 				dataType : 'html',
 				success : alert('직거래 신청이 완료되었습니다'),
 				error : function(request,status,error){
