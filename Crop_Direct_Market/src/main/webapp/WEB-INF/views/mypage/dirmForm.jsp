@@ -10,8 +10,12 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript">
 	$(function() {
-	    $( "#startdate" ).datepicker();
-	    $( "#enddate" ).datepicker();
+	    $( "#startdate" ).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+	    $( "#enddate" ).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
 	  });
 	
 	
@@ -21,33 +25,18 @@
 			alert('내용을 입력해주세요');
 			return false;
 		} else {
-			
-			sd = $("#startdate").val().split("/");
-			dirm_startdate = new Date(sd[2],sd[0]-1,sd[1]);
-			
-			ed = $("#enddate").val().split("/");
-			dirm_enddate = new Date(ed[2],ed[0]-1,ed[1]);
-			
+
 			$.ajax({
 				type:'post',
 				url : 'dirm_sinchung.five',
-				data: {
-					user_send : "${user_send}",
-					user_rec : "${param.user_rec}",
-					dirm_sub : $("#dirm_sub").val(),
-					dirm_content : $("#dirm_content").val(),
-					pro_id : "${param.pro_id}",
-					dirm_startdate : dirm_startdate,
-					dirm_enddate : dirm_enddate
-				},
+				data: $("#dirm").serialize(),
 				dataType : 'html',
 				success : alert('직거래 신청이 완료되었습니다'),
 				error : function(request,status,error){
 					console.log("code : " + request.status + ", error : " + error);
 				}
 			});
-			
-// 			window.close();
+			window.close();
 		}
 	}
 </script>
@@ -76,8 +65,8 @@
 				<td>${param.pro_id}</td>
 			</tr>
 			<tr>
-				<td>시작일:<input type="text" id="startdate"></td>
-				<td>종료일:<input type="text" id="enddate"></td>
+				<td>시작일:<input type="text" name="dirm_startdate" id="startdate"></td>
+				<td>종료일:<input type="text" name="dirm_enddate" id="enddate"></td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -90,8 +79,6 @@
 					<input type="text" name="user_rec" value="${param.user_rec}" hidden>
 					<input type="text" name="pro_id" value="${param.pro_id}" hidden>
 					<input type="text" name="dirm_sub" value="${param.pro_id} 직거래 신청" hidden>
-					<input type="text" name="dirm_startdate" value="${dirm_startdate}" hidden>
-					<input type="text" name="dirm_enddate" value="${dirm_enddate}" hidden>
 				</td>
 			</tr>
 			<tr>

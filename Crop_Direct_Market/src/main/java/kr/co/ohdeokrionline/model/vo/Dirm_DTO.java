@@ -1,7 +1,5 @@
 package kr.co.ohdeokrionline.model.vo;
 
-import java.sql.Date;
-
 public class Dirm_DTO {	/*직거래 쪽지 테이블*/
 	private int dirmno;	/*직거래 쪽지 번호*/
 	private String user_send; /*보내는 사람*/
@@ -9,8 +7,8 @@ public class Dirm_DTO {	/*직거래 쪽지 테이블*/
 	private String dirm_sub; /*쪽지 제목*/
 	private String dirm_content; /*쪽지 내용*/
 	private String pro_id; /*직거래 품종*/
-	private Date dirm_startdate; /*직거래 시작날짜*/
-	private Date dirm_enddate; /*직거래 종료날짜*/
+	private String dirm_startdate; /*직거래 시작날짜*/
+	private String dirm_enddate; /*직거래 종료날짜*/
 	private String dirm_confirm; /*직거래 승인여부*/
 	
 	public int getDirmno() {
@@ -49,16 +47,16 @@ public class Dirm_DTO {	/*직거래 쪽지 테이블*/
 	public void setPro_id(String pro_id) {
 		this.pro_id = pro_id;
 	}
-	public Date getDirm_startdate() {
+	public String getDirm_startdate() {
 		return dirm_startdate;
 	}
-	public void setDirm_startdate(Date dirm_startdate) {
+	public void setDirm_startdate(String dirm_startdate) {
 		this.dirm_startdate = dirm_startdate;
 	}
-	public Date getDirm_enddate() {
+	public String getDirm_enddate() {
 		return dirm_enddate;
 	}
-	public void setDirm_enddate(Date dirm_enddate) {
+	public void setDirm_enddate(String dirm_enddate) {
 		this.dirm_enddate = dirm_enddate;
 	}
 	public String getDirm_confirm() {
