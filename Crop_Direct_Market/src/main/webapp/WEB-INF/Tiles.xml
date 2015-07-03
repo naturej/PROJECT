@@ -17,6 +17,11 @@
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
 		<put-attribute name="content" value="/WEB-INF/views/login/searchForm.jsp" />
 	</definition>
+	<definition name="mypage.schedule2" template="/WEB-INF/views/inc/scheduleForm_layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/mypage/schedule2.jsp" />
+	</definition>
 	<definition name="*.*" template="/WEB-INF/views/inc/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />

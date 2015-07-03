@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace=
+	"kr.co.ohdeokrionline.model.dao.ScheduleRecord2_Dao">
+	<select id="mySchedule" resultType="kr.co.ohdeokrionline.model.vo.ScheduleRecord2_DTO">
+		select user_id,"START","END",title,"CONTENT",pro_name from plan2 where user_id=#{user_id}
+	</select>
+	<insert id="scheduleAdd" parameterType="kr.co.ohdeokrionline.model.vo.ScheduleRecord2_DTO">
+		insert into
+		plan2(user_id,start,end,title,content,pro_name)
+		values(#{user_id},to_date(#{start},'yyyy-MM-dd'),to_date(#{end},'yyyy-MM-dd'),#{title},#{content},#{pro_name})
+	</insert>
+	<update id="scheduleEdit" parameterType="kr.co.ohdeokrionline.model.vo.ScheduleRecord2_DTO">
+		update plan2
+		set start=to_date(#{start},'yyyy-MM-dd'),
+			end=to_date(#{end},'yyyy-MM-dd'),
+			title=#{title}, content=#{content}, pro_name=#{pro_name}
+		where user_id=#{user_id}
+	</update>
+	<delete id="scheduleRemove" parameterType="kr.co.ohdeokrionline.model.vo.ScheduleRecord2_DTO">
+		delete plan2
+		where user_id=#{user_id} and start=to_date(#{start},'yyyy-MM-dd') and
+			end=to_date(#{end},'yyyy-MM-dd') and
+			title=#{title} and content=#{content} and pro_name=#{pro_name}
+	</delete>
+</mapper>

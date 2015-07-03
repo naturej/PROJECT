@@ -3,10 +3,11 @@ package kr.co.ohdeokrionline.controller;
 import java.security.Principal;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.List;
 
+import kr.co.ohdeokrionline.model.dao.ScheduleRecord2_Dao;
 import kr.co.ohdeokrionline.model.dao.ScheduleRecord_Dao;
+import kr.co.ohdeokrionline.model.vo.ScheduleRecord2_DTO;
 import kr.co.ohdeokrionline.model.vo.ScheduleRecord_DTO;
 
 import org.apache.ibatis.session.SqlSession;
@@ -30,8 +31,7 @@ public class ScheduleController {
 			List<ScheduleRecord_DTO> admin = dao.mySchedule("admin");
 			list.addAll(admin);
 		}
-		
-		System.out.println(principal.toString());
+		System.out.println(list);
 		model.addAttribute("list", list);
 		model.addAttribute("user_id",principal.getName());
 		//Tiles 적용 전 코드
@@ -116,5 +116,28 @@ public class ScheduleController {
 		System.out.println("remove:"+schedule);
 		dao.scheduleRemove(schedule);
 		return "redirect:schedule.five";
+	}
+	
+	@RequestMapping(value="schedule2.five",method=RequestMethod.GET)
+	public String schedule2(Model model,Principal principal) throws SQLException{
+		ScheduleRecord2_Dao dao = sqlSession.getMapper(ScheduleRecord2_Dao.class);
+		List<ScheduleRecord2_DTO> list = dao.mySchedule(principal.getName()); //LogingUser 값을 받음
+		if(!principal.getName().equals("admin")){
+			List<ScheduleRecord2_DTO> admin = dao.mySchedule("admin");
+			list.addAll(admin);
+		}
+		
+		model.addAttribute("list", list);
+		model.addAttribute("user_id",principal.getName());
+		//Tiles 적용 전 코드
+		//return "mypage/schedule";
+		//Tiles 적용
+		return "mypage.schedule2";
+	}
+	
+	@RequestMapping(value="agenda.five",method=RequestMethod.GET)
+	public String agenda(Model model,Principal principal) throws SQLException{
+		
+		return "mypage.agenda";
 	}
 }

@@ -27,6 +27,9 @@
 				 		<c:when test="${fail eq 'Bad credentials' }">
 				 			잘못된 자격 증명입니다.
 				 		</c:when>
+				 		<c:when test="${fail eq 'Could not get JDBC Connection; nested exception is java.sql.SQLRecoverableException: IO 오류: The Network Adapter could not establish the connection' }">
+				 			데이터베이스 오류; 네트워크 연결이 없습니다.
+				 		</c:when>
 				 		<c:otherwise>
 				 			reason : ${fail}
 				 		</c:otherwise>
