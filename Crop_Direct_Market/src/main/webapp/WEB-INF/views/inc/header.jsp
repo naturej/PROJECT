@@ -108,7 +108,8 @@
 				</se:authorize>
 				<se:authentication property="name" var="LoginUser" />
 				<se:authorize ifAnyGranted="ROLE_CONSUMER,ROLE_ADMIN,ROLE_SELLER">
-					<li><a href="<c:url value='/j_spring_security_logout' />">(${LoginUser}
+					<li>
+					<a href="<c:url value='/j_spring_security_logout' />">(${LoginUser}
 							님)LOGOUT</a></li>
 				</se:authorize>
 			</ul>

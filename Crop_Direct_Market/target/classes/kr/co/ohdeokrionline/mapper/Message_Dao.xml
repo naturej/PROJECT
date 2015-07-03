@@ -52,4 +52,11 @@
 	<delete id="deleteSend">
 		DELETE FROM MESSAGE_SEND WHERE ME_NUM=#{me_num}
 	</delete>
+	
+	<!-- 안 본 메세지 개수 -->
+	<select id="msgNum">
+		SELECT COUNT(*) FROM MESSAGE_SEND
+		WHERE ME_COUNT=0
+		AND REC_USERID=#{rec_userid}
+	</select>
 </mapper>

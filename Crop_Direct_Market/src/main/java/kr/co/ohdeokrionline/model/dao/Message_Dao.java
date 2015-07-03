@@ -23,4 +23,6 @@ public interface Message_Dao {
 	public int deleteRec(String me_num);
 	// 보낸 메세지 삭제
 	public int deleteSend(String me_num);
+	// 안 본 메세지 개수
+	public int msgNum(String rec_userid);
 }
