@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
-
+<c:set var="person" value="${requestScope.person}" />
 <style type="text/css">
 	#img {
 		width: 400px;
@@ -42,49 +42,24 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>
 
 <script type="text/javascript">
-	function CheckForm(){
-		if( $( "#sh_quantity" ).val()==""){
-			alert('수량을 입력해주세요');
-			return false;
-		}
-		else{
-			$.ajax({
-				type:'post',
-				url:'shopInsert.five',
-				data:{
-					//user_id: Principal.getName(),
-					bo_num:"${salboardDto.bo_num}",
-					sh_quantity:$("#sh_quantity").val(),
-					bo_price:"${salboardDto.bo_price}"
+	function marketparti(mar_id,mar_parti)
+	{
+	   	$.ajax({
+				url:"marketpart.five",
+				data:{"mar_id" : mar_id,
+					  "mar_parti" : mar_parti	
 				},
-				dataType:'html',
-				success: $( "#dialog-confirm" ).dialog( "open" )
-			});
-		}
-	}
-
+				dataType:"html",
+				success : function(data){
+					if(data!=null){
+						alert("참가 등록이 되었습니다.");
+						parti.value = "등록완료";
+					}
+		        }});
+	};
 	
-	$(function() {
-		  $( "#dialog-confirm" ).dialog({
-			autoOpen: false,
-		    resizable: false,
-		    height:300,
-		    width:500,
-		    modal: true,
-		    buttons: {
-		      "장바구니 보기": function() {
-				//$('#shopbag').submit();
-		        $( this ).dialog( "close" );
-		        location.href = "shopList.five";
-		      },
-		      "계속 쇼핑하기": function() {
-		    	//$('#shopbag').submit();
-		        $( this ).dialog( "close" );
-		        location.reload();
-		      }
-		    }
-		  });
-		});
+	
+	
 </script>
 
 <section id="service" class="home-section text-center"  style="position: static">	
@@ -108,14 +83,17 @@
 	            	<tr><td width="35%"></td><td align="left" colspan="2">위치 : ${marketDto.mar_location}</td></tr>
 		            <tr><td width="35%"></td><td align="left" colspan="2">날짜 : ${marketDto.mar_date}</td></tr>
 		            <tr><td width="35%"></td><td align="left" colspan="2">시간 : ${marketDto.mar_time}</td></tr>
-		            <tr><td width="35%"></td><td align="left" colspan="2">입점수 : 0/${marketDto.mar_maxshop}</td></tr>
+		            <tr><td width="35%"></td><td align="left" colspan="2">입점수 : <a href=0/${marketDto.mar_maxshop}>${requestScope.person}/${marketDto.mar_maxshop}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		            	<se:authentication property="name" var="LoginUser" />
+						   	<se:authorize ifAnyGranted="ROLE_SELLER">
+								|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="button" value="참가등록" id="parti" name="parti" onclick="marketparti('${marketDto.mar_id}','${LoginUser}')">	
+							</se:authorize>
+					</td></tr>
            			<tr><td colspan="2" align="center"><b><<상세정보>></b></td></tr>
             		<tr><td colspan="2">${marketDto.mar_content}</td></tr>
             <tr><td colspan="3">
 	            <a href="marketlist.five">목록</a>&nbsp;&nbsp;
-	            <se:authorize ifAllGranted="ROLE_SELLER">
-					<a href="">참가등록</a>		
-				</se:authorize>
 	            <se:authorize ifAllGranted="ROLE_ADMIN">
 					<a href="marketedit.five?mar_id=${marketDto.mar_id}">수정</a>&nbsp;&nbsp;
 	            	<a href="marketdelete.five?mar_id=${marketDto.mar_id}">삭제</a>		

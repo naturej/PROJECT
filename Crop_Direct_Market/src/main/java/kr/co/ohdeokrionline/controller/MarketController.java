@@ -6,9 +6,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ohdeokrionline.model.dao.Board_Dao;
 import kr.co.ohdeokrionline.model.dao.Market_Dao;
+import kr.co.ohdeokrionline.model.dao.Order_Dao;
 import kr.co.ohdeokrionline.model.vo.Board_DTO;
 import kr.co.ohdeokrionline.model.vo.Market_DTO;
 
@@ -113,16 +115,30 @@ public class MarketController {
 		 }	
 		 
 		 @RequestMapping("detailmarket.five")
-		 public String noticeDetail(int mar_id, Model model) throws ClassNotFoundException, SQLException{
+		 public String noticeDetail(int mar_id, Model model,HttpServletRequest request) throws ClassNotFoundException, SQLException{
 			 Market_Dao marketDao= sqlsession.getMapper(Market_Dao.class);
-			 //boardDao.hitUp(idx);
+
 			 System.out.println("index : " + mar_id);
-			
+			 int person = 1+marketDao.getCount2(mar_id);
+			 System.out.println("index : " + person);
+			 request.setAttribute("person", person);
 			 Market_DTO marketDto = marketDao.detailmarket(mar_id);
 			 model.addAttribute("marketDto", marketDto);
 			 return "market.marketdetail"; 
 		 }
-		 
+			
+		//참가등록
+		 @RequestMapping(value={"marketpart.five"})
+			public void marketparti(HttpServletResponse response, HttpServletRequest request) throws IOException{
+			 	int mar_id = Integer.parseInt(request.getParameter("mar_id"));
+			 	String mar_parti = ", "+request.getParameter("mar_parti");
+				System.out.println(mar_id);
+				System.out.println(mar_parti);
+				
+				Market_Dao market_dao = sqlsession.getMapper(Market_Dao.class);
+				
+				response.getWriter().write(market_dao.updatepart(mar_id,mar_parti));
+		}
 			//글삭제하기
 		 @RequestMapping("marketdelete.five") 
 		public String noticeDel(int mar_id) throws ClassNotFoundException, SQLException{
@@ -140,8 +156,6 @@ public class MarketController {
 				 model.addAttribute("marketDto", marketDto);
 			   	   return "market.marketedit";
 				}
-			  
-		 
 		 
 		//수정 실행문
 		@RequestMapping(value={"marketedit.five"},method=RequestMethod.POST)   //=>customer/notice.htm
@@ -164,5 +178,7 @@ public class MarketController {
 				System.out.println("11");
 		   	   return "redirect:marketdetail.five?mar_id="+n.getMar_id();
 			}
+		
+	
 	}
 

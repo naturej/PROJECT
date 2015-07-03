@@ -35,6 +35,12 @@
 	                      MAR_MAXSHOP=#{mar_maxshop} WHERE MAR_ID=#{mar_id}
 	  </update>
 		
+	<update id="updatepart">
+		update market set mar_parti = concat(mar_parti,#{1}) where mar_id = #{0}
+	</update>
+	 <select id="getCount2" resultType="Integer">
+  		SELECT length(arr) - length(replace(arr,',','')) count FROM (SELECT mar_parti arr from market where mar_id=#{0})
+	</select>
 	<!--   D delete   -->
 		<delete id="delete" parameterType="STRING">
 		      DELETE MARKET WHERE MAR_ID=#{mar_id}

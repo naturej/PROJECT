@@ -13,6 +13,7 @@ public class Market_DTO {
 	private String mar_time;
 	private String mar_photo;
 	private String writedate;
+	private String mar_parti;
 	private String editor1;
 	
 	private int mar_maxshop;
@@ -66,7 +67,12 @@ public class Market_DTO {
 	public void setMar_photo(String mar_photo) {
 		this.mar_photo = mar_photo;
 	}
-	
+	public String getMar_parti() {
+		return mar_parti;
+	}
+	public void setMar_parti(String mar_parti) {
+		this.mar_parti = mar_parti;
+	}
 	public int getMar_maxshop() {
 		return mar_maxshop;
 	}
