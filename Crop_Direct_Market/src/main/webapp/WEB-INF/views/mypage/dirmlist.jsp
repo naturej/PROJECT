@@ -28,6 +28,7 @@
 					<tr>
 						<td>보내는사람</td>
 						<td>제목</td>
+						<td>상태</td>
 					</tr>
 					<c:choose>
 						<c:when test="${empty m2}">
@@ -40,10 +41,20 @@
 								<tr>
 									<td>${d.user_send}</td>
 									<td><a href="dirmDetail.five?dirmno=${d.dirmno}">${d.dirm_sub}</a></td>
+									<c:choose>
+										<c:when test="${d.dirm_confirm eq '1'}">
+												<td>수락</td>
+										</c:when>
+										<c:otherwise>
+												<td>대기중</td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
+
+					
 				</table>
 			</div>
 		</div>
