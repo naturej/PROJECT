@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%> 
 <%@page import="java.util.Calendar" %>
@@ -12,16 +13,17 @@
 <!--날씨아이콘 css 설정  -->
 <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" type="text/css">  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/weather-icons-master/css/weather-icons.css"  type="text/css">
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script> -->
 <!-- div 드래그이동 설정 -->
 
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<!-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
 
 
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-
-
+<!-- 툴팁 -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <style>
    #widget_layer{
@@ -29,7 +31,7 @@
    height: 100px;   
    font-size:9pt;
    position: absoulte;
-   top:120px; left:100px; 
+   top:120px; left:1000px; 
    z-index: 130;
 	
    }
@@ -41,16 +43,54 @@
  	background-color: window;
    }
 </style>
+
+<style>
+  /* Tooltip */
+  .tooltip > .tooltip-inner {
+      background-color: white; 
+      color: black; 
+      border: 1px solid black; 
+      padding: 8px;
+      font-size: 11px;
+      
+  }
+  /* Tooltip on top */
+  #min_tool + .tooltip.top > .tooltip-arrow {
+      border-top: 5px solid white;
+  }
+  /* Tooltip on bottom */
+ #min_tool + .tooltip.bottom > .tooltip-arrow {
+      border-bottom: 5px solid blue;
+  }
+  /* Tooltip on left */
+ #min_tool+ .tooltip.left > .tooltip-arrow {
+      border-left: 5px solid red;
+  }
+  /* Tooltip on right */
+  #min_tool + .tooltip.right > .tooltip-arrow {
+      border-right: 5px solid black;
+  }
+  </style>
+
 <!--div 드래그 이동에 들어갈 날씨 위젯 스크립트  -->
 <script>
 $(function() {
-		
+
+	//툴팁
+	$('#click_on_off').tooltip({title: "날씨위젯 <br> on/off", html: true,placement: "right"}); 	
+
+	$('#text_search').tooltip({title: "동/읍을 입력후 <br> 검색하시고 선택하세요", html: true, placement: "top"}); 	
+	
+	//위젯 감추기 보이기
 		$('#click_on_off').click(function(){
 			 //console.log(on_off);
 		     if(on_off.style.display=="block"){ 
+		    	 
 		    	 on_off.style.display = "none"; 
 		   	 }else{ 
+		   		
 		   		on_off.style.display = "block"; 
+		   		
 		   	 }
 		});
 	
@@ -77,7 +117,7 @@ $(function() {
 				$('#select_search').change(function(){
 					var select_search_value=$("#select_search option:selected").val().trim();
 					var kkk = select_search_value.split(" ");
-					 console.log(kkk);
+					 //console.log(kkk);
 					for(key in data) {
 						if(kkk[0]==data[key].대분류 && kkk[1]==data[key].중분류 && kkk[2]==data[key].소분류){
 							$('#search_nx').val(data[key].위도);
@@ -100,7 +140,7 @@ $(function() {
 						success : function(data) { //서버가 보낸 data
 							
 							data = JSON.parse(data);
-							console.log(data);
+							//console.log(data);
 							//console.log(data.body.items.item.wfSv);
 							
 							$('#drag').empty();
@@ -109,8 +149,8 @@ $(function() {
 							$('#drag').append("<tr id='drag_obsrValue'><td id='drag_obsrValue02' ></td></tr>");
 							for(var i=0; i<data.body.items.length ; i++){
 								if(i!=0 && i!=1 && i!=6  && i!=8 ){
-								console.log(data.body.items[i].category);
-								console.log(data.body.items[i].obsrValue);
+								//console.log(data.body.items[i].category);
+								//console.log(data.body.items[i].obsrValue);
 								//$('#table').append("<td id='"+i+"'>" + data.body.items[i].category+ "</td>");
 								var category = data.body.items[i].category; 
 								var weather_icon = "";
@@ -362,7 +402,7 @@ $(function() {
 				success : function(data) { //서버가 보낸 data
 					
 					data = JSON.parse(data);
-					console.log(data);
+					//console.log(data);
 					//console.log(data.body.items.item.wfSv);
 					
 					$('#drag').empty();
@@ -371,8 +411,8 @@ $(function() {
 					$('#drag').append("<tr id='drag_obsrValue'><td id='drag_obsrValue02' ></td></tr>");
 					for(var i=0; i<data.body.items.length ; i++){
 						if(i!=0 && i!=1 && i!=6  && i!=8 ){
-						console.log(data.body.items[i].category);
-						console.log(data.body.items[i].obsrValue);
+						//console.log(data.body.items[i].category);
+						//console.log(data.body.items[i].obsrValue);
 						//$('#table').append("<td id='"+i+"'>" + data.body.items[i].category+ "</td>");
 						var category = data.body.items[i].category; 
 						var weather_icon = "";
@@ -607,32 +647,38 @@ Date d = new Date();
 Calendar time=Calendar.getInstance ( );  
 
 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-SimpleDateFormat sdf1 = new SimpleDateFormat("HH00");
-  
+SimpleDateFormat sdf1 = new SimpleDateFormat("HH00"); 
+DecimalFormat df = new DecimalFormat("00");
+
 time.add(Calendar.HOUR_OF_DAY, -1 ); 
 int Day_time = time.get( Calendar.HOUR_OF_DAY);
 
-System.out.println("현재시간 : "+ sdf1.format(Day_time));
-System.out.println("현재시간 : "+ sdf1.format(d));
+
+
+System.out.println("현재시간-1 : "+ df.format(Day_time)+"00");
+System.out.println("현재시간 -1 : " +sdf1.format(Day_time));
 
 String base_date=sdf.format(d);  
-String base_time=sdf1.format(Day_time) ;  
+String base_time=df.format(Day_time)+"00"; 
+
 %>
 </script>
+
 </head>
 <body>
- 
-	<div id=widget_layer>
-		
+
+	<div id=widget_layer >	
+		<span  class="glyphicon glyphicon-off" aria-hidden="true" id="click_on_off" style="float: right;"></span> 
+		<div id="on_off" style="display:none">
 			<input type="text" id="text_search" style="width: 50px"/>
-			<input type="button"id="button_search" value="동/읍 검색" /> 
+			<input type="button"id="button_search" value="동/읍 검색"  /> 
 			<select id="select_search" style="width: 150px"><option>선택하세요</option></select>
 			<input type="hidden" id="search_nx" readonly="readonly">
 			<input type="hidden" id="search_ny" readonly="readonly">
 			<input type="hidden" id="base_date" value="<%=base_date%>">
 			<input type="hidden" id="base_time" value="<%=base_time%>">
-			<span class="glyphicon glyphicon-off" aria-hidden="true" id="click_on_off" style="float: right;"></span> 
-		<div id="on_off" style="display:none">	
+		
+			
 			<table id="drag" class="table table-bordered">  <!-- class="table table-striped" -->
 	  		</table>
 	  	</div>

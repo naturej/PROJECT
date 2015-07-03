@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.Calendar"%>
@@ -7,7 +8,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-
+ 
 <!--날씨아이콘 css 설정  -->
 <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" type="text/css">  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/weather-icons-master/css/weather-icons.css"  type="text/css">
@@ -430,15 +431,17 @@
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 	SimpleDateFormat sdf1 = new SimpleDateFormat("HH00");
+	DecimalFormat df = new DecimalFormat("00");
 	
 	time.add(Calendar.HOUR_OF_DAY, -1 ); 
 	int Day_time = time.get( Calendar.HOUR_OF_DAY);
-	
-	System.out.println("현재시간 : "+ sdf1.format(d));
-	System.out.println("현재시간 : "+ sdf1.format(d));
+	 
+
+	System.out.println("api 페이지 현재 날짜 : "+ sdf1.format(Day_time));
+	System.out.println("api 현재시간 -1: "+ df.format(Day_time)+"00");
 	
 	String base_date=sdf.format(d);  
-	String base_time=sdf1.format(Day_time) ;
+	String base_time=df.format(Day_time)+"00" ;
 %>
 
 

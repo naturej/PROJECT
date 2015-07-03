@@ -50,6 +50,7 @@
 							<li><a href="<%=request.getContextPath()%>/MiddleTemperatureApi.five">중기날씨조회</a></li>
 							<li><a href="<%=request.getContextPath()%>/RealTime_Forecast_Api.five">실시간동네조회</a></li>
 							<li><a href="<%=request.getContextPath()%>/OpenDB_Api.five">오픈백과</a></li>
+							<li><a href="<%=request.getContextPath()%>/pre_sheet.five">견적서</a></li>
 						</ul>
 					</dd>
 				</li>

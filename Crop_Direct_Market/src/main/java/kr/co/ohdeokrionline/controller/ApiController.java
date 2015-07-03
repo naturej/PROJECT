@@ -6,12 +6,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.security.Principal;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import kr.co.ohdeokrionline.model.dao.Account_Dao;
+import kr.co.ohdeokrionline.model.dao.FarmRecord_Dao;
+import kr.co.ohdeokrionline.model.dao.Member_Dao;
 import net.sf.json.JSONObject;
 import net.sf.json.xml.XMLSerializer;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +29,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 //@RequestMapping("/api/")
 public class ApiController {
 	
+	@Autowired
+	private SqlSession sqlSession;
 	
 	//빠른 가격조회
 	@RequestMapping(value="searchPriceApi.five", method=RequestMethod.GET)
@@ -31,7 +40,7 @@ public class ApiController {
 	
 	@RequestMapping(value="searchPriceApi.five", method=RequestMethod.POST)
 	public String serachPricePost(HttpServletRequest request, Model model) throws IOException{
-		
+	 	
 		String work=request.getParameter("work");
 		String type = request.getParameter("type");
 		//System.out.println(work);
@@ -39,7 +48,7 @@ public class ApiController {
 		String URL ="http://openapi.okdab.com/price/fast/pricexml_search_fast.jsp?key=f4d62c3d49e62769df33d83aad60e8e49e78e3";
 		URL += "&work="+work+"&type="+type;
 		//System.out.println(URL);
-		
+		 
 		StringBuffer sb = new StringBuffer(); 
 		URL naverUrl = new URL(URL);
 		
@@ -347,5 +356,40 @@ public class ApiController {
 			
 			return "api/OpenDB_Api_Json";
 		}
+		
+		
+		@RequestMapping(value="pre_sheet.five", method=RequestMethod.GET)
+		public String pre_sheet(Model model, Principal principal){
+			
+			
+			
+			String authority = principal.toString().split(";")[6].split(": ")[1];
+			
+			Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
+			FarmRecord_Dao dao2 = sqlSession.getMapper(FarmRecord_Dao.class);
+			Account_Dao dao3 = sqlSession.getMapper(Account_Dao.class);
+			
+			try {
+				String user_id = principal.getName();
+				model.addAttribute("user", dao.login(user_id));
+				
+				if(authority.equals("ROLE_SELLER")){
+					model.addAttribute("farm",dao2.farmInfo(user_id));
+				}
+				model.addAttribute("account", dao3.getAccountByUser_id(user_id));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		
+			
+			
+			//model.addAttribute("userid", principal.getName());
+			return "api.pre_sheet";
+		}
+		
+
+		
+
 }
  
