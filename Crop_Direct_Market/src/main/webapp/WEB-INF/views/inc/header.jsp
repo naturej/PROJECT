@@ -79,7 +79,7 @@
 						onmouseout="ddMenu('two',-1)">
 
 						<ul style="background: white; width: 120px;">
-							<li><a href="<%=request.getContextPath()%>/mypage/schedule.five">일정</a></li>
+							<li><a href="<%=request.getContextPath()%>/mypage/schedule2.five">일정</a></li>
 							<li><a href="<%=request.getContextPath()%>/manage/sellermanage.five">판매관리</a></li>
 							<li><a href="<%=request.getContextPath()%>/salesboard/shopList.five">장바구니목록</a></li>
 							<se:authorize ifAllGranted="ROLE_SELLER">
@@ -103,9 +103,9 @@
 				<se:authorize ifNotGranted="ROLE_SELLER,ROLE_CONSUMER,ROLE_ADMIN">
 					<li><a href="<%=request.getContextPath()%>/login.five">LOGIN</a></li>
 				</se:authorize>
-				<se:authentication property="name" var="LogingUser" />
+				<se:authentication property="name" var="LoginUser" />
 				<se:authorize ifAnyGranted="ROLE_CONSUMER,ROLE_ADMIN,ROLE_SELLER">
-					<li><a href="<c:url value='/j_spring_security_logout' />">(${LogingUser}
+					<li><a href="<c:url value='/j_spring_security_logout' />">(${LoginUser}
 							님)LOGOUT</a></li>
 				</se:authorize>
 			</ul>

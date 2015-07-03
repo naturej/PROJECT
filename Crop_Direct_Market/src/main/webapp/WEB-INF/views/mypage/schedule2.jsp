@@ -13,7 +13,6 @@
 	String user_id = (String)request.getAttribute("user_id");
 	DateFormatter df = new DateFormatter("yyyy-MM-dd");
 	String date = df.print(new Date(), Locale.KOREAN);
-	System.out.println(date);
 %>
 <!DOCTYPE html>
 	<!-- jQuery UI -->
@@ -30,8 +29,8 @@
 	<script>
 	
 		$(document).ready(function() {
-			var list = <%=list%>;
-			
+			list = <%=list%>;
+			loginId = '<%=user_id%>';
 			$('#calendar').fullCalendar({
 				header: {
 					left: 'prev,next today',
@@ -44,7 +43,13 @@
 				select: function(start, end) {
 					var title = prompt('Event Title:');
 					if(title==null){return false;}
-					$('#editDialog').dialog({title:title});
+					$('#addstart').datepicker({
+						  dateFormat: "yy-mm-dd"
+					});
+					$('#addend').datepicker({
+						  dateFormat: "yy-mm-dd"
+					});
+					$('#addDialog').dialog({title:title});
 					var eventData;
 					/* if (title) {
 						eventData = {
@@ -87,7 +92,48 @@
 				
 			});
 		});
-	
+		
+		$('#addstart').datepicker({
+			  dateFormat: "yy-mm-dd"
+		});
+		$('#addend').datepicker({
+			  dateFormat: "yy-mm-dd"
+		});
+		
+		function add(){
+			var title = $('.ui-dialog-title').text();
+			var start = $('#addstart').val();
+			var end = $('#addend').val();
+			var user_id = $('#adduser_id').val();
+			var pro_name = $('#addpro_name').val();
+			var content = $('#addcontent').val();
+			var eventData = {
+				title: title,
+				start: start,
+				end: end,
+				user_id: user_id,
+				pro_name: pro_name,
+				content: content
+			}
+			//$('#calendar').fullCalendar('renderEvent', eventData, true);
+			
+			$.ajax({
+				type: "POST",
+				url : "schedule2Add.five",
+				data : eventData,
+				success : function(data){
+					if(data.length>0){
+						location.href='schedule.five';
+					}else{
+						alert('fail');
+					}
+				},
+				error : function(xhr, status){
+					alert(xhr + '/' + status); 
+				}
+			});
+			$('#addDialog').dialog('close');
+		}
 	</script>
 	<style>
 		#calendar {
@@ -143,7 +189,7 @@
 			</div>
 		</form>
 	</div>
-	<div id="editDialog" style="display:none">
+	<div id="addDialog" style="display:none">
 		<form method="post" action="">
 			<div class="row">
 				<div class="col-md-6 col-lg-12">
@@ -152,7 +198,7 @@
 						<div class="input-group">
 							<span class="input-group-addon">
 							<span class="glyphicon glyphicon-play"></span> 
-							</span> <input type="text" class="form-control" name="start" id="start"/>
+							</span> <input type="text" class="form-control" name="start" id="addstart" required="required"/>
 						</div>
 					</div>
 					<div class="form-group">
@@ -160,30 +206,35 @@
 						<div class="input-group">
 							<span class="input-group-addon">
 							<span class="glyphicon glyphicon-stop"></span> 
-							</span> <input type="text" class="form-control" name="end" id="end"/>
+							</span> <input type="text" class="form-control" name="end" id="addend" required="required"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="user_id">WRITER</label>
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </span>
-							<input type="text" class="form-control" name="user_id" id="user_id"/>
+							<input type="text" class="form-control" name="user_id" id="adduser_id" value="${user_id}" readonly="readonly"/>
+							
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="pro_name">CROP</label>
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-leaf"></span> </span>
-							<input type="text" class="form-control" name="pro_name" id="pro_name"/>
+							<input type="text" class="form-control" name="pro_name" id="addpro_name" required="required"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="content">CONTENT</label>
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-comment"></span> </span>
-							<textarea class="form-control" name="content" id="content"></textarea>
+							<textarea class="form-control" name="content" id="addcontent" required="required"></textarea>
 						</div>
 					</div>
+				</div>
+				<div class="col-md-6 col-lg-12">
+					<button type="button" class="btn btn-skin pull-right" onclick="add()">
+                            등 록</button>
 				</div>
 			</div>
 		</form>
