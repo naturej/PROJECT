@@ -18,7 +18,7 @@ public class Account_DTO {
 		return bank;
 	}
 	public void setBank(String bank) {
-		this.bank = bank;
+		this.bank = bank; 
 	}
 	public String getUser_id() {
 		return user_id;
