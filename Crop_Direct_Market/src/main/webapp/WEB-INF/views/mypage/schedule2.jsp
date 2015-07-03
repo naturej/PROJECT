@@ -69,6 +69,8 @@
 			$.each(list,function(idx,schedule){
 				if(schedule.user_id=='admin'){
 					schedule.color='#da3f3a';
+				} else if(schedule.start==schedule.end){
+					schedule.end='';
 				}
 				$('#calendar').fullCalendar('renderEvent', schedule, true);
 			});
@@ -91,13 +93,19 @@
 				});
 				
 			});
-		});
-		
-		$('#addstart').datepicker({
-			  dateFormat: "yy-mm-dd"
-		});
-		$('#addend').datepicker({
-			  dateFormat: "yy-mm-dd"
+			// datepicker 적용
+			$('#addstart').datepicker({
+				  dateFormat: "yy-mm-dd"
+			});
+			$('#addend').datepicker({
+				  dateFormat: "yy-mm-dd"
+			});
+			$('#editstart').datepicker({
+				  dateFormat: "yy-mm-dd"
+			});
+			$('#editend').datepicker({
+				  dateFormat: "yy-mm-dd"
+			});
 		});
 		
 		function add(){
@@ -114,7 +122,7 @@
 				user_id: user_id,
 				pro_name: pro_name,
 				content: content
-			}
+			};
 			//$('#calendar').fullCalendar('renderEvent', eventData, true);
 			
 			$.ajax({
@@ -123,7 +131,7 @@
 				data : eventData,
 				success : function(data){
 					if(data.length>0){
-						location.href='schedule.five';
+						location.href='schedule2.five';
 					}else{
 						alert('fail');
 					}
@@ -133,6 +141,60 @@
 				}
 			});
 			$('#addDialog').dialog('close');
+		}
+		
+		function editForm(){
+			var title = $('.ui-dialog-title').text();
+			var start = $('#addstart').val();
+			var end = $('#addend').val();
+			var user_id = $('#adduser_id').val();
+			var pro_name = $('#addpro_name').val();
+			var content = $('#addcontent').val();
+			
+			$('#editend').val(end);
+			$('#editstart').val(start);
+			$('#edituser_id').val(user_id);
+			$('#editpro_name').val(pro_name);
+			$('#editcontent').val(content);
+			$('#dialog').dialog('close');
+			$('#editDialog').dialog({
+				title: title
+			});
+		}
+		
+		function edit(){
+			var title = $('.ui-dialog-title').text();
+			var end = $('#editend').val();
+			var start = $('#editstart').val();
+			var user_id = $('#edituser_id').val();
+			var pro_name = $('#editpro_name').val();
+			var content = $('#editcontent').val();
+			
+			var eventData = {
+				title: title,
+				start: start,
+				end: end,
+				user_id: user_id,
+				pro_name: pro_name,
+				content: content
+			};
+			
+			$.ajax({
+				type: "POST",
+				url : "schedule2Edit.five",
+				data : eventData,
+				success : function(data){
+					if(data.length>0){
+						location.href='schedule2.five';
+					}else{
+						alert('fail');
+					}
+				},
+				error : function(xhr, status){
+					alert(xhr + '/' + status); 
+				}
+			});
+			$('#editDialog').dialog('close');
 		}
 	</script>
 	<style>
@@ -186,6 +248,12 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-md-6 col-lg-12">
+					<button type="button" class="btn btn-skin pull-right" onclick="add()">
+                            삭 제</button>
+                    <button type="button" class="btn btn-skin pull-right" onclick="editForm()">
+                            수 정</button>
+				</div>
 			</div>
 		</form>
 	</div>
@@ -235,6 +303,56 @@
 				<div class="col-md-6 col-lg-12">
 					<button type="button" class="btn btn-skin pull-right" onclick="add()">
                             등 록</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div id="editDialog" style="display:none">
+		<form method="post" action="">
+			<div class="row">
+				<div class="col-md-6 col-lg-12">
+					<div class="form-group">
+						<label for="start">START</label>
+						<div class="input-group">
+							<span class="input-group-addon">
+							<span class="glyphicon glyphicon-play"></span> 
+							</span> <input type="text" class="form-control" name="start" id="editstart" required="required"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="end">END</label>
+						<div class="input-group">
+							<span class="input-group-addon">
+							<span class="glyphicon glyphicon-stop"></span> 
+							</span> <input type="text" class="form-control" name="end" id="editend" required="required"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="user_id">WRITER</label>
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </span>
+							<input type="text" class="form-control" name="user_id" id="edituser_id" value="${user_id}" readonly="readonly"/>
+							
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="pro_name">CROP</label>
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-leaf"></span> </span>
+							<input type="text" class="form-control" name="pro_name" id="editpro_name" required="required"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="content">CONTENT</label>
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-comment"></span> </span>
+							<textarea class="form-control" name="content" id="editcontent" required="required"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-12">
+					<button type="button" class="btn btn-skin pull-right" onclick="edit()">
+                            수 정</button>
 				</div>
 			</div>
 		</form>

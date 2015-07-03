@@ -14,9 +14,9 @@
 	</insert>
 	<update id="scheduleEdit" parameterType="kr.co.ohdeokrionline.model.vo.ScheduleRecord2_DTO">
 		update plan2
-		set start=to_date(#{start},'yyyy-MM-dd'),
-			end=to_date(#{end},'yyyy-MM-dd'),
-			title=#{title}, content=#{content}, pro_name=#{pro_name}
+		set "START"=to_date(#{start},'yyyy-MM-dd'),
+			"END"=to_date(#{end},'yyyy-MM-dd'),
+			title=#{title}, "CONTENT"=#{content}, pro_name=#{pro_name}
 		where user_id=#{user_id}
 	</update>
 	<delete id="scheduleRemove" parameterType="kr.co.ohdeokrionline.model.vo.ScheduleRecord2_DTO">

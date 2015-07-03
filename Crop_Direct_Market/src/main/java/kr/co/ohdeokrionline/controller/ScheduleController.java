@@ -144,7 +144,7 @@ public class ScheduleController {
 	@RequestMapping(value="schedule2Add.five",method=RequestMethod.POST)
 	public String schedule2Add(ScheduleRecord2_DTO schedule) throws SQLException{
 		
-		/*String[] startDt = schedule.getStart().split("-");
+		String[] startDt = schedule.getStart().split("-");
 		String[] endDt = schedule.getEnd().split("-");
 		System.out.println(startDt+"/"+endDt);
 		schedule.setStart(
@@ -161,7 +161,31 @@ public class ScheduleController {
 		
 		ScheduleRecord2_Dao dao = sqlSession.getMapper(ScheduleRecord2_Dao.class);
 		System.out.println("add:"+schedule);
-		dao.scheduleAdd(schedule);*/
+		dao.scheduleAdd(schedule);
 		return "redirect:./schedule2.five";
+	}
+	
+	@RequestMapping("schedule2Edit.five")
+	public String schedule2Edit(ScheduleRecord2_DTO schedule) throws SQLException{
+		
+		String[] startDt = schedule.getStart().split("-");
+		String[] endDt = schedule.getEnd().split("-");
+		
+		schedule.setStart(
+				new Date(Integer.parseInt(startDt[0])-1900,
+						Integer.parseInt(startDt[1])-1,
+						Integer.parseInt(startDt[2])).toString()
+						);
+		
+		schedule.setEnd(
+				new Date(Integer.parseInt(endDt[0])-1900,
+						Integer.parseInt(endDt[1])-1,
+						Integer.parseInt(endDt[2])).toString()
+						);
+		
+		ScheduleRecord2_Dao dao = sqlSession.getMapper(ScheduleRecord2_Dao.class);
+		System.out.println("edit:"+schedule);
+		dao.scheduleEdit(schedule);
+		return "redirect:schedule2.five";
 	}
 }
