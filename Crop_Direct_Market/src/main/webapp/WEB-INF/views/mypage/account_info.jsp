@@ -11,10 +11,6 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 </head>
-<%-- <%
-		ArrayList<Account_DTO> arr= (ArrayList<Account_DTO>)request.getAttribute("account");
-%>
- --%>
 <body>
 	<table border="1">
 		<tr>
@@ -22,8 +18,8 @@
 		</tr>
 		<c:forEach var="list" items="${account}">
 			<tr>
-				<td>${list.BANK}</td>
-				<td>${list.ACCOUNTNUM}</td>
+				<td>${list.bank}</td>
+				<td>${list.accountnum}</td>
 			</tr>
 		</c:forEach>
 		<tr>
