@@ -9,7 +9,7 @@
 	</select>
 	<insert id="scheduleAdd" parameterType="kr.co.ohdeokrionline.model.vo.ScheduleRecord2_DTO">
 		insert into
-		plan2(user_id,start,end,title,content,pro_name)
+		plan2(user_id,"START","END",title,"CONTENT",pro_name)
 		values(#{user_id},to_date(#{start},'yyyy-MM-dd'),to_date(#{end},'yyyy-MM-dd'),#{title},#{content},#{pro_name})
 	</insert>
 	<update id="scheduleEdit" parameterType="kr.co.ohdeokrionline.model.vo.ScheduleRecord2_DTO">

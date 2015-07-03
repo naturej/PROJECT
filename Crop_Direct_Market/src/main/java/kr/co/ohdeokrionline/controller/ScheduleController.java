@@ -23,7 +23,7 @@ public class ScheduleController {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@RequestMapping(value="schedule.five",method=RequestMethod.GET)
+	/*@RequestMapping(value="schedule.five",method=RequestMethod.GET)
 	public String schedule(Model model,Principal principal) throws SQLException{
 		ScheduleRecord_Dao dao = sqlSession.getMapper(ScheduleRecord_Dao.class);
 		List<ScheduleRecord_DTO> list = dao.mySchedule(principal.getName()); //LogingUser 값을 받음
@@ -116,7 +116,7 @@ public class ScheduleController {
 		System.out.println("remove:"+schedule);
 		dao.scheduleRemove(schedule);
 		return "redirect:schedule.five";
-	}
+	}*/
 	
 	@RequestMapping(value="schedule2.five",method=RequestMethod.GET)
 	public String schedule2(Model model,Principal principal) throws SQLException{
@@ -139,5 +139,29 @@ public class ScheduleController {
 	public String agenda(Model model,Principal principal) throws SQLException{
 		
 		return "mypage.agenda";
+	}
+	
+	@RequestMapping(value="schedule2Add.five",method=RequestMethod.POST)
+	public String schedule2Add(ScheduleRecord2_DTO schedule) throws SQLException{
+		
+		/*String[] startDt = schedule.getStart().split("-");
+		String[] endDt = schedule.getEnd().split("-");
+		System.out.println(startDt+"/"+endDt);
+		schedule.setStart(
+				new Date(Integer.parseInt(startDt[0])-1900,
+						Integer.parseInt(startDt[1])-1,
+						Integer.parseInt(startDt[2])).toString()
+						);
+		
+		schedule.setEnd(
+				new Date(Integer.parseInt(endDt[0])-1900,
+						Integer.parseInt(endDt[1])-1,
+						Integer.parseInt(endDt[2])).toString()
+						);
+		
+		ScheduleRecord2_Dao dao = sqlSession.getMapper(ScheduleRecord2_Dao.class);
+		System.out.println("add:"+schedule);
+		dao.scheduleAdd(schedule);*/
+		return "redirect:./schedule2.five";
 	}
 }
