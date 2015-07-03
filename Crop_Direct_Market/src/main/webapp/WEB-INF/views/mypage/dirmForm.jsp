@@ -36,7 +36,7 @@
 					console.log("code : " + request.status + ", error : " + error);
 				}
 			});
-			window.close();
+			//window.close();
 		}
 	}
 </script>
