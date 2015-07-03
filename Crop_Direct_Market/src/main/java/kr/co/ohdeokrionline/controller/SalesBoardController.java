@@ -286,7 +286,7 @@ public class SalesBoardController {
 		
 		return "marketplace.sendDetail";
 	}
-	
+
 	// 메세지 보내기
 		@Transactional
 		@RequestMapping("sendMessage.five")
