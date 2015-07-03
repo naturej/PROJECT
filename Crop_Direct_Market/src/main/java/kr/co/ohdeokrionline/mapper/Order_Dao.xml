@@ -46,19 +46,19 @@
 		</select>
 	
 	<!-- 주문list 출력 -->
-	<select id="orderlist" resultType="kr.co.ohdeokrionline.model.vo.Order_DTO">
-		  SELECT O.OR_ID AS OR_ID, 
-          O.OR_DATE AS OR_DATE,
-          S.BO_SUBJECT AS BO_SUBJECT,
-          S.PRO_NAME AS PRO_NAME,
-          O.OR_COST AS OR_COST,
-          O.OR_QUAN AS OR_QUAN,
-          O.SELL_USERID AS SELL_USERID,
-          O.OR_STATE AS OR_STATE,
-          O.OR_HOW AS OR_HOW
+   <select id="orderlist" resultType="kr.co.ohdeokrionline.model.vo.Order_DTO">
+        SELECT O.OR_ID , 
+          O.OR_DATE ,
+          S.BO_SUBJECT,
+          S.PRO_NAME ,
+          O.OR_COST ,
+          O.OR_QUAN ,
+          O.SELL_USERID,
+          O.OR_STATE ,
+          O.OR_HOW , S.BO_NUM
           FROM ORDERLIST O JOIN SALBOARD S on O.BO_NUM=S.BO_NUM where O.BUY_USERID=#{buy_userid}
           ORDER BY O.OR_DATE DESC
-	</select>
+   </select>
 	
 	<!-- 실구매자 확인 -->
 	<select id="buyUser" parameterType="String" resultType="String">
