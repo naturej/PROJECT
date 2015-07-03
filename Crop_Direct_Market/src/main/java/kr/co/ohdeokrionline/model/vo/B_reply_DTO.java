@@ -27,11 +27,11 @@ public class B_reply_DTO {
 	public void setRe_writedate(Date re_writedate) {
 		this.re_writedate = re_writedate;
 	}
-	public String getUSER_ID() {
+	public String getUser_id() {
 		return user_id;
 	}
-	public void setUSER_ID(String uSER_ID) {
-		user_id = uSER_ID;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public int getIdx() {
 		return idx;

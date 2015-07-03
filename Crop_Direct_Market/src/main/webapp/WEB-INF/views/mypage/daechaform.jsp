@@ -125,7 +125,6 @@ String user_id = SecurityContextHolder.getContext().getAuthentication().getName(
 					</div>
 				</div>
 			</div>
-			<c:forEach items="${ballist}" var="bal">
 			<form method="post">
 			<input type="hidden" value="<%=user_id%>" id="user_id" name="user_id">
 			<input type="hidden" value="<%=year+month%>" id="bal_date" name="bal_date">
@@ -134,13 +133,13 @@ String user_id = SecurityContextHolder.getContext().getAuthentication().getName(
 				<tr><td align="center">1.매출</td>
 				<td><input type="text" name="num1" id="num1" readonly="readonly" class="form-controll" disabled style="text-align:right; padding-right:1px;">원</td></tr>
 				<tr><td align="right">온라인 매출</td>
-				<td><input type="text" style="text-align:right; padding-right:1px;" id="sal_on" name="sal_on" readonly="readonly" class="form-controll" disabled value="${bal.sal_on}">원</td></tr>
+				<td><input type="text" style="text-align:right; padding-right:1px;" id="sal_on" name="sal_on" readonly="readonly" class="form-controll" disabled>원</td></tr>
 				<tr><td align="right">직거래장터 매출</td>
-				<td><input type="text" style="text-align:right; padding-right:1px;" id="sal_mar" name="sal_mar" class="form-controll" value="${bal.sal_mar}">원</td></tr>
+				<td><input type="text" style="text-align:right; padding-right:1px;" id="sal_mar" name="sal_mar" class="form-controll">원</td></tr>
 				
 				<tr><td align="center">2.매출원가</td><td></td></tr>
 				<tr><td align="right">상품 원가</td>
-				<td><input type="text" style="text-align:right; padding-right:1px;" id="sal_cost" name="sal_cost" class="form-controll" value="${bal.sal_cost}">원</td></tr>
+				<td><input type="text" style="text-align:right; padding-right:1px;" id="sal_cost" name="sal_cost" class="form-controll" >원</td></tr>
 				
 				<tr><td align="center">3.매출 총이익</td>
 				<td><input type="text" style="text-align:right; padding-right:1px;" id="num3" name="num3" readonly="readonly" class="form-controll" disabled>원</td></tr>
@@ -148,32 +147,30 @@ String user_id = SecurityContextHolder.getContext().getAuthentication().getName(
 				<tr><td align="center">4.판매비 및 일반관리비</td>
 				<td><input type="text" style="text-align:right; padding-right:1px;" name="num4" id="num4" readonly="readonly" class="form-controll" disabled>원</td></tr>
 				<tr><td align="right">소모품비</td>
-				<td><input type="text" style="text-align:right; padding-right:1px;" id="ex_supplies" name="ex_supplies" value="${bal.ex_supplies}">원</td></tr>
+				<td><input type="text" style="text-align:right; padding-right:1px;" id="ex_supplies" name="ex_supplies">원</td></tr>
 				<tr><td align="right">대여비</td>
-				<td><input type="text" style="text-align:right; padding-right:1px;" id="ex_renter" name="ex_renter" value="${bal.ex_renter}">원</td></tr>
+				<td><input type="text" style="text-align:right; padding-right:1px;" id="ex_renter" name="ex_renter" >원</td></tr>
 				<tr><td align="right">잡비</td>
-				<td><input type="text" style="text-align:right; padding-right:1px;" id="ex_etc" name="ex_etc" value="${bal.ex_etc}">원</td></tr>
+				<td><input type="text" style="text-align:right; padding-right:1px;" id="ex_etc" name="ex_etc">원</td></tr>
 				
 				<tr><td align="center">5.영업 손익</td>
 				<td><input type="text" style="text-align:right; padding-right:1px;" id="num5" name="num5" readonly="readonly" class="form-controll" disabled >원</td></tr>
 				
 				<tr><td align="center">6.영업 외 수익</td><td></td></tr>
 				<tr><td align="right">잡이익</td>
-				<td><input type="text" style="text-align:right; padding-right:1px;" id="sal_gain" name="sal_gain" value="${bal.sal_gain}">원</td></tr>
+				<td><input type="text" style="text-align:right; padding-right:1px;" id="sal_gain" name="sal_gain">원</td></tr>
 				
 				<tr><td align="center">7.영업 외 비용</td><td></td></tr>
 				<tr><td align="right">이자비용</td>
-				<td><input type="text" style="text-align:right; padding-right:1px;" id="ex_inter" name="ex_inter" value="${bal.ex_inter}">원</td></tr>
+				<td><input type="text" style="text-align:right; padding-right:1px;" id="ex_inter" name="ex_inter">원</td></tr>
 				<tr><td align="right">잡손실</td>
-				<td><input type="text" style="text-align:right;" id="ex_loss" name="ex_loss" value="${bal.ex_loss}">원</td></tr>
+				<td><input type="text" style="text-align:right;" id="ex_loss" name="ex_loss">원</td></tr>
 				
 				<tr><td align="center">당기순이익</td>
 				<td><input style="text-align:right; padding-right:1px; background-color:#DDDDDD; " type="text" id="sal_income" name="sal_income" readonly="readonly" class="form-controll">원</td></tr>
 			</table>
 				<input type="submit"  name="btn" id="btn" class="btn btn-skin" value="입력">
-				
 			</form>
-			</c:forEach>
 		</div>
 	</div>
 	</section>

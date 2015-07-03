@@ -71,7 +71,7 @@
 						<tr>
 							<td>${ord.or_id}</td>
 							<td>${ord.or_date}</td>
-							<td>${ord.bo_subject}</td>
+							<td><a href="<%=request.getContextPath()%>/salesboard/salesdetail.five?bo_num=${ord.bo_num}">${ord.bo_subject}</a></td>
 							<td>${ord.pro_name}</td>
 							<td>${ord.or_quan}</td>
 							<td><a onclick="seller_info('${ord.sell_userid}')">${ord.sell_userid}</a></td>

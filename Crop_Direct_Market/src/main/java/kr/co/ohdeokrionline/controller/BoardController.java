@@ -170,11 +170,15 @@ public class BoardController {
 		}  
 		  
 		 //댓글쓰기처리
-		 @RequestMapping(value="reply.five" , method=RequestMethod.POST)
-		 public String replyreg(B_reply_DTO re){
+		 @RequestMapping(value="replywrite.five", method=RequestMethod.POST)
+		 public String replyreg(String idx,Principal principal,String re_content){
 			 Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
+			 B_reply_DTO re = new B_reply_DTO();
+			 re.setIdx(Integer.parseInt(idx));
+			 re.setRe_content(re_content);
+			 re.setUser_id(principal.getName());
 			 boardDao.re_insert(re);
-			 return null;
+			 return "redirect:detailboard.five?idx="+idx;
 		 } 
 		 
 	}

@@ -49,7 +49,7 @@
 		<c:forEach items="${list}" var="list">
 			<tr>
 				<td>${list.or_id}</td>
-				<td>${list.bo_subject}</td>
+				<td><a href="<%=request.getContextPath()%>/salesboard/salesdetail.five?bo_num=${list.bo_num}">${list.bo_subject}</a></td>
 				<td>${list.pro_name}</td>
 				<td>${list.or_quan}</td>
 				<td>${list.or_cost}</td>

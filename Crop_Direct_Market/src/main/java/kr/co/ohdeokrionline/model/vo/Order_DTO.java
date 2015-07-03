@@ -37,10 +37,19 @@ public class Order_DTO {
    private String user_id;
    private String unit;
    private String pro_name;
+   private String bo_salnum;
 
 
 
-   public String getAdd_code() {
+   public String getBo_salnum() {
+	return bo_salnum;
+}
+
+public void setBo_salnum(String bo_salnum) {
+	this.bo_salnum = bo_salnum;
+}
+
+public String getAdd_code() {
       return add_code;
    }
 

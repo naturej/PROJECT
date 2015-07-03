@@ -22,4 +22,42 @@
 	</select> 
 	
 	
+	<!-- 손익계산서 -> 그래프 화  -->
+	<select id="getbal" resultType="kr.co.ohdeokrionline.model.vo.BalanceSheet_DTO">
+		 SELECT BAL_DATE,SAL_ON,SAL_MAR,SAL_INCOME FROM BALANCE 
+		 WHERE USER_ID='${param1}' AND BAL_DATE LIKE '%${param2}%'
+		 ORDER BY BAL_DATE ASC
+		 
+	</select>
+	
+	
+	<!-- 손익 계산서 여부 쿼리 -->
+	<select id="balcount" resultType="INTEGER">
+		 SELECT count(*)  FROM BALANCE WHERE USER_ID='${param1}' AND BAL_DATE='${param2}'
+	</select>
+	
+	
+	<!-- 손익 계산서 삽입쿼리 -->
+	<insert id="insertbal" parameterType="kr.co.ohdeokrionline.model.vo.BalanceSheet_DTO">
+		INSERT INTO BALANCE(USER_ID,BAL_DATE,SAL_MAR,SAL_COST,EX_RENTER,EX_SUPPLIES,EX_ETC,SAL_INCOME,SAL_GAIN,EX_INTER,EX_LOSS) 
+  		VALUES(#{user_id},#{bal_date},#{sal_mar},#{sal_cost},#{ex_renter},#{ex_supplies},#{ex_etc},#{sal_income},#{sal_gain},#{ex_inter},#{ex_loss}) 
+	</insert>
+	
+	
+	<!-- 손익 계산서 수정 쿼리 -->
+	<update id="updatebal" parameterType="kr.co.ohdeokrionline.model.vo.BalanceSheet_DTO">
+		 UPDATE BALANCE SET SAL_MAR=#{sal_mar},
+                              SAL_COST=#{sal_cost},
+                              EX_RENTER=#{ex_renter},
+                              EX_SUPPLIES=#{ex_supplies},
+                              EX_ETC=#{ex_etc},
+                              SAL_INCOME=#{sal_income},
+                              SAL_GAIN=#{sal_gain},
+                              EX_INTER=#{ex_inter},
+                              EX_LOSS=#{ex_loss}
+          WHERE USER_ID=#{user_id} AND BAL_DATE=#{bal_date}
+	</update>
+	
+	
+	
 </mapper>

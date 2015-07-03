@@ -51,12 +51,12 @@
 		<!-- REPLY INSERT -->	
 		<insert id="re_insert" parameterType="kr.co.ohdeokrionline.model.vo.B_reply_DTO">	   
 			INSERT INTO B_REPLY(RE_IDX,RE_CONTENT,RE_WRITEDATE,USER_ID,IDX)
-			VALUES(B_REP_Seq.nextval,#{re_content},SYSDATE,#{user_id},#{idx}) 	
+			VALUES(B_REP_Seq.nextval,#{re_content},SYSDATE,#{user_id},#{idx,jdbcType=INTEGER}) 	
 		</insert>
 		
 		<!-- REPLY LIST -->
 		<select id="re_list" resultType="kr.co.ohdeokrionline.model.vo.B_reply_DTO">
-	     SELECT * FROM B_REPLY WHERE IDX=#{idx}
+	     SELECT RE_IDX,RE_CONTENT,RE_WRITEDATE,USER_ID,IDX FROM B_REPLY WHERE IDX=#{idx}
 	    </select>
 	
 </mapper>
