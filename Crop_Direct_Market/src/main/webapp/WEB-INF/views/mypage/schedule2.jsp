@@ -69,8 +69,6 @@
 			$.each(list,function(idx,schedule){
 				if(schedule.user_id=='admin'){
 					schedule.color='#da3f3a';
-				} else if(schedule.start==schedule.end){
-					schedule.end='';
 				}
 				$('#calendar').fullCalendar('renderEvent', schedule, true);
 			});
@@ -86,6 +84,7 @@
 						$('#user_id').val(schedule.user_id);
 						$('#pro_name').val(schedule.pro_name);
 						$('#content').val(schedule.content);
+						$('#pl_id').val(schedule.pl_id);
 						$('#dialog').dialog({
 							title:schedule.title
 						});
@@ -144,13 +143,21 @@
 		}
 		
 		function editForm(){
+			var pl_id = $('#pl_id').val();
 			var title = $('.ui-dialog-title').text();
-			var start = $('#addstart').val();
-			var end = $('#addend').val();
-			var user_id = $('#adduser_id').val();
-			var pro_name = $('#addpro_name').val();
-			var content = $('#addcontent').val();
+			var start = $('#start').val();
+			var end = $('#end').val();
+			var user_id = $('#user_id').val();
+			var pro_name = $('#pro_name').val();
+			var content = $('#content').val();
+			console.log(pl_id);
+			if(user_id!=loginId){
+				alert('수정할 권한이 없습니다.');
+				return false;
+			}
 			
+			$('#edittitle').val(title);
+			$('#editpl_id').val(pl_id);
 			$('#editend').val(end);
 			$('#editstart').val(start);
 			$('#edituser_id').val(user_id);
@@ -163,7 +170,8 @@
 		}
 		
 		function edit(){
-			var title = $('.ui-dialog-title').text();
+			var pl_id = $('#editpl_id').val();
+			var title = $('#edittitle').val();
 			var end = $('#editend').val();
 			var start = $('#editstart').val();
 			var user_id = $('#edituser_id').val();
@@ -176,7 +184,8 @@
 				end: end,
 				user_id: user_id,
 				pro_name: pro_name,
-				content: content
+				content: content,
+				pl_id: pl_id
 			};
 			
 			$.ajax({
@@ -191,10 +200,44 @@
 					}
 				},
 				error : function(xhr, status){
+					console.log(xhr);
 					alert(xhr + '/' + status); 
 				}
 			});
 			$('#editDialog').dialog('close');
+		}
+		
+		function removeSche(){
+			var pl_id = $('#pl_id').val();
+			var user_id = $('#user_id').val();
+			if(user_id!=loginId){
+				alert('삭제할 권한이 없습니다.');
+				return false;
+			}else{
+				if(confirm('삭제하시겠습니까?')){
+					$.ajax({
+						type: "POST",
+						url : "scheduleRemove.five",
+						data : {pl_id: pl_id},
+						success : function(data){
+							if(data.length>0){
+								location.href='schedule2.five';
+							}else{
+								alert('fail');
+							}
+						},
+						error : function(xhr, status){
+							console.log(xhr);
+							alert(xhr + '/' + status); 
+						}
+					});
+				}
+			}
+			
+		}
+		
+		function getUser_id(){
+			return $('#user_id').val();
 		}
 	</script>
 	<style>
@@ -247,12 +290,16 @@
 							<textarea class="form-control" name="content" id="content" readonly="readonly"></textarea>
 						</div>
 					</div>
+					<div class="form-group">
+						<input type="hidden" class="form-control" name="pl_id" id="pl_id"/>
+					</div>
 				</div>
+				
 				<div class="col-md-6 col-lg-12">
-					<button type="button" class="btn btn-skin pull-right" onclick="add()">
-                            삭 제</button>
-                    <button type="button" class="btn btn-skin pull-right" onclick="editForm()">
-                            수 정</button>
+					<button type="button" class="btn btn-skin pull-right" onclick="removeSche()">
+					삭 제</button>
+					<button type="button" class="btn btn-skin pull-right" onclick="editForm()">
+					수 정</button>
 				</div>
 			</div>
 		</form>
@@ -312,6 +359,14 @@
 			<div class="row">
 				<div class="col-md-6 col-lg-12">
 					<div class="form-group">
+						<label for="title">TITLE</label>
+						<div class="input-group">
+							<span class="input-group-addon">
+							<span class="glyphicon glyphicon-play"></span> 
+							</span> <input type="text" class="form-control" name="title" id="edittitle" required="required"/>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="start">START</label>
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -348,6 +403,9 @@
 							<span class="input-group-addon"><span class="glyphicon glyphicon-comment"></span> </span>
 							<textarea class="form-control" name="content" id="editcontent" required="required"></textarea>
 						</div>
+					</div>
+					<div class="form-group">
+						<input type="hidden" class="form-control" name="pl_id" id="editpl_id"/>
 					</div>
 				</div>
 				<div class="col-md-6 col-lg-12">

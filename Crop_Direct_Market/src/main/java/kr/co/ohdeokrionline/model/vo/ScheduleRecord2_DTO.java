@@ -1,8 +1,8 @@
 package kr.co.ohdeokrionline.model.vo;
 
-import java.sql.Date;
 
 public class ScheduleRecord2_DTO {
+	private int pl_id;
 	private String user_id;
 	private String start;
 	private String end;
@@ -87,6 +87,18 @@ public class ScheduleRecord2_DTO {
 		return "{user_id:'" + user_id + "', start:'"
 				+ start +"', end:'" + end 
 				+ "', title:'" + title + "', content:'" + content
-				+ "', pro_name:'" + pro_name + "'}";
+				+ "', pro_name:'" + pro_name + "', pl_id:" + pl_id +"}";
+	}
+
+
+
+	public int getPl_id() {
+		return pl_id;
+	}
+
+
+
+	public void setPl_id(int pl_id) {
+		this.pl_id = pl_id;
 	}
 }

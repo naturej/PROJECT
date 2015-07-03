@@ -126,7 +126,7 @@ public class ScheduleController {
 			List<ScheduleRecord2_DTO> admin = dao.mySchedule("admin");
 			list.addAll(admin);
 		}
-		
+		System.out.println(list);
 		model.addAttribute("list", list);
 		model.addAttribute("user_id",principal.getName());
 		//Tiles 적용 전 코드
@@ -135,18 +135,14 @@ public class ScheduleController {
 		return "mypage.schedule2";
 	}
 	
-	@RequestMapping(value="agenda.five",method=RequestMethod.GET)
-	public String agenda(Model model,Principal principal) throws SQLException{
-		
-		return "mypage.agenda";
-	}
 	
 	@RequestMapping(value="schedule2Add.five",method=RequestMethod.POST)
 	public String schedule2Add(ScheduleRecord2_DTO schedule) throws SQLException{
 		
 		String[] startDt = schedule.getStart().split("-");
 		String[] endDt = schedule.getEnd().split("-");
-		System.out.println(startDt+"/"+endDt);
+		startDt[2] = startDt[2].substring(0, 2);
+		endDt[2] = endDt[2].substring(0, 2);
 		schedule.setStart(
 				new Date(Integer.parseInt(startDt[0])-1900,
 						Integer.parseInt(startDt[1])-1,
@@ -165,12 +161,13 @@ public class ScheduleController {
 		return "redirect:./schedule2.five";
 	}
 	
-	@RequestMapping("schedule2Edit.five")
+	@RequestMapping(value="schedule2Edit.five",method=RequestMethod.POST)
 	public String schedule2Edit(ScheduleRecord2_DTO schedule) throws SQLException{
 		
 		String[] startDt = schedule.getStart().split("-");
 		String[] endDt = schedule.getEnd().split("-");
-		
+		startDt[2] = startDt[2].substring(0, 2);
+		endDt[2] = endDt[2].substring(0, 2);
 		schedule.setStart(
 				new Date(Integer.parseInt(startDt[0])-1900,
 						Integer.parseInt(startDt[1])-1,
@@ -185,7 +182,17 @@ public class ScheduleController {
 		
 		ScheduleRecord2_Dao dao = sqlSession.getMapper(ScheduleRecord2_Dao.class);
 		System.out.println("edit:"+schedule);
-		dao.scheduleEdit(schedule);
-		return "redirect:schedule2.five";
+		System.out.println(dao.scheduleEdit(schedule));
+		return "redirect:./schedule2.five";
+	}
+	
+	@RequestMapping(value="scheduleRemove.five",method=RequestMethod.POST)
+	public String schedule2Remove(ScheduleRecord2_DTO schedule) throws SQLException{
+		int pl_id = schedule.getPl_id();
+		System.out.println(pl_id);
+		ScheduleRecord2_Dao dao = sqlSession.getMapper(ScheduleRecord2_Dao.class);
+		System.out.println("remove:"+schedule);
+		dao.scheduleRemove(pl_id);
+		return "redirect:./schedule2.five";
 	}
 }
