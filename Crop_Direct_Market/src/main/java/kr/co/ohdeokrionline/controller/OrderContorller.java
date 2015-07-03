@@ -97,7 +97,7 @@ public class OrderContorller {
 		return "mypage.dirmForm";
 	}
 	
-	// 직거래 신청
+	// 직거래 신청 
 	@RequestMapping(value="dirm_sinchung.five",method=RequestMethod.POST)
 	public void insertDirm(Dirm_DTO dirm){
 		System.out.println("직거래 신청 컨트롤러");
