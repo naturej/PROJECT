@@ -102,14 +102,14 @@ function resizeText() {
     <div class="isotope" style="position: relative; overflow: hidden; height: 480px;" id="portfolio-wrap"> 
      	<c:forEach items="${list}" var="n">
       		<div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four   ${n.sep} isotope-item">
-        		<div class="portfolio-image"><img src="<%=request.getContextPath()%>/salesboard/upload/${n.bo_photo}" alt="Portfolio 1"></div>
+        		<div class="portfolio-image"><img src="<%=request.getContextPath()%>/freemboard/upload/${n.fm_photo}" alt="Portfolio 1"></div>
         		<a title="Stereo Headphones" rel="prettyPhoto[galname]" href="salesdetail.five?bo_num=${n.bo_num}">
         		<div class="project-overlay">
           			<div class="project-info">
-          				${n.user_id}
+          				${n.fm_time}
             			<div class="zoom-icon"></div>
             			<h4 class="project-name">${n.bo_subject}</h4>
-            			<p class="project-categories">${n.sep}</p>
+            			<p class="project-categories">${n.fm_location}</p>
           			</div>
         		</div>
         		</a></div>
