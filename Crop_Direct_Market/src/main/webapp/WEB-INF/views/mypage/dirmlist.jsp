@@ -39,7 +39,7 @@
 							<c:forEach items="${list}" var="d">
 								<tr>
 									<td>${d.user_send}</td>
-									<td><a href="dirmDetail.five?me_num=${d.dirmno}">${d.dirm_sub}</a></td>
+									<td><a href="dirmDetail.five?dirmno=${d.dirmno}">${d.dirm_sub}</a></td>
 								</tr>
 							</c:forEach>
 						</c:otherwise>

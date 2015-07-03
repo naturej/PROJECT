@@ -3,7 +3,8 @@ package kr.co.ohdeokrionline.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
-import java.util.Date;
+import java.sql.SQLException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,12 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ohdeokrionline.model.dao.Dirm_Dao;
 import kr.co.ohdeokrionline.model.dao.Order_Dao;
+import kr.co.ohdeokrionline.model.dao.ScheduleRecord2_Dao;
 import kr.co.ohdeokrionline.model.vo.Dirm_DTO;
 import kr.co.ohdeokrionline.model.vo.Order_DTO;
+import kr.co.ohdeokrionline.model.vo.ScheduleRecord2_DTO;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -123,10 +127,52 @@ public class OrderContorller {
 	}
 	
 	// 직거래 승인
+	@Transactional
 	@RequestMapping("yesDirm.five")
-	public String yesDirm(String dirmno){
+	public String yesDirm(String dirmno, String user_rec, String user_send, String pro_id
+			, String title, String content, String start, String end) throws SQLException{
 		Dirm_Dao dao = sqlsession.getMapper(Dirm_Dao.class);
 		dao.yesDirm(dirmno);
+		
+		String[] startDt = start.split("-");
+		String[] endDt = end.split("-");
+		startDt[2] = startDt[2].substring(0, 2);
+		endDt[2] = endDt[2].substring(0, 2);
+		
+		start =	new Date(Integer.parseInt(startDt[0])-1900,
+						Integer.parseInt(startDt[1])-1,
+						Integer.parseInt(startDt[2])).toString();
+						
+		
+		end = new Date(Integer.parseInt(endDt[0])-1900,
+						Integer.parseInt(endDt[1])-1,
+						Integer.parseInt(endDt[2])).toString();
+		System.out.println(start+"/"+end);
+		// 받은 사람 일정에 들어가게
+		ScheduleRecord2_DTO plandto = new ScheduleRecord2_DTO();
+		plandto.setUser_id(user_rec);
+		plandto.setPro_name(pro_id);
+		plandto.setTitle(title);
+		plandto.setContent(content);
+		plandto.setStart(start);
+		plandto.setEnd(end);
+	
+		// 보낸 사람 일정에 들어가게
+		ScheduleRecord2_DTO plandto2 = new ScheduleRecord2_DTO();
+		plandto2.setUser_id(user_send);
+		plandto2.setPro_name(pro_id);
+		plandto2.setTitle(title);
+		plandto2.setContent(content);
+		plandto2.setStart(start);
+		plandto2.setEnd(end);
+		
+		ScheduleRecord2_Dao plandao = sqlsession.getMapper(ScheduleRecord2_Dao.class);
+		System.out.println(plandto);
+		System.out.println(plandto2);
+		
+		plandao.scheduleAdd(plandto);
+		plandao.scheduleAdd(plandto2);
+		
 		return "mypage.yesDirm";
 	}
 }
