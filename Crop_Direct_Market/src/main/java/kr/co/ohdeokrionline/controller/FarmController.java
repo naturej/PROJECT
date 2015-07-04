@@ -1,19 +1,15 @@
 package kr.co.ohdeokrionline.controller;
 
+import net.sf.json.JSONArray;
+
 import java.io.IOException;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ohdeokrionline.model.dao.BalanceSheet_Dao;
-import kr.co.ohdeokrionline.model.dao.Order_Dao;
 import kr.co.ohdeokrionline.model.vo.BalanceSheet_DTO;
-import kr.co.ohdeokrionline.model.vo.Order_DTO;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.View;
 
 @RequestMapping("/farmmanage/")
 @Controller
@@ -30,23 +25,31 @@ public class FarmController {
 	@Autowired
 	private SqlSession sqlsession;
 	
-//	통계 출력창
+//	매출 기록 확인
 	@RequestMapping("daechaStatics.five")
-	public String orderchange(Principal principal, Model model) throws IOException{
+	public String orderchange(Principal principal, Model model,String year) throws IOException{
+	BalanceSheet_Dao dao = sqlsession.getMapper(BalanceSheet_Dao.class);
 		
-		BalanceSheet_Dao dao = sqlsession.getMapper(BalanceSheet_Dao.class);
-		Map<String, Integer> map = dao.sellpercent(principal.getName());
-		model.addAttribute("dir", map.get("DIR"));
-		model.addAttribute("indir", map.get("INDIR"));
-		
-		System.out.println(dao.sellrec(principal.getName()));
-		ArrayList<HashMap<String, Integer>> arr = dao.sellrec(principal.getName());
-		System.out.println(arr.get(0).get("COST"));
-		System.out.println(arr.get(0).get("MONTH"));
-		for(int i =0 ; i<6 ; i++){
-			model.addAttribute("c"+i,arr.get(i).get("COST"));
-			model.addAttribute("m"+i,arr.get(i).get("MONTH"));
+		Calendar cal= Calendar.getInstance();
+		String bal_date=String.valueOf(cal.get(Calendar.YEAR));
+		if(year != null && !year.equals("")){
+			bal_date = year;
 		}
+		
+		System.out.println(principal.getName());
+		System.out.println(bal_date);
+		List ballist_income = dao.getbalgra_income(principal.getName(),bal_date);
+		List ballist_total = dao.getbalgra_total(principal.getName(),bal_date);
+		List ballist_date= dao.getbalgra_date(principal.getName(),bal_date);
+		List sal_on = dao.gra_salon(principal.getName(),bal_date);
+		List sal_mar = dao.gra_salmar(principal.getName(),bal_date);
+		
+		JSONArray jsonArray = new JSONArray();
+		model.addAttribute("totallist", jsonArray.fromObject(ballist_total));
+		model.addAttribute("datelist", jsonArray.fromObject(ballist_date));
+		model.addAttribute("incomelist", jsonArray.fromObject(ballist_income));
+		model.addAttribute("sal_on", jsonArray.fromObject(sal_on));
+		model.addAttribute("sal_mar",jsonArray.fromObject(sal_mar));
 		return "mypage.daechaStats";
 	}
 	

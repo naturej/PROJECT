@@ -16,7 +16,15 @@ public class BalanceSheet_DTO {
 	int ex_inter;		//이자비용
 	int ex_loss;		//잡손실
 	int sal_income;		//당기순이익
+	int sal_total; 		//매출 총액
 	
+	public int getSal_total() {
+		return sal_total;
+	}
+	public void setSal_total(int sal_total) {
+		this.sal_total = sal_total;
+	}
+
 	// 판매량 관리 DTO
 	int salmount;
 

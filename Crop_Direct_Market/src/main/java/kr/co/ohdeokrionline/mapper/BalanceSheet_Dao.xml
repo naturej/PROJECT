@@ -6,30 +6,65 @@
 	"kr.co.ohdeokrionline.model.dao.BalanceSheet_Dao">
 	<resultMap type="java.util.HashMap" id="hashmap"/>
 	<resultMap type="java.util.ArrayList" id="arraylist"/>
-	<select id="totalsell" resultType="Integer">
-		select nvl(sum(or_cost), 0) from orderlist where or_state='확인' and sell_userid=#{sell_user}
+	
+
+	<!-- 손익계산서 그래프 화-->
+	<select id="getbalgra" resultType="kr.co.ohdeokrionline.model.vo.BalanceSheet_DTO">
+		 SELECT SAL_INCOME,SAL_ON+SAL_MAR AS SAL_TOTAL,BAL_DATE FROM BALANCE 
+		 WHERE USER_ID='${param1}' AND BAL_DATE LIKE '%${param2}%'
+		 ORDER BY BAL_DATE ASC
 	</select>
-	<select id="sellpercent" resultType="hashmap">
-		select nvl(sum(sal_on), 0) as indir, nvl(sum(sal_mar), 0) as dir from balance where user_id=#{seller_user}
+	
+	<!-- 손익계산서 그래프 화 income -->
+	<select id="getbalgra_income" resultType="INTEGER">
+		 SELECT SAL_INCOME FROM BALANCE 
+		 WHERE USER_ID='${param1}' AND BAL_DATE LIKE '%${param2}%'
+		 ORDER BY BAL_DATE ASC
 	</select>
 	
- 	<select id="sellrec" resultType="hashmap">
-		SELECT SUM(OR_COST) AS COST, TO_CHAR(OR_DATE,'MM') AS MONTH
-		FROM orderlist WHERE SELL_USERID=#{seller_user} AND or_state='거래종료' and TO_CHAR(OR_DATE,'MM')
-		IN (<![CDATA[SELECT DISTINCT TO_CHAR(OR_DATE,'MM') AS OR_DATE FROM orderlist
-			WHERE TO_CHAR(SYSDATE,'MM')-TO_CHAR(OR_DATE,'MM') < 6]]>) 
-		GROUP BY TO_CHAR(OR_DATE,'MM') ORDER BY TO_CHAR(OR_DATE,'MM')   
-	</select> 
-	
-	
-	<!-- 손익계산서 -> 그래프 화  -->
-	<select id="getbal" resultType="kr.co.ohdeokrionline.model.vo.BalanceSheet_DTO">
-		 SELECT BAL_DATE,SAL_ON,SAL_MAR,SAL_INCOME FROM BALANCE 
+	<!-- 손익계산서 그래프 화 total -->
+	<select id="getbalgra_total" resultType="INTEGER">
+		 select SAL_ON+SAL_MAR AS SAL_TOTAL FROM BALANCE 
 		 WHERE USER_ID='${param1}' AND BAL_DATE LIKE '%${param2}%'
 		 ORDER BY BAL_DATE ASC
 		 
 	</select>
 	
+	<!-- 손익계산서 그래프 화 date -->
+	<select id="getbalgra_date" resultType="STRING">
+		 SELECT BAL_DATE FROM BALANCE 
+		 WHERE USER_ID='${param1}' AND BAL_DATE LIKE '%${param2}%'
+		 ORDER BY BAL_DATE ASC
+	</select>
+	
+	<!-- 손익계산서 그래프 화 amount
+	<select id="getbalgra_amout" resultType="kr.co.ohdeokrionline.model.vo.BalanceSheet_DTO">
+		 SELECT BAL_DATE,SAL_ON,SAL_MAR,SAL_INCOME FROM BALANCE 
+		 WHERE USER_ID='${param1}' AND BAL_DATE LIKE '%${param2}%'
+		 ORDER BY BAL_DATE ASC
+	</select>
+	 -->
+	
+		<!-- ROUND 그래프 화 SAL_ONLINE -->
+	<select id="gra_salon" resultType="INTEGER">
+		 SELECT SAL_ON FROM BALANCE 
+		 WHERE USER_ID='${param1}' AND BAL_DATE LIKE '%${param2}%'
+	</select>
+	
+		<!--  ROUND 그래프 화 SAL_직거래 장터-->
+	<select id="gra_salmar" resultType="INTEGER">
+		 SELECT SAL_MAR FROM BALANCE 
+		 WHERE USER_ID='${param1}' AND BAL_DATE LIKE '%${param2}%'
+	</select>
+	
+	
+	<!-- 손익계산서 LIST-->
+	<select id="getbal" resultType="kr.co.ohdeokrionline.model.vo.BalanceSheet_DTO">
+		 SELECT * FROM BALANCE
+		 WHERE USER_ID='${param1}' AND BAL_DATE = '${param2}'
+		 ORDER BY BAL_DATE ASC
+		 
+	</select>
 	
 	<!-- 손익 계산서 여부 쿼리 -->
 	<select id="balcount" resultType="INTEGER">

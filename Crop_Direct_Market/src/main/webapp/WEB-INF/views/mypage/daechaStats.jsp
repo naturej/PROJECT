@@ -2,13 +2,9 @@
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 
-<head>
 <title>Doughnut Chart</title>
 <script src="<%=request.getContextPath()%>/js/Chart.js"></script>
 <%
@@ -18,8 +14,6 @@
 	String day = cal.get(Calendar.DAY_OF_MONTH) + "일";
 	String result = year + " " + month + " " + day + " ";
 %>
-</head>
-<body>
 	<section id="service" class="home-section text-center">
 	<div class="heading-about">
 		<div class="container">
@@ -27,38 +21,43 @@
 				<div class="col-lg-8 col-lg-offset-2">
 					<div class="wow bounceInDown" data-wow-delay="0.4s">
 						<div class="section-heading">
-							<h2>매출 통계</h2>
+							<h2>매출 관리 표</h2>
 							<i class="fa fa-2x fa-angle-down"></i>
-							<p></p>
+							<p>순이익 & 매출량 관리</p>
 						</div>
 					</div>
 				</div>
 			</div>
+			
 			<table class="table table-hover">
 				<tr>
-					<td>온라인/직거래 비율</td>
-					<td>최근 6개월 월별 매출현황</td>
+					<td><%=month%> 온라인 & 직거래장터 비율</td>
+					<td><%=year%> 총 매출 & 순이익 변동 그래프</td>
 				</tr>
 				<tr>
 					<td>
 						<div style="margin-top: 50%;">
-							<canvas id="canvas" width=200 height="200" />
+							<canvas id="canvas" width=200 height="200">
+							</canvas>
 						</div>
-						<div>
-							<br> <span>&lt;온라인 직거래 비율></span>
-						</div>
+						<div style="font-size:15px">
+							<br> <span>&lt;온라인 직거래 비율></span></div>
+							<div style="font-size:13px"align="right">(단위:%)</div>
+						
 					</td>
 					<td rowspan="2">
 						<div>
-							<canvas id="canvas2" height="450" width="600" />
+							<canvas id="canvas2" height="450" width="600">
+							</canvas>
 						</div>
 					</td>
 				</tr>
-
 			</table>
 			<script>
-				var dir = ${dir};
-				var indir = ${indir};
+				var dd = ${sal_on};
+				var dr = ${sal_mar};
+				var dir = dd[0];
+				var indir = dr[0];
 				var total = parseInt(dir) + parseInt(indir);
 				var perdir = Math.round(parseInt(dir) / parseInt(total) * 100);
 				var perindir = Math.round(parseInt(indir) / parseInt(total)
@@ -89,47 +88,39 @@
 
 				};
 			</script>
-			<script>
-				var randomScalingFactor = function() {
-					return Math.round(Math.random() * 100)
-				};
+					
+			<script>	
 				var lineChartData = {
-					labels : [ "<%=year%>${m0}월","<%=year%>${m1}월","<%=year%>${m2}월",
-					           "<%=year%>${m3}월","<%=year%>${m4}월","<%=year%>${m5}월"],
+					labels : ${datelist}
+					           ,
 					datasets : [
 							{
-								label : "My First dataset",
+								label : "순이익",
 								fillColor : "rgba(100,170,170,0.2)",
 								strokeColor : "rgba(100,0,0,2)",
 								pointColor : "rgba(150,0,0,2)",
 								pointStrokeColor : "#000",
 								pointHighlightFill : "#000",
 								pointHighlightStroke : "rgba(220,220,220,1)",
-								data : [ "${c0}",
-								         "${c1}",
-								         "${c2}",
-								         "${c3}",
-								         "${c4}",
-								         "${c5}"]
+								data : ${incomelist}
 							},
 							{
-			
-				label : "My First dataset",
+								label : "총 매출액",
 								fillColor : "rgba(222,220,220,0.2)",
 								strokeColor : "rgba(180,50,0,2)",
 								pointColor : "rgba(140,50,0,2)",
 								pointStrokeColor : "#000",
 								pointHighlightFill : "#000",
 								pointHighlightStroke : "rgba(220,220,220,1)",
-								data : [ "${c1}", "${c2}", "${c3}", "${c4}",
-										"${c5}", "0" ]
+								data : ${totallist}
 							} ]
-
-				}
+				} ;
 			</script>
+			
+			
+			
 		</div>
 	</div>
 	</section>
 
-</body>
 </html>
