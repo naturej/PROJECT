@@ -54,24 +54,27 @@ function resizeText() {
 </script>
 <!--new_portfolio--> 
 <!-- Portfolio -->
+
 <section id="Portfolio" class="content">
- 
+	<section id="service" class="home-section text-center"  style="position: static">	
+	<div class="heading-about">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.4s">
+						<div class="section-heading">
+							<h2>Offline Market</h2>
+							<i class="fa fa-2x fa-angle-down"></i>
+							<p>직거래 장터 정보</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
 	<!-- Container -->
-	<div class="container portfolio-title"> 
-    
-    <!-- Section Title -->
-    <div class="section-title">
-      	<h2>Portfolio</h2>
-    </div>
-    <!--/Section Title --> 
-  	</div>
-  	<!-- Container -->
-  
-  	<div class="portfolio-top"></div>
-  
-  	<!-- Portfolio Plus Filters -->
   	<div class="portfolio"> 
-    
     <!-- Portfolio Filters -->
     <div id="filters" class="sixteen columns">
       	<ul class="clearfix">

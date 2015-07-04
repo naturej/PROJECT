@@ -60,7 +60,7 @@ a:focus {
 ---------------------------------*/
 
 
-#Portfolio{ padding:100px 0px;}
+#Portfolio{ padding:0px 0px;}
 
 .Portfolio-nav{
 	padding:0;
@@ -1588,8 +1588,8 @@ hr {
 /* ///////////////////////  General Section   /////////////////////// */
 
 .home-section {
-    padding-top: 100px;
-    padding-bottom: 40px;
+    padding-top: 20px;
+    padding-bottom: 5px;
 	display:block;
     position:relative;
     z-index:120;

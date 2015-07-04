@@ -84,7 +84,7 @@
 
 	<div class="tp-banner-container">
 		<ul class="cb-slideshow">
-            <li><span>Image 01</span><div><h4>Clean, flat &amp; </h4><h3>RESPONSIVE</h3></div></li>
+            <li><span>Image 01</span><div><h4>Clean, Fresh &amp; </h4><h3>RESPONSIVE</h3></div></li>
             <li><span>Image 02</span><div><h4>Multi-purpose html</h4><h3>template</h3></div></li>
             <li><span>Image 03</span><div><h4>web.print</h4><h3>photography</h3></div></li>
         </ul>
