@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <c:set var="nowpage" value="${requestScope.page}" />
 <c:set var="maxpage" value="${requestScope.maxpage}" />
 <c:set var="startpage" value="${requestScope.startpage}" />
@@ -152,7 +153,9 @@ function resizeText() {
 						<a href="<%=request.getContextPath()%>/salesboard/salboardlist.five?pg=${nowpage+1}">[다음]</a>&nbsp;
 					</c:otherwise>
 				</c:choose>
-				<a href="<%=request.getContextPath()%>/salesboard/salboardwrite.five">글쓰기</a>
+				<se:authorize ifAllGranted="ROLE_SELLER">
+					<a href="<%=request.getContextPath()%>/salesboard/salboardwrite.five">글쓰기</a>			
+				</se:authorize>		
 	</div>
 	<!-- Project Page Holder-->
   	<div id="project-page-holder">
