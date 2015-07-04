@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ohdeokrionline.model.dao.Board_Dao;
 import kr.co.ohdeokrionline.model.vo.B_reply_DTO;
 import kr.co.ohdeokrionline.model.vo.Board_DTO;
+import net.sf.json.JSONArray;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -171,14 +173,18 @@ public class BoardController {
 		  
 		 //댓글쓰기처리
 		 @RequestMapping(value="replywrite.five", method=RequestMethod.POST)
-		 public String replyreg(String idx,Principal principal,String re_content){
+		 public void replyreg(HttpServletResponse response, String idx,Principal principal,String re_content) throws IOException{
+			 response.setCharacterEncoding("UTF-8");
 			 Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
 			 B_reply_DTO re = new B_reply_DTO();
 			 re.setIdx(Integer.parseInt(idx));
 			 re.setRe_content(re_content);
 			 re.setUser_id(principal.getName());
 			 boardDao.re_insert(re);
-			 return "redirect:detailboard.five?idx="+idx;
+			 
+			 List<B_reply_DTO> list = boardDao.re_list(idx);
+			 JSONArray relists = JSONArray.fromObject(list);
+	         response.getWriter().print(relists);
 		 } 
 		 
 	}

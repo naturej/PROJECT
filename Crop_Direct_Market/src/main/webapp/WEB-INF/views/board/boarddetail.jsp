@@ -6,8 +6,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>
 <script type="text/javascript">
 $(function(){
-	console.log("클릭됐다")
-	$('#ormbtn').click(function(){
+	$('#btn').click(function(){
 	$.ajax({
 			type:'POST',
 			url:"replywrite.five",
@@ -17,36 +16,28 @@ $(function(){
 			dataType:"html",
 			success : function(responseData){
 				  console.log("전송성공");
+				  var options="";
+		      	  var relist = JSON.parse(responseData);
+		          options="<table class='table'><tr><td><div align='left' style='font-size:12px;'>작성자</div></td>"+
+        					"<td><div align='center' style='font-size:12px;'>내용</div></td>"+
+        					"<td><div align='right' style='font-size:12px;'>작성일</div></td></tr>"; 
+		      	  $.each(relist, function(index,re){
+		      		  options+= "<tr><td><div align='left' style='font-size:12px;'>"+re.user_id+"</div></td>"+
+	                 		   "<td><div align='center' style='font-size:12px;'>"+re.re_content+"</div></td>"+
+	               			   "<td><div align='right' style='font-size:12px;'>"+(re.re_writedate.year+1900)+"."+
+	               				(re.re_writedate.month+1)+"."+(re.re_writedate.date)+"&nbsp;</div></td></tr>";          
+		      	  });
+		      	  options+="</table>"
+		            $('#reli').html(options);
+				  
 			},
 	    error: function (xhr,Options,thrownError) {}
     }); 
 	});
+	
+	
 });
 </script>
-			<div class="modal fade" id="myModal" role="dialog">
-					    <div class="modal-dialog">
-					      <!-- Modal content-->
-					      <div class="modal-content">
-					        <div class="modal-header">
-					          <button type="button" class="close" data-dismiss="modal">&times;</button>
-					          <h4 class="modal-title">댓글 작성</h4>
-					        </div>
-					        <div class="modal-body">
-					          <h4>작성할 내용을 입력해주세요</h4>
-					        </div>
-					        <div class="modal-footer">
-					        <form>
-					          <input type="text" class="form-control" id="re_content" name="re_content">
-					          <button type="button" class="btn btn-default" data-dismiss="modal" id="ormbtn" name="ormbtn">입력</button>
-					          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					        </form>
-					        </div>
-					      </div>
-					      
-					    </div>
-					  </div>
-
-
 		<html class="no-js">
 			<link href="css/table-base/bootstrap.min.css" rel="stylesheet">
 			    <div id="content">
@@ -65,13 +56,17 @@ $(function(){
 						</div>
 					</div>
 			
-			<table class="table">
+				<table class="table">
 				<tr><td colspan="2"><div align="left" style="height: 50px; font-size: 20px;">>&nbsp;${boardDto.subject}</div>
 				</td><td align="right">${boardDto.writedate}</td></tr>
 				<tr><td colspan="3" align="right">글쓴이&nbsp;${boardDto.user_id}&nbsp;&nbsp;&nbsp;&nbsp;첨부파일&nbsp;${boardDto.filename}</td></tr>
 				<tr><td colspan="3" align="left">내용</td></tr>
 				<tr><td colspan="3"><div style="height: 200px;">${boardDto.content}</div></td></tr>
 				<tr><td colspan="3" align="left">댓글</td></tr>
+				</table>
+				
+				<div id="reli">
+				<table class="table">
                 <c:set var="reply" value="${list}" />
            		<c:choose>
             	<c:when test="${empty reply}">
@@ -93,8 +88,15 @@ $(function(){
                 </c:otherwise>
                 </c:choose>
                 </table>          
- 
-				<input type="button"  name="frbtn" id="frbtn" class="btn btn-skin" data-toggle="modal" data-target="#myModal" value="댓글쓰기">
+ 				</div>
+ 					
+ 				 <div class="input-group input-group-sm">
+                 <input type="text" class="form-control" name="re_content" id="re_content">
+                 <span class="input-group-btn">
+                 <button class="btn btn-info btn-flat" name="btn" id="btn" type="button">댓글쓰기</button>
+                 </span>
+                 </div>
+                 
 				<input type="hidden" id="idx" name="idx" value="${boardDto.idx}">
                  	<a href="boardlist.five">목록</a>
 					<a href="boardedit.five?idx=${boardDto.idx}">수정</a>

@@ -8,8 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>장바구니</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <script type="text/javascript">
 	function deleteAll(){
 		$.ajax({
@@ -23,14 +25,91 @@
 		});
 		location.reload();
 	}	
-	$(function(){
-		$('#ormbtn').click(function(){
-			 location.href = $('#loc').val()+"/manage/ordermanage.five";
-		})
-		$('#shopbtn').click(function(){
-			 location.reload();
-		})
-	})
+	function execDaumPostcode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var fullAddr = ''; // 최종 주소 변수
+	                var extraAddr = ''; // 조합형 주소 변수
+
+	                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    fullAddr = data.roadAddress;
+
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    fullAddr = data.jibunAddress;
+	                }
+
+	                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    //법정동명이 있을 경우 추가한다.
+	                    if(data.bname !== ''){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있을 경우 추가한다.
+	                    if(data.buildingName !== ''){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+	                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+	                }
+
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById("add_code").value = data.postcode1+'-'+data.postcode2;
+	                //document.getElementById("postcode2").value = data.postcode2;
+	                document.getElementById("addr").value = fullAddr;
+
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementById("addd").focus();
+	            }
+	        }).open();
+	    }
+		function execDaumPostcode2() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var fullAddr = ''; // 최종 주소 변수
+	                var extraAddr = ''; // 조합형 주소 변수
+
+	                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    fullAddr = data.roadAddress;
+
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    fullAddr = data.jibunAddress;
+	                }
+
+	                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    //법정동명이 있을 경우 추가한다.
+	                    if(data.bname !== ''){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있을 경우 추가한다.
+	                    if(data.buildingName !== ''){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+	                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+	                }
+
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                //document.getElementById("add_code").value = data.postcode1+'-'+data.postcode2;
+	                //document.getElementById("postcode2").value = data.postcode2;
+	                document.getElementById("farm_add").value = fullAddr;
+
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementById("farm_add_de").focus();
+	            }
+	        }).open();
+	    }
+	
 </script>
 <script type="text/javascript">
 $(function(){
@@ -46,25 +125,30 @@ $(function(){
         	var output=	"<br><br><br><h3>배송지 정보</h3><table class='table'>"+
 			"<tr><td><label>배송지 선택</label><input type='radio' name='radio' id='exadd' checked='checked' value='기본'>기본배송지"+
 			"<input type='radio' name='radio' id='newadd' value='신규'>신규배송지</td></tr><tr><td>"+
-			"<div id='newaddfrm'><label>우편번호</label><input type='text' id='code' value='"+$('#add_code').val()+"' readonly='readonly'>"+
-			"<label>주소</label><input type='text' id='dd' value='"+$('#addd').val()+"' readonly='readonly'><label>상세주소</label>"+
-			"<input type='text' id='dr' value='"+$('#addr').val()+"' readonly='readonly'></div></table>";
+			"<div id='newaddfrm'><div class='input-group'><span class='input-group-addon'>우편번호</span><input type='text' class='form-control' name='add_code' id='add_code' value='"+$('#add_code').val()+"' readonly='readonly'/>"+
+			"<span class='input-group-addon'>지역주소</span><input type='text' class='form-control' name='addr' id='addr' value='"+$('#addr').val()+"' readonly='readonly'/></div><div class='input-group'>"+
+			"<span class='input-group-addon'>세부주소</span><input type='text' class='form-control' name='addd' id='addd' value='"+$('#addd').val()+"' readonly='readonly'/></div></div></table>";
 			$('#addfrm').html(output); 
 
 			$('#exadd').click(function(){
-				  var exaddr = "<label>우편번호</label><input type='text' id='code' value='"+$('#add_code').val()+"' readonly='readonly'>"+
-					"<label>주소</label><input type='text' id='dd' value='"+$('#addd').val()+"' readonly='readonly'><label>상세주소</label>"+
-					"<input type='text' id='dr' value='"+$('#addr').val()+"' readonly='readonly'>";
+				  var exaddr = "<div class='input-group'><span class='input-group-addon'>우편번호</span><input type='text' class='form-control' name='add_code' id='add_code' value='"+$('#add_code').val()+"' readonly='readonly'/>"+
+					"<span class='input-group-addon'>지역주소</span><input type='text' class='form-control' name='addr' id='addr' value='"+$('#addr').val()+"' readonly='readonly'/></div><div class='input-group'>"+
+					"<span class='input-group-addon'>세부주소</span><input type='text' class='form-control' name='addd' id='addd' value='"+$('#addd').val()+"' readonly='readonly'/></div>";
+					  
 			   	$('#newaddfrm').html(exaddr); 
 			   	});
 			 $('#newadd').click(function(){
-					var newaddr = "<label>우편번호</label><input type='text' id='code'><label>주소</label><input type='text' id='dd'><label>상세주소</label><input type='text' id='dr'>";
-						$('#newaddfrm').html(newaddr);
+					var newaddr = "<div class='input-group'><span class='input-group-addon'>우편번호</span><input type='text' class='form-control' name='add_code' id='add_code' placeholder='AddressCode' required readonly='readonly'/>"+
+					"<input type='button' class='btn btn-skin' onclick='execDaumPostcode()' value='우편번호 찾기'></div><div class='input-group'>"+
+					"<span class='input-group-addon'>지역주소</span><input type='text' class='form-control' name='addr' id='addr' placeholder='Address' required readonly='readonly'/></div><div class='input-group'>"+
+					"<span class='input-group-addon'>세부주소</span><input type='text' class='form-control' name='addd' id='addd' placeholder='Address' required/></div>";
+					$('#newaddfrm').html(newaddr);
 			   	});	  }else{
 			   		$('#addfrm').empty();
 			   	}
 	});
 });
+	
 </script>
 <script type="text/javascript">
 $(function(){
@@ -84,17 +168,18 @@ $(function(){
          if(check=='true'){
         	alert("배송방법을 선택해주세요"); 
          }else if(add=='true'){
-			if($('#code').val()!=null&&$('#addd').val()!=null&&$('#addr').val()!=null){
+			if($('#add_code').val()!=null&&$('#addd').val()!=null&&$('#addr').val()!=null){
 						$.ajax({
 			     			type:'POST',
 			     			url:"orderinsert.five",
 			     			data:{list:JSON.stringify(list),
-			     				  add_code:$('#code').val(),
-			     				  addd:$('#dd').val(),
-			     				  addr:$('#dr').val()},
+			     				  add_code:$('#add_code').val(),
+			     				  addd:$('#addd').val(),
+			     				  addr:$('#addr').val()},
 			     			dataType:"html",
 			     			success : function(responseData){
-									alert("주문 성공");			     				
+			     				alert('주문이 완료되었습니다. 주문 관리창으로 이동합니다');
+			     				location.href = $('#loc').val()+"/manage/ordermanage.five";	     				
 			     			},
 			     	    error: function (xhr,Options,thrownError) {}
 			            }); 
@@ -107,13 +192,15 @@ $(function(){
 					     			data:{list:JSON.stringify(list)},
 					     			dataType:"html",
 					     			success : function(responseData){
-					     				alert("주문 성공");
+					     				alert('주문이 완료되었습니다. 주문 관리창으로 이동합니다');
+					     				location.href = $('#loc').val()+"/manage/ordermanage.five";
 					     			},
 					     	    error: function (xhr,Options,thrownError) {}
 					            }); 
 							}             
 	});
 });
+
 </script>
 
 <body>
@@ -214,8 +301,7 @@ $(function(){
 	<input type="hidden" id="addr" value="${m.addr}">
 	<input type="hidden" id="add_code" value="${m.add_code}">
 	</c:forEach>
-
-
+	
 	</div>
 	</div>
 	</section>

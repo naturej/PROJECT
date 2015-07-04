@@ -511,8 +511,6 @@ public class SalesBoardController {
 					String orid = orderdao.orid();
 					System.out.println(checklist);
 					for(int i=0;i<checklist.size();i+=2){
-						System.out.println(checklist.size());
-						System.out.println(checklist.get(i+1));
 					// 주문list 생성 				
 					 order.setBo_num(Integer.parseInt(checklist.get(i).split(",")[0]));	
 					 order.setOr_cost(Integer.parseInt(checklist.get(i).split(",")[1]));
@@ -523,10 +521,6 @@ public class SalesBoardController {
 					 order.setOr_how(checklist.get(i+1));
 					 //택배면 택배주소 들어가게 insert
 					 if(checklist.get(i+1).equals("택배")){
-						 System.out.println(checklist.get(i+1));
-						 System.out.println(add_code);
-						 System.out.println(addd);
-						 System.out.println(addr);
 						 order.setAdd_code(add_code);
 						 order.setOr_addd(addd);
 						 order.setOr_addr(addr);
@@ -535,9 +529,7 @@ public class SalesBoardController {
 						 order.setOr_addd("직거래");
 						 order.setOr_addr("직거래");
 					 }
-					 
 					 orderdao.insert(order); 
-					 System.out.println("주문 list 삽입성공");
 					//주문 한 내용 장바구니 삭제 
 					 shopbag.setUser_id(principal.getName());
 					 shopbag.setBo_num(Integer.parseInt(checklist.get(i).split(",")[0]));
