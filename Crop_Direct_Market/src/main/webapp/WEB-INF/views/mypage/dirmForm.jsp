@@ -8,6 +8,7 @@
 <title>직거래 쪽지 보내기</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link href="<%=request.getContextPath()%>/css/datepicker_mint.css" rel="stylesheet" />
 <script type="text/javascript">
 	$(function() {
 	    $( "#startdate" ).datepicker({
@@ -24,6 +25,8 @@
 		if ($("#dirm_content").val() == "") {
 			alert('내용을 입력해주세요');
 			return false;
+		} else if($("#startdate").val() > $("#enddate").val()){
+			alert('종료일보다 시작일이 먼저 올 수 없습니다.');
 		} else {
 
 			$.ajax({
@@ -36,7 +39,7 @@
 					console.log("code : " + request.status + ", error : " + error);
 				}
 			});
-			//window.close();
+			window.close();
 		}
 	}
 </script>

@@ -98,7 +98,7 @@ public class OrderContorller {
 	@RequestMapping("popupDirm.five")
 	public String dirm_popup(Model model, Principal principal){
 		model.addAttribute("user_send",principal.getName());
-		return "mypage.dirmForm";
+		return "mypage/dirmForm";
 	}
 	
 	// 직거래 신청 
