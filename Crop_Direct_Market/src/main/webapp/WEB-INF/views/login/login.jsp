@@ -15,7 +15,7 @@
 </script>
     <!-- Section: contact -->
     <section id="contact" class="home-section text-center" style="position:static;">
-    	<div class="boxed-grey">
+    	<div class="boxed-grey" align="center">
 			<c:if test="${param.error != null}">
 			<div id="dialog" title="로그인실패">
 				 <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
@@ -39,8 +39,8 @@
 			</c:if>
 			<c:url value="/j_spring_security_check" var="loginURL"/>
 			<form method="post" action="${loginURL}">
-				<div class="row" align="center" style="height:294px">
-                    <div class="col-sm-3">
+				<div class="row" style="height:294px">
+                    <div class="col-sm-4 col-sm-offset-4" style="float: left;">
                         <div class="form-group">
                             <label for="j_username">ID</label>
                             <div class="input-group">
@@ -55,12 +55,30 @@
                                 </span>
                                 <input type="password" class="form-control" name="j_password" placeholder="Enter password" required /></div>
                         </div>
-                    </div>
-                    <div class="col-md-4  col-lg-9">
-                    	<a href="#" onclick="openForm()"><button type="button" class="btn btn-skin">ID/PWD 찾기</button></a>
-                        <a href="joinSelect.five"><button type="button" class="btn btn-skin pull-right">회원가입</button></a>
+                        <div>
                         <button type="submit" class="btn btn-skin pull-right">
                             Login</button>
+                        </div> 
+                         
+                    </div>
+                    <div class="col-sm-4 col-sm-offset-4" style="clear: both;">
+	                    <hr> 
+	                    <div>
+	                    	<div style="float: left;">
+	                    	ID, 비밀번호를 잊으셨나요?
+	                    	</div>
+		                    <div class="pull-right" style="float: left; margin-bottom: 10px;">
+		                    <a href="" onclick="openForm()"><button type="button" class="btn btn-sm btn-skin">ID/PWD 찾기</button></a>
+		                    </div>    
+	                    </div>
+	                    <div style="clear: both;">
+	                    	<div style="float: left;">
+	                    	아직 회원이 아니신가요?
+	                    	</div>
+	                    	<div class="pull-right" style="float: left;">
+		                    <a href="joinSelect.five"><button type="button" class="btn btn-sm btn-skin pull-right">회원가입</button></a>
+		                    </div>
+		                </div>
                     </div>
                 </div>
 			</form>
