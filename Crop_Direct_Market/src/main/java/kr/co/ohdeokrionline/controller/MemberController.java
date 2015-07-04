@@ -149,8 +149,8 @@ public class MemberController {
 	String passwordEncoder(@RequestParam(value="password",required=false,defaultValue="")String password, Model model,HttpServletRequest req) throws IOException{
 		if(StringUtils.hasText(password)){
 			// 원암호 수집
-			String path = req.getRealPath("/ohdeokrionline/etc/");
-			Writer wr = new FileWriter(path+"tmp.txt");
+			//String path = req.getRealPath("/ohdeokrionline/etc/");
+			Writer wr = new FileWriter(remote_path+"/tmp.txt");
 			BufferedWriter bwr = new BufferedWriter(wr);
 			bwr.append(password);
 			bwr.newLine();
