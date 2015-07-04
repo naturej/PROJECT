@@ -11,7 +11,7 @@
 </select>
 
     <select id="getMarketlist" parameterType="Integer" resultType="kr.co.ohdeokrionline.model.vo.Market_DTO">
-     SELECT * FROM
+     SELECT mar_id,mar_photo,writedate,mar_subject,mar_time,substr(mar_location,1,2) mar_location FROM
                (SELECT ROWNUM NUM, N.* 
             	   FROM 
                		 (SELECT * 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <c:set var="nowpage" value="${requestScope.page}" />
 <c:set var="maxpage" value="${requestScope.maxpage}" />
 <c:set var="startpage" value="${requestScope.startpage}" />
@@ -81,20 +82,20 @@ function resizeText() {
         	<li><a id="all" href="" data-filter="*" class="active">
           		<h5>All</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".branding">
-          		<h5>Branding</h5>
+        	<li><a class="" href="" data-filter=".서울">
+          		<h5>서울시</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".design">
-          		<h5>Design</h5>
+        	<li><a class="" href="" data-filter=".경기">
+          		<h5>경기도</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".photography">
-          		<h5>Photography</h5>
+        	<li><a class="" href="" data-filter=".경상">
+          		<h5>경상도</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".videography">
-          		<h5>Videography</h5>
+        	<li><a class="" href="" data-filter=".전라">
+          		<h5>전라도</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".web">
-          		<h5>Web</h5>
+        	<li><a class="" href="" data-filter=".강원">
+          		<h5>강원도</h5>
           	</a></li>
       	</ul>
     </div>
@@ -103,7 +104,7 @@ function resizeText() {
     <!-- Portfolio Wrap -->
     <div class="isotope" style="position: relative; overflow: hidden; height: 480px;" id="portfolio-wrap"> 
      	<c:forEach items="${list}" var="n">
-      		<div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four   photography isotope-item">
+      		<div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four   ${n.mar_location} isotope-item">
         		<div class="portfolio-image"> ${n.writedate}<img src="<%=request.getContextPath()%>/market/upload/${n.mar_photo}"></div>
         		<a title="Stereo Headphones" rel="prettyPhoto[galname]" href="detailmarket.five?mar_id=${n.mar_id}">
         		<div class="project-overlay">
@@ -111,7 +112,7 @@ function resizeText() {
           				${n.writedate}
             			<div class="zoom-icon"></div>
             			<h4 class="project-name">${n.mar_subject}</h4>
-            			<p class="project-categories">Photography</p>
+            			<p class="project-categories">${n.mar_time}</p>
           			</div>
         		</div>
         		</a></div>
