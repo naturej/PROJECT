@@ -56,14 +56,6 @@
 				document.joinForm.add_code.focus();
 				exit;
 
-			} else if (document.joinForm.accountnum.value==""){
-				alert("계좌를 입력하세요");
-				document.joinForm.accountnum.focus();
-				exit;
-			} else if (document.joinForm.bank.value==""){
-				alert("은행를 입력하세요");
-				document.joinForm.bank.focus();
-				exit;
 			}
 			
 			if(parameter=='ROLE_SELLER'){
@@ -90,6 +82,14 @@
 				} else if (document.joinForm.farm_comment.text == "") {
 					alert("농장 소개를 입력하세요"); 
 					document.joinForm.farm_comment.focus(); 
+					exit;
+				} else if (document.joinForm.accountnum.value==""){
+					alert("계좌를 입력하세요");
+					document.joinForm.accountnum.focus();
+					exit;
+				} else if (document.joinForm.bank.value==""){
+					alert("은행를 입력하세요");
+					document.joinForm.bank.focus();
 					exit;
 				}
 			}
@@ -249,7 +249,7 @@
 	                }
 
 	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                //document.getElementById("add_code").value = data.postcode1+'-'+data.postcode2;
+	                document.getElementById("farm_add_code").value = data.postcode1+'-'+data.postcode2;
 	                //document.getElementById("postcode2").value = data.postcode2;
 	                document.getElementById("farm_add").value = fullAddr;
 

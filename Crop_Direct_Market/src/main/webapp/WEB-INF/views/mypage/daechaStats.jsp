@@ -97,8 +97,8 @@
 							{
 								label : "순이익",
 								fillColor : "rgba(100,170,170,0.2)",
-								strokeColor : "rgba(100,0,0,2)",
-								pointColor : "rgba(150,0,0,2)",
+								strokeColor : "#F7464A",
+								pointColor : "#F7464A",
 								pointStrokeColor : "#000",
 								pointHighlightFill : "#000",
 								pointHighlightStroke : "rgba(220,220,220,1)",
@@ -107,8 +107,8 @@
 							{
 								label : "총 매출액",
 								fillColor : "rgba(222,220,220,0.2)",
-								strokeColor : "rgba(180,50,0,2)",
-								pointColor : "rgba(140,50,0,2)",
+								strokeColor : "#46BFBD",
+								pointColor : "#46BFBD",
 								pointStrokeColor : "#000",
 								pointHighlightFill : "#000",
 								pointHighlightStroke : "rgba(220,220,220,1)",
