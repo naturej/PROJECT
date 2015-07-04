@@ -162,9 +162,19 @@
 	            	</c:if>
             	</td>
             </tr>
-            <tr><td colspan="3">
-            <input type="button" id="opener" value="장바구니 담기" onclick="CheckForm()">
-            <input type="button" id="enuri" value="에누리 신청" onclick="Enuri('${salboardDto.bo_num}','${salboardDto.user_id}','${salboardDto.pro_name}')"></td></tr>
+            <se:authorize ifAllGranted="ROLE_CONSUMER">
+			<tr>
+				<td colspan="3">
+		            <input type="button" id="opener" value="장바구니 담기" onclick="CheckForm()">
+		            <input type="button" id="enuri" value="에누리 신청" onclick="Enuri('${salboardDto.bo_num}','${salboardDto.user_id}','${salboardDto.pro_name}')">
+	            </td>
+            </tr>
+			</se:authorize>
+			<se:authorize ifAnyGranted="ROLE_SELLER,ROLE_ADMIN">
+			<tr>
+				<td colspan="3" height="50"></td>
+			</tr>
+			</se:authorize>
             <tr><td colspan="4" align="left">상세정보</td></tr>
             <tr><td colspan="4">${salboardDto.bo_content}</td></tr>
             <tr><td colspan="4" align="left">리뷰</td></tr>
