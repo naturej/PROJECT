@@ -33,6 +33,21 @@
  	        }});
 	};
 	
+	function item_check(orderid,bo_num){
+		var ob=orderid+bo_num;
+       	$.ajax({
+ 			url:"orderupdate3.five",
+ 			data:{"order_id" : orderid,
+ 				  "bo_num" : bo_num	
+ 			},
+ 			dataType:"html",
+ 			success : function(data){
+ 				if(data!=null){
+ 					document.getElementById(ob).innerHTML="거래 종료";
+ 				}
+ 	        }});
+	};
+	
 	function popup(sell_userid,pro_name){
 		window.open('popupDirm.five?user_rec='+sell_userid+'&pro_id='+pro_name,'직거래 신청','width=430, height=550, scrollbars=no')
 	}
@@ -95,6 +110,16 @@
 									<input type="button" value="  입금  " 
 									onclick="money_check('${ord.or_id}','${ord.bo_num}')"></td>
 								</c:when> 
+								<c:when test="${ord.or_state=='입금대기'}">
+									<td id="${ord.or_id}${ord.bo_num}">
+									<input type="button" value="  입금  " 
+									onclick="money_check('${ord.or_id}','${ord.bo_num}')"></td>
+								</c:when> 
+								<c:when test="${ord.or_state=='배송완료'}">
+									<td id="${ord.or_id}${ord.bo_num}">
+									<input type="button" value="수취확인" 
+									onclick="item_check('${ord.or_id}','${ord.bo_num}')"></td>
+								</c:when>
 								<c:otherwise>
 									<td>${ord.or_state}</td>
 								</c:otherwise>

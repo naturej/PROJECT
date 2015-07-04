@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -21,9 +22,35 @@
 			},
 			dataType : 'html',
 			success : function(data) {
-				if (data == 1) {
+				if (data !=null) {
+					alert(data);
+					console.log("Aaa");
+					console.log(document.getElementById(ob+"a"));
 					document.getElementById(ob).innerHTML = "";
-					document.getElementById(ob+"a").innerHTML = "배송";
+					document.getElementById(ob+"a").innerHTML = "배송중";
+				}
+			}
+		});
+
+	};
+	
+	function baesong_check(order_num, bo_num) {
+		var ob=order_num+bo_num;
+		$.ajax({
+			type : 'GET',
+			url : "orderupdate2.five",
+			data : {
+				"order_num" : order_num,
+				"bo_num" : bo_num
+			},
+			dataType : 'html',
+			success : function(data) {
+				if (data !=null) {
+					alert(data);
+					console.log("Aaa");
+					console.log(document.getElementById(ob+"a"));
+					document.getElementById(ob).innerHTML = "";
+					document.getElementById(ob+"a").innerHTML = "배송완료";
 				}
 			}
 		});
@@ -32,6 +59,23 @@
 </script>
 </head>
 <body>
+
+	<section id="service" class="home-section text-center">
+	<div class="heading-about">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.4s">
+						<div class="section-heading">
+							<h2>판매 관리</h2>
+							<i class="fa fa-2x fa-angle-down"></i>
+							<p>판매 상황</p>
+						</div>
+					</div>
+				</div>
+		
+			
+			<table class="table table-hover">
 	<br>
 	<%=request.getAttribute("user_id")%>님의 판매 상황입니다.
 	<br>
@@ -49,7 +93,7 @@
 		<c:forEach items="${list}" var="list">
 			<tr>
 				<td>${list.or_id}</td>
-				<td><a href="<%=request.getContextPath()%>/salesboard/salesdetail.five?bo_num=${list.bo_num}">${list.bo_subject}</a></td>
+				<td>${list.bo_subject}</td>
 				<td>${list.pro_name}</td>
 				<td>${list.or_quan}</td>
 				<td>${list.or_cost}</td>
@@ -70,8 +114,15 @@
 							<td id="${list.or_id}${list.bo_num}"><input type="button" value="입금확인"
 								onclick="check('${list.or_id}','${list.bo_num}')"></td>
 						</c:when>
-						<c:when test="${list.or_state=='배송'}">
-							<td>배송</td>
+						<c:when test="${list.or_state=='배송중'}">
+							<td id="${list.or_id}${list.bo_num}"><input type="button" value="배송완료"
+								onclick="baesong_check('${list.or_id}','${list.bo_num}')"></td>
+						</c:when>
+						<c:when test="${list.or_state=='배송완료'}">
+							<td>${list.or_state}</td>
+						</c:when>
+						<c:when test="${list.or_state=='거래종료'}">
+							<td>${list.or_state}</td>
 						</c:when>
 						<c:otherwise>
 							<td>미 입금</td>
@@ -80,5 +131,12 @@
 			</tr>
 		</c:forEach>
 	</table>
+			</section>
+			</table>
+			</div>
+			</div>
+			</div>
+			</section>
+			
 </body>
 </html>

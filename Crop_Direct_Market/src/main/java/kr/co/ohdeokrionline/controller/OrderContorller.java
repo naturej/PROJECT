@@ -57,6 +57,31 @@ public class OrderContorller {
 		response.getWriter().write(dao.orderstatechange(or_id, bo_num));
 	}
 	
+	@RequestMapping("orderupdate2.five")
+	public void orderchange2(HttpServletResponse response,
+			HttpServletRequest request) throws IOException{
+		String or_id=request.getParameter("order_num");
+		int bo_num=Integer.parseInt(request.getParameter("bo_num"));
+		System.out.println(or_id);
+		System.out.println(bo_num);
+		
+		Order_Dao dao = sqlsession.getMapper(Order_Dao.class);
+		response.getWriter().write(dao.orderstatechange2(or_id, bo_num));
+		System.out.println("확인 해 보려는 값 : "+ dao.orderstatechange2(or_id, bo_num));
+	}
+	@RequestMapping("orderupdate3.five")
+	public void orderchange3(HttpServletResponse response,
+			HttpServletRequest request) throws IOException{
+		String or_id=request.getParameter("order_id");
+		int bo_num=Integer.parseInt(request.getParameter("bo_num"));
+		System.out.println(or_id);
+		System.out.println(bo_num);
+		
+		Order_Dao dao = sqlsession.getMapper(Order_Dao.class);
+		response.getWriter().write(dao.orderstatechange3(or_id, bo_num));
+		System.out.println("확인 해 보려는 값 : "+ dao.orderstatechange3(or_id, bo_num));
+	}
+	
 //	주문관리
 	@RequestMapping("ordermanage.five")
 	public String ordermanage(Model model,Principal principal) throws IOException{

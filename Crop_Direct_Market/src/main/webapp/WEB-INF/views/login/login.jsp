@@ -39,8 +39,8 @@
 			</c:if>
 			<c:url value="/j_spring_security_check" var="loginURL"/>
 			<form method="post" action="${loginURL}">
-				<div class="row" style="height:294px">
-                    <div class="col-md-4 col-lg-9">
+				<div class="row" align="center" style="height:294px">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label for="j_username">ID</label>
                             <div class="input-group">

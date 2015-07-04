@@ -9,7 +9,15 @@
 		select o.or_id, s.bo_subject, s.pro_name, o.or_quan, o.or_cost, o.buy_userid, o.or_state, o.or_addr, s.bo_num,s.bo_salnum from orderlist o join salboard s on o.bo_num=s.bo_num where SELL_USERID=#{user_id}
 	</select>
 	<update id="orderstatechange">
-		update orderlist set or_state='배송' where or_id=#{param1} and bo_num=#{param2}
+		update orderlist set or_state='배송중' where or_id=#{param1} and bo_num=#{param2}
+	</update>
+	
+	<update id="orderstatechange2">
+		update orderlist set or_state='배송완료', dv_end = sysdate where or_id=#{param1} and bo_num=#{param2}
+	</update>
+	
+	<update id="orderstatechange3">
+		update orderlist set or_state='거래종료' where or_id=#{param1} and bo_num=#{param2}
 	</update>
 	
 	<!-- 주문 입력 -->

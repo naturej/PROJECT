@@ -11,7 +11,11 @@ public interface Order_Dao {
 	
 //	판매자의 판매상태 보여주는 페이지
 	List<Order_DTO> sellermanage(String user_id);
+	
+	// 주문 상태 변경
 	int orderstatechange(String order_num, int bo_num);
+	int orderstatechange2(String order_num, int bo_num);
+	int orderstatechange3(String order_num, int bo_num);
 	
 	//주문 입력
 	public int insert(Order_DTO order);

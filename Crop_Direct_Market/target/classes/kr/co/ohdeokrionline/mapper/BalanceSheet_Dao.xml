@@ -15,10 +15,10 @@
 	
  	<select id="sellrec" resultType="hashmap">
 		SELECT SUM(OR_COST) AS COST, TO_CHAR(OR_DATE,'MM') AS MONTH
-		FROM orderlist WHERE SELL_USERID=#{seller_user} AND or_state='WAIT' and TO_CHAR(OR_DATE,'MM')
+		FROM orderlist WHERE SELL_USERID=#{seller_user} AND or_state='거래종료' and TO_CHAR(OR_DATE,'MM')
 		IN (<![CDATA[SELECT DISTINCT TO_CHAR(OR_DATE,'MM') AS OR_DATE FROM orderlist
 			WHERE TO_CHAR(SYSDATE,'MM')-TO_CHAR(OR_DATE,'MM') < 6]]>) 
-		GROUP BY TO_CHAR(OR_DATE,'MM') ORDER BY TO_CHAR(OR_DATE,'MM')  
+		GROUP BY TO_CHAR(OR_DATE,'MM') ORDER BY TO_CHAR(OR_DATE,'MM')   
 	</select> 
 	
 	
