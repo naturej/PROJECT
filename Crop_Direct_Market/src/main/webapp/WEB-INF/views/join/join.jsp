@@ -249,7 +249,7 @@
 	                }
 
 	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                document.getElementById("farm_add_code").value = data.postcode1+'-'+data.postcode2;
+	                document.getElementById("farm_addcode").value = data.postcode1+'-'+data.postcode2;
 	                //document.getElementById("postcode2").value = data.postcode2;
 	                document.getElementById("farm_add").value = fullAddr;
 
@@ -357,7 +357,7 @@
 						<!-- 농장 우편번호 입력 --> 
 						<div class="input-group">
 						<span class="input-group-addon">우편번호</span>
-						<input type="text" class="form-control" name="farm_add_code" id="farm_add_code" placeholder="FarmAddressCode" required readonly="readonly"/>
+						<input type="text" class="form-control" name="farm_addcode" id="farm_addcode" placeholder="FarmAddressCode" required readonly="readonly"/>
 						<input type="button" class="btn btn-skin " onclick="execDaumPostcode2()" value="우편번호 찾기">
 						</div>
 						<!-- 농장지역 -->
