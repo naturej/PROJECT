@@ -25,6 +25,10 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+ 
+ 
+ 
+ 
 <style>
    #widget_layer{
    width: 300px;
@@ -617,6 +621,8 @@ $(function() {
 						}
 						if(i==4){
 							$('#drag_category01').append( weather_icon+ "<br>"+obsrValue);
+							
+							
 						}
 						if(i==5){
 							$('#drag_category02').append( weather_icon +"&nbsp;&nbsp;&nbsp;"+ obsrValue);
@@ -668,18 +674,23 @@ String base_time=df.format(Day_time)+"00";
 <body>
 
 	<div id=widget_layer >	
-		<span  class="glyphicon glyphicon-off" aria-hidden="true" id="click_on_off" style="float: right;"></span> 
+		<li class="wi wi-day-cloudy" aria-hidden="true" id="click_on_off" style="float: right; font-size: 20px"></li> 
+		
 		<div id="on_off" style="display:none">
-			<input type="text" id="text_search" style="width: 50px"/>
-			<input type="button"id="button_search" value="동/읍 검색"  /> 
-			<select id="select_search" style="width: 150px"><option>선택하세요</option></select>
+			<input type="text" id="text_search" style="width: 50px; margin-bottom: 3px;" class="btn btn-default btn-xs"/><span></span>
+			<span id="button_search" style=" margin-bottom: 3px;" class="btn btn-default btn-xs">
+			<span class="glyphicon glyphicon-search"></span>동/읍
+			</span>
+			<select id="select_search" style="width: 140px; margin-bottom: 3px;" class="btn btn-default btn-xs">
+				<option>선택하세요</option>
+			</select>
 			<input type="hidden" id="search_nx" readonly="readonly">
 			<input type="hidden" id="search_ny" readonly="readonly">
 			<input type="hidden" id="base_date" value="<%=base_date%>">
 			<input type="hidden" id="base_time" value="<%=base_time%>">
 		
 			
-			<table id="drag" class="table table-bordered">  <!-- class="table table-striped" -->
+			<table id="drag" class="table table-bordered"  >  <!-- class="table table-striped" -->
 	  		</table>
 	  	</div>
 	</div>

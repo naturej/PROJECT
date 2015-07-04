@@ -485,18 +485,18 @@
 				<form id="priceform"  method="post">
 		<table >
 			<tr>
-				<td width=190>지역
-					<select id="large" >
+				<td width=190>지역<span>&nbsp</span>
+					<select id="large" class="btn btn-default btn-xs">
 						<option>선택하세요</option>
 					</select>
 				</td>
-				<td width=190>시,군
-					<select id="middle" >
+				<td width=190>시,군<span>&nbsp</span>
+					<select id="middle" class="btn btn-default btn-xs">
 						<option>선택하세요  </option>
 					</select>
 				</td>
-				<td width=190 >동,읍,면
-					<select id="small" >
+				<td width=190 >동,읍,면<span>&nbsp</span>
+					<select id="small" class="btn btn-default btn-xs">
 						<option>선택하세요  </option>
 					</select>
 				</td>
@@ -510,7 +510,9 @@
 				<td>
 					<input type="hidden" id="base_date" value="<%=base_date%>">
 					<input type="hidden" id="base_time" value="<%=base_time%>">
-					<input type="button" id="buttonprice" value="검색">
+					<span id="buttonprice" class="btn btn-default btn-xs">
+					<span class="glyphicon glyphicon-search"></span>검색
+					</span>
 				</td>
 			</tr>
 		</table>

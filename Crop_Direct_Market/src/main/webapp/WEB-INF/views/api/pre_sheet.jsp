@@ -2,6 +2,8 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="se"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -96,10 +98,13 @@ $(function() {
 	/////////////////////////////////////
 	
 	
+		console.log();
+	
+	
 	
 	//품종 리스트 
 	$.ajax({
-		url : '<%=request.getContextPath()%>/salesboard/seplist.five',
+		url : 'api_slist.five',
 		dataType : "html",
 		success : function(data) { //서버가 보낸 data
 			var data = JSON.parse(data);
@@ -119,7 +124,7 @@ $(function() {
 		$('#sep_text').html($('#sep').val());
 		$('#sep_text1').html($('#sep').val());
 		$.ajax({
-			url: '<%=request.getContextPath()%>/salesboard/prolist.five', 
+			url: 'api_plist.five', 
 			data:{pro_sep:$('#sep').val()},
 			dataType:"html",
 			success : function(data){
@@ -456,6 +461,7 @@ $(function() {
 			<td id="input_pre_price_text"></td>
 		</tr>
 	</table>
+	
 <br>
 <input type="button" value="입력확인" id="sheet_ok"  class="btn btn-success">
 <hr>

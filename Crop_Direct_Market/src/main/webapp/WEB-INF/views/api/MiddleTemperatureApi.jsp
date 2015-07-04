@@ -307,7 +307,7 @@
 
 				<table>
 					<tr>
-						<td>예보지역 <select id="regId">
+						<td>예보지역 <span>&nbsp</span><select id="regId" class="btn btn-default btn-xs">
 								<option value="11B10101" selected="selected">서울</option>
 								<option value="11B20201">인천</option>
 								<option value="11B20601">수원</option>
@@ -346,12 +346,12 @@
 
 				</table>
 				<!-- 	//////////// /////////////////////////////-->
-
+				<hr>
 				<br>
 
 				<table>
 					<tr>
-						<td>지점번호 <select id="stnId">
+						<td>지점번호 <span>&nbsp</span><select id="stnId" class="btn btn-default btn-xs">
 								<option value="105">강릉(강원도 포함)</option>
 								<option value="108">전국</option>
 								<option value="109">수도권(서울,경기,인천)</option>
@@ -363,19 +363,20 @@
 						</td>
 					</tr>
 				</table>
+				<br>
 
-				<hr>
-
-				<table id="table1" class="table table-striped">
+				<table id="table1" class="table table-striped" style="text-align:left;">
 
 				</table>
+				<hr>
+				<br>
 
 				<!--  ///////////////////////////////////////////-->
 
 
 				<table>
 					<tr>
-						<td>예보구역코드 <select id="_regId">
+						<td>예보구역코드 <span>&nbsp</span><select id="_regId" class="btn btn-default btn-xs">
 								<option value="11B00000">서울 인천경기도</option>
 								<option value="11D10000">강원도영서</option>
 								<option value="11D20000">강원도영동</option>

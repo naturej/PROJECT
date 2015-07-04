@@ -8,17 +8,27 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ohdeokrionline.model.dao.Account_Dao;
 import kr.co.ohdeokrionline.model.dao.FarmRecord_Dao;
 import kr.co.ohdeokrionline.model.dao.Member_Dao;
+import kr.co.ohdeokrionline.model.dao.SalesBoard_Dao;
+import kr.co.ohdeokrionline.model.vo.Product_DTO;
+import kr.co.ohdeokrionline.model.vo.Separate_DTO;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.xml.XMLSerializer;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -357,36 +367,75 @@ public class ApiController {
 			return "api/OpenDB_Api_Json";
 		}
 		
-		
+		//견적서
 		@RequestMapping(value="pre_sheet.five", method=RequestMethod.GET)
-		public String pre_sheet(Model model, Principal principal){
+		public String pre_sheet(Model model){
 			
+			String kkk=SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+			System.out.println("ssssssssssssss"+kkk);
 			
+			/*aa		String authority = principal.toString().split(";")[6].split(": ")[1];
+		
+		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
+		FarmRecord_Dao dao2 = sqlSession.getMapper(FarmRecord_Dao.class);
+		Account_Dao dao3 = sqlSession.getMapper(Account_Dao.class);
+		
+		try {
+			String user_id = principal.getName();
+			model.addAttribute("user", dao.login(user_id));
 			
-			String authority = principal.toString().split(";")[6].split(": ")[1];
+			if(authority.equals("ROLE_SELLER")){
+				model.addAttribute("farm",dao2.farmInfo(user_id));
+			}
+			model.addAttribute("account", dao3.getAccountByUser_id(user_id));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}*/
+			
+			String user_id=SecurityContextHolder.getContext().getAuthentication().getName();
 			
 			Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
 			FarmRecord_Dao dao2 = sqlSession.getMapper(FarmRecord_Dao.class);
 			Account_Dao dao3 = sqlSession.getMapper(Account_Dao.class);
 			
 			try {
-				String user_id = principal.getName();
 				model.addAttribute("user", dao.login(user_id));
 				
-				if(authority.equals("ROLE_SELLER")){
+				if(kkk.equals("[ROLE_CONSUMER]")){
 					model.addAttribute("farm",dao2.farmInfo(user_id));
-				}
-				model.addAttribute("account", dao3.getAccountByUser_id(user_id));
+					System.out.println("만세");
+				} 
+		
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
-		
-			
-			
-			//model.addAttribute("userid", principal.getName());
 			return "api.pre_sheet";
 		}
+		
+		//견적서에서 품목
+		 @RequestMapping("api_slist.five")  
+		 public void seplist(HttpServletResponse response) throws IOException{
+		
+			 response.setContentType("text/html;charset=utf-8");
+			 SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
+		 List<Separate_DTO> list = salboardDao.seplist();
+		 JSONArray seplists = JSONArray.fromObject(list);
+        response.getWriter().print(seplists);//서버로 데이터 전송
+        System.out.println("서버로 seplist 전송완료");
+	     }
+	 
+		//견적서에서 품명가져오기
+		 @RequestMapping("api_plist.five")  
+		 public void prolist(HttpServletResponse response,String pro_sep) throws IOException{
+			 System.out.println(pro_sep);
+			 response.setContentType("text/html;charset=utf-8");
+			 SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
+		 ArrayList<Product_DTO> list = salboardDao.prolist(pro_sep);
+		 JSONArray prolists = JSONArray.fromObject(list);
+        response.getWriter().print(prolists);//서버로 데이터 전송
+        System.out.println("서버로 prolist 전송완료");
+	     }
+		
 		
 
 		

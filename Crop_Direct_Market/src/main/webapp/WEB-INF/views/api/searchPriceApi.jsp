@@ -121,7 +121,7 @@
 							<td><select id="work" style="display: none">
 									<option value="1" selected="selected">도매</option>
 							</select></td>
-							<td>분류 <select id="type">
+							<td>구분 <span>&nbsp</span><select id="type" class="btn btn-default btn-xs">
 									<option value="1">채소</option>
 									<option value="2">과수</option>
 									<option value="3">축산</option>
