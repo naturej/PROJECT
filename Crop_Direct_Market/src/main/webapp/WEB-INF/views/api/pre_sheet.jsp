@@ -21,14 +21,17 @@ width: 70px;
 }
 #kkk td{
 width: 100px;
+height: 30px;
+font-size: 12px;
+vertical-align: middle;
 
 }
 #kkk th{
-width: 90px;
+width: 80px;
 text-align:center;
-background-color: #FFFACD;
-
+font-size: 12px;
 }
+
 </style>
 <style>
   /* Tooltip */
@@ -356,94 +359,92 @@ $(function() {
             
 				<div class="wow fadeInLeft" data-wow-delay="0.2s">
 				
-<!-- 견적서 데이터 입력 테이블  -->				
-	<table  border=1  style='border-left:0;border-right:0;border-bottom:0;border-top:0' id="kkk" >	
+<!-- 견적서 데이터 입력 테이블  -->		
+<div>
+	<div style="width: 300px; margin-right: 35px; float: left">
+	<table  class="table table-bordered"  id="kkk">	
 		<tr>
 			<th>품종</th>
 			<td><select id="sep" style="border:none;" ></select></td>
 			<td id="sep_text"></td>
-			
-			<td style="border: 0px none"></td>
-			
-			<th>질소비료가격(kg당)</th>
-			<td><input type='text' id='input_mix_amount1' style="border:none;"></td>	
-			
-			<td style="border: 0px none"></td>
-			
-			<th>임대료(㎡당)</th>
-			<td><input type='text' id='input_rent_price' style="border:none;"></td>
-			
-			<td style="border: 0px none"></td>
-			
-			<th>1000㎡ 당 예상수확량(kg)</th>
-			<td><input type='text' id='input_pre_amount' style="border:none;"></td>
 		</tr>
 		<tr>
 			<th>품명</th>
 			<td><select id="pro_name" style="border:none;"><option>선택하세요</option></select></td>
 			<td id="pro_name_text"></td>
-			
-			<td style="border: 0px none"></td>
-			
-			<th>질소비료살포 횟수</th>
-			<td><input type='text' id='input_mix_spray_count1' style="border:none;"></td>	
-			
-			<td style="border: 0px none"></td>
-			
-			<th>1인당고용비</th>
-			<td><input type='text' id='input_emp_price' style="border:none;"></td>
-			
-			<td style="border: 0px none"></td>
-			
-			<th>kg당 예상시세(원)</th>
-			<td><input type='text' id='input_pre_price' style="border:none;"></td>
 		</tr>
-		
-		<tr>			
+		<tr>
 			<th>재배면적(㎡)	</th>
 			<td><select id="space" style="border:none;"><option>직접입력</option></select>
 				<input type='text' id='input_space_text' style="display: none"></td>	
 			<td id="space_text"></td>
-			
-			<td style="border: 0px none"></td>
-			
-			<th>요소비료가격(kg당)</th>
-			<td><input type='text' id='input_mix_amount2' style="border:none;"></td>
-			
-			<td style="border: 0px none"></td>
-			
-			<th>총고용인수</th>
-			<td><input type='text' id='input_emp_total' style="border:none;"></td>
-			
-			<td style="border: 0px none"></td>
-			<td style="border: 0px none"></td>
-			<td style="border: 0px none"></td>
-		</tr>
-		<tr>
-			<td style="border: 0px none"></td>
-			<td style="border: 0px none"></td>
-			<td style="border: 0px none"></td>
-			
-			<td style="border: 0px none"></td>
-			
-			<th>요소비료살포 횟수</th>
-			<td><input type='text' id='input_mix_spray_count2' style="border:none;" ></td>
-			
-			<td style="border: 0px none"></td>
-			
-			<th>기타비용</th>
-			<td><input type='text' id='etc_price' style="border:none;"></td>
-			
-			<td style="border: 0px none"></td>
-			
-			<td style="border: 0px none"></td>
-			<td style="border: 0px none"> </td>
 		</tr>
 	</table>
+	</div>	
+	
+	<div style="width: 250px; margin-right: 35px;  float: left">
+	<table class="table table-bordered" id="kkk">
+		<tr>
+			<th>질소비료가격<br>(kg당)</th>
+			<td><input type='text' id='input_mix_amount1' style="border:none;"></td>	
+		</tr>
+		<tr>
+			<th>질소비료<br>살포횟수</th>
+			<td><input type='text' id='input_mix_spray_count1' style="border:none;"></td>	
+		</tr>
+		<tr>
+			<th>요소비료가격<br>(kg당)</th>
+			<td><input type='text' id='input_mix_amount2' style="border:none;"></td>
+		</tr>
+		<tr>
+			<th>요소비료<br>살포횟수</th>
+			<td><input type='text' id='input_mix_spray_count2' style="border:none;" ></td>
+		</tr>
+	</table>
+	</div>
+	
+	<div style="width: 250px; margin-right: 35px;  float: left" id="kkk">
+	<table class="table table-bordered" >
+		<tr>			
+			<th>임대료<br>(㎡당)</th>
+			<td><input type='text' id='input_rent_price' style="border:none;"></td>
+		</tr>
+		<tr>
+			<th>1인당<br>고용비</th>
+			<td><input type='text' id='input_emp_price' style="border:none;"></td>
+		</tr>
+		
+		<tr>
+			<th>총고용인수</th>
+			<td><input type='text' id='input_emp_total' style="border:none;"></td>
+		</tr>
+		<tr>
+			<th>기타비용</th>
+			<td><input type='text' id='etc_price' style="border:none;"></td>
+		</tr>
+	</table>
+	</div>
+	
+	
+	<div style="width: 250px;  float: left" id="kkk">
+	<table class="table table-bordered" >
+		<tr>
+			<th>kg당 수확물의<br>예상시세(원)</th>
+			<td><input type='text' id='input_pre_price' style="border:none;"></td>
+		</tr>
+		
+		<tr>
+			<th>1000㎡ 당 <br>예상수확량(kg)</th>
+			<td><input type='text' id='input_pre_amount' style="border:none;"></td>			
+		<tr>
+	</table>
+	</div>
+	<div>
+	<table style='border-left:0;border-right:0;border-bottom:0;border-top:0; clear: both;'></table>
 	
 
 									
-	<table style="display: none">	
+	<table style="display: none; ">	
 		<tr>
 			<td id="mix_amount1_text"></td>
 			<td id="input_mix_amount1_text"></td>
@@ -461,20 +462,23 @@ $(function() {
 			<td id="input_pre_price_text"></td>
 		</tr>
 	</table>
+	</div>
+</div>
 	
 <br>
-<input type="button" value="입력확인" id="sheet_ok"  class="btn btn-success">
+<span id="sheet_ok"  class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-pencil"></span>&nbsp입력</span>
 <hr>
 
-<input type="button" value="견적서 click" onclick="mmm()" class="btn btn-info" width="200px">
-<input type="button" class="btn btn-info" value="견적서출력" onclick="javascript:print(document.getElementById('printarea').innerHTML)">
+<span  onclick="mmm()" class="btn btn-info" width="200px"><span class="glyphicon glyphicon-folder-open"></span>&nbsp 견적서</span>
+&nbsp&nbsp&nbsp&nbsp&nbsp
+<span class="btn btn-info"  onclick="javascript:print(document.getElementById('printarea').innerHTML)"><span class="glyphicon glyphicon-print"></span>&nbsp print</span>
  
  
 <br>
 <br>
 <br>
 <br>
-<span id="min_tool">Hover over me</span>
+
 <!-- 견적서 출력 양식  -->
 
 <div id="printarea">	
