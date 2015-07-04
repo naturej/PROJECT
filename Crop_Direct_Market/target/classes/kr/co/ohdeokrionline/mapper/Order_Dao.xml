@@ -62,9 +62,9 @@
 	
 	<!-- 실구매자 확인 -->
 	<select id="buyUser" parameterType="String" resultType="String">
-		SELECT BUY_USERID 
+		SELECT DISTINCT BUY_USERID 
 	  	FROM ORDERLIST
-	  	WHERE BO_NUM=#{bo_num} AND OR_STATE='배송완료'
+	  	WHERE BO_NUM=#{bo_num} AND OR_STATE='거래종료'
   	</select> 
   	
   	<!-- 판매자 계좌 확인 -->
