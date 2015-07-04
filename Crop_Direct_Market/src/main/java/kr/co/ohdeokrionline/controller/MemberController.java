@@ -146,10 +146,11 @@ public class MemberController {
 	
 	// 비밀번호 암호화
 	@RequestMapping(value="passwordEncoder.five",method={RequestMethod.GET,RequestMethod.POST})
-	String passwordEncoder(@RequestParam(value="password",required=false,defaultValue="")String password, Model model) throws IOException{
+	String passwordEncoder(@RequestParam(value="password",required=false,defaultValue="")String password, Model model,HttpServletRequest req) throws IOException{
 		if(StringUtils.hasText(password)){
 			// 원암호 수집
-			Writer wr = new FileWriter(remote_path+"tmp.txt");
+			String path = req.getRealPath("/ohdeokrionline/etc/");
+			Writer wr = new FileWriter(path+"tmp.txt");
 			BufferedWriter bwr = new BufferedWriter(wr);
 			bwr.append(password);
 			bwr.newLine();
@@ -191,12 +192,13 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="pwd_search.five",method=RequestMethod.POST)
-	String pwd_search(String user_id,String email,Model model){
+	String pwd_search(String user_id,String email,Model model,HttpServletRequest req){
 		System.out.println(user_id+"/"+email);
 		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
 		try {
 			// 수집 원암호 읽기
-			Reader fr = new FileReader(remote_path+"tmp.txt");
+			String path = req.getRealPath("/ohdeokrionline/etc/");
+			Reader fr = new FileReader(path+"tmp.txt");
 			BufferedReader br = new BufferedReader(fr);
 			String pwd = dao.getPwdByUser_idAndEmail(user_id, email);
 			
