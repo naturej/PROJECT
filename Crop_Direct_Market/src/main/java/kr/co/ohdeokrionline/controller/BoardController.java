@@ -69,6 +69,11 @@ public class BoardController {
 			
 			List<Board_DTO> list = boardDao.getBoardlist(page);
 			model.addAttribute("list", list);
+			for(int i=1;i<list.size();i++){
+				System.out.println(list.get(i).getWritedate());
+				System.out.println(list.get(i).getSubject());
+				
+			}
 			System.out.println(page+maxpage+startpage+endpage);
 			request.setAttribute("page",page);
 			request.setAttribute("maxpage", maxpage);
@@ -107,7 +112,6 @@ public class BoardController {
 							fs.close();
 						}
 				       }
-				      
 				       System.out.println(fname);
 				       Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
 						n.setFilename(fname);
@@ -138,8 +142,6 @@ public class BoardController {
 				 model.addAttribute("boardDto", boardDto);
 			   	   return "board.boardedit";
 				}
-			  
-		 
 		 
 		//수정 실행문
 		@RequestMapping(value={"boardedit.five"},method=RequestMethod.POST)   //=>customer/notice.htm
@@ -165,8 +167,9 @@ public class BoardController {
 		 
 		//글삭제하기
 		 @RequestMapping("boarddelete.five") 
-		public String noticeDel(String idx) throws ClassNotFoundException, SQLException{
+		public String noticeDel(String idx,Principal principal) throws ClassNotFoundException, SQLException{
 			 Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
+			 boardDao.re_del(idx);
 			 boardDao.delete(idx);
 			return "redirect:boardlist.five";
 		}  

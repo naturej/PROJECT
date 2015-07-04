@@ -13,7 +13,7 @@ public class SalesBoard_DTO {
 	private String editor1;
 	private String bo_photo;
 	private int bo_price;
-	private Date bo_date;
+	private String bo_date;
 	private String user_id;
 	private String unit;
 	private String pro_name;
@@ -24,7 +24,7 @@ public class SalesBoard_DTO {
 	//리뷰(ReviewWrite_DTO)
 	private int re_id;
 	private String re_content;
-	private Date re_date;
+	private String re_date;
 	private float re_score;
 	private String review_id;
 	
@@ -76,10 +76,10 @@ public class SalesBoard_DTO {
 	public void setBo_price(int bo_price) {
 		this.bo_price = bo_price;
 	}
-	public Date getBo_date() {
+	public String getBo_date() {
 		return bo_date;
 	}
-	public void setBo_date(Date bo_date) {
+	public void setBo_date(String bo_date) {
 		this.bo_date = bo_date;
 	}
 	public String getUser_id() {
@@ -124,10 +124,10 @@ public class SalesBoard_DTO {
 	public void setRe_content(String re_content) {
 		this.re_content = re_content;
 	}
-	public Date getRe_date() {
+	public String getRe_date() {
 		return re_date;
 	}
-	public void setRe_date(Date re_date) {
+	public void setRe_date(String re_date) {
 		this.re_date = re_date;
 	}
 	public float getRe_score() {

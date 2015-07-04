@@ -8,7 +8,7 @@ public class Order_DTO {
    String or_id;
    int bo_num;
    int or_quan;
-   Date or_date;
+   String or_date;
    String buy_userid;
    int or_cost;
    String or_state;
@@ -101,11 +101,11 @@ public String getAdd_code() {
       this.or_quan = or_quan;
    }
 
-   public Date getOr_date() {
+   public String getOr_date() {
       return or_date;
    }
 
-   public void setOr_date(Date or_date) {
+   public void setOr_date(String or_date) {
       this.or_date = or_date;
    }
 

@@ -13,7 +13,7 @@
 <div id="content">
 	<section id="service" class="home-section text-center">
 			<div class="heading-about">
-				<div class="container">
+				<div class="container" style="height: 620px;">
 				<div class="row">
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="wow bounceInDown" data-wow-delay="0.4s">
@@ -25,7 +25,7 @@
 						</div>
 					</div>
 				</div>
-	
+				<div style="height:410px;">
 				<table class="table table-hover">
                   <thead>
 				<tr>
@@ -47,7 +47,7 @@
 			</c:forEach>
 			</tbody>
 			</table>
-
+			</div>
 				<c:choose>
 				<c:when test="${nowpage<=1}">
 				[이전]&nbsp;
@@ -74,8 +74,6 @@
 						<a href="<%=request.getContextPath()%>/board/boardlist.five?pg=${nowpage+1}">[다음]</a>&nbsp;
 					</c:otherwise>
 				</c:choose>
-			
-			
 			<a href="<%=request.getContextPath()%>/board/boardwrite.five">글쓰기</a>
 			
 	</div>

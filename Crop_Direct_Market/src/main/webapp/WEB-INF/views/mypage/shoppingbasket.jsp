@@ -5,6 +5,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>장바구니</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -259,7 +261,6 @@ $(function(){
 	</tr>
 	<c:set var="sum" value="0"/>
 	<c:forEach items="${list}" var="e">
-	<c:set var="sum" value="${sum + e.sh_price}"></c:set>
 	<tr>
 		<td><input type="checkbox" name="shoplist" id="shoplist" checked="checked"
 		 class="shap" value="${e.bo_num},${e.sh_price},${e.sh_quantity},${e.sell_id}"></td>
@@ -276,24 +277,17 @@ $(function(){
 		</td>
 			<td><a href="" onclick="deleteshop('${e.bo_num}')">x</a></td>
 		</tr>
-		
 		</c:forEach>
-		<tr>
-			<td colspan="8" align="right">
-				총가격 : ${sum} 
-			</td>
-		</tr>
 	</table>
 	
 		<div id="addfrm">
 		</div>
 	
 		<div align="center">
-			<input type="button" value="선택상품 삭제">
-			<input type="button" value="선택상품 주문" name="order" id="order" ><!-- 주문으로 넘어가게 -->
-			<input type="button" name="frbtn" id="frbtn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" value="선택상품주문">
-			<input type="button" value="이전으로"onclick="javascript:history.back()">
-			<input type="button" value="비우기" onclick="deleteAll()">
+			<input type="button"  class="btn btn-sm btn-skin" value="선택상품 삭제">
+			<input type="button"  class="btn btn-sm btn-skin" value="선택상품 주문" name="order" id="order" ><!-- 주문으로 넘어가게 -->
+			<input type="button" class="btn btn-sm btn-skin"  value="이전으로"onclick="javascript:history.back()">
+			<input type="button" class="btn btn-sm btn-skin"  value="비우기" onclick="deleteAll()">
 		</div>
 	</div>
 	<c:forEach items="${meminfo}" var="m">

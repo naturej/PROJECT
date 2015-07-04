@@ -8,7 +8,7 @@
 	<div id="content">
 	<section id="service" class="home-section text-center">
 		<div class="heading-about">
-			<div class="container">
+			<div class="container" style="height: 620px;">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2">
 					<div class="wow bounceInDown" data-wow-delay="0.4s">

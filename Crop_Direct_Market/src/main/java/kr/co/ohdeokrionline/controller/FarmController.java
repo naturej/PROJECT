@@ -92,20 +92,7 @@ public class FarmController {
        return "mypage.daecha";
 	}
 	
-/*	
-		@RequestMapping("daechaStatics.five")
-		public String orderchange(Principal principal,Model model,String year) throws IOException{
-			Calendar cal= Calendar.getInstance();
-			String bal_date=String.valueOf(cal.get(Calendar.YEAR));
-			if(year != null && !year.equals("")){
-				bal_date = year;
-			}
-		BalanceSheet_Dao dao = sqlsession.getMapper(BalanceSheet_Dao.class);
-		List<BalanceSheet_DTO> ballist = dao.getbal(principal.getName(),bal_date);
-		model.addAttribute("ballist",ballist);
-		
-		return "mypage.daechaStats";
-	*/	
+
 
 	
 	

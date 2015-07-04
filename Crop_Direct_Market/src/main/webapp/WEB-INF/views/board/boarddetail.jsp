@@ -1,9 +1,16 @@
 <%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.util.Locale"%>
+<%@page import="org.springframework.format.datetime.DateFormatter"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% String user_id = SecurityContextHolder.getContext().getAuthentication().getName(); 
+		System.out.println(user_id);
+%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>
+
 <script type="text/javascript">
 $(function(){
 	$('#btn').click(function(){
@@ -24,8 +31,7 @@ $(function(){
 		      	  $.each(relist, function(index,re){
 		      		  options+= "<tr><td><div align='left' style='font-size:12px;'>"+re.user_id+"</div></td>"+
 	                 		   "<td><div align='center' style='font-size:12px;'>"+re.re_content+"</div></td>"+
-	               			   "<td><div align='right' style='font-size:12px;'>"+(re.re_writedate.year+1900)+"."+
-	               				(re.re_writedate.month+1)+"."+(re.re_writedate.date)+"&nbsp;</div></td></tr>";          
+	               			   "<td><div align='right' style='font-size:12px;'>"+re.re_writedate+"&nbsp;</div></td></tr>";          
 		      	  });
 		      	  options+="</table>"
 		            $('#reli').html(options);
@@ -40,7 +46,7 @@ $(function(){
 </script>
 		<html class="no-js">
 			<link href="css/table-base/bootstrap.min.css" rel="stylesheet">
-			    <div id="content">
+			    <div id="content" >
 		     <section id="service" class="home-section text-center">
 				<div class="heading-about">
 					<div class="container">
@@ -55,13 +61,20 @@ $(function(){
 							</div>
 						</div>
 					</div>
-			
+				<c:set var="user"  value="<%=user_id%>"/>
+				<div align="right"><a href="boardlist.five"><img src="<%=request.getContextPath()%>/img/liston.png" style=" height:30px; width:auto; "></a>
+					<c:if test="${boardDto.user_id==user}">
+					&nbsp;&nbsp;<a href="boardedit.five?idx=${boardDto.idx}"><img src="<%=request.getContextPath()%>/img/editonn.png" style=" height:32px; width:auto; "></a>
+					&nbsp;<a href="boarddelete.five?idx=${boardDto.idx}"><img src="<%=request.getContextPath()%>/img/delon.png" style=" height:32px; width:auto; "></a>
+					</c:if>
+					<br><br>
+					</div>
 				<table class="table">
 				<tr><td colspan="2"><div align="left" style="height: 50px; font-size: 20px;">>&nbsp;${boardDto.subject}</div>
 				</td><td align="right">${boardDto.writedate}</td></tr>
 				<tr><td colspan="3" align="right">글쓴이&nbsp;${boardDto.user_id}&nbsp;&nbsp;&nbsp;&nbsp;첨부파일&nbsp;${boardDto.filename}</td></tr>
 				<tr><td colspan="3" align="left">내용</td></tr>
-				<tr><td colspan="3"><div style="height: 200px;">${boardDto.content}</div></td></tr>
+				<tr><td colspan="3"><div style="height: 230px; font-size:10px;" >${boardDto.content}</div></td></tr>
 				<tr><td colspan="3" align="left">댓글</td></tr>
 				</table>
 				
@@ -96,12 +109,8 @@ $(function(){
                  <button class="btn btn-info btn-flat" name="btn" id="btn" type="button">댓글쓰기</button>
                  </span>
                  </div>
-                 
 				<input type="hidden" id="idx" name="idx" value="${boardDto.idx}">
-                 	<a href="boardlist.five">목록</a>
-					<a href="boardedit.five?idx=${boardDto.idx}">수정</a>
-					<a href="boarddelete.five?idx=${boardDto.idx}">삭제</a>
-
+                 
                  
                  </div>
 				</div>

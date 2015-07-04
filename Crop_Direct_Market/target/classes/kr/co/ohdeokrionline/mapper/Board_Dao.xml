@@ -13,11 +13,11 @@
 		 <!--   게시판 리스트  -->	
 	    <select id="getBoardlist" parameterType="Integer" resultType="kr.co.ohdeokrionline.model.vo.Board_DTO">
 	
-	     SELECT * FROM
+	      select CONTENT,COUNT,FILENAME,FILESIZE,IDX,SUBJECT,USER_ID,TO_CHAR(WRITEDATE,'YYYY-MM-DD') AS WRITEDATE FROM
 	               (SELECT ROWNUM NUM, N.* 
 	            	   FROM 
 	               		 (SELECT * 
-	                       FROM BOARD ORDER BY WRITEDATE DESC) N
+	                       FROM BOARD ORDER BY IDX DESC) N
 	                )WHERE NUM BETWEEN 1 + (#{page}-1)*10 AND 10 + (#{page}-1)*10
 	    </select>
 	 	
@@ -25,6 +25,7 @@
 	 	 <select id="detailboard" resultType="kr.co.ohdeokrionline.model.vo.Board_DTO">
 	     SELECT * FROM BOARD WHERE IDX=#{idx}
 	    </select>
+	    
 	    <update id="hitUp"  parameterType="Integer">
      	UPDATE BOARD SET
      		COUNT = COUNT + 1
@@ -40,7 +41,7 @@
 	    <!--   U update   -->
 	   <update id="update" >
 	       UPDATE BOARD SET SUBJECT=#{subject},CONTENT=#{content}, 
-	                      FILENAME=#{filename,jdbcType=VARCHAR} WHERE IDX=#{idx,jdbcType=INTEGER}
+	                      FILENAME=#{filename,jdbcType=VARCHAR} WHERE IDX=#{idx,jdbcType=INTEGER} AND USER_ID=#{user_id}
 	   </update>
 		
 		<!--   D delete   -->
@@ -56,7 +57,12 @@
 		
 		<!-- REPLY LIST -->
 		<select id="re_list" resultType="kr.co.ohdeokrionline.model.vo.B_reply_DTO">
-	     SELECT RE_IDX,RE_CONTENT,RE_WRITEDATE,USER_ID,IDX FROM B_REPLY WHERE IDX=#{idx}
+	     SELECT RE_IDX,RE_CONTENT,TO_CHAR(RE_WRITEDATE,'YYYY-MM-DD') AS RE_WRITEDATE,USER_ID,IDX FROM B_REPLY WHERE IDX=#{idx}
 	    </select>
+	    
+	    <!-- REPLY DELETE -->
+	    <delete id="re_del" parameterType="STRING">
+	  	  DELETE B_REPLY WHERE IDX=#{idx}
+	    </delete>
 	
 </mapper>

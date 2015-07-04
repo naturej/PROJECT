@@ -127,9 +127,6 @@
 						</tr>
 					</c:forEach>
 					<tr>
-						<td colspan="8">총 가격:${sum}</td>
-					</tr>
-					<tr>
 						<td>
 							<input type=button value="창닫기" onclick="self.close()">
 						</td>

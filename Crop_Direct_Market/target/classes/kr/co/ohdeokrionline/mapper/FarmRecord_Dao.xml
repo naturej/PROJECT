@@ -17,7 +17,7 @@
 	
 	<update id="farmInfoUpdate">
 		update farminfo
-		set farminfo=#{farminfo},farm_add_code=#{farm_add_code},farm_add=#{farm_add},farm_add_de=#{farm_add_de},farm_phon=#{farm_phon},pro_name=#{pro_name},farm_comment=#{farm_comment}
+		set farminfo=#{farminfo},farm_addcode=#{farm_addcode},farm_add=#{farm_add},farm_add_de=#{farm_add_de},farm_phon=#{farm_phon},pro_name=#{pro_name},farm_comment=#{farm_comment}
 		where user_id=#{user_id}
 	</update>
 </mapper>

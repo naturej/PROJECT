@@ -5,17 +5,20 @@ import java.io.PrintWriter;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.ohdeokrionline.model.dao.BalanceSheet_Dao;
 import kr.co.ohdeokrionline.model.dao.Dirm_Dao;
 import kr.co.ohdeokrionline.model.dao.Order_Dao;
 import kr.co.ohdeokrionline.model.dao.ScheduleRecord2_Dao;
 import kr.co.ohdeokrionline.model.vo.Dirm_DTO;
 import kr.co.ohdeokrionline.model.vo.Order_DTO;
 import kr.co.ohdeokrionline.model.vo.ScheduleRecord2_DTO;
+import net.sf.json.JSONArray;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,14 +50,26 @@ public class OrderContorller {
 //	입금상태 변경
 	@RequestMapping("orderupdate.five")
 	public void orderchange(HttpServletResponse response,
-			HttpServletRequest request) throws IOException{
+			HttpServletRequest request,Principal principal) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		Calendar cal= Calendar.getInstance();
+		String bal_date= cal.get(Calendar.YEAR)+"년"+(cal.get(Calendar.MONTH)+1)+"월";
 		String or_id=request.getParameter("order_num");
 		int bo_num=Integer.parseInt(request.getParameter("bo_num"));
-		System.out.println(or_id);
-		System.out.println(bo_num);
+		int or_cost =Integer.parseInt(request.getParameter("or_cost"));
 		
 		Order_Dao dao = sqlsession.getMapper(Order_Dao.class);
 		response.getWriter().write(dao.orderstatechange(or_id, bo_num));
+		BalanceSheet_Dao baldao = sqlsession.getMapper(BalanceSheet_Dao.class);
+		int check =baldao.balcount(principal.getName(), bal_date);
+		System.out.println(check);
+		if(check!=0){
+			int result =dao.upbal(principal.getName(), bal_date, or_cost);
+		}else{
+			
+			int result = dao.crebal(principal.getName(), bal_date, or_cost);
+		}
+		
 	}
 	
 	@RequestMapping("orderupdate2.five")

@@ -5,7 +5,7 @@ import java.util.Date;
 public class B_reply_DTO {
 	private int re_idx;
 	private String re_content;
-	private Date re_writedate;
+	private String re_writedate;
 	private String user_id;
 	private int idx;
 	
@@ -21,10 +21,10 @@ public class B_reply_DTO {
 	public void setRe_content(String re_content) {
 		this.re_content = re_content;
 	}
-	public Date getRe_writedate() {
+	public String getRe_writedate() {
 		return re_writedate;
 	}
-	public void setRe_writedate(Date re_writedate) {
+	public void setRe_writedate(String re_writedate) {
 		this.re_writedate = re_writedate;
 	}
 	public String getUser_id() {

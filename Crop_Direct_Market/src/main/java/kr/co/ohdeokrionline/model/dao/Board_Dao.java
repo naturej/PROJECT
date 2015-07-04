@@ -26,6 +26,8 @@ public interface Board_Dao {
 		public int re_insert(B_reply_DTO reply);
 		//댓글리스트
 		public List<B_reply_DTO> re_list(String idx);
+		//댓글 리스트 삭제
+		public int re_del(String idx);
 		
 
 }

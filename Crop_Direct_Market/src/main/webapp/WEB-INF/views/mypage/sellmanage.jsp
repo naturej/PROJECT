@@ -11,14 +11,16 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript">
-	function check(order_num, bo_num) {
+	function check(order_num, bo_num,or_cost) {
+		
 		var ob=order_num+bo_num;
 		$.ajax({
 			type : 'GET',
 			url : "orderupdate.five",
 			data : {
 				"order_num" : order_num,
-				"bo_num" : bo_num
+				"bo_num" : bo_num,
+				"or_cost": or_cost
 			},
 			dataType : 'html',
 			success : function(data) {
@@ -91,6 +93,7 @@
 			<td>결제확인</td>
 		</tr>
 		<c:forEach items="${list}" var="list">
+		<input type="hidden" id="sellist" name="sellist" value="${list.or_cost},${list.or_state}">
 			<tr>
 				<td>${list.or_id}</td>
 				<td>${list.bo_subject}</td>
@@ -112,7 +115,7 @@
 						</c:when>
 						<c:when test="${list.or_state=='입금확인 중'}">
 							<td id="${list.or_id}${list.bo_num}"><input type="button" value="입금확인"
-								onclick="check('${list.or_id}','${list.bo_num}')"></td>
+								onclick="check('${list.or_id}','${list.bo_num}','${list.or_cost}' )"></td>
 						</c:when>
 						<c:when test="${list.or_state=='배송중'}">
 							<td id="${list.or_id}${list.bo_num}"><input type="button" value="배송완료"

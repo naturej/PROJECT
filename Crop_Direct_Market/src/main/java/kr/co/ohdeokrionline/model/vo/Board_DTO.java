@@ -9,7 +9,7 @@ public class Board_DTO {
 	private String subject;
 	private int count;
 	private String content;
-	private Date writedate;
+	private String writedate;
 	private String filename;
 	private int filesize;
 	private String user_id;
@@ -46,10 +46,10 @@ public class Board_DTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getWritedate() {
+	public String getWritedate() {
 		return writedate;
 	}
-	public void setWritedate(Date writedate) {
+	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
 	public String getFilename() {

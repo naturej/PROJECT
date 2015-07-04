@@ -36,13 +36,19 @@ public interface Order_Dao {
 	public List<String> buyUser(String bo_num);
 	
 	
-//	구매자 입금 상태 변경(대기->입금확인 중)
+	//	구매자 입금 상태 변경(대기->입금확인 중)
 	public int moneychecking(String order_id, int bo_num);
 	
-//	판매자 계좌 정보 확인 쿼리
+	//	판매자 계좌 정보 확인 쿼리
 	public List<Account_DTO> seller_account(String sell_userid);
 	
-	// 실구매자 여부 출력
+	// 판매자 손익계산서에 온라인 구매 금액 환산(손익계산서 없을 때)
+	public int crebal(String user_id,String bal_date,int or_cost);
+	
+	// 판매자 손익계산서에 온라인 구매 금액 환산(손익계산서 있을 때)
+	public int upbal(String user_id,String bal_date,int or_cost);	
+
+		// 실구매자 여부 출력
 	// public String buyUser(String bo_num, String buy_userid);
 	
 }

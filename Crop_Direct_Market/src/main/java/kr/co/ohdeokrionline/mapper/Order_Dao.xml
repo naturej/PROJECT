@@ -56,7 +56,7 @@
 	<!-- 주문list 출력 -->
    <select id="orderlist" resultType="kr.co.ohdeokrionline.model.vo.Order_DTO">
         SELECT O.OR_ID , 
-          O.OR_DATE ,
+          TO_CHAR(O.OR_DATE,'YYYY-MM-DD') AS OR_DATE ,
           S.BO_SUBJECT,
           S.PRO_NAME ,
           O.OR_COST ,
@@ -87,4 +87,15 @@
 		update orderlist set or_state='입금확인 중' where or_id=#{param1}
 		and bo_num=#{param2}
 	</update>
+	
+	<!-- 입금확인했을때 온라인 판매금액 손익계산서에 insert 손익계산서가  없을 때 -->
+	<insert id="crebal">
+		INSERT INTO BALANCE(USER_ID,BAL_DATE,SAL_ON) VALUES(#{param1},#{param2},#{param3})
+	</insert>
+	
+	<!-- 입금확인했을때 온라인 판매금액 손익계산서에 insert 손익계산서가 있을 떄 -->
+	<update id="upbal">
+	 UPDATE BALANCE SET SAL_ON=SAL_ON+#{param3} WHERE USER_ID=#{param1} AND BAL_DATE=#{param2}
+	</update>
+	
 </mapper>

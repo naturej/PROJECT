@@ -15,7 +15,7 @@
 </script>
     <!-- Section: contact -->
     <section id="contact" class="home-section text-center" style="position:static;">
-    	<div class="boxed-grey" align="center">
+    	<div class="container" style="height: 620px;" align="center">
 			<c:if test="${param.error != null}">
 			<div id="dialog" title="로그인실패">
 				 <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
