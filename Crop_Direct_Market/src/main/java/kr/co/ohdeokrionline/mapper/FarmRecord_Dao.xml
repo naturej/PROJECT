@@ -6,8 +6,8 @@
 	"kr.co.ohdeokrionline.model.dao.FarmRecord_Dao">
 	<insert id="insertFarminfo" parameterType="kr.co.ohdeokrionline.model.vo.FarmRecord_DTO">
 		insert into 
-		farminfo(farminfo,farm_add,farm_add_de,farm_phon,pro_name,farm_comment,user_id)
-		values(#{farminfo},#{farm_add},#{farm_add_de},
+		farminfo(farminfo,farm_add_code,farm_add,farm_add_de,farm_phon,pro_name,farm_comment,user_id)
+		values(#{farminfo},#{farm_add_code},#{farm_add},#{farm_add_de},
 			#{farm_phon},#{pro_name},#{farm_comment},#{user_id})
 	</insert>
 
@@ -17,7 +17,7 @@
 	
 	<update id="farmInfoUpdate">
 		update farminfo
-		set farminfo=#{farminfo},farm_add=#{farm_add},farm_add_de=#{farm_add_de},farm_phon=#{farm_phon},pro_name=#{pro_name},farm_comment=#{farm_comment}
+		set farminfo=#{farminfo},farm_add_code=#{farm_add_code},farm_add=#{farm_add},farm_add_de=#{farm_add_de},farm_phon=#{farm_phon},pro_name=#{pro_name},farm_comment=#{farm_comment}
 		where user_id=#{user_id}
 	</update>
 </mapper>

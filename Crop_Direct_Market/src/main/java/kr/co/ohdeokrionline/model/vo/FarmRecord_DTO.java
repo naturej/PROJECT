@@ -17,6 +17,7 @@ public class FarmRecord_DTO {
 	private String pro_name;
 	private String farm_phon;
 	private String farm_comment;
+	private String farm_add_code;
 	private String farm_add;
 	private String farm_add_de;
 	private String user_id;
@@ -88,13 +89,21 @@ public class FarmRecord_DTO {
 		this.farm_photo = farm_photo;
 	}
 
+	public String getFarm_add_code() {
+		return farm_add_code;
+	}
+
+	public void setFarm_add_code(String farm_add_code) {
+		this.farm_add_code = farm_add_code;
+	}
+
 	@Override
 	public String toString() {
 		return "FarmRecord_DTO [farminfo=" + farminfo + ", pro_name="
-				+ pro_name + ", farm_phon="
-				+ farm_phon + ", farm_comment=" + farm_comment + ", farm_add="
-				+ farm_add + ", farm_add_de=" + farm_add_de + ", user_id="
-				+ user_id + ", farm_photo=" + farm_photo + "]";
+				+ pro_name + ", farm_phon=" + farm_phon + ", farm_comment="
+				+ farm_comment + ", farm_add_code=" + farm_add_code
+				+ ", farm_add=" + farm_add + ", farm_add_de=" + farm_add_de
+				+ ", user_id=" + user_id + ", farm_photo=" + farm_photo + "]";
 	}
 	
 }

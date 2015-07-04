@@ -132,10 +132,10 @@ public class MemberController {
 		if(dao.joinInsert(member)==1){
 			if(farm.getFarminfo()!=null){
 				dao2.insertFarminfo(farm);
+				dao4.insertAccount(account);
 			}
 			System.out.println(authority);
 			dao3.insertAuth(authority);
-			dao4.insertAccount(account);
 		}
 		
 		//Tiles 적용 전 코드

@@ -12,7 +12,7 @@
     <title>오덕리</title>
     <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
     <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-    <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet" type="text/css">
    	<%-- <!-- Fonts -->
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/modernizr.custom.js"></script> --%>
     <link href="<%=request.getContextPath()%>/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">

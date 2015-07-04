@@ -81,20 +81,18 @@
 
 						<ul style="background: white; width: 120px;">
 							<li><a href="<%=request.getContextPath()%>/mypage/schedule2.five">일정</a></li>
-							<li><a href="<%=request.getContextPath()%>/manage/sellermanage.five">판매관리</a></li>
 							<li><a href="<%=request.getContextPath()%>/salesboard/shopList.five">장바구니목록</a></li>
 							<se:authorize ifAllGranted="ROLE_SELLER">
+								<li><a href="<%=request.getContextPath()%>/manage/sellermanage.five">판매관리</a></li>
 								<li><a href="<%=request.getContextPath()%>/salesboard/enulistRec.five">에누리목록</a></li>
+								<li><a href="<%=request.getContextPath()%>/manage/dirmlist.five">직거래 신청목록</a></li>
 							</se:authorize>
 							<se:authorize ifAllGranted="ROLE_CONSUMER">
 								<li><a href="<%=request.getContextPath()%>/salesboard/enulistSend.five">에누리목록</a></li>
+								<li><a href="<%=request.getContextPath()%>/manage/ordermanage.five">주문관리</a></li>
 							</se:authorize>
 							<li><a href="<%=request.getContextPath()%>/salesboard/receiveList.five">받은메세지목록</a></li>
 							<li><a href="<%=request.getContextPath()%>/salesboard/sendList.five">보낸메세지목록</a></li>
-							<se:authorize ifAllGranted="ROLE_SELLER">
-								<li><a href="<%=request.getContextPath()%>/manage/dirmlist.five">직거래 신청목록</a></li>
-							</se:authorize>
-							<li><a href="<%=request.getContextPath()%>/manage/ordermanage.five">주문관리</a></li>
 							<li><a href="<%=request.getContextPath()%>/mypage/userInfo.five">회원정보</a></li>
 							<se:authorize ifAllGranted="ROLE_ADMIN">
 								<li><a href="<%=request.getContextPath()%>/admin/memberManage.five">회원관리</a></li>

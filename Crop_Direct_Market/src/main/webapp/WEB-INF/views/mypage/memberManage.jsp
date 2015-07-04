@@ -58,7 +58,7 @@
 								<td>
 									<c:choose>
 										<c:when test="${user.enabled eq 1}">
-											<input type="button" class="btn-xs btn-success" value="활성" onclick="enabledChange('${user.user_id}','${user.enabled}')">
+											<input type="button" class="btn-xs btn-skin" value="활성" onclick="enabledChange('${user.user_id}','${user.enabled}')">
 										</c:when>
 										<c:when test="${user.enabled eq 0}">
 											<input type="button" class="btn-xs btn-danger" value="정지" onclick="enabledChange('${user.user_id}','${user.enabled}')">

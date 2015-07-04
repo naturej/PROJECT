@@ -79,18 +79,19 @@
 						<span class="input-group-addon" >&nbsp;&nbsp;농장 &nbsp;소개&nbsp;&nbsp;</span>
 						<textarea class="form-control" name="farm_comment" readonly="readonly">${farm.farm_comment}</textarea>
 						</div>
+						<hr>
+						<!-- 계좌 등록 -->
+						<div class="input-group">
+						<span class="input-group-addon">은 행</span>
+						<input type="text" class="form-control" name="bank" placeholder="Bank" value="${account.bank}" readonly="readonly"/>
+						</div>
+						<!-- 계좌 등록 -->
+						<div class="input-group">
+						<span class="input-group-addon">계 좌</span>
+						<input type="text" class="form-control" name="accountnum" placeholder="Account" value="${account.accountnum}" readonly="readonly"/>
+						</div>
 					</se:authorize>
-					<hr>
-					<!-- 계좌 등록 -->
-					<div class="input-group">
-					<span class="input-group-addon">은 행</span>
-					<input type="text" class="form-control" name="bank" placeholder="Bank" value="${account.bank}" readonly="readonly"/>
-					</div>
-					<!-- 계좌 등록 -->
-					<div class="input-group">
-					<span class="input-group-addon">계 좌</span>
-					<input type="text" class="form-control" name="accountnum" placeholder="Account" value="${account.accountnum}" readonly="readonly"/>
-					</div>
+					
 				</div>
 			</div>
 			<div class="col-md-4 col-lg-4">

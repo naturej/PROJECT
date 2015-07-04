@@ -2328,6 +2328,7 @@ fieldset[disabled] .btn-link:focus {
   font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
+  border-style: solid;
 }
 .btn-block {
   display: block;

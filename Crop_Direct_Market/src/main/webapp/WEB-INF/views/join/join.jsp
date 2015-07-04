@@ -354,8 +354,10 @@
 						<span class="input-group-addon">농장 이름</span>
 						<input type="text" class="form-control" name="farminfo" placeholder="FarmID" required/>
 						</div>
+						<!-- 농장 우편번호 입력 --> 
 						<div class="input-group">
 						<span class="input-group-addon">우편번호</span>
+						<input type="text" class="form-control" name="farm_add_code" id="farm_add_code" placeholder="FarmAddressCode" required readonly="readonly"/>
 						<input type="button" class="btn btn-skin " onclick="execDaumPostcode2()" value="우편번호 찾기">
 						</div>
 						<!-- 농장지역 -->
@@ -383,18 +385,18 @@
 						<span class="input-group-addon">농장소개</span>
 						<textarea class="form-control" name="farm_comment" placeholder="FarmIntroduce" required></textarea>
 						</div>
+						<hr>
+						<!-- 계좌 등록 -->
+						<div class="input-group">
+						<span class="input-group-addon">은 행</span>
+						<input type="text" class="form-control" name="bank" placeholder="Bank" required/>
+						</div>
+						<!-- 계좌 등록 -->
+						<div class="input-group">
+						<span class="input-group-addon">계 좌</span>
+						<input type="text" class="form-control" name="accountnum" placeholder="Account" required/>
+						</div>
 					</c:if>
-					<hr>
-					<!-- 계좌 등록 -->
-					<div class="input-group">
-					<span class="input-group-addon">은 행</span>
-					<input type="text" class="form-control" name="bank" placeholder="Bank" required/>
-					</div>
-					<!-- 계좌 등록 -->
-					<div class="input-group">
-					<span class="input-group-addon">계 좌</span>
-					<input type="text" class="form-control" name="accountnum" placeholder="Account" required/>
-					</div>
 				</div>
 			</div>
 			
@@ -411,7 +413,7 @@
 	</form>
 	<div class="col-md-4 col-lg-4">
 		<button type="button" class="btn btn-skin pull-center" onclick="checkfield()">가입확인</button>
-		<button type="reset" class="btn btn-skin pull-center">취 소</button>
+		<button type="reset" class="btn btn-skin pull-center" onclick="javascript:history.go(-1)">취 소</button>
 	</div>
 	</div>
 	</section>

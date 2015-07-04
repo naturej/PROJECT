@@ -3445,7 +3445,7 @@ var Grid = fc.Grid = RowRenderer.extend({
 
 		return '<td class="' + classes.join(' ') + '"' +
 			' data-date="' + date.format('YYYY-MM-DD') + '"' + // if date has a time, won't format it
-			'></td>';
+			'><br><br>'+'</td>';
 	},
 
 
@@ -3500,7 +3500,7 @@ Grid.mixin({
 		var bgSegs = [];
 		var fgSegs = [];
 		var i, seg;
-
+		
 		for (i = 0; i < segs.length; i++) {
 			seg = segs[i];
 
@@ -5077,7 +5077,7 @@ DayGrid.mixin({
 		var timeHtml = '';
 		var timeText;
 		var titleHtml;
-
+		
 		classes.unshift('fc-day-grid-event', 'fc-h-event');
 
 		// Only display a timed events time if it is the starting segment
@@ -5177,7 +5177,7 @@ DayGrid.mixin({
 					emptyCellsUntil(seg.leftCol);
 
 					// create a container that occupies or more columns. append the event element.
-					td = $('<td class="fc-event-container"/>').append(seg.el);
+					td = $('<td class="fc-event-container" onclick="containerClick(this)"/>').append(seg.el);
 					if (seg.leftCol != seg.rightCol) {
 						td.attr('colspan', seg.rightCol - seg.leftCol + 1);
 					}
@@ -5576,7 +5576,7 @@ DayGrid.mixin({
 				'<div class="fc-clear"/>' +
 			'</div>' +
 			'<div class="fc-body ' + view.widgetContentClass + '">' +
-				'<div class="fc-event-container"></div>' +
+				'<div class="fc-event-container" onclick="containerClick(this)"></div>' +
 			'</div>'
 		);
 		var segContainer = content.find('.fc-event-container');
@@ -6211,7 +6211,7 @@ TimeGrid.mixin({
 			colSegs = segCols[col];
 			placeSlotSegs(colSegs); // compute horizontal coordinates, z-index's, and reorder the array
 
-			containerEl = $('<div class="fc-event-container"/>');
+			containerEl = $('<div class="fc-event-container" onclick="containerClick(this)"/>');
 
 			// assign positioning CSS and insert into container
 			for (i = 0; i < colSegs.length; i++) {
@@ -7783,7 +7783,7 @@ function Calendar_constructor(element, overrides) {
 	t.initOptions(overrides || {});
 	var options = this.options;
 
-	
+	console.log(t);
 	// Exports
 	// -----------------------------------------------------------------------------------
 
@@ -8086,13 +8086,13 @@ function Calendar_constructor(element, overrides) {
 			currentView.removeElement();
 			currentView = t.view = null;
 		}
-
+		
 		// if viewType changed, or the view was never created, create a fresh view
 		if (!currentView && viewType) {
 			currentView = t.view =
 				viewsByType[viewType] ||
 				(viewsByType[viewType] = t.instantiateView(viewType));
-
+			
 			currentView.setElement(
 				$("<div class='fc-view fc-" + viewType + "-view' />").appendTo(content)
 			);
@@ -10754,7 +10754,7 @@ var AgendaView = View.extend({
 		var daySegs = [];
 		var timedSegs;
 		var i;
-
+		console.log(events);
 		// separate the events into all-day and timed
 		for (i = 0; i < events.length; i++) {
 			if (events[i].allDay) {
@@ -10762,7 +10762,7 @@ var AgendaView = View.extend({
 			}
 			else {
 				timedEvents.push(events[i]);
-			}
+			}      
 		}
 
 		// render the events in the subcomponents
