@@ -53,7 +53,11 @@ function resizeText() {
 }
 </script>
 
-<!-- <section id="service" class="home-section text-center">
+
+<!--new_portfolio--> 
+<!-- Portfolio -->
+<section id="Portfolio" class="content">
+	<section id="service" class="home-section text-center">
 			<div class="heading-about">
 				<div class="container">
 				<div class="row">
@@ -67,10 +71,7 @@ function resizeText() {
 						</div>
 					</div>
 				</div>
-</section> -->
-<!--new_portfolio--> 
-<!-- Portfolio -->
-<section id="Portfolio" class="content">
+	</section>
   	<div class="portfolio-top"></div>
   	<!-- Portfolio Plus Filters -->
   	<div class="portfolio"> 

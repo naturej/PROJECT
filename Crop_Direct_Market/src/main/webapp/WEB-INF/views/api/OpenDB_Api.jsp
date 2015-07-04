@@ -108,6 +108,8 @@ function kkk(i){
 }
 
 	$(function() {
+		//툴팁
+		$('#searchname').tooltip({title: "검색어 입력 후 돋보기를 누르세요", html: true,placement: "top"}); 
 	
 		
 		$('#buttonprice').click(function() {
@@ -259,7 +261,8 @@ function kkk(i){
 				
 					<table>
 						<tr>
-							<td>카테고리 <select id="category">
+							<td>카테고리 <span>&nbsp</span>
+								<select id="category" class="btn btn-default btn-xs">
 									<option>선택</option>
 									<option value="110">농가경영/경영체</option>
 									<option value="111">유통/무역</option>
@@ -297,15 +300,11 @@ function kkk(i){
 									<option value="143">해외농업동향</option>
 									<option value="144">해외/북한농업 용어사전</option>
 							</select>
+							<span>&nbsp</span>
 							</td>
-							<td>보여주는 단위 <select id="page_Num">
-									<option value="5">5</option>
-									<option value="10">10</option>
-									<option value="15">15</option>
-									<option value="20">20</option>
-							</select>
-							</td>
-							<td>검색 <input type="text" id="searchname">
+	
+							<td> <span>&nbsp</span><span>&nbsp</span><span>&nbsp</span><span>&nbsp</span>
+								<input type="text" id="searchname" class="btn btn-default btn-xs">
 							</td>
 
 
@@ -313,8 +312,20 @@ function kkk(i){
 								readonly="readonly"></td>
 							<td><input type="hidden" id="_enum" value="5"
 								readonly="readonly"></td>
-							<td><input type="button" id="buttonprice" value="검색">
+								
+							<td><span>&nbsp</span>
+								<span  id="buttonprice" class="btn btn-default btn-xs" style="border-style: none"><span class="glyphicon glyphicon-search"></span></span>
+								<span>&nbsp</span>
 							</td>
+							
+							<span style="float: right;">페이지 단위<span>&nbsp</span>
+							   <select id="page_Num" class="btn btn-default btn-xs">
+										<option value="5">5</option>
+										<option value="10">10</option>
+										<option value="15">15</option>
+										<option value="20">20</option>
+								</select>
+							<span>
 						</tr>
 					</table>
 		

@@ -297,10 +297,10 @@
 						</tr>
 					</table>
 				
-				<hr>
+				
 				<table id="table" class="table table-striped">
 					<tr>
-						<td>대분류 <select id="large">
+						<td>대분류<span>&nbsp</span> <select id="large" class="btn btn-default btn-xs">
 								<option>선택하세요</option>
 						</select>
 						</td>
@@ -309,7 +309,7 @@
 						</select>
 						</td>
 
-						<td>중분류 <select id="middle">
+						<td>중분류 <span>&nbsp</span><select id="middle" class="btn btn-default btn-xs">
 								<option>선택하세요</option>
 						</select>
 						</td>
@@ -318,7 +318,7 @@
 						</select>
 						</td>
 
-						<td>소분류 <select id="small">
+						<td>소분류 <span>&nbsp</span><select id="small" class="btn btn-default btn-xs">
 								<option>선택하세요</option>
 						</select>
 						</td>
@@ -327,7 +327,7 @@
 						</select>
 						</td>
 
-						<td>도매상 <select id="sale_maket">
+						<td>도매상 <span>&nbsp</span><select id="sale_maket" class="btn btn-default btn-xs">
 								<option>선택하세요</option>
 						</select>
 						</td>
@@ -335,11 +335,11 @@
 
 						</select>
 						</td>
-					</tr>
-
+					</tr>			
 				</table>
+			
 				<table id="result_table" class="table table-striped">
-
+					<br>
 				</table>
 
 
