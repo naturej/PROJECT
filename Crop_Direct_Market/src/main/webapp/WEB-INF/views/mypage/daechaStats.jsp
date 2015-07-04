@@ -50,6 +50,10 @@
 							<canvas id="canvas2" height="450" width="600">
 							</canvas>
 						</div>
+						<div style="font-size:15px" align="center">
+							순이익 <img src="<%=request.getContextPath()%>/img/순이익.JPG" height="8px" width="15px">&nbsp;&nbsp;&nbsp;
+							총매출액 <img src="<%=request.getContextPath()%>/img/총매출액.JPG" height="8px" width="15px"></div>
+							<div style="font-size:13px"align="right">(단위:원)</div>
 					</td>
 				</tr>
 			</table>
@@ -88,7 +92,6 @@
 
 				};
 			</script>
-					
 			<script>	
 				var lineChartData = {
 					labels : ${datelist}
@@ -116,8 +119,6 @@
 							} ]
 				} ;
 			</script>
-			
-			
 			
 		</div>
 	</div>

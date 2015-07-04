@@ -5,11 +5,11 @@
 <%@page import="java.util.Locale"%>
 <%@page import="org.springframework.format.datetime.DateFormatter"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>
 <% String user_id = SecurityContextHolder.getContext().getAuthentication().getName(); 
 		System.out.println(user_id);
 %>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>
 
 <script type="text/javascript">
 $(function(){
@@ -106,7 +106,7 @@ $(function(){
  				 <div class="input-group input-group-sm">
                  <input type="text" class="form-control" name="re_content" id="re_content">
                  <span class="input-group-btn">
-                 <button class="btn btn-info btn-flat" name="btn" id="btn" type="button">댓글쓰기</button>
+                 <button  class="btn btn-sm btn-skin"  name="btn" id="btn" type="button">댓글쓰기</button>
                  </span>
                  </div>
 				<input type="hidden" id="idx" name="idx" value="${boardDto.idx}">

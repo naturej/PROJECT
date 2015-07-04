@@ -3,7 +3,8 @@
 <%
 	String user_id = (String)request.getAttribute("user_id");
 %>
-    
+ <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>   
 <link href="css/table-base/bootstrap.min.css" rel="stylesheet">
 	<link href="css/AdminLTE.css" rel="stylesheet">
 	
@@ -24,7 +25,7 @@
                 <!-- Main content -->
                 <section class="content">
                             <div class='box box-info'>
-                                <div class='box-body pad'>
+                                <div class='box-body pad' align="center">
                                     <form action="" method="post" enctype="multipart/form-data">
                                     <table>
                                     <tr><td><label>Subject</label></td><td>
@@ -40,9 +41,10 @@
                                     	<tr><td><label>기존 file:${boardDto.filename}</label></td><td>
                                     	<input type="file" id="file" name="file"></td></tr>
                                     </table>
-                                   
-                                	<div align="right">
-	 									  	<button type="submit" class="btn btn-primary">Submit</button>
+                                   <br>
+                                   <br>
+                                	<div align="center">
+	 									  	<button type="submit" class="btn btn-sm btn-skin">수정완료</button>
 	   								  </div>
 	   								   </form>
 	   								   

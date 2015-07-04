@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%String user_id = (String)request.getAttribute("user_id");%>
-	
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>	
 	<link href="css/table-base/bootstrap.min.css" rel="stylesheet">
 	<link href="css/AdminLTE.css" rel="stylesheet">
 	
@@ -36,8 +37,9 @@
                                     	<tr><td><label>Input file</label></td><td>
                                     	<input type="file" id="file" name="file"></td></tr>
                                     </table>
-                                	<div align="right">
-	 									  	<button type="submit" class="btn btn-primary">Submit</button>
+                                    <br><br>
+                                	<div align="center">
+	 									  	<button type="submit"  class="btn btn-sm btn-skin" >작성완료</button>
 	   								  </div>
 	   								   </form>
 	   								   
