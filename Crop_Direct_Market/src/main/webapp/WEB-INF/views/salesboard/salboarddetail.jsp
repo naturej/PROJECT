@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
-<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- -->
+<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 	#img {
 		width: 400px;
@@ -95,7 +93,8 @@
 			type: "POST",
 			url: "sold.five",
 			data: {
-				bo_num : bo_num,
+				bo_num : $("#bo_num"),
+				bo_subject : $("#soldout #bo_subject"),
 				sold : '1'	
 			},
 			success: function(data){
@@ -320,7 +319,10 @@
          </table>
   
       
-         	<input type="hidden" name="bo_num" value="${salboardDto.bo_num}">
+         	<input type="hidden" id="bo_num" name="bo_num" value="${salboardDto.bo_num}">
+         	<input type="hidden" id="bo_subject" name="bo_subject" value="${salboardDto.bo_subject}">
+         	<input type="hidden" id="soldout" name="soldout" value="[soldout]">
+         	
          <br>
          <hr>
          

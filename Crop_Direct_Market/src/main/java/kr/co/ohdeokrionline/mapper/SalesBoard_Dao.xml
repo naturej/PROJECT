@@ -30,7 +30,7 @@
 		
 		<!-- 판매글 상세보기 -->
 		<select id="salesdetail" resultType="kr.co.ohdeokrionline.model.vo.SalesBoard_DTO">
-	    	SELECT S.BO_NUM,S.BO_CONTENT,F.PRO_NAME,S.BO_PHOTO,S.BO_PRICE,S.BO_SALNUM,S.SEP,S.UNIT,F.FARM_ADD,S.USER_ID,
+	    	SELECT S.BO_SUBJECT,S.BO_NUM,S.BO_CONTENT,S.PRO_NAME,S.BO_PHOTO,S.BO_PRICE,S.BO_SALNUM,S.SEP,S.UNIT,F.FARM_ADD,S.USER_ID,
 						F.FARM_ADD_DE,F.FARMINFO,TO_CHAR(BO_DATE,'YYYY-MM-DD') AS BO_DATE 
 			FROM SALBOARD S
 			JOIN FARMINFO F
@@ -80,7 +80,7 @@
 
 		<update id="soldUpdate" parameterType="kr.co.ohdeokrionline.model.vo.SalesBoard_DTO">
 			update salboard
-			set sold=#{sold}
+			set sold=#{sold},bo_subject=#{bo_subject}
 			where bo_num=#{bo_num,jdbcType=INTEGER}
 		</update>
 
