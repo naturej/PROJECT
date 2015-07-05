@@ -50,8 +50,7 @@
 					</div>
 				</div>
 			</div>
-   	 <div class="CSSTableGenerator">
-		<table>
+		<table  class="table">
 			<tr>
 				<td>번호</td>
 				<td>보내는사람</td>
@@ -73,7 +72,6 @@
 		</table>
 			</div>
 			</div>
-	</div>
 	</section>
 </body>
 </html>

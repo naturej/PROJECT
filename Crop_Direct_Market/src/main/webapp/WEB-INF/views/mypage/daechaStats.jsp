@@ -4,8 +4,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
 <title>Doughnut Chart</title>
+
+
 <script src="<%=request.getContextPath()%>/js/Chart.js"></script>
 <%
 	Calendar cal = Calendar.getInstance();
@@ -43,7 +45,9 @@
 						<div style="font-size:15px">
 							<br> <span>&lt;온라인 직거래 비율></span></div>
 							<div style="font-size:13px"align="right">(단위:%)</div>
-						
+							<div style="font-size:15px" align="center">
+							직거래 매출 <img src="<%=request.getContextPath()%>/img/순이익.JPG" height="8px" width="15px">&nbsp;&nbsp;&nbsp;
+							 온라인 매출<img src="<%=request.getContextPath()%>/img/총매출액.JPG" height="8px" width="15px"></div>	
 					</td>
 					<td rowspan="2">
 						<div>

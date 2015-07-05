@@ -7,6 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>
+<link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
 <% String user_id = SecurityContextHolder.getContext().getAuthentication().getName(); 
 		System.out.println(user_id);
 %>
@@ -25,11 +26,11 @@ $(function(){
 				  console.log("전송성공");
 				  var options="";
 		      	  var relist = JSON.parse(responseData);
-		          options="<table class='table'><tr><td><div align='left' style='font-size:12px;'>작성자</div></td>"+
+		          options="<table class='table'><tr><td><div align='center' style='font-size:12px;'>작성자</div></td>"+
         					"<td><div align='center' style='font-size:12px;'>내용</div></td>"+
         					"<td><div align='right' style='font-size:12px;'>작성일</div></td></tr>"; 
 		      	  $.each(relist, function(index,re){
-		      		  options+= "<tr><td><div align='left' style='font-size:12px;'>"+re.user_id+"</div></td>"+
+		      		  options+= "<tr><td><div align='center' style='font-size:12px;'>"+re.user_id+"</div></td>"+
 	                 		   "<td><div align='center' style='font-size:12px;'>"+re.re_content+"</div></td>"+
 	               			   "<td><div align='right' style='font-size:12px;'>"+re.re_writedate+"&nbsp;</div></td></tr>";          
 		      	  });
@@ -74,7 +75,7 @@ $(function(){
 				</td><td align="right">${boardDto.writedate}</td></tr>
 				<tr><td colspan="3" align="right">글쓴이&nbsp;${boardDto.user_id}&nbsp;&nbsp;&nbsp;&nbsp;첨부파일&nbsp;${boardDto.filename}</td></tr>
 				<tr><td colspan="3" align="left">내용</td></tr>
-				<tr><td colspan="3"><div style="height: 230px; font-size:10px;" >${boardDto.content}</div></td></tr>
+				<tr><td colspan="3"><br><br>${boardDto.content}<br><br></td></tr>
 				<tr><td colspan="3" align="left">댓글</td></tr>
 				</table>
 				
@@ -90,11 +91,11 @@ $(function(){
             		</tr>
             	</c:when>
             	<c:otherwise>
-            		<tr><td><div align="left" style="font-size:12px;">작성자</div></td>
+            		<tr><td><div align="center" style="font-size:12px;">작성자</div></td>
             		<td><div align="center" style="font-size:12px;">내용</div></td>
             		<td><div align="right" style="font-size:12px;">작성일</div></td></tr>
 				<c:forEach items="${list}" var="re">
-                <tr><td><div align="left" style="font-size:12px;">${re.user_id}</div></td>
+                <tr><td><div align="center" style="font-size:12px;">${re.user_id}</div></td>
                 <td><div align="center" style="font-size:12px;">${re.re_content}</div></td>
                 <td><div align="right" style="font-size:12px;">${re.re_writedate}&nbsp;</div></td></tr>
                 </c:forEach>
@@ -114,7 +115,6 @@ $(function(){
                  
                  </div>
 				</div>
+				</section>
 				</div>
-		</section>
-	</div>
 </html>

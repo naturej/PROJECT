@@ -88,13 +88,13 @@
 	      'top=100px, left=100px, width=430 height=510')
 	}
 	
-	function sold(bo_num){
+	function sold(bo_num,bo_subject){
 		$.ajax({
 			type: "POST",
 			url: "sold.five",
 			data: {
-				bo_num : $("#bo_num"),
-				bo_subject : $("#soldout #bo_subject"),
+				bo_num : bo_num,
+				bo_subject : bo_subject,
 				sold : '1'	
 			},
 			success: function(data){
@@ -157,7 +157,7 @@
             <tr><td>구매수량</td><td colspan="2"><input type="number" min="1" id="sh_quantity" name="sh_quantity" onkeydown='return onlyNumber(event)'> 개
 	            	<se:authentication property="name" var="LoginUser" />
 	            	<c:if test="${LoginUser eq salboardDto.user_id}">
-	            		<input type="button" class="btn-xs btn-danger" value="매 진" onclick="sold('${salboardDto.bo_num}')"/>
+	            		<input type="button" class="btn-xs btn-danger" value="매 진" onclick="sold('${salboardDto.bo_num}','${salboardDto.bo_subject}')"/>
 	            	</c:if>
             	</td>
             </tr>
@@ -308,21 +308,11 @@
             <tr><td colspan="4"><a href="" onclick="review_popup('${salboardDto.bo_num}','${salboardDto.pro_name}')">리뷰쓰기</a></td></tr>
             <tr><td colspan="4">
 	            <a href="salboardlist.five">목록</a>&nbsp;&nbsp;
-	            <se:authorize ifAllGranted="ROLE_SELLER">
-					<a href="salboardedit.five?bo_num=${salboardDto.bo_num}">수정</a>&nbsp;&nbsp;
-	            	<a href="salboarddelete.five?bo_num=${salboardDto.bo_num}">삭제</a>			
-				</se:authorize>
 	            <se:authorize ifAllGranted="ROLE_CONSUMER">
 					<a href="" onclick="report_popup('${salboardDto.bo_num}','${salboardDto.pro_name}','${salboardDto.bo_subject}','${salboardDto.user_id}')">신고하기</a>			
 				</se:authorize>
             </td></tr>
          </table>
-  
-      
-         	<input type="hidden" id="bo_num" name="bo_num" value="${salboardDto.bo_num}">
-         	<input type="hidden" id="bo_subject" name="bo_subject" value="${salboardDto.bo_subject}">
-         	<input type="hidden" id="soldout" name="soldout" value="[soldout]">
-         	
          <br>
          <hr>
          

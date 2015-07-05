@@ -4,6 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
+<link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -18,6 +19,18 @@ String user_id = SecurityContextHolder.getContext().getAuthentication().getName(
 <script type="text/javascript">
 	
 	$(function(){
+
+			$("#sal_on").val(0);
+			$("#sal_mar").val(0);
+			$("#sal_cost").val(0);
+			$("#ex_supplies").val(0);
+			$("#ex_renter").val(0);
+			$("#ex_etc").val(0);
+			$("#sal_gain").val(0);
+			$("#ex_inter").val(0);
+			$("#ex_loss").val(0);
+			$("#sal_income").val(0);
+
 			var num1=parseInt($("#sal_on").val())+parseInt($("#sal_mar").val());
 			$("#num1").val(num1);
 			var num3=parseInt($("#num1").val())-parseInt($("#sal_cost").val());
@@ -133,7 +146,7 @@ String user_id = SecurityContextHolder.getContext().getAuthentication().getName(
 				<tr><td align="center">1.매출</td>
 				<td><input type="text" name="num1" id="num1" readonly="readonly" class="form-controll" disabled style="text-align:right; padding-right:1px;">원</td></tr>
 				<tr><td align="right">온라인 매출</td>
-				<td><input type="text" style="text-align:right; padding-right:1px;" id="sal_on" name="sal_on" readonly="readonly" class="form-controll" disabled>원</td></tr>
+				<td><input type="text" style="text-align:right; padding-right:1px;" id="sal_on" name="sal_on" readonly="readonly" class="form-controll" disabled value="0">원</td></tr>
 				<tr><td align="right">직거래장터 매출</td>
 				<td><input type="text" style="text-align:right; padding-right:1px;" id="sal_mar" name="sal_mar" class="form-controll">원</td></tr>
 				

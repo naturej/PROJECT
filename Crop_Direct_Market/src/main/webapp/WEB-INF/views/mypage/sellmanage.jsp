@@ -2,8 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -75,9 +74,8 @@
 						</div>
 					</div>
 				</div>
-		
-			
-			<table class="table table-hover">
+				<br>
+				<br>
 	<br>
 	<%=request.getAttribute("user_id")%>님의 판매 상황입니다.
 	<br>
@@ -96,7 +94,7 @@
 		<input type="hidden" id="sellist" name="sellist" value="${list.or_cost},${list.or_state}">
 			<tr>
 				<td>${list.or_id}</td>
-				<td>${list.bo_subject}</td>
+				<td><a href="<%=request.getContextPath()%>/salesboard/salesdetail.five?bo_num=${list.bo_num}">${list.bo_subject}</a></td>
 				<td>${list.pro_name}</td>
 				<td>${list.or_quan}</td>
 				<td>${list.or_cost}</td>
@@ -133,9 +131,7 @@
 					</c:choose>
 			</tr>
 		</c:forEach>
-	</table>
-			</section>
-			</table>
+		</table>
 			</div>
 			</div>
 			</div>

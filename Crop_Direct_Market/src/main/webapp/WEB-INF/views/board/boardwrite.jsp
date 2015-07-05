@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>	
 	<link href="css/table-base/bootstrap.min.css" rel="stylesheet">
 	<link href="css/AdminLTE.css" rel="stylesheet">
-	
+	<link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
 	<div id="content">
 	<section id="service" class="home-section text-center">
 		<div class="heading-about">

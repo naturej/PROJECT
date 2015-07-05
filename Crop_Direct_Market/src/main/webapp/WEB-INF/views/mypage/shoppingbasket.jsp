@@ -4,6 +4,7 @@
 <%@page import="kr.co.ohdeokrionline.model.vo.ShoppingBasket_DTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>

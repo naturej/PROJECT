@@ -3,6 +3,7 @@
 <%
 	String user_id = (String)request.getAttribute("user_id");
 %>
+<link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>   
 <link href="css/table-base/bootstrap.min.css" rel="stylesheet">
@@ -36,7 +37,7 @@
                                         </textarea>
                                         </td></tr>    
                                         <tr><td colspan="2">
-                                        <input type="text" id="user_id" name="user_id" class="form-control"  value="${boardDto.user_id}"/>                    
+                                        <input type="hidden" id="user_id" name="user_id" class="form-control"  value="${boardDto.user_id}"/>                    
                                     	</td></tr>
                                     	<tr><td><label>기존 file:${boardDto.filename}</label></td><td>
                                     	<input type="file" id="file" name="file"></td></tr>

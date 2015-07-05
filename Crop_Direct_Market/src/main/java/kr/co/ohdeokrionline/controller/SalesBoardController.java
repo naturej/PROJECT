@@ -546,8 +546,13 @@ public class SalesBoardController {
 	
 		@RequestMapping("sold.five")
 		public String sold(SalesBoard_DTO sales){
+			System.out.println("soldout controller 진입");
 			SalesBoard_Dao dao = sqlSession.getMapper(SalesBoard_Dao.class);
 			try {
+				String subject = "[매진]";
+				subject +=sales.getBo_subject();
+				System.out.println(subject);
+				sales.setBo_subject(subject); 
 				dao.soldUpdate(sales);
 			} catch (SQLException e) {
 				e.printStackTrace();

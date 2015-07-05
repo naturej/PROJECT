@@ -9,11 +9,11 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
 <div id="content">
 	<section id="service" class="home-section text-center">
 			<div class="heading-about">
-				<div class="container" style="height: 620px;">
+				<div class="container" style="height: 650px;">
 				<div class="row">
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="wow bounceInDown" data-wow-delay="0.4s">
@@ -25,24 +25,26 @@
 						</div>
 					</div>
 				</div>
-				<div style="height:410px;">
+				<div style="height:450px;">
+				<div align="right" style="font-size: 16px;"><a href="<%=request.getContextPath()%>/board/boardwrite.five">글쓰기:&nbsp;&nbsp;<img src="<%=request.getContextPath()%>/img/editonn.png" style=" height:32px; width:auto; "></a>&nbsp;&nbsp;&nbsp;</div>
 				<table class="table table-hover">
                   <thead>
 				<tr>
 				<td>IDX${np}</td>
-				<td>SUBEJCT</td>
+				<td>WIRTER</td>
+				<td width="600px;">SUBEJCT</td>
 				<td>DATE</td>
 				<td>COUNT</td>
-				<td>WIRTER</td>
 					</tr>
 					<tbody>
 					<c:forEach items="${list}" var="n">
 				<tr>
 					<td>${n.idx}</td>
-					<td><a href="<%=request.getContextPath()%>/board/detailboard.five?idx=${n.idx}">${n.subject}</a></td>
+					<td>${n.user_id}</td>
+					<td width="600px;"><a href="<%=request.getContextPath()%>/board/detailboard.five?idx=${n.idx}">${n.subject}</a></td>
 					<td>${n.writedate}</td>
 					<td>${n.count}</td>
-					<td>${n.user_id}</td>
+					
 				</tr>
 			</c:forEach>
 			</tbody>
@@ -74,7 +76,7 @@
 						<a href="<%=request.getContextPath()%>/board/boardlist.five?pg=${nowpage+1}">[다음]</a>&nbsp;
 					</c:otherwise>
 				</c:choose>
-			<a href="<%=request.getContextPath()%>/board/boardwrite.five">글쓰기</a>
+		
 			
 	</div>
 	</div>
