@@ -6,7 +6,27 @@
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/dropdown.css" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath()%>/css/dropdown.js"></script>
+<style>
+#log {
+	border: 1px solid #28c3ab;
+    outline: 0;
+    color: #28c3ab;
+    background-color: #ffffff;
+    padding: 6px;
+    font-size: 12px;
+    border-radius : 5px;
+}
 
+#log:hover {
+	border: 1px solid #28c3ab;
+    outline: 0;
+    color: #28c3ab;
+    background-color: #EEEEEE;
+    padding: 6px;
+    font-size: 12px;
+    border-radius : 5px;
+}
+</style>
 <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style="background-color: #1ABC9C">
 	<div class="container">
 		<div class="navbar-header">
@@ -107,9 +127,7 @@
 				</se:authorize>
 				<se:authentication property="name" var="LoginUser" />
 				<se:authorize ifAnyGranted="ROLE_CONSUMER,ROLE_ADMIN,ROLE_SELLER">
-					<li>
-					<a href="<c:url value='/j_spring_security_logout' />">(${LoginUser}
-							님)LOGOUT</a></li>
+					<li><a href="<c:url value='/j_spring_security_logout' />">${LoginUser}님 <span id="log">LOGOUT</span></a></li>
 				</se:authorize>
 			</ul>
 		</div>
