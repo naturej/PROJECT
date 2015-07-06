@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <c:set var="nowpage" value="${requestScope.page}" />
 <c:set var="maxpage" value="${requestScope.maxpage}" />
 <c:set var="startpage" value="${requestScope.startpage}" />
 <c:set var="endpage" value="${requestScope.endpage}" />
-
-
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
@@ -26,7 +25,9 @@
 					</div>
 				</div>
 				<div style="height:450px;">
+				<se:authorize ifAllGranted="ROLE_ADMIN">
 				<div align="right" style="font-size: 16px;"><a href="<%=request.getContextPath()%>/board/boardwrite.five">글쓰기:&nbsp;&nbsp;<img src="<%=request.getContextPath()%>/img/editonn.png" style=" height:32px; width:auto; "></a>&nbsp;&nbsp;&nbsp;</div>
+				</se:authorize>
 				<table class="table table-hover">
                   <thead>
 				<tr>
