@@ -5103,7 +5103,7 @@ DayGrid.mixin({
 					''
 					) +
 			'>' +
-				'<div class="fc-content" id="agenda">' +
+				'<div class="fc-content" id="agenda" onclick="containerClick(this)">' +
 					(this.isRTL ?
 						titleHtml + ' ' + timeHtml : // put a natural space in between
 						timeHtml + ' ' + titleHtml   //
