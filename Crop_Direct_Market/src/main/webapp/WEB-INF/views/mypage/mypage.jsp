@@ -17,7 +17,7 @@
     
     	<div class="boxed-grey">
 	    	<div class="row">
-				<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+				<div class="col-sm-offset-4 col-md-4 col-lg-4">
 					<!-- ID --> 
 					<div class="input-group">
 					<span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;I &nbsp;D&nbsp;&nbsp;&nbsp;</span>
@@ -105,7 +105,7 @@
 					
 				</div>
 			</div>
-			<div class="col-md-4 col-lg-4">
+			<div class="col-sm-offset-4 col-md-4">
 				<a href="../index.five"><button type="button" class="btn btn-skin pull-center">확 인</button></a>
 				<a href="userInfoUpdate.five"><button type="button" class="btn btn-skin pull-center">수 정</button></a>
 			</div>
