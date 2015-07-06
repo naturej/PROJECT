@@ -261,13 +261,13 @@
 	</script>
     
     <!-- Section: contact -->
-    <section id="contact" class="home-section text-center" style="position: static">
-    	<div class="boxed-grey">
+    <section id="contact" class="home-section text-center" style="position: static;">
+    	<div class="boxed-grey" style="height:100%">
 	
 	<!-- 회원가입 폼 -->
-	<form action="" method="post" name="joinForm" enctype="multipart/form-data" >
+	<form action="" method="post" name="joinForm" enctype="multipart/form-data">
 		<div class="row">
-			<div class="col-md-4 col-lg-4">
+			<div class="col-sm-offset-4 col-md-4">
 				<div class="form-group">
 					<!-- ID 입력 --> 
 					<div class="input-group">
@@ -411,7 +411,7 @@
 			</c:otherwise>
 		</c:choose>
 	</form>
-	<div class="col-md-4 col-lg-4">
+	<div class="col-sm-offset-4 col-md-4">
 		<button type="button" class="btn btn-skin pull-center" onclick="checkfield()">가입확인</button>
 		<button type="reset" class="btn btn-skin pull-center" onclick="javascript:history.go(-1)">취 소</button>
 	</div>
