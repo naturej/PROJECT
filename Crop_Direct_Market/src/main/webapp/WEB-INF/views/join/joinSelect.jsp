@@ -5,7 +5,7 @@
     <!-- Section: contact -->
     <section id="contact" class="home-section text-center">
     	<div class="boxed-grey">
-		    <div class="row" style="height:293px;" align="center">
+		    <div class="row" style="height:400px;" align="center">
 			<table>
 				<tr>
 				<td align="center">
