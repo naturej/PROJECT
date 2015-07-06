@@ -104,6 +104,7 @@
 				data : eventData,
 				success : function(data){
 					if(data.length>0){
+						$('.ui-dialog-title').text('');
 						location.href='schedule2.five';
 					}else{
 						alert('fail');
