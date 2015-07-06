@@ -30,6 +30,7 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -104,6 +105,7 @@ public class MemberController {
 		return "join.join";
 	}
 	
+	@Transactional
 	@RequestMapping(value="join.five",method=RequestMethod.POST)
 	public String joinInsert(Member_DTO member,FarmRecord_DTO farm,Authorities_DTO authority,Account_DTO account,HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException {
 		System.out.println(member);
@@ -197,8 +199,8 @@ public class MemberController {
 		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
 		try {
 			// 수집 원암호 읽기
-			String path = req.getRealPath("/ohdeokrionline/etc/");
-			Reader fr = new FileReader(path+"tmp.txt");
+			//String path = req.getRealPath("/ohdeokrionline/etc/");
+			Reader fr = new FileReader(remote_path+"tmp.txt");
 			BufferedReader br = new BufferedReader(fr);
 			String pwd = dao.getPwdByUser_idAndEmail(user_id, email);
 			
@@ -323,6 +325,7 @@ public class MemberController {
 		return "mypage.mypageUpdate";
 	}
 	
+	@Transactional
 	@RequestMapping(value="mypage/userInfoUpdate.five",method=RequestMethod.POST)
 	String userInfoUpdateProccess(Member_DTO member,FarmRecord_DTO farm,Account_DTO account,HttpServletRequest request) throws Exception{
 		System.out.println(member);
