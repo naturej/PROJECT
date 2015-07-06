@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div id="content">
-		<section id="service" class="home-section text-center">
+		<section id="service" class="home-section text-center" style="height:100%">
 		<div class="heading-about">
 			<div class="container">
 				<div class="row">

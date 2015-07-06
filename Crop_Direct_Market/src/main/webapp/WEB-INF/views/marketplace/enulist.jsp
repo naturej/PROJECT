@@ -36,7 +36,7 @@
 </script>
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
-     <section id="service" class="home-section text-center">
+     <section id="service" class="home-section text-center" style="height:100%">
 		
 		<div class="heading-about">
 			<div class="container">
