@@ -97,6 +97,9 @@ function resizeText() {
         	<li><a class="" href="" data-filter=".강원">
           		<h5>강원도</h5>
           	</a></li>
+          	<li><a class="" href="" data-filter=".제주">
+          		<h5>제주도</h5>
+          	</a></li>
       	</ul>
     </div>
     <!--/Portfolio Filters --> 
