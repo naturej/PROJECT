@@ -46,14 +46,7 @@
 					
 					$('#addDialog').dialog({title:title});
 					var eventData;
-					/* if (title) {
-						eventData = {
-							title: title,
-							start: start,
-							end: end
-						};
-						$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-					} */
+					
 					$('#calendar').fullCalendar('unselect');
 				},
 				editable: true,
@@ -65,30 +58,14 @@
 				if(schedule.user_id=='admin'){
 					schedule.color='#da3f3a';
 				}
+				schedule.end=schedule.end.replace('00:00:00','16:00:00');
 				$('#calendar').fullCalendar('renderEvent', schedule, true);
 			});
 			
 			$('#pl_id_21').click(function(){
 				console.log('도착');
 			});
-			/* $('.fc-event-container').click(function(){
-				var title = $(this)[0].textContent.trim();
-				$.each(list,function(idx,schedule){
-					if(title==schedule.title){
-						console.log(schedule);
-						$('#end').val(schedule.end);
-						$('#start').val(schedule.start);
-						$('#user_id').val(schedule.user_id);
-						$('#pro_name').val(schedule.pro_name);
-						$('#content').val(schedule.content);
-						$('#pl_id').val(schedule.pl_id);
-						$('#dialog').dialog({
-							title:schedule.title
-						});
-					}
-				});
-				
-			}); */
+			
 			// datepicker 적용
 			$('#addstart').datepicker({
 				  dateFormat: "yy-mm-dd"

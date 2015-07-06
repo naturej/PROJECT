@@ -16,7 +16,7 @@
 	function seller_info(sell_userid) {
 		var seller = sell_userid;
 		window.open('seller_account.five?seller=' + seller, '판매자정보',
-				'top=100px, left=100px, height=220 width=400')
+				'top=100px, left=100px, height=300 width=300')
 	}
 	
 	function money_check(orderid,bo_num){
@@ -127,11 +127,6 @@
 							</c:choose>
 						</tr>
 					</c:forEach>
-					<tr>
-						<td>
-							<input type=button value="창닫기" onclick="self.close()">
-						</td>
-					</tr>
 				</table>
 
 			</div>

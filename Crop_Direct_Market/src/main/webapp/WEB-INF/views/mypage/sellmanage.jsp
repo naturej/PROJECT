@@ -24,9 +24,6 @@
 			dataType : 'html',
 			success : function(data) {
 				if (data !=null) {
-					alert(data);
-					console.log("Aaa");
-					console.log(document.getElementById(ob+"a"));
 					document.getElementById(ob).innerHTML = "";
 					document.getElementById(ob+"a").innerHTML = "배송중";
 				}
@@ -47,9 +44,6 @@
 			dataType : 'html',
 			success : function(data) {
 				if (data !=null) {
-					alert(data);
-					console.log("Aaa");
-					console.log(document.getElementById(ob+"a"));
 					document.getElementById(ob).innerHTML = "";
 					document.getElementById(ob+"a").innerHTML = "배송완료";
 				}
