@@ -14,9 +14,10 @@
     	<c:when test="${authority eq 'ROLE_SELLER'}"><section id="contact" class="home-section text-center" style="position: static; height: 115%"></c:when>
     	<c:when test="${authority eq 'ROLE_CONSUMER'}"><section id="contact" class="home-section text-center" style="position: static; height: 100%"></c:when>
     </c:choose>
+    
     	<div class="boxed-grey">
 	    	<div class="row">
-				<div class="col-md-4 col-lg-4">
+				<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
 					<!-- ID --> 
 					<div class="input-group">
 					<span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;I &nbsp;D&nbsp;&nbsp;&nbsp;</span>

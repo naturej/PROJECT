@@ -52,7 +52,6 @@
 						<ul style="background: white; width: 120px;">
 							<li><a href="<%=request.getContextPath()%>/salesboard/salboardlist.five">OnlinMarket</a></li>
 							<li><a href="<%=request.getContextPath()%>/marketlist.five">OfflineMarket</a></li>
-							<li><a href="<%=request.getContextPath()%>/freemboard/freemboardlist.five">FreeMarket</a></li>	
 						</ul>
 					</dd>
 				</li>
