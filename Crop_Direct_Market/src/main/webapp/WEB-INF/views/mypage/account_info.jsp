@@ -9,12 +9,42 @@
 <title>Insert title here</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style type="text/css">
+#table_sheet td{
+ width: 150px;
+ height: 30px;
+
+}
+#kkk input {
+width: 70px;
+}
+#kkk td{
+width: 100px;
+height: 30px;
+font-size: 12px;
+vertical-align: middle;
+
+}
+#kkk th{
+width: 80px;
+text-align:center;
+font-size: 12px;
+}
+
+</style>
 </head>
+
 <body>
-	<table class="table">
+<div style="width: 300px; margin-right: 35px; float: left">
+	<table  class="table table-bordered"  id="kkk">	
 		<tr>
-			<td colspan="2">${seller}님의 계좌정보입니다.</td>
+			<td colspan="2">${seller}님의 계좌</td>
+		</tr>
+		<tr>
+			<td>은행명</td><td>계좌 번호</td>		
 		</tr>
 		<c:forEach var="list" items="${account}">
 			<tr>
@@ -23,9 +53,10 @@
 			</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="2"><input type=button value="창닫기" onclick="self.close()">
+			<td colspan="2" align="right"><input type=button value="창닫기" align="right" onclick="self.close()">
 			</td>
 		</tr>
 	</table>
+	</div>
 </body>
 </html>

@@ -1,9 +1,9 @@
-<%@page import="kr.co.ohdeokrionline.model.vo.ScheduleRecord_DTO"%>
+<%@page import="kr.co.ohdeokrionline.model.vo.ScheduleRecord2_DTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<ScheduleRecord_DTO> list = (List<ScheduleRecord_DTO>)request.getAttribute("list");
+	List<ScheduleRecord2_DTO> list = (List<ScheduleRecord2_DTO>)request.getAttribute("list");
 	String user_id = (String)request.getAttribute("user_id");
 %>
 <!DOCTYPE html>
