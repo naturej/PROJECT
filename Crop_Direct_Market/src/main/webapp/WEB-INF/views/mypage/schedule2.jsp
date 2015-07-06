@@ -1,15 +1,15 @@
+<%@page import="kr.co.ohdeokrionline.model.vo.ScheduleRecord2_DTO"%>
 <%@page import="java.util.Locale"%>
 <%@page import="org.springframework.format.datetime.DateFormatter"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.Date"%>
-<%@page import="kr.co.ohdeokrionline.model.vo.ScheduleRecord_DTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <%
-	List<ScheduleRecord_DTO> list = (List<ScheduleRecord_DTO>)request.getAttribute("list");
+	List<ScheduleRecord2_DTO> list = (List<ScheduleRecord2_DTO>)request.getAttribute("list");
 	String user_id = (String)request.getAttribute("user_id");
 	DateFormatter df = new DateFormatter("yyyy-MM-dd");
 	String date = df.print(new Date(), Locale.KOREAN);
