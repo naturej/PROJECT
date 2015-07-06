@@ -1,6 +1,12 @@
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
+<%
+	String auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+	String authority = auth.split(";")[6].split(": ")[1];
+	System.out.println(authority);
+%>
 <!DOCTYPE html>
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script>
@@ -45,6 +51,42 @@
 				document.updateForm.add_code.focus();
 				exit;
 
+			}
+			
+			if(<%=authority%>=='ROLE_SELLER'){
+				if (document.joinForm.farminfo.value == "") {
+					alert("농장 이름을 입력하세요"); 
+					document.joinForm.farminfo.focus(); 
+					exit;
+				} else if (document.joinForm.farm_add.value == "") {
+					alert("농장 주소를 입력하세요"); 
+					document.joinForm.farm_add.focus(); 
+					exit;
+				} else if (document.joinForm.farm_add_de.value == "") {
+					alert("농장 세부 주소를 입력하세요"); 
+					document.joinForm.farm_add_de.focus(); 
+					exit;
+				} else if (document.joinForm.pro_name.value == "") {
+					alert("농장 주요 작물을 입력하세요"); 
+					document.joinForm.pro_name.focus(); 
+					exit;
+				} else if (document.joinForm.farm_phon.value == "") {
+					alert("농장 전화번호를 입력하세요"); 
+					document.joinForm.farm_phon.focus(); 
+					exit;
+				} else if (document.joinForm.farm_comment.text == "") {
+					alert("농장 소개를 입력하세요"); 
+					document.joinForm.farm_comment.focus(); 
+					exit;
+				} else if (document.joinForm.accountnum.value==""){
+					alert("계좌를 입력하세요");
+					document.joinForm.accountnum.focus();
+					exit;
+				} else if (document.joinForm.bank.value==""){
+					alert("은행를 입력하세요");
+					document.joinForm.bank.focus();
+					exit;
+				}
 			}
 			
 			if (document.updateForm.password.value != document.updateForm.password2.value) {
@@ -319,18 +361,18 @@
 						<span class="input-group-addon">&nbsp;&nbsp;농장 &nbsp;소개&nbsp;&nbsp;</span>
 						<textarea class="form-control" name="farm_comment" placeholder="FarmIntroduce" required>${farm.farm_comment}</textarea>
 						</div>
+						<!-- 계좌 등록 -->
+						<div class="input-group">
+						<span class="input-group-addon">은 행</span>
+						<input type="text" class="form-control" name="bank" value="${account.bank}" placeholder="Bank" required/>
+						</div>
+						<!-- 계좌 등록 -->
+						<div class="input-group">
+						<span class="input-group-addon">계 좌</span>
+						<input type="text" class="form-control" name="accountnum" value="${account.accountnum}" placeholder="Account" required/>
+						</div>
 					</se:authorize>
-					<hr>
-					<!-- 계좌 등록 -->
-					<div class="input-group">
-					<span class="input-group-addon">은 행</span>
-					<input type="text" class="form-control" name="bank" value="${account.bank}" placeholder="Bank" required/>
-					</div>
-					<!-- 계좌 등록 -->
-					<div class="input-group">
-					<span class="input-group-addon">계 좌</span>
-					<input type="text" class="form-control" name="accountnum" value="${account.accountnum}" placeholder="Account" required/>
-					</div>
+					
 				</div>
 			</div>
 			</form>
