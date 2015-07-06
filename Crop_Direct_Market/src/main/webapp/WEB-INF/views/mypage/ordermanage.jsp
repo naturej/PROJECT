@@ -127,11 +127,6 @@
 							</c:choose>
 						</tr>
 					</c:forEach>
-					<tr>
-						<td>
-							<input type=button value="창닫기" onclick="self.close()">
-						</td>
-					</tr>
 				</table>
 
 			</div>
