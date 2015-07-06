@@ -31,7 +31,7 @@
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript">
 	function popup(enu_idx){
-		window.open('enuDetail.five?enu_idx='+enu_idx,'에누리 상세보기', 'width=430 height=490')
+		window.open('enuDetail.five?enu_idx='+enu_idx,'에누리 상세보기', 'width=400 height=555')
 	}
 </script>
 </head>

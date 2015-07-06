@@ -81,7 +81,7 @@ public class SalesBoardController {
 			maxpage=total/listnum;
 		}
 		
-		int startpage =(int)((double)page/listnum+0.9);
+		int startpage =(int)((double)page/listnum+0.96);
 		int endpage=maxpage;
 		
 		if(endpage>startpage+16-1) endpage=startpage+16-1;
