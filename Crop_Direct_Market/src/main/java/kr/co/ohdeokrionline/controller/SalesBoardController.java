@@ -239,7 +239,7 @@ public class SalesBoardController {
 	public String openpopup(Model model, Principal principal, String rec_userid) {
 		model.addAttribute("rec_userid", rec_userid);
 		model.addAttribute("send_userid", principal.getName());
-		return "marketplace.messageForm";
+		return "marketplace/messageForm";
 	}
 	
 	// 받은 메세지함
@@ -480,14 +480,14 @@ public class SalesBoardController {
 	@RequestMapping("reportPopup.five")
 	public String reportPopup(Model model, Principal principal){
 		model.addAttribute("user_send",principal.getName());
-		return "marketplace.reportForm";
+		return "marketplace/reportForm";
 	} 
 
 	// 신고하기
 	@RequestMapping("reportInsert.five")
 	public void reportInsert(Report_DTO dto){
 		Report_Dao dao = sqlSession.getMapper(Report_Dao.class);
-		dao.reportInsert(dto);
+		dao.reportInsert(dto); 
 		System.out.println("신고완료");
 	}
 	

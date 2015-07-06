@@ -325,6 +325,7 @@ public class MemberController {
 		return "mypage.mypageUpdate";
 	}
 	
+	@Transactional
 	@RequestMapping(value="mypage/userInfoUpdate.five",method=RequestMethod.POST)
 	String userInfoUpdateProccess(Member_DTO member,FarmRecord_DTO farm,Account_DTO account,HttpServletRequest request) throws Exception{
 		System.out.println(member);
