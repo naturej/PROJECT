@@ -191,8 +191,8 @@ public class ApiController {
 		String base_time = request.getParameter("base_time");
 		String nx = request.getParameter("nx");
 		String ny = request.getParameter("ny");
-
-		String URL ="http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService/ForecastGrib?ServiceKey=Nbu2yzWsKZr7OFAPm4tFcA%2FWXQZpK3WmlXnDTiT7Bo4Alm8SaaENkPo0fvrg2AVNIj4Z5woLK84bmemjo1%2BNrA%3D%3D";
+		//Nbu2yzWsKZr7OFAPm4tFcA%2FWXQZpK3WmlXnDTiT7Bo4Alm8SaaENkPo0fvrg2AVNIj4Z5woLK84bmemjo1%2BNrA%3D%3D
+		String URL ="http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService/ForecastGrib?ServiceKey=";
 		URL += "&base_date="+base_date+"&base_time="+base_time+"&nx="+nx+"&ny="+ny;
 	
 		
@@ -401,7 +401,7 @@ public class ApiController {
 			try {
 				model.addAttribute("user", dao.login(user_id));
 				
-				if(kkk.equals("[ROLE_CONSUMER]")){
+				if(kkk.equals("[ROLE_SELLER]")){
 					model.addAttribute("farm",dao2.farmInfo(user_id));
 					System.out.println("만세");
 				} 

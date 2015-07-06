@@ -518,7 +518,7 @@ $(function() {
 			</tr>
 			<tr>
 				<td>농장명</td>
-				<td>${farm }</td>	
+				<td>${farm.farminfo }</td>	
 			</tr>
 			
 
