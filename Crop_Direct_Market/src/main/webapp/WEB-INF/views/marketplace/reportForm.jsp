@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 	function report() {
 		if($("#rep_content").val() == ""){
@@ -22,13 +23,13 @@
 	}
 </script>
 </head>
-<body>
+<body style="overflow: hidden;">
 <h3 style="margin: 0">신고하기</h3>
 <hr color="#1ABC9C">
 <form id="report">
 	<table>
-		<tr><td><%=request.getParameter("bo_subject")%></td></tr>
-		<tr><td><%=request.getParameter("product")%></td></tr>
+		<tr><td>게시글 제목 : <%=request.getParameter("bo_subject")%></td></tr>
+		<tr><td>품명 : <%=request.getParameter("product")%></td></tr>
 		<tr><td>신고자 : ${user_send}</td></tr>
 		<tr><td>
 		<textarea rows="10" cols="50" id="rep_content" name="rep_content"></textarea>
@@ -37,8 +38,10 @@
 	<input hidden name="bo_num" value="${param.bo_num}" /> 
     <input hidden name="user_send" value="${user_send}" />
     <input hidden name="user_rec" value="${param.user_rec}" />
-    <input type="button" value="신고작성" onclick="report()" />
-    <input type="button" value="취소" onclick="window.close()" />
+    <div align="left" style="margin-left: 120px;">
+    <input type="button" class="btn_submit" value="신고작성" onclick="report()" />&nbsp;
+    <input type="button" class="btn_cancel" value="취소" onclick="window.close()" />
+    </div>
 </form>
 </body>
 </html>

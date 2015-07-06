@@ -80,7 +80,7 @@
 	}
 	
 	function report_popup(bo_num,product,bo_subject,user_rec){
-		window.open('reportPopup.five?bo_num='+bo_num+'&product='+product+'&bo_subject='+bo_subject+'&user_rec='+user_rec,'신고하기','width=430, height=440, scrollbars=no')
+		window.open('reportPopup.five?bo_num='+bo_num+'&product='+product+'&bo_subject='+bo_subject+'&user_rec='+user_rec,'신고하기','width=410, height=350, scrollbars=no')
 	}
 	
 	function Enuri(number,id,product){
