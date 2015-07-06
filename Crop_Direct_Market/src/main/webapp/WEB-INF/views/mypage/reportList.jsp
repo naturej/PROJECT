@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>신고 목록</title>
-</head>
+<title>신고 목록</title> 
+</head>  
 <body>
 	<div id="content">
 		<section id="service" class="home-section text-center">
