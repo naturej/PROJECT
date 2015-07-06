@@ -7783,7 +7783,6 @@ function Calendar_constructor(element, overrides) {
 	t.initOptions(overrides || {});
 	var options = this.options;
 
-	console.log(t);
 	// Exports
 	// -----------------------------------------------------------------------------------
 
@@ -10754,7 +10753,7 @@ var AgendaView = View.extend({
 		var daySegs = [];
 		var timedSegs;
 		var i;
-		console.log(events);
+		
 		// separate the events into all-day and timed
 		for (i = 0; i < events.length; i++) {
 			if (events[i].allDay) {
