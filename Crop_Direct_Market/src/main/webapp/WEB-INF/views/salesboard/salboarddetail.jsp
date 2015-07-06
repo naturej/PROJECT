@@ -72,11 +72,11 @@
 	}
 
 	function popup(id){
-		window.open('popup.five?rec_userid='+id,'쪽지 보내기', 'width=430, height=485, scrollbars=no')
+		window.open('popup.five?rec_userid='+id,'쪽지 보내기', 'width=430, height=420, scrollbars=no')
 	}
 	
 	function review_popup(bo_num,product){
-		window.open('review_sinchung.five?bo_num='+bo_num+'&product='+product,'평가하기', 'width=430, height=440, scrollbars=no')
+		window.open('review_sinchung.five?bo_num='+bo_num+'&product='+product,'평가하기', 'width=400, height=320, scrollbars=no')
 	}
 	
 	function report_popup(bo_num,product,bo_subject,user_rec){
@@ -150,7 +150,7 @@
             <tr><td rowspan="8"><div id="img"><img class="" src="<%=request.getContextPath()%>/salesboard/upload/${salboardDto.bo_photo}" alt="" width="400px" height="400px"></div></td>
             <td>가격</td><td colspan="2">${salboardDto.bo_price}</td></tr>
             <tr><td>농장명</td><td colspan="2">${salboardDto.farminfo}</td></tr>
-            <tr><td>글쓴이</td><td colspan="2"><a href="#" onclick="popup('${salboardDto.user_id}')">${salboardDto.user_id}</a></td></tr>
+            <tr><td>글쓴이</td><td colspan="2"><a href="" onclick="popup('${salboardDto.user_id}')">${salboardDto.user_id}</a></td></tr>
             <tr><td>원산지</td><td colspan="2">${salboardDto.farm_add}</td></tr>
             <tr><td>단위</td><td colspan="2">${salboardDto.bo_salnum}${salboardDto.unit}</td></tr>
             <tr><td>품종</td><td colspan="2">${salboardDto.pro_name}</td></tr>
