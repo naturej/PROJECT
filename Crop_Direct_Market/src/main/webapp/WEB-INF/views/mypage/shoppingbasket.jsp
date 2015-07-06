@@ -239,7 +239,7 @@ $(function(){
 						<div class="col-lg-8 col-lg-offset-2">
 							<div class="wow bounceInDown" data-wow-delay="0.4s">
 							<div class="section-heading">
-							<h2>BOARD</h2>
+							<h2>SHOPPINGBASKET</h2>
 							<i class="fa fa-2x fa-angle-down"></i>
 							<p>장바구니</p>
 							</div>
@@ -281,7 +281,7 @@ $(function(){
 		</c:forEach>
 	</table>
 	
-		<div id="addfrm">
+		<div id="addfrm" style="height:255px">
 		</div>
 	
 		<div align="center">
