@@ -239,7 +239,7 @@ public class SalesBoardController {
 	public String openpopup(Model model, Principal principal, String rec_userid) {
 		model.addAttribute("rec_userid", rec_userid);
 		model.addAttribute("send_userid", principal.getName());
-		return "marketplace.messageForm";
+		return "marketplace/messageForm";
 	}
 	
 	// 받은 메세지함
@@ -480,7 +480,7 @@ public class SalesBoardController {
 	@RequestMapping("reportPopup.five")
 	public String reportPopup(Model model, Principal principal){
 		model.addAttribute("user_send",principal.getName());
-		return "marketplace.reportForm";
+		return "marketplace/reportForm";
 	} 
 
 	// 신고하기

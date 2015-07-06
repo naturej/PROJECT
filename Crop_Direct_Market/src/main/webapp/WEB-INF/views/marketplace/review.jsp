@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css">
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <link rel="stylesheet" type="text/css"
@@ -36,7 +37,7 @@
 </script>
 </head>
 
-<body>
+<body style="overflow: hidden;">
 <h3 style="margin: 0">리뷰 작성하기</h3>
 		<hr color="#1ABC9C">
    제품명:
@@ -56,9 +57,11 @@
       <input name="re_score" type="radio" class="star {split:2}" value="5.0" /><br>
       <textarea id="re_content" rows="10" cols="50" name="re_content" ></textarea><br>      <!--  -->
       <input hidden name="bo_num" value="${param.bo_num}" /> 
-      <input hidden name="user_id" value="${user_id}" /> 
-      <input type="button" value="리뷰 작성하기" onclick="review()"/>
-      <input type="button" value="취소" onclick="window.close()">
+      <input hidden name="user_id" value="${user_id}" /><br>
+      <div align="left" style="margin-left: 90px;">
+      <input type="button" class="btn_submit" value="리뷰 작성하기" onclick="review()"/>&nbsp;
+      <input type="button" class="btn_cancel" value="취소" onclick="window.close()">
+      </div>
    </form>
 </body>
 </html>
