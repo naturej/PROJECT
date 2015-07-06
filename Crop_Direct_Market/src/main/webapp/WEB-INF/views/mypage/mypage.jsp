@@ -1,9 +1,19 @@
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
+<%
+	String auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+	String authority = auth.split(";")[6].split(": ")[1];
+%>
+<c:set var="authority" value="<%= authority %>"/>
 <!DOCTYPE html>
 	<!-- Section: contact -->
-    <section id="contact" class="home-section text-center" style="position: static">
+    <c:choose>
+    	<c:when test="${authority eq 'ROLE_SELLER'}"><section id="contact" class="home-section text-center" style="position: static; height: 115%"></c:when>
+    	<c:when test="${authority eq 'ROLE_CONSUMER'}"><section id="contact" class="home-section text-center" style="position: static; height: 100%"></c:when>
+    </c:choose>
     	<div class="boxed-grey">
 	    	<div class="row">
 				<div class="col-md-4 col-lg-4">

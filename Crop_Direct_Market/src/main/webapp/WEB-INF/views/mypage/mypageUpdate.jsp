@@ -5,7 +5,6 @@
 <%
 	String auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 	String authority = auth.split(";")[6].split(": ")[1];
-	System.out.println(authority);
 %>
 <!DOCTYPE html>
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
