@@ -231,7 +231,7 @@ $(function(){
 					  </div>
 
 
-	<div id="content">
+	<div id="content" style="height:100%">
 		<section id="service" class="home-section text-center">
 				<div class="heading-about">
 					<div class="container">
@@ -281,7 +281,7 @@ $(function(){
 		</c:forEach>
 	</table>
 	
-		<div id="addfrm" style="height:255px">
+		<div id="addfrm">
 		</div>
 	
 		<div align="center">

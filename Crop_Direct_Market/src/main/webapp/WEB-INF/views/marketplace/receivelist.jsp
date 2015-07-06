@@ -8,8 +8,8 @@
 <title>받은 메세지함</title>
 </head>
 <body>
-	<div id="content">
-		<section id="service" class="home-section text-center" style="height:100%">
+	<div id="content" style="height:100%">
+		<section id="service" class="home-section text-center">
 		<div class="heading-about">
 			<div class="container">
 				<div class="row">

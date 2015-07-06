@@ -8,7 +8,7 @@
 <title>신고 목록</title> 
 </head>  
 <body>
-	<div id="content">
+	<div id="content" style="height:100%">
 		<section id="service" class="home-section text-center">
 		<div class="heading-about">
 			<div class="container">
