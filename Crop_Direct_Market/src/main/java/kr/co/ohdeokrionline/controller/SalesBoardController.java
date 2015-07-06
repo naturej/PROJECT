@@ -487,7 +487,7 @@ public class SalesBoardController {
 	@RequestMapping("reportInsert.five")
 	public void reportInsert(Report_DTO dto){
 		Report_Dao dao = sqlSession.getMapper(Report_Dao.class);
-		dao.reportInsert(dto);
+		dao.reportInsert(dto); 
 		System.out.println("신고완료");
 	}
 	
