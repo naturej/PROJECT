@@ -3,8 +3,8 @@ package kr.co.ohdeokrionline.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
-import java.sql.SQLException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -18,7 +18,6 @@ import kr.co.ohdeokrionline.model.dao.ScheduleRecord2_Dao;
 import kr.co.ohdeokrionline.model.vo.Dirm_DTO;
 import kr.co.ohdeokrionline.model.vo.Order_DTO;
 import kr.co.ohdeokrionline.model.vo.ScheduleRecord2_DTO;
-import net.sf.json.JSONArray;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.View;
 
 @RequestMapping("/manage/")
 @Controller
