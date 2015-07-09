@@ -21,6 +21,7 @@ public class AdminController {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	// 회원관리 페이지
 	@RequestMapping("memberManage.five")
 	String memberManage(Model model){
 		UserManage_Dao dao = sqlSession.getMapper(UserManage_Dao.class);
@@ -33,11 +34,14 @@ public class AdminController {
 		return "mypage.memberManage";
 	}
 	
+	// 회원 활성/정지 변경 작업
 	@RequestMapping("enabledChange.five")
 	String enableChange(UserManage_DTO user,Model model){
 		Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
 		
 		try {
+			// 0 disabled
+			// 1 enabled
 			dao.enabledUpdate(user);
 			if(user.getEnabled().equals("0")){
 				model.addAttribute("msg", "0");

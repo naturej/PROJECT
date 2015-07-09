@@ -11,6 +11,7 @@
 <%
 	List<ScheduleRecord2_DTO> list = (List<ScheduleRecord2_DTO>)request.getAttribute("list");
 	String user_id = (String)request.getAttribute("user_id");
+	// Today
 	DateFormatter df = new DateFormatter("yyyy-MM-dd");
 	String date = df.print(new Date(), Locale.KOREAN);
 %>
@@ -29,8 +30,11 @@
 	<script>
 	
 		$(document).ready(function() {
+			// Schedule2 list
 			list = <%=list%>;
+			// LoginUser
 			loginId = '<%=user_id%>';
+			// create calendar
 			$('#calendar').fullCalendar({
 				header: {
 					left: 'prev,next today',
@@ -38,26 +42,32 @@
 					right: 'month'
 				},
 				defaultDate: '<%=date%>',
+				// enable select
 				selectable: true,
 				selectHelper: true,
 				select: function(start, end) {
 					var title = prompt('Event Title:');
-					if(title==null){return false;}
+					if(title==null||title==''){return false;}
 					
+					// 입력다이얼로그 호출
 					$('#addDialog').dialog({title:title});
 					var eventData;
 					
+					// 선택해제
 					$('#calendar').fullCalendar('unselect');
 				},
 				editable: true,
 				eventLimit: true // allow "more" link when too many events
-				//events: list
+				
 			});
 			var eventData = list;
+			// 로드시 스케쥴 렌더
 			$.each(list,function(idx,schedule){
+				// 'admin'의 일정이면 빨강색
 				if(schedule.user_id=='admin'){
 					schedule.color='#da3f3a';
 				}
+				// 종료일 시간 변경(0시면 이전날)
 				schedule.end=schedule.end.replace('00:00:00','16:00:00');
 				$('#calendar').fullCalendar('renderEvent', schedule, true);
 			});
@@ -81,13 +91,16 @@
 			});
 		});
 		
+		// 일정 등록함수
 		function add(){
+			// 값을 불러옴
 			var title = $('.ui-dialog-title').text();
 			var start = $('#addstart').val();
 			var end = $('#addend').val();
 			var user_id = $('#adduser_id').val();
 			var pro_name = $('#addpro_name').val();
 			var content = $('#addcontent').val();
+			// 전송할 데이터
 			var eventData = {
 				title: title,
 				start: start,
@@ -96,8 +109,8 @@
 				pro_name: pro_name,
 				content: content
 			};
-			//$('#calendar').fullCalendar('renderEvent', eventData, true);
 			
+			// Spring 비동기(일정등록)
 			$.ajax({
 				type: "POST",
 				url : "schedule2Add.five",
@@ -105,7 +118,7 @@
 				success : function(data){
 					if(data.length>0){
 						$('.ui-dialog-title').text('');
-						location.href='schedule2.five';
+						location.href='schedule2.five'; //재호출
 					}else{
 						alert('fail');
 					}
@@ -117,7 +130,9 @@
 			$('#addDialog').dialog('close');
 		}
 		
+		// 일정 수정 다이얼로그 호출
 		function editForm(){
+			// 이전 값을 불러옴
 			var pl_id = $('#pl_id').val();
 			var title = $('.ui-dialog-title').text();
 			var start = $('#start').val();
@@ -125,12 +140,14 @@
 			var user_id = $('#user_id').val();
 			var pro_name = $('#pro_name').val();
 			var content = $('#content').val();
-			console.log(pl_id);
+			
+			// 자기 일정인지 확인
 			if(user_id!=loginId){
 				alert('수정할 권한이 없습니다.');
 				return false;
 			}
 			
+			// 이전값 표시
 			$('#edittitle').val(title);
 			$('#editpl_id').val(pl_id);
 			$('#editend').val(end);
@@ -145,6 +162,7 @@
 		}
 		
 		function edit(){
+			// 값을 불러옴
 			var pl_id = $('#editpl_id').val();
 			var title = $('#edittitle').val();
 			var end = $('#editend').val();
@@ -153,6 +171,7 @@
 			var pro_name = $('#editpro_name').val();
 			var content = $('#editcontent').val();
 			
+			// 전송할 데이터
 			var eventData = {
 				title: title,
 				start: start,
@@ -163,12 +182,14 @@
 				pl_id: pl_id
 			};
 			
+			// Spring 비동기 (일정수정)
 			$.ajax({
 				type: "POST",
 				url : "schedule2Edit.five",
 				data : eventData,
 				success : function(data){
 					if(data.length>0){
+						$('.ui-dialog-title').text('');
 						location.href='schedule2.five';
 					}else{
 						alert('fail');
@@ -182,20 +203,26 @@
 			$('#editDialog').dialog('close');
 		}
 		
+		// 일정 삭제
 		function removeSche(){
+			// 삭제할 pl_id를 불러옴
 			var pl_id = $('#pl_id').val();
 			var user_id = $('#user_id').val();
+			
+			// 자기 일정인지 확인
 			if(user_id!=loginId){
 				alert('삭제할 권한이 없습니다.');
 				return false;
 			}else{
-				if(confirm('삭제하시겠습니까?')){
+				// 삭제전 확인
+				if(confirm('삭제하시겠습니까?')){ //'확인'을 누르면
 					$.ajax({
 						type: "POST",
 						url : "scheduleRemove.five",
 						data : {pl_id: pl_id},
 						success : function(data){
 							if(data.length>0){
+								$('.ui-dialog-title').text('');
 								location.href='schedule2.five';
 							}else{
 								alert('fail');
@@ -215,12 +242,14 @@
 			return $('#user_id').val();
 		}
 		
-		function containerClick(data){
-			var title = $(data).text().trim();
-			console.log(title);
+		// 일정을 클릭하면
+		function containerClick(data,fc){
+			// dialog title
+			var title = $(data).text().trim();console.log($(fc))
+			
 			$.each(list,function(idx,schedule){
 				if(title==schedule.title){
-					console.log(schedule);
+					
 					$('#end').val(schedule.end);
 					$('#start').val(schedule.start);
 					$('#user_id').val(schedule.user_id);

@@ -4,6 +4,7 @@
 	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+	<!-- 권한 처리 -->
 	<security:http>
 		<security:form-login default-target-url="/index.five" login-page="/login.five"
 		authentication-failure-url="/login.five?error"/>
@@ -15,6 +16,7 @@
 		<security:intercept-url pattern="/salesboard/salboardwrite.five" access="ROLE_SELLER"/>
 		<security:intercept-url pattern="/salesboard/salboardedit.five" access="ROLE_SELLER"/>
 	</security:http>
+	<!-- 비밀번호 암호화 -->
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	<security:authentication-manager>
 		<security:authentication-provider>

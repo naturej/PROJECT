@@ -51,6 +51,7 @@ public class MemberController {
 	@Autowired
 	private SimpleMailMessage templateMessage;
 	
+	// 변수 선언
 	private String ip = "192.168.7.12";
 	private String remote_path = "\\\\"+ip+"\\Kosta95_STU\\";
 	
@@ -204,7 +205,7 @@ public class MemberController {
 			BufferedReader br = new BufferedReader(fr);
 			String pwd = dao.getPwdByUser_idAndEmail(user_id, email);
 			
-			SimpleMailMessage msg = new SimpleMailMessage(templateMessage);
+			SimpleMailMessage msg = new SimpleMailMessage(templateMessage); // 메일생성
 			
 			String str;
 			if(pwd!=null){
@@ -212,9 +213,11 @@ public class MemberController {
 					if(passwordEncoder.matches(str, pwd)){
 						String str2 = str.replace(str.substring(str.length()-2, str.length()), "**");
 						System.out.println(str2);
-						msg.setTo(email);
-						msg.setText(user_id+" 님의 비밀번호는 "+str2+" 입니다.");
-						mailSender.send(msg);
+						
+						// 메일 발송
+						msg.setTo(email); // to
+						msg.setText(user_id+" 님의 비밀번호는 "+str2+" 입니다."); //content
+						mailSender.send(msg); // 메일발송
 						model.addAttribute("user_id", "메일이 발송되었습니다.");
 						return "login/id_search";
 					}
