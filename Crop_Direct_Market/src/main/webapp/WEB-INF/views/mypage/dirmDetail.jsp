@@ -68,12 +68,17 @@
 			<tr>
 				<td colspan="2">${dto.dirm_content}</td>
 			</tr>
+			<c:choose>
+			<c:when test="${dto.dirm_confirm=='0'}">
 			<tr>
 				<td colspan="2" align="center">
 					<input type="button" class="btn_submit" value="수락" onclick="yesDirm(${dto.dirmno})">
 					<input type="button" class="btn_cancel" value="거절" onclick="javascript:history.back()">				
 				</td>
 			</tr>
+			</c:when>
+			<c:otherwise></c:otherwise>
+			</c:choose>
 		</table>
 		</form>
 			</div>
