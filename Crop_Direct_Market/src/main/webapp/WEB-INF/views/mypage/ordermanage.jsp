@@ -104,7 +104,7 @@
 							</td>
 							<c:choose>
 								<c:when test="${ord.or_how=='직거래'}">
-								<td></td>
+								<td>직거래</td>
 								</c:when>
 								<c:when test="${ord.or_state=='입금대기'}">
 									<td id="${ord.or_id}${ord.bo_num}">
