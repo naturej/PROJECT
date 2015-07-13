@@ -1,10 +1,15 @@
 package kr.co.ohdeokrionline.controller;
 
+import kr.co.ohdeokrionline.model.vo.Member_DTO;
+import kr.co.ohdeokrionline.model.vo.Order_DTO;
+import kr.co.ohdeokrionline.model.dao.Order_Dao;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,15 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ohdeokrionline.model.dao.Enuri_Dao;
 import kr.co.ohdeokrionline.model.dao.Message_Dao;
-import kr.co.ohdeokrionline.model.dao.Order_Dao;
 import kr.co.ohdeokrionline.model.dao.Report_Dao;
 import kr.co.ohdeokrionline.model.dao.ReviewWrite_Dao;
+import kr.co.ohdeokrionline.model.dao.SaleBoard_Dao;
 import kr.co.ohdeokrionline.model.dao.SalesBoard_Dao;
 import kr.co.ohdeokrionline.model.dao.ShoppingBasket_Dao;
 import kr.co.ohdeokrionline.model.vo.Enuri_DTO;
-import kr.co.ohdeokrionline.model.vo.Member_DTO;
 import kr.co.ohdeokrionline.model.vo.Message_DTO;
-import kr.co.ohdeokrionline.model.vo.Order_DTO;
 import kr.co.ohdeokrionline.model.vo.Product_DTO;
 import kr.co.ohdeokrionline.model.vo.Report_DTO;
 import kr.co.ohdeokrionline.model.vo.ReviewWrite_DTO;
@@ -312,18 +315,44 @@ public class SalesBoardController {
 		
 		return "redirect:receiveList.five";
 	}
-	
-		
-	// 에누리 메시지 발송 메서드
-	@RequestMapping("send_enuriMessage.five")
-	public String send_enuri(Enuri_DTO enuri) {
-		System.out.println("왔따~");
-		Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
-		System.out.println(enuri.toString());
-		dao.insertEnuri(enuri);
-		return null;
-	}
+	// 에누리 테스트용 판매 글 이동
+		@RequestMapping("sellpage.five")
+		public String testdata(Model model) {
+			SaleBoard_Dao dao = sqlSession.getMapper(SaleBoard_Dao.class);
+			model.addAttribute("list", dao.salDetail());
+			return "marketplace.test_sellpage";
+		}
 
+		// 에누리 신청 테스트 용 팝업 페이지 이동
+		@RequestMapping("enuri_sinchung.five")
+		public String openpopup_enuri(Model model, Principal principal) {
+			model.addAttribute("user_id", principal.getName());
+			return "marketplace/message_enuriForm";
+		}
+		
+		//에누리 메시지 발송 메서드
+		@RequestMapping("send_enuriMessage.five")
+		public String send_enuri(Enuri_DTO enuri) {
+			System.out.println("왔따~");
+			Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
+			System.out.println(enuri.toString());
+			dao.insertEnuri(enuri);
+			return null;
+		}
+	
+//	// 에누리 리스트 
+//	@Transactional
+//	@RequestMapping("enulist.five")
+//	public String enuList(Model model){
+//		
+//		Enuri_Dao dao = sqlSession.getMapper(Enuri_Dao.class);
+//		model.addAttribute("list",dao.enuList());
+////		salesboard 완성된 이후
+////		model.addAttribute("bo_id",dao.bo_id(bo_num));
+////		model.addAttribute("bo_subject",dao.bo_subject(bo_num));
+//		
+//		return "marketplace.enulist";
+//	} 
 	
 	// 에누리 리스트 (판매자)
 	@RequestMapping("enulistRec.five")
@@ -355,7 +384,16 @@ public class SalesBoardController {
 		
 		return "marketplace.enuDetail";
 	}
-
+	// 메세지 보내기
+/*			@Transactional
+			@RequestMapping("sendMessage.five")
+			public void insert(Message_DTO message) {
+				System.out.println("sendmsg");
+				Message_Dao dao = sqlSession.getMapper(Message_Dao.class);
+				dao.insertRec(message);
+				dao.insertSend(message);
+				System.out.println("insert구문 종료");
+		}*/
 	
 	// 에누리 수락
 	@RequestMapping("yesEnuri.five")

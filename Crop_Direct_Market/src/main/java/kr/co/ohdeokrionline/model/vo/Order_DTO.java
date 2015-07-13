@@ -17,7 +17,6 @@ public class Order_DTO {
    String or_addr;
    String or_how;
    String add_code;
-
    
 
    public String getOr_id() {
@@ -205,7 +204,7 @@ public String getAdd_code() {
       this.pro_name = pro_name;
    }
 
-   @Override
+@Override
    public String toString() {
       return "Order_DTO [or_id=" + ", bo_num=" + bo_num + ", or_quan="
             + or_quan + ", or_date=" + or_date + ", buy_userid="
