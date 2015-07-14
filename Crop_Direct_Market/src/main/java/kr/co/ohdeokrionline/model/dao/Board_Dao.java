@@ -22,12 +22,14 @@ public interface Board_Dao {
 		public void hitUp(String idx);
 		//게시물 입력
 		public int insert(Board_DTO board);
-		//댓글입력
+		//댓글 입력
 		public int re_insert(B_reply_DTO reply);
-		//댓글리스트
+		//댓글 리스트
 		public List<B_reply_DTO> re_list(String idx);
-		//댓글 리스트 삭제
+		//게시물 삭제시 리스트 삭제
 		public int re_del(String idx);
+		//댓글 삭제
+		public int re_ondel(int re_idx);
 		
 
 }

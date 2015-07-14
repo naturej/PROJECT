@@ -2,10 +2,8 @@
 <%@page import="javax.websocket.Session"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>에누리 신청하기</title>
 <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -29,11 +27,17 @@
 				data:$("#enuri").serialize(),
 				dataType:'html'
 			});
-//		$('#msg').submit();
 		alert('에누리가 신청되었습니다');
 		window.close();
 		}
    }
+   $(function(){ 
+	   $('#enu_quan').keyup(function (){
+			var price = $('#price').val();
+			var result = price*$('#enu_quan').val();
+		   $('#fix_price').val(result);
+	   });
+   });
 </script>
 <style type="text/css">
 .message {
@@ -45,6 +49,7 @@
 <body style="overflow: hidden;">
 	<h3 style="margin: 5px;">에누리 신청하기</h3><span class="message">에누리 신청은 바로구매보다 기한이 걸릴 수 있습니다.</span>
 	<hr color="#1ABC9C">
+	<input type="hidden" id="price" value="${salboardDto.bo_price}">
    <form name="enuri" id="enuri" action="send_enuriMessage.five">
       <table cellpadding="7" style="margin: 10px;">
          <tr>
@@ -61,13 +66,16 @@
             </tr>
          <tr>
             <td>수량</td>
-            <td><input type="text" name="enu_quan" id="enu_quan"> 개</td>
+            <td><input style="text-align:right; padding-right:1px;" type="text" name="enu_quan" id="enu_quan"> 개</td>
          </tr>
          <tr>
             <td>에누리 가격</td>
-            <td><input type="text" name="enu_price" id="enu_price"> 원</td>
+            <td><input style="text-align:right; padding-right:1px;" type="text" name="enu_price" id="enu_price"> 원</td>
             <!-- 에누리 가격 -->
          </tr>
+         <tr><td>기존 가격</td>
+         	<td><input style="text-align:right; padding-right:1px;" type="text" name="fix_price" id="fix_price" disabled="disabled">원</td>
+         </tr>	
          <tr>
             <td>보내는 사람</td>
             <td><input type="text" name="user_id" value="${user_id}" readonly="readonly"></td>
@@ -76,7 +84,7 @@
             <td colspan="2"><textarea cols="50" rows="10" name="enu_content" id="enu_content"></textarea></td>
          </tr>
          <tr>
-            <td><input type="text" name="bo_num" value="<%=request.getParameter("bo_num")%>" hidden>
+            <td><input type="hidden" name="bo_num" value="<%=request.getParameter("bo_num")%>">
             <!-- 테스트용 고정 값 --></td>
          </tr>
          <tr>

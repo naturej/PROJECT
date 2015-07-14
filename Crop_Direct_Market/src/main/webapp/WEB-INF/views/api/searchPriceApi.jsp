@@ -118,8 +118,9 @@
 				<div class="wow fadeInLeft" data-wow-delay="0.2s">
 					<table>
 						<tr>
-							<td><select id="work" style="display: none">
+							<td><select id="work">
 									<option value="1" selected="selected">도매</option>
+									<option value="2">소매</option>
 							</select></td>
 							<td>구분 <span>&nbsp</span><select id="type" class="btn btn-default btn-xs">
 									<option value="1">채소</option>

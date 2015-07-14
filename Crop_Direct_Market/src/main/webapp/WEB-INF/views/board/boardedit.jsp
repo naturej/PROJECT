@@ -6,9 +6,32 @@
 <link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>   
-<link href="css/table-base/bootstrap.min.css" rel="stylesheet">
-	<link href="css/AdminLTE.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/table-base/bootstrap.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/AdminLTE.css" rel="stylesheet">
 	
+	<!--글 내용 CK EDITOR  -->
+    <script type="text/javascript">
+            $(function() {
+                CKEDITOR.replace('editor1');
+            });
+    </script>
+	<!-- 공지사항 유효성 검사 -->
+	<script type="text/javascript">
+	function checkboard(){
+		var ckeditor = CKEDITOR.instances['editor1']; //CKEITOR의 내용을 갖고오기위해 객체 받아온다
+		if (document.boardForm.subject.value == "") { //id값이 없을 경우
+				alert("제목을 입력하세요"); //메세지 경고창을 띄운 후
+				document.boardForm.subject.focus(); // id 텍스트박스에 커서를 위치
+				return false;
+			}
+		 else if(ckeditor.getData()=="") {	// 가져온 Date가 값이 없을 경우
+				alert("글 내용을 입력하세요");
+				ckeditor.focus();			
+				return false;											
+			}
+		 document.boardForm.submit();
+	}
+	</script>
 	<div id="content">
 	<section id="service" class="home-section text-center">
 		<div class="heading-about">
@@ -27,7 +50,8 @@
                 <section class="content">
                             <div class='box box-info'>
                                 <div class='box-body pad' align="center">
-                                    <form action="" method="post" enctype="multipart/form-data">
+                                    <form action="" method="post" name="boardForm" enctype="multipart/form-data">
+                                    <input type="hidden" id="filename" name="filename" value="${boardDto.filename}">
                                     <table>
                                     <tr><td><label>Subject</label></td><td>
 	   								 <input type="text" class="form-control" id="subject" name="subject" value="${boardDto.subject}"/></td></tr>
@@ -41,14 +65,14 @@
                                     	</td></tr>
                                     	<tr><td><label>기존 file:${boardDto.filename}</label></td><td>
                                     	<input type="file" id="file" name="file"></td></tr>
+                                    	
                                     </table>
                                    <br>
                                    <br>
                                 	<div align="center">
-	 									  	<button type="submit" class="btn btn-sm btn-skin">수정완료</button>
+	 									  	<button type="button" class="btn btn-sm btn-skin" onclick="checkboard()">수정완료</button>
 	   								  </div>
 	   								   </form>
-	   								   
                                 </div>
                             </div><!-- /.box -->
                 </section><!-- /.content -->
@@ -63,11 +87,7 @@
         
         <script type="text/javascript">
             $(function() {
-                // Replace the <textarea id="editor1"> with a CKEditor
-                // instance, using default configuration.
                 CKEDITOR.replace('editor1');
-                //bootstrap WYSIHTML5 - text editor
-                $(".textarea").wysihtml5();
             });
         </script>
 	

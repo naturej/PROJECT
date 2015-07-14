@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style type="text/css">
 	#img {
 		width: 400px;
@@ -85,7 +86,7 @@
 	
 	function Enuri(number,id,product){
 		window.open('enuri_sinchung.five?bo_num='+number+'&user_id='+id+'&pro_name='+product,'에누리 신청',
-	      'top=100px, left=100px, width=430 height=510')
+	      'top=100px, left=100px, width=430 height=540')
 	}
 	
 	function sold(bo_num,bo_subject){
@@ -126,7 +127,9 @@
 		  
 
 		});
-	
+function com(n) { 
+	  return (!n||n==Infinity||n=='NaN')?0:String(n).replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1,'); 
+	} 
 </script>
 
 	 <section id="service" class="home-section text-center"  style="position: static">
@@ -144,11 +147,12 @@
 				</div>
 			</div>
 	<form method="post">
+	<fmt:formatNumber value="${salboardDto.bo_price}" pattern="###,###,###" var="bo_price"/>
             <table class="table">
             <tr><td><div align="left" style="height: 50px; font-size: 20px;">>&nbsp;${salboardDto.bo_subject}</div></td><td colspan="3">${salboardDto.bo_date}</td></tr>      
             
             <tr><td rowspan="8"><div id="img"><img class="" src="<%=request.getContextPath()%>/salesboard/upload/${salboardDto.bo_photo}" alt="" width="400px" height="400px"></div></td>
-            <td>가격</td><td colspan="2">${salboardDto.bo_price}</td></tr>
+            <td>가격</td><td colspan="2">${bo_price}원</td></tr>
             <tr><td>농장명</td><td colspan="2">${salboardDto.farminfo}</td></tr>
             <tr><td>글쓴이</td><td colspan="2"><a href="" onclick="popup('${salboardDto.user_id}')">${salboardDto.user_id}</a></td></tr>
             <tr><td>원산지</td><td colspan="2">${salboardDto.farm_add}</td></tr>

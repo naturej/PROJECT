@@ -60,9 +60,14 @@
 	     SELECT RE_IDX,RE_CONTENT,TO_CHAR(RE_WRITEDATE,'YYYY-MM-DD') AS RE_WRITEDATE,USER_ID,IDX FROM B_REPLY WHERE IDX=#{idx}
 	    </select>
 	    
-	    <!-- REPLY DELETE -->
+	    <!-- BOARD DELETE_REPLY DELETE -->
 	    <delete id="re_del" parameterType="STRING">
 	  	  DELETE B_REPLY WHERE IDX=#{idx}
 	    </delete>
+	    
+	    <!-- ONLY REPLY DELETE -->
+		<delete id="re_ondel">
+			DELETE B_REPLY WHERE RE_IDX=#{re_idx}
+		</delete>
 	
 </mapper>

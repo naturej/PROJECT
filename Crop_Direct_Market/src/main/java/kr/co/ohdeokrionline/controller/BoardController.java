@@ -27,101 +27,66 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 @RequestMapping("/board/")
 public class BoardController {
 		
+		//공지사항 LIST 출력문
 		@Autowired
 		private SqlSession sqlsession;
-	
 			@RequestMapping("boardlist.five")
 			public String boardlist(String pg,Model model,HttpServletRequest request) throws ClassNotFoundException, SQLException{
-		 	//(String pg , String f , String q , Model model)
 		 	int page = 1;
-			//String field = "TITLE";
-			//String query ="%%";
 			if(pg != null && !pg.equals("")){
 				page = Integer.parseInt(pg);
 			}
-			//if(f != null && !f.equals("")){
-			//	field = f;
-			//}
-			//if(q != null && !q.equals("")){
-			//	query = q;
-			//}
-			//System.out.println(pg+" / "+f+" / "+q);
-			System.out.println(page);
 			Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
-			//System.out.println(pg+" / "+f+" / "+q);
-			//List<Board_DTO> list = boardDao.getBoardlist(page, field, query);
 			int total = boardDao.getCount();
 			int listnum=10;
 			int maxpage=0;
-			
 			if(total%listnum!=0){
 				maxpage=total/listnum+1;
 			}else{
 				maxpage=total/listnum;
 			}
-			
 			int startpage =(int)((double)page/listnum+0.9);
 			int endpage=maxpage;
-			
 			if(endpage>startpage+10-1) endpage=startpage+10-1;
-			
-			
-			
 			List<Board_DTO> list = boardDao.getBoardlist(page);
 			model.addAttribute("list", list);
-			for(int i=1;i<list.size();i++){
-				System.out.println(list.get(i).getWritedate());
-				System.out.println(list.get(i).getSubject());
-				
-			}
-			System.out.println(page+maxpage+startpage+endpage);
 			request.setAttribute("page",page);
 			request.setAttribute("maxpage", maxpage);
 			request.setAttribute("startpage", startpage);
 			request.setAttribute("endpage", endpage);
-			
-			//System.out.println(pg+" / "+f+" / "+q);
-			
 			return "board.boardlist";
 	 }
 
-		 //글등록
+		 //공지사항 글등록
 		 @RequestMapping(value="boardwrite.five" , method=RequestMethod.GET)
 		 public String boardReg(Model model,Principal principal){
 			 	model.addAttribute("user_id",principal.getName());
 				return "board.boardwrite";
 		  }
 	
-		 //글등록 처리(실제 글등록 처리)
+		 //공지사항 글등록 처리(실제 글등록 처리)
 		 @RequestMapping(value="boardwrite.five",method=RequestMethod.POST)
 		 public String boardReg(Board_DTO n, HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException{
-					
+			 			Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
 			 			CommonsMultipartFile file =n.getFile();
-			 			String con = n.getEditor1();
-			 			
-			 			System.out.println(file);
 			 			String fname = file.getOriginalFilename();
 				       if(file != null){
 						String path = request.getServletContext().getRealPath("/board/upload");
 						String fullpath = path + "\\" + fname;
-						
 						if(!fname.equals("")){
-							//서버에 물리적 경로 파일쓰기작업
 							FileOutputStream fs = new FileOutputStream(fullpath);
 							fs.write(file.getBytes());
 							fs.close();
 						}
-				       }
-				       System.out.println(fname);
-				       Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
 						n.setFilename(fname);
+				       }
+						String con = n.getEditor1();
 						n.setContent(con);
-					  //n.setUser_id(principal.getName());
 				boardDao.insert(n);
 				return "redirect:boardlist.five"; //요청 주소
 		 }	
 		 
-		 //글상세보기
+		 //공지사항 상세보기
 		 @RequestMapping("detailboard.five")
 		 public String noticeDetail(String idx, Model model) throws ClassNotFoundException, SQLException{
 			 Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
@@ -130,11 +95,10 @@ public class BoardController {
 			 List<B_reply_DTO> list = boardDao.re_list(idx);
 			 model.addAttribute("boardDto", boardDto);
 			 model.addAttribute("list", list);
-			 
 			 return "board.boarddetail"; 
 		 }
 		 
-		//수정글
+		//공지사항 수정 FORM
 			@RequestMapping(value={"boardedit.five"},method=RequestMethod.GET)   //=>customer/notice.htm
 			public String noticeEdit(String idx, Model model){
 				 Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
@@ -143,29 +107,28 @@ public class BoardController {
 			   	   return "board.boardedit";
 				}
 		 
-		//수정 실행문
+		//공지사항 수정 실행문
 		@RequestMapping(value={"boardedit.five"},method=RequestMethod.POST)   //=>customer/notice.htm
 		public String noticeEdit(Board_DTO n, HttpServletRequest request) throws ClassNotFoundException, SQLException, IOException{
-			   
+				Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
+			 	String con = n.getEditor1();
+				CommonsMultipartFile file =n.getFile();
+				String fname = file.getOriginalFilename();
 				if(!n.getFile().isEmpty()){
-				   	String fname = n.getFile().getOriginalFilename();
-				   	String con = n.getEditor1();
 					String path = request.getServletContext().getRealPath("/board/upload");
 					String fpath = path + "\\" + fname;
-					//파일쓰기 작업
 					FileOutputStream fs = new FileOutputStream(fpath);
 					fs.write(n.getFile().getBytes());
 					fs.close();
 					n.setFilename(fname); //파일이름
-					n.setContent(con);
 				}
-				Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
+				n.setContent(con);
 				boardDao.update(n);	
 		   	   return "redirect:detailboard.five?idx="+n.getIdx();
 			}
 		 
 		 
-		//글삭제하기
+		//공지사항 삭제하기
 		 @RequestMapping("boarddelete.five") 
 		public String noticeDel(String idx,Principal principal) throws ClassNotFoundException, SQLException{
 			 Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
@@ -173,8 +136,9 @@ public class BoardController {
 			 boardDao.delete(idx);
 			return "redirect:boardlist.five";
 		}  
-		  
-		 //댓글쓰기처리
+		 
+		 
+		 //공지사항 글쓰기처리
 		 @RequestMapping(value="replywrite.five", method=RequestMethod.POST)
 		 public void replyreg(HttpServletResponse response, String idx,Principal principal,String re_content) throws IOException{
 			 response.setCharacterEncoding("UTF-8");
@@ -184,11 +148,19 @@ public class BoardController {
 			 re.setRe_content(re_content);
 			 re.setUser_id(principal.getName());
 			 boardDao.re_insert(re);
-			 
+			 //댓글 LIST 출력문
 			 List<B_reply_DTO> list = boardDao.re_list(idx);
 			 JSONArray relists = JSONArray.fromObject(list);
 	         response.getWriter().print(relists);
 		 } 
+		 
+		//공지사항 자신 댓글 삭제
+		 @RequestMapping(value="re_del.five", method=RequestMethod.POST)
+		public void redel(B_reply_DTO re){
+			 Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
+			 boardDao.re_ondel(re.getRe_idx());
+		 }
+		
 		 
 	}
 

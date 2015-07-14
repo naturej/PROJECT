@@ -48,25 +48,13 @@ public class SalesBoardController {
 	@Autowired
 	private SqlSession sqlSession;
 	
-//	salesboard 완성된 이후
-//	HashMap<String, String> input = new HashMap<String, String>();
 	//판매글 리스트 출력
 	@RequestMapping("salboardlist.five")
 	public String salboardlist(String pg,Model model,HttpServletRequest request) throws ClassNotFoundException, SQLException{
-		//(String pg , String f , String q , Model model)
 		int page = 1;
-		//String field = "TITLE";
-		//String query ="%%";
 		if(pg != null && !pg.equals("")){
 			page = Integer.parseInt(pg);
 		}
-		//if(f != null && !f.equals("")){
-		//	field = f;
-		//}
-		//if(q != null && !q.equals("")){
-		//	query = q;
-		//}
-		//System.out.println(pg+" / "+f+" / "+q);
 		System.out.println(page);
 		SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
 		
@@ -93,9 +81,6 @@ public class SalesBoardController {
 		request.setAttribute("maxpage", maxpage);
 		request.setAttribute("startpage", startpage);
 		request.setAttribute("endpage", endpage);
-		
-		//System.out.println(pg+" / "+f+" / "+q);
-		
 		return "salesboard.salboardlist";
 		}
 		
@@ -109,26 +94,20 @@ public class SalesBoardController {
 	 	//판매글등록 처리(실제 글등록 처리)
 	 	@RequestMapping(value="salboardwrite.five",method=RequestMethod.POST)
 	 	public String salboardReg(SalesBoard_DTO n, HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException{
-				
 		 			CommonsMultipartFile file =n.getFile();
 		 			System.out.println(file);
 		 			String fname = file.getOriginalFilename();
 			       if(file != null){
 					String path = request.getServletContext().getRealPath("/salesboard/upload");
 					String fullpath = path + "\\" + fname;
-					
 					if(!fname.equals("")){
-						//서버에 물리적 경로 파일쓰기작업
 						FileOutputStream fs = new FileOutputStream(fullpath);
 						fs.write(file.getBytes());
 						fs.close();
-					}
-			       }
-			      
-			       System.out.println(fname);
+											}
+			       					}
 			       SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
 					n.setBo_photo(fname);
-				  //n.setUser_id(principal.getName());
 					salboardDao.insert(n);
 					return "redirect:salboardlist.five"; //요청 주소
 	 		}	
@@ -138,18 +117,14 @@ public class SalesBoardController {
  		public String salesdetail(HttpServletRequest request,Model model) throws ClassNotFoundException, SQLException{
  		String bo_num=request.getParameter("bo_num");
  		
- 		System.out.println("상세보기 controller 진입");
  		SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
  		List<SalesBoard_DTO> reviewDto = salboardDao.reviewlist(bo_num);
  		SalesBoard_DTO salboardDto = salboardDao.salesdetail(bo_num);
- 		System.out.println("mapper소환 Dto에 bo_num");
 		 model.addAttribute("salboardDto", salboardDto);
 		 model.addAttribute("list",reviewDto);
 		 
 		 Order_Dao orderDao = sqlSession.getMapper(Order_Dao.class);
-		 System.out.println("bo_num : " + bo_num);
 		 List<String> buyList = orderDao.buyUser(bo_num);
-		 System.out.println("buyList : "+buyList.toString());
 		 model.addAttribute("buyList",buyList);
 
 		 return "salesboard.salboarddetail"; 
@@ -207,25 +182,21 @@ public class SalesBoardController {
 		//품종 select tag 
 		 @RequestMapping("seplist.five")  
 		 public void seplist(HttpServletResponse response) throws IOException{
-		
-			 response.setContentType("text/html;charset=utf-8");
-			 SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
+  		 response.setContentType("text/html;charset=utf-8");
+		 SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
 		 List<Separate_DTO> list = salboardDao.seplist();
 		 JSONArray seplists = JSONArray.fromObject(list);
          response.getWriter().print(seplists);//서버로 데이터 전송
-         System.out.println("서버로 seplist 전송완료");
 	     }
 	 
 		//상품 select tag 
 		 @RequestMapping("prolist.five")  
 		 public void prolist(HttpServletResponse response,String pro_sep) throws IOException{
-			 System.out.println(pro_sep);
-			 response.setContentType("text/html;charset=utf-8");
-			 SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
+		 response.setContentType("text/html;charset=utf-8");
+		 SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
 		 ArrayList<Product_DTO> list = salboardDao.prolist(pro_sep);
 		 JSONArray prolists = JSONArray.fromObject(list);
          response.getWriter().print(prolists);//서버로 데이터 전송
-         System.out.println("서버로 prolist 전송완료");
 	     }
 
 	// 테스트용 페이지 이동
@@ -325,8 +296,12 @@ public class SalesBoardController {
 
 		// 에누리 신청 테스트 용 팝업 페이지 이동
 		@RequestMapping("enuri_sinchung.five")
-		public String openpopup_enuri(Model model, Principal principal) {
+		public String openpopup_enuri(HttpServletRequest request,Model model, Principal principal) {
+			String bo_num = request.getParameter("bo_num");
+			SalesBoard_Dao salboardDao= sqlSession.getMapper(SalesBoard_Dao.class);
+			SalesBoard_DTO salboardDto = salboardDao.salesdetail(bo_num);
 			model.addAttribute("user_id", principal.getName());
+			model.addAttribute("salboardDto", salboardDto); 
 			return "marketplace/message_enuriForm";
 		}
 		
@@ -546,7 +521,6 @@ public class SalesBoardController {
 	
 		@RequestMapping("sold.five")
 		public String sold(SalesBoard_DTO sales){
-			System.out.println("soldout controller 진입");
 			SalesBoard_Dao dao = sqlSession.getMapper(SalesBoard_Dao.class);
 			try {
 				String subject = "[매진]";

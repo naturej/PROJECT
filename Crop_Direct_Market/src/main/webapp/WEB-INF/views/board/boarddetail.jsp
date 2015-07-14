@@ -5,16 +5,33 @@
 <%@page import="java.util.Locale"%>
 <%@page import="org.springframework.format.datetime.DateFormatter"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>
 <link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
 <% String user_id = SecurityContextHolder.getContext().getAuthentication().getName(); 
 		System.out.println(user_id);
 %>
-
+<script type="text/javascript">
+function delete_re(re_idx){
+		console.log('del(re_idx) 진입');
+		$.ajax({
+			type: "POST",
+			url: "re_del.five",
+			data: {re_idx : re_idx},
+			success: function(data){
+				location.href="salboarddetail.five?idx="$('#idx');
+			}
+		});
+	}
+</script>
 <script type="text/javascript">
 $(function(){
 	$('#btn').click(function(){
+		if($('#re_content').val()==""){
+			alert("댓글내용을 입력하세요"); //메세지 경고창
+			return false;
+		}
 	$.ajax({
 			type:'POST',
 			url:"replywrite.five",
@@ -39,12 +56,11 @@ $(function(){
 				  
 			},
 	    error: function (xhr,Options,thrownError) {}
-    }); 
+   		 }); 
 	});
-	
-	
 });
 </script>
+
 		<html class="no-js">
 			<link href="css/table-base/bootstrap.min.css" rel="stylesheet">
 			    <div id="content" >
@@ -93,11 +109,17 @@ $(function(){
             	<c:otherwise>
             		<tr><td><div align="center" style="font-size:12px;">작성자</div></td>
             		<td><div align="center" style="font-size:12px;">내용</div></td>
-            		<td><div align="right" style="font-size:12px;">작성일</div></td></tr>
+            		<td><div align="center" style="font-size:12px;">작성일</div></td></tr>
 				<c:forEach items="${list}" var="re">
                 <tr><td><div align="center" style="font-size:12px;">${re.user_id}</div></td>
                 <td><div align="center" style="font-size:12px;">${re.re_content}</div></td>
-                <td><div align="right" style="font-size:12px;">${re.re_writedate}&nbsp;</div></td></tr>
+                <td><div align="center" style="font-size:12px;">${re.re_writedate}&nbsp;
+                <se:authentication property="name" var="LoginUser" />
+	            	<c:if test="${LoginUser eq re.user_id}">
+	            		<input type="button" class="btn-xs btn-danger" value="삭제" onclick="delete_re('${re.re_idx}')"/>
+	            	</c:if>
+                </div>
+                </td></tr>
                 </c:forEach>
                 </c:otherwise>
                 </c:choose>

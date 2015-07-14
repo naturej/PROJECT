@@ -3,9 +3,35 @@
 <%String user_id = (String)request.getAttribute("user_id");%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>	
-	<link href="css/table-base/bootstrap.min.css" rel="stylesheet">
-	<link href="css/AdminLTE.css" rel="stylesheet">
-	<link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
+	<link href="<%=request.getContextPath()%>/css/table-base/bootstrap.min.css" rel="stylesheet">
+	<link href="<%=request.getContextPath()%>/css/AdminLTE.css" rel="stylesheet">
+	<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css">
+	
+	 <!--글 내용 CK EDITOR  -->
+    <script type="text/javascript">
+            $(function() {
+                CKEDITOR.replace('editor1');
+            });
+    </script>
+        
+	<!-- 공지사항 유효성 검사 -->
+	<script type="text/javascript">
+	function checkboard(){
+		var ckeditor = CKEDITOR.instances['editor1']; //CKEITOR의 내용을 갖고오기위해 객체 받아온다
+		if (document.boardForm.subject.value == "") { //id값이 없을 경우
+				alert("제목을 입력하세요"); //메세지 경고창을 띄운 후
+				document.boardForm.subject.focus(); // id 텍스트박스에 커서를 위치
+				return false;
+			}
+		 else if(ckeditor.getData()=="") {	// 가져온 Date가 값이 없을 경우
+				alert("글 내용을 입력하세요");
+				ckeditor.focus();			
+				return false;											
+			}
+		 document.boardForm.submit();
+	}
+	</script>
+	
 	<div id="content">
 	<section id="service" class="home-section text-center">
 		<div class="heading-about">
@@ -24,7 +50,7 @@
                 <section class="content">
                             <div class='box box-info'>
                                 <div class='box-body pad' align="center">
-                                    <form action="" method="post" enctype="multipart/form-data">
+                                    <form action="" method="post" name="boardForm" enctype="multipart/form-data">
                                     <input type="hidden" id="user_id" name="user_id" value="<%=user_id%>"/>                    
                                     <table>
                                     <tr><td><label>Subject</label></td><td>
@@ -37,12 +63,11 @@
                                     	<tr><td><label>Input file</label></td><td>
                                     	<input type="file" id="file" name="file"></td></tr>
                                     </table>
+                                     </form>
                                     <br><br>
                                 	<div align="center">
-	 									  	<button type="submit"  class="btn btn-sm btn-skin" >작성완료</button>
+	 									  	<button type="button"  class="btn btn-sm btn-skin" onclick="checkboard()" >작성완료</button>
 	   								  </div>
-	   								   </form>
-	   								   
                                 </div>
                             </div><!-- /.box -->
                 </section><!-- /.content -->
@@ -54,14 +79,4 @@
 	</div>
 	 <script src="<%=request.getContextPath()%>/js/ckeditor/ckeditor.js" type="text/javascript"></script>
 	 <script src="<%=request.getContextPath()%>/js/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
-        
-        <script type="text/javascript">
-            $(function() {
-                // Replace the <textarea id="editor1"> with a CKEditor
-                // instance, using default configuration.
-                CKEDITOR.replace('editor1');
-                //bootstrap WYSIHTML5 - text editor
-                $(".textarea").wysihtml5();
-            });
-        </script>
 	
