@@ -174,6 +174,7 @@ public class MemberController {
 		return "login.searchForm";
 	}
 	
+	// ID 찾기
 	@RequestMapping(value="id_search.five",method=RequestMethod.POST)
 	String id_search(String email,Model model){
 		System.out.println(email);
@@ -194,6 +195,7 @@ public class MemberController {
 		return null;
 	}
 	
+	// 비밀번호 찾기
 	@RequestMapping(value="pwd_search.five",method=RequestMethod.POST)
 	String pwd_search(String user_id,String email,Model model,HttpServletRequest req){
 		System.out.println(user_id+"/"+email);
