@@ -246,7 +246,7 @@
     	<div class="boxed-grey">
     	<form action="" method="post" name="updateForm" enctype="multipart/form-data" >
 	    	<div class="row">
-				<div class="col-md-4 col-lg-4">
+				<div class="col-sm-offset-4 col-md-4 col-lg-4">
 					<!-- ID --> 
 					<div class="input-group">
 					<span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;I &nbsp;D&nbsp;&nbsp;&nbsp;</span>
@@ -375,7 +375,7 @@
 				</div>
 			</div>
 			</form>
-			<div class="col-md-4 col-lg-4">
+			<div class="col-sm-offset-4 col-md-4 col-lg-4">
 				<button type="button" class="btn btn-skin pull-center"  onclick="checkfield()">확 인</button>
 				<a href="userInfoUpdate.five"><button type="reset" class="btn btn-skin pull-center">취 소</button></a>
 			</div>
