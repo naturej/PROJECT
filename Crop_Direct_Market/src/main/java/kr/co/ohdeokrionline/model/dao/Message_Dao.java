@@ -15,6 +15,8 @@ public interface Message_Dao {
 	public Message_DTO sendDetail(String me_num);
 	// 받은 메세지 조회수 증가
 	public int updateSend(String me_num);
+	// 받은 메세지 읽음 Header 표시
+	public int updaterec(String me_num);
 	// 메세지 작성
 	public void insertRec(Message_DTO message);
 	// 메세지 작성

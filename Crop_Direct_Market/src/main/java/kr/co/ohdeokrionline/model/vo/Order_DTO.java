@@ -18,8 +18,19 @@ public class Order_DTO {
    String or_how;
    String add_code;
    
+   int count;
+   
+   
+   //주문번호에 갖고있는 건수 
+   public int getCount() {
+	return count;
+}
 
-   public String getOr_id() {
+public void setCount(int count) {
+	this.count = count;
+}
+
+public String getOr_id() {
       return or_id;
    }
 

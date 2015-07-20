@@ -32,6 +32,9 @@ public interface Order_Dao {
 	//주문 LIST 출력문
 	public List<Order_DTO> orderlist(String buy_userid);
 	
+	//주문 LIST 주문번호 출력문
+	public List<Order_DTO> ordercodelist(String buy_userid);
+	
 	//실구매자 아이디 출력
 	public List<String> buyUser(String bo_num);
 	
@@ -50,5 +53,8 @@ public interface Order_Dao {
 
 		// 실구매자 여부 출력
 	// public String buyUser(String bo_num, String buy_userid);
+	
+	//판매자 '입금확인 중' 주문 수
+	public int newordercount(String user_id);
 	
 }

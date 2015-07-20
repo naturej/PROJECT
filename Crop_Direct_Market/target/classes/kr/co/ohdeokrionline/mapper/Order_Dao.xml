@@ -54,7 +54,7 @@
 		WHERE s.USER_ID = #{user_id}
 		</select>
 	
-	<!-- 주문list 출력 -->
+<!-- 주문list 출력 -->
    <select id="orderlist" resultType="kr.co.ohdeokrionline.model.vo.Order_DTO">
         SELECT O.OR_ID , 
           TO_CHAR(O.OR_DATE,'YYYY-MM-DD') AS OR_DATE ,
@@ -67,6 +67,15 @@
           O.OR_HOW , S.BO_NUM
           FROM ORDERLIST O JOIN SALBOARD S on O.BO_NUM=S.BO_NUM where O.BUY_USERID=#{buy_userid}
           ORDER BY O.OR_DATE DESC
+   </select>
+   
+   <!-- 주문ID list 출력 -->
+   <select id="ordercodelist" resultType="kr.co.ohdeokrionline.model.vo.Order_DTO">
+        SELECT OR_ID,count(OR_ID)as count
+       from orderlist 
+       where BUY_USERID=#{buy_userid}
+       GROUP BY OR_ID
+       ORDER BY OR_ID DESC    
    </select>
 	
 	<!-- 실구매자 확인 -->
@@ -98,5 +107,12 @@
 	<update id="upbal">
 	 UPDATE BALANCE SET SAL_ON=SAL_ON+#{param3} WHERE USER_ID=#{param1} AND BAL_DATE=#{param2}
 	</update>
+	
+	<!-- Header에 판매자가 로그인 시 자신의 새로운 판매 건수  -->
+	<select id="newordercount" resultType="Int">
+	select count(*) as count 
+	from orderlist 
+	where SELL_USERID=#{user_id} AND OR_STATE='입금확인 중'
+	</select>
 	
 </mapper>

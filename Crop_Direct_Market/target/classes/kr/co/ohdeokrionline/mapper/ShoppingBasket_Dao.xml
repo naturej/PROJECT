@@ -53,4 +53,10 @@
 		  SELECT USER_ID,USER_NAME,EMAIL,PHOTO,ADDR,ADDD,ADD_CODE,CELL_PHONE 
 		  FROM USERS WHERE USER_ID=#{user_id}
 	</select>
+	
+	<!-- 장바구니 List 갯수 count 출력 -->
+	<select id="shopbagcount" resultType="Int">
+	select count(*) as count 
+	from SHOPBAG where user_id=#{user_id}
+	</select>
 </mapper>

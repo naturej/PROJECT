@@ -29,7 +29,7 @@
 		} else if($("#startdate").val() > $("#enddate").val()){
 			alert('종료일보다 시작일이 먼저 올 수 없습니다.');
 		} else {
-
+				console.log($("#dirm").serialize());
 			$.ajax({
 				type:'post',
 				url : 'dirm_sinchung.five',
@@ -79,10 +79,10 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="text" name="user_send" value="${user_send}" hidden>
-					<input type="text" name="user_rec" value="${param.user_rec}" hidden>
-					<input type="text" name="pro_id" value="${param.pro_id}" hidden>
-					<input type="text" name="dirm_sub" value="${param.pro_id} 직거래 신청" hidden>
+					<input type="hidden" name="user_send" value="${user_send}">
+					<input type="hidden" name="user_rec" value="${param.user_rec}">
+					<input type="hidden" name="pro_id" value="${param.pro_id}">
+					<input type="hidden" name="dirm_sub" value="${param.pro_id} 직거래 신청">
 				</td>
 			</tr>
 			<tr>

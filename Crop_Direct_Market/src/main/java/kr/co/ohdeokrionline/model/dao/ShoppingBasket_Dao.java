@@ -21,4 +21,6 @@ public interface ShoppingBasket_Dao {
 	public void deleteall();
 	// 회원 정보 보여주기(배송주소)
 	public List<Member_DTO> meminfo(String user_id);
+	//장바구니에 상품 갯수 보여주기
+	public int shopbagcount(String user_id);
 }	

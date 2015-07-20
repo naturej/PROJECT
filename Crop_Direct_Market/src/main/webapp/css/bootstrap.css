@@ -4303,11 +4303,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: #3071a9;
 }
 .label-success {
-  background-color: #5cb85c;
+  background-color: #1ABC9C;
+  font-size: inherit;
 }
 .label-success[href]:hover,
 .label-success[href]:focus {
-  background-color: #449d44;
+  background-color: #1ABC9C;
+  font-size: inherit;
 }
 .label-info {
   background-color: #5bc0de;

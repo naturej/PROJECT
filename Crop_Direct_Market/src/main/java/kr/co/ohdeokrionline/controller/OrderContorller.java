@@ -1,5 +1,7 @@
 package kr.co.ohdeokrionline.controller;
 
+import net.sf.json.JSONArray;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
@@ -100,7 +102,9 @@ public class OrderContorller {
 	public String ordermanage(Model model,Principal principal) throws IOException{
 		String buy_userid = principal.getName();
 		Order_Dao orderdao = sqlsession.getMapper(Order_Dao.class);
+		List<Order_DTO> codelist = orderdao.ordercodelist(buy_userid);
 		List<Order_DTO> orderlist = orderdao.orderlist(buy_userid); 
+		model.addAttribute("codelist", codelist);
 		model.addAttribute("orderlist",orderlist);
          return "mypage.ordermanage";
 	}
@@ -213,4 +217,14 @@ public class OrderContorller {
 		
 		return "mypage.yesDirm";
 	}
+	
+	//판매자 '입금확인 중' 주문 COUNT 
+	@RequestMapping("newordercount.five")
+	public void newordercount(String user_id,HttpServletResponse response) throws IOException{
+		Order_Dao dao = sqlsession.getMapper(Order_Dao.class);
+		int newcount =dao.newordercount(user_id);
+		JSONArray tocount = JSONArray.fromObject(newcount);
+        response.getWriter().print(tocount);
+	}
+	
 }

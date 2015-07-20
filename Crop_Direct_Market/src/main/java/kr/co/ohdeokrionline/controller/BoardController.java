@@ -148,18 +148,14 @@ public class BoardController {
 			 re.setRe_content(re_content);
 			 re.setUser_id(principal.getName());
 			 boardDao.re_insert(re);
-			 //댓글 LIST 출력문
-			 List<B_reply_DTO> list = boardDao.re_list(idx);
-			 JSONArray relists = JSONArray.fromObject(list);
-	         response.getWriter().print(relists);
 		 } 
 		 
 		//공지사항 자신 댓글 삭제
-		 @RequestMapping(value="re_del.five", method=RequestMethod.POST)
-		public void redel(B_reply_DTO re){
-			 Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
-			 boardDao.re_ondel(re.getRe_idx());
-		 }
+			@RequestMapping(value="re_del.five", method=RequestMethod.POST)
+			public void redel(int re_idx,String idx,HttpServletResponse response) throws IOException{
+				 Board_Dao boardDao= sqlsession.getMapper(Board_Dao.class);
+				 boardDao.re_ondel(re_idx);
+			 }
 		
 		 
 	}

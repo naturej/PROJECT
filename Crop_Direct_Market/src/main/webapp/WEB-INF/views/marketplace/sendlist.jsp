@@ -36,7 +36,7 @@
 					<c:choose>
 						<c:when test="${empty m2}">
 							<tr>
-								<td colspan="6">보낸 메세지가 없습니다.</td8ㅑㅡ>
+								<td colspan="6">보낸 메세지가 없습니다.</td>
 							</tr>
 						</c:when>
 						<c:otherwise>

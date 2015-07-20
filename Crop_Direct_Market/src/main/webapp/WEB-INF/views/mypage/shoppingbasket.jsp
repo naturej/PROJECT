@@ -6,6 +6,7 @@
     pageEncoding="UTF-8"%>
 <link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -132,13 +133,14 @@ $(function(){
 			"<span class='input-group-addon'>지역주소</span><input type='text' class='form-control' name='addr' id='addr' value='"+$('#addr').val()+"' readonly='readonly'/></div><div class='input-group'>"+
 			"<span class='input-group-addon'>세부주소</span><input type='text' class='form-control' name='addd' id='addd' value='"+$('#addd').val()+"' readonly='readonly'/></div></div></table>";
 			$('#addfrm').html(output); 
-
+			
 			$('#exadd').click(function(){
+	/* 			 console.log($('#add_code').val());
 				  var exaddr = "<div class='input-group'><span class='input-group-addon'>우편번호</span><input type='text' class='form-control' name='add_code' id='add_code' value='"+$('#add_code').val()+"' readonly='readonly'/>"+
 					"<span class='input-group-addon'>지역주소</span><input type='text' class='form-control' name='addr' id='addr' value='"+$('#addr').val()+"' readonly='readonly'/></div><div class='input-group'>"+
 					"<span class='input-group-addon'>세부주소</span><input type='text' class='form-control' name='addd' id='addd' value='"+$('#addd').val()+"' readonly='readonly'/></div>";
-					  
-			   	$('#newaddfrm').html(exaddr); 
+					   */
+				 $('#addfrm').html(output);  
 			   	});
 			 $('#newadd').click(function(){
 					var newaddr = "<div class='input-group'><span class='input-group-addon'>우편번호</span><input type='text' class='form-control' name='add_code' id='add_code' placeholder='AddressCode' required readonly='readonly'/>"+
@@ -262,13 +264,15 @@ $(function(){
 	</tr>
 	<c:set var="sum" value="0"/>
 	<c:forEach items="${list}" var="e">
+	<fmt:formatNumber value="${e.bo_price}" pattern="###,###,###" var="bo_price"/>
+	<fmt:formatNumber value="${e.sh_price}" pattern="###,###,###" var="sh_price"/>
 	<tr>
 		<td><input type="checkbox" name="shoplist" id="shoplist" checked="checked"
 		 class="shap" value="${e.bo_num},${e.sh_price},${e.sh_quantity},${e.sell_id}"></td>
 		<td>${e.bo_subject}</td>
-		<td>${e.bo_price}</td>
-		<td>${e.sh_quantity}</td>
-		<td>${e.sh_price}</td>
+		<td>${bo_price}원</td>
+		<td>${e.sh_quantity}개</td>
+		<td>${sh_price}원</td>
 		<td>${e.sell_id}</td>
 		<td><select id="how" name="how">
 					<option>선택</option>

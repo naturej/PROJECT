@@ -5,6 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>주문관리</title>
@@ -48,7 +49,6 @@
  				}
  	        }});
 	};
-	
 	function popup(sell_userid,pro_name){
 		window.open('popupDirm.five?user_rec='+sell_userid+'&pro_id='+pro_name,'직거래 신청','width=430, height=550, scrollbars=no')
 	}
@@ -72,7 +72,6 @@
 				<table class="table table-hover" id="basket">
 					<tr>
 						<td>주문번호</td>
-						<td>주문날짜</td>
 						<td>제목</td>
 						<td>품목</td>
 						<td>구매갯수</td>
@@ -81,17 +80,21 @@
 						<td>배송방법</td>
 						<td>주문상태</td>
 					</tr>
-					<c:set var="sum" value="0" />
+					<c:forEach items="${codelist}" var="code">
+					<c:set value="${code.count}" var="count"/>
+					<tr>
+					<td rowspan="${code.count}" style="vertical-align:middle;">${code.or_id}</td>
 					<c:forEach items="${orderlist}" var="ord">
-						<c:set var="sum" value="${sum+ord.or_cost}"></c:set>
-						<tr>
-							<td>${ord.or_id}</td>
-							<td>${ord.or_date}</td>
+					<c:if test="${code.or_id==ord.or_id}">
+					<c:if test="${code.count!=count}">
+					<tr>
+					</c:if>
+					<fmt:formatNumber value="${ord.or_cost}" pattern="###,###,###" var="or_cost"/>
 							<td><a href="<%=request.getContextPath()%>/salesboard/salesdetail.five?bo_num=${ord.bo_num}">${ord.bo_subject}</a></td>
 							<td>${ord.pro_name}</td>
 							<td>${ord.or_quan}</td>
 							<td><a onclick="seller_info('${ord.sell_userid}')">${ord.sell_userid}</a></td>
-							<td>${ord.or_cost}</td>
+							<td>${or_cost}원</td>
 							<td>
 							<c:choose>
 								<c:when test="${ord.or_how eq '직거래'}">
@@ -125,8 +128,12 @@
 									<td>${ord.or_state}</td>
 								</c:otherwise>
 							</c:choose>
-						</tr>
+							<c:set var="count" value="${count-1}"/>					
+						</c:if>
 					</c:forEach>
+					</tr>
+					</c:forEach>
+		
 				</table>
 
 			</div>

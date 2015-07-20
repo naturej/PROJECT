@@ -13,17 +13,17 @@
 		System.out.println(user_id);
 %>
 <script type="text/javascript">
-function delete_re(re_idx){
-		console.log('del(re_idx) 진입');
+function delete_re(re_idx,idx){
 		$.ajax({
 			type: "POST",
 			url: "re_del.five",
-			data: {re_idx : re_idx},
-			success: function(data){
-				location.href="salboarddetail.five?idx="$('#idx');
+			data: {re_idx : re_idx,
+				   idx : idx},
+			success: function(responseData){
+		      	location.reload();
 			}
 		});
-	}
+	};
 </script>
 <script type="text/javascript">
 $(function(){
@@ -40,20 +40,8 @@ $(function(){
 			},
 			dataType:"html",
 			success : function(responseData){
-				  console.log("전송성공");
-				  var options="";
-		      	  var relist = JSON.parse(responseData);
-		          options="<table class='table'><tr><td><div align='center' style='font-size:12px;'>작성자</div></td>"+
-        					"<td><div align='center' style='font-size:12px;'>내용</div></td>"+
-        					"<td><div align='right' style='font-size:12px;'>작성일</div></td></tr>"; 
-		      	  $.each(relist, function(index,re){
-		      		  options+= "<tr><td><div align='center' style='font-size:12px;'>"+re.user_id+"</div></td>"+
-	                 		   "<td><div align='center' style='font-size:12px;'>"+re.re_content+"</div></td>"+
-	               			   "<td><div align='right' style='font-size:12px;'>"+re.re_writedate+"&nbsp;</div></td></tr>";          
-		      	  });
-		      	  options+="</table>"
-		            $('#reli').html(options);
-				  
+			    console.log("전송성공");
+		      	location.reload();
 			},
 	    error: function (xhr,Options,thrownError) {}
    		 }); 
@@ -109,16 +97,17 @@ $(function(){
             	<c:otherwise>
             		<tr><td><div align="center" style="font-size:12px;">작성자</div></td>
             		<td><div align="center" style="font-size:12px;">내용</div></td>
-            		<td><div align="center" style="font-size:12px;">작성일</div></td></tr>
+            		<td><div align="right" style="font-size:12px;">작성일</div></td>
+            		<td></td></tr>
 				<c:forEach items="${list}" var="re">
                 <tr><td><div align="center" style="font-size:12px;">${re.user_id}</div></td>
                 <td><div align="center" style="font-size:12px;">${re.re_content}</div></td>
-                <td><div align="center" style="font-size:12px;">${re.re_writedate}&nbsp;
+                <td><div align="right" style="font-size:12px;">${re.re_writedate}&nbsp;</div></td>
+                <td>
                 <se:authentication property="name" var="LoginUser" />
 	            	<c:if test="${LoginUser eq re.user_id}">
-	            		<input type="button" class="btn-xs btn-danger" value="삭제" onclick="delete_re('${re.re_idx}')"/>
+	            		<input type="button" class="btn-xs btn-danger" value="삭제" onclick="delete_re('${re.re_idx}','${re.idx}')"/>
 	            	</c:if>
-                </div>
                 </td></tr>
                 </c:forEach>
                 </c:otherwise>

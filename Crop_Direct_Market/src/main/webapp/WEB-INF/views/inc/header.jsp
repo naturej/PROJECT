@@ -3,7 +3,40 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se"
 	uri="http://www.springframework.org/security/tags"%>
+<script type="text/javascript">
+$(function(){
+	if($('#rec_userid').val()!=null){
+   	$.ajax({
+			url:'<%=request.getContextPath()%>/salesboard/messagecount.five',
+			data:{rec_userid:$('#rec_userid').val()},
+			dataType:"html",
+			success : function(data){
+				var count = JSON.parse(data);
+				$('#mes').html(count);
+	        }
+		});
+	$.ajax({
+		url:'<%=request.getContextPath()%>/manage/newordercount.five',
+		data:{user_id:$('#rec_userid').val()},
+		dataType:"html",
+		success : function(data){
+			var neworder = JSON.parse(data);
+			$('#order').html(neworder);
+       	 	}
+		});
+	$.ajax({
+		url:'<%=request.getContextPath()%>/salesboard/shopbagcount.five',
+		data:{user_id:$('#rec_userid').val()},
+		dataType:"html",
+		success : function(data){
+			var shopcount = JSON.parse(data);
+			$('#shopbag').html(shopcount);
+     		   }
+		});	
+	}
+});
 
+</script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/dropdown.css" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath()%>/css/dropdown.js"></script>
 <style>
@@ -120,12 +153,43 @@
 						</ul>
 					</dd>
 				</li>
+				
+				<!-- 메세지, 장바구니, 새로운 주문목록 -->
+				<se:authorize ifAnyGranted="ROLE_SELLER,ROLE_CONSUMER,ROLE_ADMIN">
+				<li>
+				<a href="<%=request.getContextPath()%>/salesboard/receiveList.five">
+                                <i class="fa fa-envelope"></i>
+                                <span class="label label-success" id="mes" style="background-color: #1ABC9C; font-size:inherit;"></span>
+                </a>
+                </li>
+                </se:authorize>
+                
+              	<se:authorize ifAnyGranted="ROLE_SELLER">
+				<li>
+				<a href="<%=request.getContextPath()%>/manage/sellermanage.five">
+                                <i class="fa fa-bell"></i>
+                                <span class="label label-success" style="background-color: #1ABC9C; font-size:inherit;" id="order"></span>
+                </a>
+                </li>
+                </se:authorize>  
+                
+                 	<se:authorize ifAnyGranted="ROLE_CONSUMER">
+				<li>
+				<a href="<%=request.getContextPath()%>/salesboard/shopList.five">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span class="label label-success" id="shopbag" style="background-color: #1ABC9C; font-size:inherit;"></span>
+                </a>
+                </li>
+                </se:authorize>
+                
+                <!--  메세지, 장바구니, 새로운 주문목록 끝 -->
 
 				<se:authorize ifNotGranted="ROLE_SELLER,ROLE_CONSUMER,ROLE_ADMIN">
 					<li><a href="<%=request.getContextPath()%>/login.five">LOGIN</a></li>
 				</se:authorize>
 				<se:authentication property="name" var="LoginUser" />
 				<se:authorize ifAnyGranted="ROLE_CONSUMER,ROLE_ADMIN,ROLE_SELLER">
+				<input type="hidden" value="${LoginUser}" id="rec_userid">
 					<li><a href="<c:url value='/j_spring_security_logout' />">${LoginUser}님 <span id="log">LOGOUT</span></a></li>
 				</se:authorize>
 			</ul>

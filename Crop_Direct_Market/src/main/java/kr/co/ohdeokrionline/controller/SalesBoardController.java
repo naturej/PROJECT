@@ -243,6 +243,7 @@ public class SalesBoardController {
 		Message_Dao dao = sqlSession.getMapper(Message_Dao.class);
 		Message_DTO dto = dao.recDetail(me_num);
 		dao.updateSend(me_num);
+		dao.updaterec(me_num);
 		model.addAttribute("dto",dto);
 		
 		return "marketplace.receiveDetail";
@@ -532,5 +533,23 @@ public class SalesBoardController {
 				e.printStackTrace();
 			}
 			return "mypage/manage_async";
+		}
+		//Header 안 읽은 message수 
+		@RequestMapping("messagecount.five")
+		public void message(String rec_userid,HttpServletResponse response) throws IOException{
+			System.out.println(rec_userid);
+			int count=0;
+			Message_Dao dao = sqlSession.getMapper(Message_Dao.class);
+			count = dao.msgNum(rec_userid);
+			 JSONArray tocount = JSONArray.fromObject(count);
+	         response.getWriter().print(tocount);
+		} 
+		//장바구니에 담긴 상품 수
+		@RequestMapping("shopbagcount.five")
+		public void shopbagcount(String user_id, HttpServletResponse response) throws IOException{
+			ShoppingBasket_Dao dao = sqlSession.getMapper(ShoppingBasket_Dao.class);
+			int count = dao.shopbagcount(user_id);
+			 JSONArray tocount = JSONArray.fromObject(count);
+	         response.getWriter().print(tocount);
 		}
 }

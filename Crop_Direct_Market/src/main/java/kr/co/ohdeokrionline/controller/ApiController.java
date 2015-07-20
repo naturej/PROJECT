@@ -421,7 +421,6 @@ public class ApiController {
 		 List<Separate_DTO> list = salboardDao.seplist();
 		 JSONArray seplists = JSONArray.fromObject(list);
         response.getWriter().print(seplists);//서버로 데이터 전송
-        System.out.println("서버로 seplist 전송완료");
 	     }
 	 
 		//견적서에서 품명가져오기
@@ -433,11 +432,9 @@ public class ApiController {
 		 ArrayList<Product_DTO> list = salboardDao.prolist(pro_sep);
 		 JSONArray prolists = JSONArray.fromObject(list);
         response.getWriter().print(prolists);//서버로 데이터 전송
-        System.out.println("서버로 prolist 전송완료");
 	     }
 		
-		
-
+		 	
 		
 
 }
