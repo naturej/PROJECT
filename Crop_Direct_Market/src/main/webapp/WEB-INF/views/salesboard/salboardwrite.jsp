@@ -4,10 +4,6 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <link href="css/table-base/bootstrap.min.css" rel="stylesheet">
 <link href="css/AdminLTE.css" rel="stylesheet">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/mintTheme.css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css" />
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
@@ -62,7 +58,6 @@
 					var options = "<option>품명</option>";
 					var prolist = JSON.parse(responseData);
 					$.each(prolist, function(index, plist) {
-						console.log(plist.pro_name);
 						options += "<option>" + plist.pro_name + "</option>";
 					});
 					$('#pro_name').html(options);
@@ -117,6 +112,55 @@
 		document.salform.submit();
 	}
 </script>
+<!-- 판매자에게 도매가 정보 -->
+<script type="text/javascript">
+$(function() {
+$('#pro_name').on("change", function() {
+	var form_data = {
+			work : $("#work").val(),
+			type : $("#type").val()
+	};
+	$.ajax({
+		type : "POST",
+		url : '<%=request.getContextPath()%>/searchPriceApi.five',
+		data : form_data,
+		success : function(data) { //서버가 보낸 data
+			data = JSON.parse(data);
+			$('#table').empty();
+			for ( var _title in data.title) {
+				$('#table').append("<td align='center'>"
+									+ data.title[_title] +"</td>");
+			}
+			for (var i = 0; i < data.result.length; i++) {
+				$('#table').append("<tr id="+i+"></tr>");
+				for ( var _result in data.result[i]) {
+						var qu = data.result[i].article.search($('#pro_name').val())
+					if(qu!=-1){
+						$('#' + i).append("<td align='center'>"
+											+ data.result[i][_result] +"</td>");
+						}
+					}
+				}
+			}
+		});
+	});
+});
+</script>
+<script type="text/javascript">
+  $(function(){
+    function runEffect() {
+      var selectedEffect = 'blind';
+      var options = {};
+      $( "#effect" ).toggle( selectedEffect, options, 500 );
+    };
+    $( "#detail" ).click(function() {
+      runEffect();
+    });
+  });
+</script>	
+<input type="hidden" value="1" id="work">
+<input type="hidden" value="1" id="type">
+
 
 <div id="content">
 	<section id="service" class="home-section text-center">
@@ -131,7 +175,7 @@
 								<p>Sales Board Write</p>
 							</div>
 						</div>
-
+							
 						<!-- Main content -->
 						<section class="content">
 							<div class='box box-info'>
@@ -151,8 +195,8 @@
 												<tr>
 													<td colspan="5"><textarea id="editor1" name="editor1"
 															rows="5" cols="80">
-      내용을 입력하세요
-    </textarea></td>
+												      내용을 입력하세요
+												    </textarea></td>
 												</tr>
 												<tr>
 													<td><label>가격</label></td>
@@ -189,6 +233,19 @@
 											</table>
 										</div>
 									</form>
+									<div align="right">
+									<input type="button" value="실시간 가격 확인" id="detail">
+									</div>
+									<div class="toggler">
+								    <div id="effect" class="ui-widget-content ui-corner-all">
+								    <br><br><br>
+								     <h3 class="ui-widget-header ui-corner-all">실시간 가격 확인</h3>
+								     
+								     <table class="table" id="table">
+								     </table>
+								    </div>
+								    </div>
+																	
 								</div>
 							</div>
 						</section>
