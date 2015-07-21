@@ -36,20 +36,21 @@ public class FarmController {
 			bal_date = year;
 		}
 		
-		System.out.println(principal.getName());
-		System.out.println(bal_date);
 		List ballist_income = dao.getbalgra_income(principal.getName(),bal_date);
 		List ballist_total = dao.getbalgra_total(principal.getName(),bal_date);
 		List ballist_date= dao.getbalgra_date(principal.getName(),bal_date);
 		List sal_on = dao.gra_salon(principal.getName(),bal_date);
 		List sal_mar = dao.gra_salmar(principal.getName(),bal_date);
+		List baldetail = dao.getdetatilbal(principal.getName(), bal_date);
 		
 		JSONArray jsonArray = new JSONArray();
+		
 		model.addAttribute("totallist", jsonArray.fromObject(ballist_total));
 		model.addAttribute("datelist", jsonArray.fromObject(ballist_date));
 		model.addAttribute("incomelist", jsonArray.fromObject(ballist_income));
 		model.addAttribute("sal_on", jsonArray.fromObject(sal_on));
 		model.addAttribute("sal_mar",jsonArray.fromObject(sal_mar));
+		model.addAttribute("baldetail",jsonArray.fromObject(baldetail));
 		return "mypage.daechaStats";
 	}
 	

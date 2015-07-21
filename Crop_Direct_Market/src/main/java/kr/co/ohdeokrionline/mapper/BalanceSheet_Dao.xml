@@ -37,14 +37,6 @@
 		 ORDER BY BAL_DATE ASC
 	</select>
 	
-	<!-- 손익계산서 그래프 화 amount
-	<select id="getbalgra_amout" resultType="kr.co.ohdeokrionline.model.vo.BalanceSheet_DTO">
-		 SELECT BAL_DATE,SAL_ON,SAL_MAR,SAL_INCOME FROM BALANCE 
-		 WHERE USER_ID='${param1}' AND BAL_DATE LIKE '%${param2}%'
-		 ORDER BY BAL_DATE ASC
-	</select>
-	 -->
-	
 		<!-- ROUND 그래프 화 SAL_ONLINE -->
 	<select id="gra_salon" resultType="INTEGER">
 		 SELECT SAL_ON FROM BALANCE 
@@ -93,6 +85,11 @@
           WHERE USER_ID=#{user_id} AND BAL_DATE=#{bal_date}
 	</update>
 	
-	
+	<!-- 손익계산서 상세 내역 LIST-->
+	<select id="getdetatilbal" resultType="kr.co.ohdeokrionline.model.vo.BalanceSheet_DTO">
+		 SELECT * FROM BALANCE
+		 WHERE USER_ID='${param1}' AND BAL_DATE LIKE '%${param2}%'
+		 ORDER BY BAL_DATE DESC
+	</select>
 	
 </mapper>

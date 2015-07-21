@@ -43,5 +43,7 @@ public interface BalanceSheet_Dao {
 		//ROUND GRAPH 직거래장터매출
 		public List gra_salmar(String user_id,String bal_date);
 				
-	
+		//손익계산서 세부사항 LIST
+		public List getdetatilbal(String user_id,String bal_date);
+		
 }

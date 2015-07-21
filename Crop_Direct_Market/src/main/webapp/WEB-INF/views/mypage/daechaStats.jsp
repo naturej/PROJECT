@@ -2,11 +2,12 @@
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
-<title>Doughnut Chart</title>
 
+<title>Doughnut Chart</title>
 
 <script src="<%=request.getContextPath()%>/js/Chart.js"></script>
 <%
@@ -123,6 +124,83 @@
 							} ]
 				} ;
 			</script>
+			
+<script>
+  $(function(){
+	 $( "#effect" ).toggle( 'blind', {}, 500 ); 
+  });
+
+  $(function() {
+    function runEffect() {
+      var selectedEffect = 'blind';
+      var options = {};
+      $( "#effect" ).toggle( selectedEffect, options, 500 );
+    };
+    $( "#detail" ).click(function() {
+      runEffect();
+    });
+  });
+  </script>		
+ 
+  <input type="button" class="btn btn-sm btn-skin" id="detail" value="상세보기">	
+  
+  <div class="toggler">
+    <div id="effect" class="ui-widget-content ui-corner-all">
+    <br><br><br>
+     <h3 class="ui-widget-header ui-corner-all">손익계산서 상세내역</h3>
+     
+     <table class="table">
+     <tr>
+     <td></td>
+     <td colspan="2">매출</td>
+     <td>매출원가</td>
+     <td colspan="3">판매비 및 일반관리비</td>
+     <td>영업 외 수익</td>
+     <td colspan="2">영업 외 비용</td>
+     <td></td>
+     </tr>
+     <tr>
+     <td>일자</td>
+     <td>온라인거래</td>
+     <td>직거래장터</td>
+     <td>상품원가</td>
+     <td>소모품비</td>
+     <td>대여비</td>
+     <td>잡비</td>
+     <td>잡이익</td>
+     <td>이자비용</td>
+     <td>잡손실</td>
+     <td style="background-color:#fae6db;">당기순이익</td>
+     </tr>
+   
+     <c:forEach items="${baldetail}" var="detail">
+     <fmt:formatNumber value="${detail.sal_on}" pattern="###,###,###" var="sal_on"/>
+     <fmt:formatNumber value="${detail.sal_mar}" pattern="###,###,###" var="sal_mar"/>
+     <fmt:formatNumber value="${detail.sal_cost}" pattern="###,###,###" var="sal_cost"/>
+     <fmt:formatNumber value="${detail.ex_supplies}" pattern="###,###,###" var="ex_supplies"/>
+     <fmt:formatNumber value="${detail.ex_renter}" pattern="###,###,###" var="ex_renter"/>
+     <fmt:formatNumber value="${detail.ex_etc}" pattern="###,###,###" var="ex_etc"/>
+     <fmt:formatNumber value="${detail.sal_gain}" pattern="###,###,###" var="sal_gain"/>
+     <fmt:formatNumber value="${detail.ex_inter}" pattern="###,###,###" var="ex_inter"/>
+     <fmt:formatNumber value="${detail.ex_loss}" pattern="###,###,###" var="ex_loss"/>
+     <fmt:formatNumber value="${detail.sal_income}" pattern="###,###,###" var="sal_income"/>
+      <tr>
+      <td>${detail.bal_date}</td>
+      <td>${sal_on}원</td>
+      <td>${sal_mar}원</td>
+      <td>${sal_cost}원</td>
+      <td>${ex_supplies}원</td>
+      <td>${ex_renter}원</td>
+      <td>${ex_etc}원</td>
+      <td>${sal_gain}원</td>
+      <td>${ex_inter}원</td>
+      <td>${ex_loss}원</td>
+      <td style="background-color:#fae6db;">${sal_income}원</td>
+      </c:forEach>
+      </table>
+     
+ 	  </div>
+ 	</div>
 			
 		</div>
 	</div>
