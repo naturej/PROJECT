@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="se"
+	uri="http://www.springframework.org/security/tags"%>
+	
 <c:set var="nowpage" value="${requestScope.page}" />
 <c:set var="maxpage" value="${requestScope.maxpage}" />
 <c:set var="startpage" value="${requestScope.startpage}" />
@@ -10,17 +13,18 @@
 <html>
 
 <link rel="icon" href="favicon.png" type="image/png">
-<link href="/ohdeokrionline/css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="/ohdeokrionline/css/style.css" rel="stylesheet" type="text/css">
-<link href="/ohdeokrionline/css/linecons.css" rel="stylesheet" type="text/css">
-<link href="/ohdeokrionline/css/font-awesome.css" rel="stylesheet" type="text/css">
-<link href="/ohdeokrionline/css/responsive.css" rel="stylesheet" type="text/css">
-<link href="/ohdeokrionline/css/animate.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="/ohdeokrionline/js/jquery.1.8.3.min.js"></script>
-<script type="text/javascript" src="/ohdeokrionline/js/jquery-scrolltofixed.js"></script>
-<script type="text/javascript" src="/ohdeokrionline/js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="/ohdeokrionline/js/jquery.isotope.js"></script>
-<script type="text/javascript" src="/ohdeokrionline/js/classie.js"></script>
+<link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/css/linecons.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/css/responsive.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/css/animate.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.1.8.3.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-scrolltofixed.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.isotope.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/classie.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function(e) {
@@ -51,27 +55,28 @@ function resizeText() {
 	$(".divclass").css("font-size", newFontSizeTitle)
 }
 </script>
+<!--new_portfolio--> 
+<!-- Portfolio -->
 
-<!-- <section id="service" class="home-section text-center">
-			<div class="heading-about">
-				<div class="container">
-				<div class="row">
-					<div class="col-lg-8 col-lg-offset-2">
-						<div class="wow bounceInDown" data-wow-delay="0.4s">
+<section id="Portfolio" class="content">
+	<section id="service" class="home-section text-center"  style="position: static">	
+	<div class="heading-about">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.4s">
 						<div class="section-heading">
-						<h2>SALESBOARD</h2>
-						<i class="fa fa-2x fa-angle-down"></i>
-						<p>농산물 판매</p>
-						</div>
+							<h2>무료 나눔</h2>
+							<i class="fa fa-2x fa-angle-down"></i>
+							<p>무료 나눔 정보</p>
 						</div>
 					</div>
 				</div>
-</section> -->
-<!--new_portfolio--> 
-<!-- Portfolio -->
-<section id="Portfolio" class="content">
-  	<div class="portfolio-top"></div>
-  	<!-- Portfolio Plus Filters -->
+			</div>
+		</div>
+	</div>
+	</section>
+	<!-- Container -->
   	<div class="portfolio"> 
     <!-- Portfolio Filters -->
     <div id="filters" class="sixteen columns">
@@ -79,20 +84,23 @@ function resizeText() {
         	<li><a id="all" href="" data-filter="*" class="active">
           		<h5>All</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".곡류">
-          		<h5>곡류</h5>
+        	<li><a class="" href="" data-filter=".서울">
+          		<h5>서울시</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".콩류">
-          		<h5>콩류</h5>
+        	<li><a class="" href="" data-filter=".경기">
+          		<h5>경기도</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".구근류">
-          		<h5>구근류</h5>
+        	<li><a class="" href="" data-filter=".경상">
+          		<h5>경상도</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".채소">
-          		<h5>채소</h5>
+        	<li><a class="" href="" data-filter=".전라">
+          		<h5>전라도</h5>
           	</a></li>
-        	<li><a class="" href="" data-filter=".과실류">
-          		<h5>과실류</h5>
+        	<li><a class="" href="" data-filter=".강원">
+          		<h5>강원도</h5>
+          	</a></li>
+          	<li><a class="" href="" data-filter=".제주">
+          		<h5>제주도</h5>
           	</a></li>
       	</ul>
     </div>
@@ -101,18 +109,19 @@ function resizeText() {
     <!-- Portfolio Wrap -->
     <div class="isotope" style="position: relative; overflow: hidden; height: 480px;" id="portfolio-wrap"> 
      	<c:forEach items="${list}" var="n">
-      		<div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four   ${n.sep} isotope-item">
-        		<div class="portfolio-image"><img src="<%=request.getContextPath()%>/freemboard/upload/${n.fm_photo}" alt="Portfolio 1"></div>
-        		<a title="Stereo Headphones" rel="prettyPhoto[galname]" href="salesdetail.five?bo_num=${n.bo_num}">
+ 		<div style="position:absolute; left: 0px; top: 0px; transform: translate3d(1101px, 240px, 0px) scale3d(1, 1, 1) ; width: 337px; opacity: 1; " class="portfolio-item one-four 제주 isotope-item">
+        		<div class="portfolio-image"> ${n.fm_date}-${n.fm_end}<img src="<%=request.getContextPath()%>/upload/${n.fm_photo}"></div>
+        		<a title="Stereo Headphones" rel="prettyPhoto[galname]" href="freemboarddetail.five?fm_id=${n.fm_id}">
         		<div class="project-overlay">
           			<div class="project-info">
-          				${n.fm_time}
+          				 ${n.fm_date}-${n.fm_end}
             			<div class="zoom-icon"></div>
-            			<h4 class="project-name">${n.bo_subject}</h4>
-            			<p class="project-categories">${n.fm_location}</p>
+            			<h4 class="project-name">${n.fm_subject}</h4>
+            			<p class="project-categories">${n.fm_time}</p>
           			</div>
         		</div>
-        		</a></div>
+        		</a>
+        		</div>
 		</c:forEach>
 	</div>
     <!--/Portfolio Wrap --> 
@@ -122,32 +131,34 @@ function resizeText() {
   		<br>
   		<br>
 	   	<c:choose>
-				<c:when test="${nowpage<=1}">
+			<c:when test="${nowpage<=1}">
 				[이전]&nbsp;
-				</c:when>
-				<c:otherwise>
-					<a href="<%=request.getContextPath()%>/salboardlist.five?pg=${nowpage-1}">[이전]</a>&nbsp;
-					</c:otherwise>
-				</c:choose>
-				<c:forEach var="i"  begin="${startpage}" end="${endpage}" step="1">
-				<c:choose>
+			</c:when>
+			<c:otherwise>
+				<a href="<%=request.getContextPath()%>/freemboard/freemboardlist.five?pg=${nowpage-1}">[이전]</a>&nbsp;
+			</c:otherwise>
+		</c:choose>
+		<c:forEach var="i"  begin="${startpage}" end="${endpage}" step="1">
+			<c:choose>
 				<c:when test="${i==nowpage}">
-				[${i}]
+					[${i}]
 				</c:when>
 				<c:otherwise>
-					<a href="<%=request.getContextPath()%>/salesboard/salboardlist.five?pg=${i}">[${i}]</a>&nbsp;
+					<a href="<%=request.getContextPath()%>/freemboard/freemboardlist.five?pg=${i}">[${i}]</a>&nbsp;
 				</c:otherwise>
-				</c:choose>
-				</c:forEach>
-				<c:choose>
+			</c:choose>
+		</c:forEach>
+		<c:choose>
 					<c:when test="${nowpage>=maxpage}">
 					[다음]
 					</c:when>
 					<c:otherwise>
-						<a href="<%=request.getContextPath()%>/salesboard/salboardlist.five?pg=${nowpage+1}">[다음]</a>&nbsp;
+						<a href="<%=request.getContextPath()%>/freemboard/freemboardlist.five?pg=${nowpage+1}">[다음]</a>&nbsp;
 					</c:otherwise>
 				</c:choose>
-				<a href="<%=request.getContextPath()%>/salesboard/salboardwrite.five">글쓰기</a>
+				<se:authorize ifAllGranted="ROLE_SELLER">
+				<a href="<%=request.getContextPath()%>/freemboard/freemboardwrite.five">글쓰기</a>
+				</se:authorize>
 	</div>
 	<!-- Project Page Holder-->
   	<div id="project-page-holder">
@@ -182,12 +193,9 @@ $(window).load(function(){
 </script>
 
 <script type="text/javascript">
-   
 jQuery(document).ready(function($){     
 // Portfolio Isotope
 	var container = $('#portfolio-wrap');	
-	
-
 	container.isotope({
 		animationEngine : 'best-available',
 	  	animationOptions: {
@@ -206,11 +214,9 @@ jQuery(document).ready(function($){
 	  	return false;
 	});
 		
-		
 		function splitColumns() { 
 			var winWidth = $(window).width(), 
 				columnNumb = 1;
-			
 			
 			if (winWidth > 1024) {
 				columnNumb = 4;

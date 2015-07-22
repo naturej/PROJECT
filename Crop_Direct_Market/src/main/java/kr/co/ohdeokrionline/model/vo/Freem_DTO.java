@@ -1,7 +1,5 @@
 package kr.co.ohdeokrionline.model.vo;
 
-import java.util.Date;
-
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class Freem_DTO {
@@ -10,14 +8,24 @@ public class Freem_DTO {
 	private String fm_content;
 	private String fm_location;
 	private String fm_time;
-	private Date fm_date;
-	private Date writedate;
+	private String fm_date;
+	private String writedate;
 	private String fm_photo;
 	private String farminfo;
 	private String pro_name;
 	private CommonsMultipartFile file;
 	private String editor1;
+	private String fm_end;
 	
+	//
+	private String user_id;
+	
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	public int getFm_id() {
 		return fm_id;
 	}
@@ -48,16 +56,22 @@ public class Freem_DTO {
 	public void setFm_time(String fm_time) {
 		this.fm_time = fm_time;
 	}
-	public Date getFm_date() {
+	public String getFm_date() {
 		return fm_date;
 	}
-	public void setFm_date(Date fm_date) {
+	public void setFm_date(String fm_date) {
 		this.fm_date = fm_date;
 	}
-	public Date getWritedate() {
+	public String getWritedate() {
 		return writedate;
 	}
-	public void setWritedate(Date writedate) {
+	public String getFm_end() {
+		return fm_end;
+	}
+	public void setFm_end(String fm_end) {
+		this.fm_end = fm_end;
+	}
+	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
 	public String getFm_photo() {

@@ -3,6 +3,7 @@ package kr.co.ohdeokrionline.model.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import kr.co.ohdeokrionline.model.vo.FarmRecord_DTO;
 import kr.co.ohdeokrionline.model.vo.Freem_DTO;
 
 public interface Freem_Dao {
@@ -20,5 +21,8 @@ public interface Freem_Dao {
 		public void hitUp(String fm_id);
 		//게시물 입력
 		public int insert(Freem_DTO Freem);
+		//농장이름, 주소 가져오기
+		public List<FarmRecord_DTO> farminfo(String user_id);
 
 }
+
