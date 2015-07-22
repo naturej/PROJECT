@@ -83,8 +83,6 @@
                                     	<input type="file" id="file" name="file"></td></tr>
                                     </table>
                                 	<div align="center">
-                                	<button type="submit"
-											class="btn btn-sm btn-skin" >submit</button>
 	 									  	<button type="button"
 											class="btn btn-sm btn-skin" onclick="checkform()">작성</button>
 	   								  </div>
