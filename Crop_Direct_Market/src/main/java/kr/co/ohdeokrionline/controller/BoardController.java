@@ -71,7 +71,7 @@ public class BoardController {
 			 			CommonsMultipartFile file =n.getFile();
 			 			String fname = file.getOriginalFilename();
 				       if(file != null){
-						String path = request.getServletContext().getRealPath("/board/upload");
+						String path = request.getServletContext().getRealPath("/upload");
 						String fullpath = path + "\\" + fname;
 						if(!fname.equals("")){
 							FileOutputStream fs = new FileOutputStream(fullpath);

@@ -192,7 +192,7 @@ public class ApiController {
 		String nx = request.getParameter("nx");
 		String ny = request.getParameter("ny");
 		//Nbu2yzWsKZr7OFAPm4tFcA%2FWXQZpK3WmlXnDTiT7Bo4Alm8SaaENkPo0fvrg2AVNIj4Z5woLK84bmemjo1%2BNrA%3D%3D
-		String URL ="http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService/ForecastGrib?ServiceKey=";
+		String URL ="http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService/ForecastGrib?ServiceKey=Nbu2yzWsKZr7OFAPm4tFcA%2FWXQZpK3WmlXnDTiT7Bo4Alm8SaaENkPo0fvrg2AVNIj4Z5woLK84bmemjo1%2BNrA%3D%3D";
 		URL += "&base_date="+base_date+"&base_time="+base_time+"&nx="+nx+"&ny="+ny;
 	
 		
