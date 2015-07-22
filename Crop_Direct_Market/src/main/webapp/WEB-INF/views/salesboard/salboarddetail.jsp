@@ -303,7 +303,7 @@ function com(n) {
 											<td>${r.re_score}</td>
 										</c:otherwise>
 									</c:choose>
-									<td>${r.review_id}</td>
+									<td><a href="" onclick="popup('${r.review_id}')">${r.review_id}</a></td>
 									<td>${r.re_date}</td>
 								</tr>
 							</c:forEach>
