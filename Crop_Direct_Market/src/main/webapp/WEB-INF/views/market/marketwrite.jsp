@@ -1,5 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<link href="css/table-base/bootstrap.min.css" rel="stylesheet">
+<link href="css/AdminLTE.css" rel="stylesheet">
+
+<!-- 장터글 유효성 검사 -->
+<script type="text/javascript">
+	function checkform() {
+		var mar_content = CKEDITOR.instances['mar_content']; //CKEITOR의 내용을 갖고오기위해 객체 받아온다
+		var mardate = /^[0-9][0-9]\/[0-1][0-9]\/[0-3][0-9]/;
+		if (document.marketform.mar_subject.value == "") { //id값이 없을 경우
+			alert("제목을 입력하세요"); //메세지 경고창을 띄운 후
+			document.marketform.mar_subject.focus(); // id 텍스트박스에 커서를 위치
+			return false;
+		} else if (document.marketform.mar_time.value == "") {
+			alert("시간을 입력하세요");
+			document.marketform.mar_time.focus();
+			return false;
+		} 
+		else if (!mardate.test(document.marketform.mar_date.value)) {
+			alert("날짜를 00/00/00 형식으로 입력하세요");
+			document.marketform.mar_date.focus();
+			return false;
+		} 
+		else if (document.marketform.mar_location.value == "") {
+			alert("장소를 입력하세요");
+			document.marketform.mar_location.focus();
+			return false;
+		} else if (isNaN(document.marketform.mar_maxshop.value)) {
+			alert("입점가능한 수를 입력하세요(숫자만)");
+			document.marketform.mar_maxshop.focus();
+			return false;
+		} else if (mar_content.getData() == "") { // 가져온 Date가 값이 없을 경우
+			alert("글 내용을 입력하세요");
+			mar_content.focus();
+			return false;
+		} 
+		
+		document.marketform.submit();
+	}
+</script>
 <link href="css/table-base/bootstrap.min.css" rel="stylesheet">
 	<link href="css/AdminLTE.css" rel="stylesheet">
 	
@@ -21,7 +62,8 @@
                 <section class="content">
                             <div class='box box-info'>
                                 <div class='box-body pad' align="center">
-                                    <form action="" method="post" enctype="multipart/form-data">
+                                    <form action="" method="post" enctype="multipart/form-data"
+                                    name="marketform" id="marketform">
                                     <table>
                                     <tr><td><label>Subject</label></td><td>
 	   								 <input type="text" class="form-control" id="mar_subject" name="mar_subject" placeholder="Subject ..."/></td></tr>
@@ -40,10 +82,13 @@
                                     	<tr><td><label>Input file</label></td><td>
                                     	<input type="file" id="file" name="file"></td></tr>
                                     </table>
-                                	<div align="right">
-	 									  	<button type="submit" class="btn btn-primary">Submit</button>
+                                	<div align="center">
+                                	<button type="submit"
+											class="btn btn-sm btn-skin" >submit</button>
+	 									  	<button type="button"
+											class="btn btn-sm btn-skin" onclick="checkform()">작성</button>
 	   								  </div>
-	   								   </form>
+	   								</form>
 	   								   
                                 </div>
                             </div><!-- /.box -->
@@ -54,16 +99,13 @@
 	</div>
 	</section>
 	</div>
-	 <script src="<%=request.getContextPath()%>/js/ckeditor/ckeditor.js" type="text/javascript"></script>
-	 <script src="<%=request.getContextPath()%>/js/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/js/ckeditor/ckeditor.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
         
-        <script type="text/javascript">
-            $(function() {
-                // Replace the <textarea id="editor1"> with a CKEditor
-                // instance, using default configuration.
-                CKEDITOR.replace('mar_content');
-                //bootstrap WYSIHTML5 - text editor
-                $(".textarea").wysihtml5();
-            });
-        </script>	
-	</form>
+<script type="text/javascript">
+	$(function() {
+		CKEDITOR.replace('mar_content');
+		$(".textarea").wysihtml5();
+		});
+</script>	
+	
