@@ -168,8 +168,8 @@ function com(n) {
             <se:authorize ifAllGranted="ROLE_CONSUMER">
 			<tr>
 				<td colspan="3">
-		            <input type="button" id="opener" value="장바구니 담기" onclick="CheckForm()">
-		            <input type="button" id="enuri" value="에누리 신청" onclick="Enuri('${salboardDto.bo_num}','${salboardDto.user_id}','${salboardDto.pro_name}')">
+		            <input type="button" class="btn btn-sm btn-skin" id="opener" value="장바구니 담기" onclick="CheckForm()">&nbsp;&nbsp;
+		            <input type="button" class="btn btn-sm btn-skin" id="enuri" value="에누리 신청" onclick="Enuri('${salboardDto.bo_num}','${salboardDto.user_id}','${salboardDto.pro_name}')">
 	            </td>
             </tr>
 			</se:authorize>
