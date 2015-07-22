@@ -6,6 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>받은 메세지함</title>
+<script type="text/javascript">
+function newMessage(){
+	window.open('newMessage.five','쪽지 보내기', 'width=430, height=420, scrollbars=no')
+}
+</script>
 </head>
 <body>
 	<div id="content" style="height:100%">
@@ -51,6 +56,7 @@
 						</c:otherwise>
 					</c:choose>
 				</table>
+				<a href="" onclick="newMessage()">메세지 작성하기</a>
 			</div>
 		</div>
 		</section>
