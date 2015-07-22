@@ -71,11 +71,11 @@
    
    <!-- 주문ID list 출력 -->
    <select id="ordercodelist" resultType="kr.co.ohdeokrionline.model.vo.Order_DTO">
-        SELECT OR_ID,count(OR_ID)as count
+    	SELECT OR_ID,count(OR_ID)as count,OR_DATE
        from orderlist 
-       where BUY_USERID=#{buy_userid}
-       GROUP BY OR_ID
-       ORDER BY OR_ID DESC    
+       where BUY_USERID='consumer01'
+       GROUP BY OR_ID, OR_DATE
+       ORDER BY OR_DATE DESC 
    </select>
 	
 	<!-- 실구매자 확인 -->
