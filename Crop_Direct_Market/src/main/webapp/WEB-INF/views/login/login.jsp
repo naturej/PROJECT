@@ -33,6 +33,9 @@
 				 		<c:when test="${fail eq 'Could not get JDBC Connection; nested exception is java.sql.SQLRecoverableException: ORA-01033: ORACLE initialization or shutdown in progress'}">
 				 			데이터베이스 오류; 데이터베이스가 초기화나 종료 처리 중입니다.
 				 		</c:when>
+				 		<c:when test="${fail eq 'Could not get JDBC Connection; nested exception is java.sql.SQLException: ORA-01017: invalid username/password; logon denied'}">
+				 			데이터베이스 오류; 로그온이 거부됐습니다.
+				 		</c:when>
 				 		<c:otherwise>
 				 			reason : ${fail}
 				 		</c:otherwise>
