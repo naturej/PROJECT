@@ -2,6 +2,7 @@ package kr.co.ohdeokrionline.model.vo;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class Market_DTO {
@@ -9,6 +10,7 @@ public class Market_DTO {
 	private String mar_subject;
 	private String mar_content;
 	private String mar_location;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date mar_date;
 	private String mar_time;
 	private String mar_photo;
@@ -50,6 +52,7 @@ public class Market_DTO {
 	public Date getMar_date() {
 		return mar_date;
 	}
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	public void setMar_date(Date mar_date) {
 		this.mar_date = mar_date;
 	}

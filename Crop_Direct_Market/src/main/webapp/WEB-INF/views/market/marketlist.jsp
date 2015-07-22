@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se"
 	uri="http://www.springframework.org/security/tags"%>
+	
 <c:set var="nowpage" value="${requestScope.page}" />
 <c:set var="maxpage" value="${requestScope.maxpage}" />
 <c:set var="startpage" value="${requestScope.startpage}" />
@@ -109,11 +110,11 @@ function resizeText() {
     <div class="isotope" style="position: relative; overflow: hidden; height: 480px;" id="portfolio-wrap"> 
      	<c:forEach items="${list}" var="n">
       		<div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four   ${n.mar_location} isotope-item">
-        		<div class="portfolio-image"> ${n.writedate}<img src="<%=request.getContextPath()%>/market/upload/${n.mar_photo}"></div>
+        		<div class="portfolio-image"> ${n.mar_date}<img src="<%=request.getContextPath()%>/market/upload/${n.mar_photo}"></div>
         		<a title="Stereo Headphones" rel="prettyPhoto[galname]" href="detailmarket.five?mar_id=${n.mar_id}">
         		<div class="project-overlay">
           			<div class="project-info">
-          				${n.writedate}
+          				${n.mar_date}
             			<div class="zoom-icon"></div>
             			<h4 class="project-name">${n.mar_subject}</h4>
             			<p class="project-categories">${n.mar_time}</p>

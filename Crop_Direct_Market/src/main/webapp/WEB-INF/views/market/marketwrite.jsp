@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	function checkform() {
 		var mar_content = CKEDITOR.instances['mar_content']; //CKEITOR의 내용을 갖고오기위해 객체 받아온다
-		var mardate = /^[0-9][0-9]\/[0-1][0-9]\/[0-3][0-9]/;
+		var mardate = /^[0-9][0-9][0-9][0-9]\/[0-1][0-9]\/[0-3][0-9]/;
 		if (document.marketform.mar_subject.value == "") { //id값이 없을 경우
 			alert("제목을 입력하세요"); //메세지 경고창을 띄운 후
 			document.marketform.mar_subject.focus(); // id 텍스트박스에 커서를 위치
@@ -20,7 +20,7 @@
 			return false;
 		} 
 		else if (!mardate.test(document.marketform.mar_date.value)) {
-			alert("날짜를 00/00/00 형식으로 입력하세요");
+			alert("날짜를 0000/00/00 형식으로 입력하세요");
 			document.marketform.mar_date.focus();
 			return false;
 		} 
