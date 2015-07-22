@@ -71,9 +71,9 @@
    
    <!-- 주문ID list 출력 -->
    <select id="ordercodelist" resultType="kr.co.ohdeokrionline.model.vo.Order_DTO">
-    	SELECT OR_ID,count(OR_ID)as count,OR_DATE
+    	SELECT OR_ID,count(OR_ID)as count
        from orderlist 
-       where BUY_USERID='consumer01'
+       where BUY_USERID=#{buy_userid}
        GROUP BY OR_ID, OR_DATE
        ORDER BY OR_DATE DESC 
    </select>
