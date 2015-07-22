@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ohdeokrionline.model.dao.Enuri_Dao;
+import kr.co.ohdeokrionline.model.dao.Member_Dao;
 import kr.co.ohdeokrionline.model.dao.Message_Dao;
 import kr.co.ohdeokrionline.model.dao.Report_Dao;
 import kr.co.ohdeokrionline.model.dao.ReviewWrite_Dao;
@@ -552,4 +553,33 @@ public class SalesBoardController {
 			 JSONArray tocount = JSONArray.fromObject(count);
 	         response.getWriter().print(tocount);
 		}
+		
+		// 회원체크
+		@RequestMapping(value="isMember.five")
+		String check_user_id(String user_id,Model model){
+			Member_Dao dao = sqlSession.getMapper(Member_Dao.class);
+			try {
+				String checked = dao.check_user_id(user_id);
+				if(checked!=null){
+					model.addAttribute("user_id", "등록된 회원입니다.");
+					return "login/id_search";
+				}else{
+					model.addAttribute("user_id", "메세지를 보낼 수 없습니다. 등록된 회원이 아닙니다.");
+					return "login/id_search";
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+		
+		
+		// 새로운 메시지 발송창 팝업 
+		@RequestMapping("newMessage.five")
+		public String newMessage(Model model, Principal principal) {
+			model.addAttribute("send_userid", principal.getName());
+			return "marketplace/messageWriteForm";
+		}
+		
 }
