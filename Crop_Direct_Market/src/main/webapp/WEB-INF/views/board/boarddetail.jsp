@@ -47,6 +47,10 @@ $(function(){
    		 }); 
 	});
 });
+
+function popup(id){
+	window.open('popup.five?rec_userid='+id,'쪽지 보내기', 'width=430, height=420, scrollbars=no')
+}
 </script>
 
 		<html class="no-js">
@@ -77,7 +81,7 @@ $(function(){
 				<table class="table">
 				<tr><td colspan="2"><div align="left" style="height: 50px; font-size: 20px;">>&nbsp;${boardDto.subject}</div>
 				</td><td align="right">${boardDto.writedate}</td></tr>
-				<tr><td colspan="3" align="right">글쓴이&nbsp;${boardDto.user_id}&nbsp;&nbsp;&nbsp;&nbsp;첨부파일&nbsp;${boardDto.filename}</td></tr>
+				<tr><td colspan="3" align="right">글쓴이&nbsp;<a href="" onclick="popup('${boardDto.user_id}')">${boardDto.user_id}</a>&nbsp;&nbsp;&nbsp;&nbsp;첨부파일&nbsp;${boardDto.filename}</td></tr>
 				<tr><td colspan="3" align="left">내용</td></tr>
 				<tr><td colspan="3"><br><br>${boardDto.content}<br><br></td></tr>
 				<tr><td colspan="3" align="left">댓글</td></tr>

@@ -11,13 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ohdeokrionline.model.dao.Board_Dao;
+import kr.co.ohdeokrionline.model.dao.Message_Dao;
 import kr.co.ohdeokrionline.model.vo.B_reply_DTO;
 import kr.co.ohdeokrionline.model.vo.Board_DTO;
+import kr.co.ohdeokrionline.model.vo.Message_DTO;
 import net.sf.json.JSONArray;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -157,6 +160,23 @@ public class BoardController {
 				 boardDao.re_ondel(re_idx);
 			 }
 		
-		 
+			// 메시지 발송창 팝업 
+			@RequestMapping("popup.five")
+			public String openpopup(Model model, Principal principal, String rec_userid) {
+				model.addAttribute("rec_userid", rec_userid);
+				model.addAttribute("send_userid", principal.getName());
+				return "marketplace/messageForm";
+			}
+			
+			// 메세지 보내기
+			@Transactional
+			@RequestMapping("sendMessage.five")
+			public void insert(Message_DTO message) {
+				System.out.println("sendmsg");
+				Message_Dao dao = sqlsession.getMapper(Message_Dao.class);
+				dao.insertRec(message);
+				dao.insertSend(message);
+				System.out.println("insert구문 종료");
+		}
 	}
 
