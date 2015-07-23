@@ -41,19 +41,19 @@
 	<input type="hidden" id="user_id" name="user_id" value="<%=user_id%>"/>
 	<div class="Free_Share">
 	<table>
-	<tr><td><label>제목</label></td><td><input class="form-control" type="text" name="fm_subject"/></td></tr>
-	<tr><td>시작일:<input type="text" name="fm_date" id="startdate"></td>
-		<td>종료일:<input type="text" name="fm_end" id="enddate"></td>
+	<tr><td><label>제목</label></td><td colspan="3"><input class="form-control" type="text" name="fm_subject"/></td></tr>
+	<tr><td>시작일:</td><td style="width: 100px;"><input type="text" name="fm_date" id="startdate"></td>
+		<td>종료일:</td><td><input type="text" name="fm_end" id="enddate"></td>
 	</tr>
-	<tr><td>방문시간</td><td><input type="text" name="fm_time"></td></tr>
+	<tr><td>방문시간</td><td colspan="3"><input class="form-control" type="text" name="fm_time"></td></tr>
 	<tr>
-	<tr><td colspan="2">
+	<tr><td colspan="4">
 	<textarea id="editor1" name="editor1" rows="5" cols="80">
       내용을 입력하세요
     </textarea>
 	</td></tr>
 	<tr><td><label>사진</label></td><td><input type="file" name="file"></td></tr>
-	<tr><td colspan="2"><button type="submit" class="btn btn-primary">Submit</button></td></tr>
+	<tr><td colspan="4" align="center"><button type="submit" class="btn btn-sm btn-skin">작성</button></td></tr>
 	</table>
 	</div>
 	
