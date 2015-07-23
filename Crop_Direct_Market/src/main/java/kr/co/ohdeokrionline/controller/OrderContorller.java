@@ -109,6 +109,15 @@ public class OrderContorller {
          return "mypage.ordermanage";
 	}
 	
+	@RequestMapping("buyer_address.five")
+	public String buyerinfo(Model model, HttpServletRequest request) throws IOException{
+		Order_Dao dao = sqlsession.getMapper(Order_Dao.class);
+		String or_id = request.getParameter("or_id");
+		List<Order_DTO> buyer_address = dao.buyer_address(or_id);
+		model.addAttribute("buyer",buyer_address);
+		return "mypage/buyer_info";
+	}
+	
 //	1추가
 //	판매자 계좌 정보확인 
 	@RequestMapping("seller_account.five") 
