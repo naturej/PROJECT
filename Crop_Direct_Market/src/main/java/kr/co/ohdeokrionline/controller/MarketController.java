@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -140,7 +141,8 @@ public class MarketController {
 		System.out.println(mar_id);
 		System.out.println(mar_parti);
 		System.out.println(request.getParameter("mar_date"));
-		String[] date = request.getParameter("mar_date").split(". ");
+		String[] date = request.getParameter("mar_date").trim().split(". ");
+		System.out.println(Arrays.toString(date));
 		System.out.println(date[0]+"/"+date[1]+"/"+date[2]);
 		Market_Dao market_dao = sqlsession.getMapper(Market_Dao.class);
 		ScheduleRecord2_Dao schedule2Dao = sqlsession.getMapper(ScheduleRecord2_Dao.class);
