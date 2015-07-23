@@ -91,6 +91,13 @@
 	  	FROM account
 	  	WHERE user_id=#{sell_userid}
   	</select>
+  	
+  	<!-- 구매자 배송지 확인 -->
+  	<select id="buyer_address" resultType="kr.co.ohdeokrionline.model.vo.Order_DTO">
+  		SELECT DISTINCT BUY_USERID, OR_ADDR, OR_ADDD, ADD_CODE
+		FROM ORDERLIST
+		WHERE OR_ID=#{or_id} AND OR_ADDR != '직거래'
+  	</select>
 
 	<!-- 소비자가 입금 했을 때 -->
 	<update id="moneychecking" >

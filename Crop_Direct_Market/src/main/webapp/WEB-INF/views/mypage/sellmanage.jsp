@@ -10,6 +10,13 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript">
+
+	function buyer_info(or_id) {
+		var or_id = or_id;
+		window.open('buyer_address.five?or_id=' + or_id, '주문자 배송지 정보',
+				'top=100px, left=100px, height=240 width=300')
+	}
+
 	function check(order_num, bo_num,or_cost) {
 		
 		var ob=order_num+bo_num;
@@ -92,7 +99,7 @@
 				<td>${list.pro_name}</td>
 				<td>${list.or_quan}</td>
 				<td>${list.or_cost}</td>
-				<td>${list.buy_userid}</td>
+				<td><a onclick="buyer_info('${list.or_id}')">${list.buy_userid}</a></td>
 				<c:choose>
 					<c:when test="${list.or_addr=='직거래'}">
 						<td>직거래</td>

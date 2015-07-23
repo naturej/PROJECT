@@ -45,6 +45,9 @@ public interface Order_Dao {
 	//	판매자 계좌 정보 확인 쿼리
 	public List<Account_DTO> seller_account(String sell_userid);
 	
+	// 구매자 배송지 정보 확인 쿼리
+	public List<Order_DTO> buyer_address(String or_id);
+	
 	// 판매자 손익계산서에 온라인 구매 금액 환산(손익계산서 없을 때)
 	public int crebal(String user_id,String bal_date,int or_cost);
 	
