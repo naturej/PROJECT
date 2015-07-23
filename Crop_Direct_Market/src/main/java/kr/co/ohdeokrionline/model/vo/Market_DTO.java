@@ -99,4 +99,15 @@ public class Market_DTO {
 	public void setEditor1(String editor1) {
 		this.editor1 = editor1;
 	}
+	@Override
+	public String toString() {
+		return "Market_DTO [mar_id=" + mar_id + ", mar_subject=" + mar_subject
+				+ ", mar_content=" + mar_content + ", mar_location="
+				+ mar_location + ", mar_date=" + mar_date + ", mar_time="
+				+ mar_time + ", mar_photo=" + mar_photo + ", writedate="
+				+ writedate + ", mar_parti=" + mar_parti + ", editor1="
+				+ editor1 + ", mar_maxshop=" + mar_maxshop + ", file=" + file
+				+ "]";
+	}
+	
 }

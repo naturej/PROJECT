@@ -1,3 +1,4 @@
+<%@page import="kr.co.ohdeokrionline.model.vo.Market_DTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -42,12 +43,14 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>
 
 <script type="text/javascript">
-	function marketparti(mar_id,mar_parti)
+	function marketparti(mar_id,mar_parti,mar_date,mar_subject)
 	{
 	   	$.ajax({
 				url:"marketpart.five",
 				data:{"mar_id" : mar_id,
-					  "mar_parti" : mar_parti	
+					  "mar_parti" : mar_parti,
+					  "mar_date" : mar_date,
+					  "mar_subject" : mar_subject
 				},
 				dataType:"html",
 				success : function(data){
@@ -109,7 +112,7 @@
             		<tr><td colspan="3"><div align="center" style="height: 30px; font-size: 20px;">>&nbsp;${marketDto.mar_subject}</div></td></tr>      
             		<tr><td colspan="3"><div id="img"><img class="" src="<%=request.getContextPath()%>/market/upload/${marketDto.mar_photo}" alt="" width=400px height=400px></div></td></tr>
 	            	<tr><td width="35%"></td><td align="left" colspan="2">위치 : ${marketDto.mar_location}</td></tr>
-		            <tr><td width="35%"></td><td align="left" colspan="2">날짜 : ${marketDto.mar_date}</td></tr>
+		            <tr><td width="35%"></td><td align="left" colspan="2">날짜 : ${marketDto.mar_date.toLocaleString().substring(0,11)}</td></tr>
 		            <tr><td width="35%"></td><td align="left" colspan="2">시간 : ${marketDto.mar_time}</td></tr>
 		            <tr><td width="35%"></td><td align="left" colspan="2">입점수 : <a onmouseover="part.value='${marketDto.mar_parti}'" onmouseout="part.value=''"><span id="person">${requestScope.person}</span>/${marketDto.mar_maxshop}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		            	<se:authentication property="name" var="LoginUser" />
@@ -121,7 +124,7 @@
 									</c:when>
 									<c:otherwise>
 										<se:authorize ifAnyGranted="ROLE_SELLER">
-											<input type="button" value="참가등록" id="parti" name="parti" onclick="marketparti('${marketDto.mar_id}','${LoginUser}')" >	
+											<input type="button" value="참가등록" id="parti" name="parti" onclick="marketparti('${marketDto.mar_id}','${LoginUser}','${marketDto.mar_date.toLocaleString().substring(0,11)}','${marketDto.mar_subject}')" >	
 										</se:authorize>
 									</c:otherwise>
 								</c:choose><br>

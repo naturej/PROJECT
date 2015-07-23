@@ -5,8 +5,18 @@
 <link href="css/table-base/bootstrap.min.css" rel="stylesheet">
 <link href="css/AdminLTE.css" rel="stylesheet">
 
+<!-- jQuery UI -->
+<script src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mintTheme.structure.min.css"/>
+
 <!-- 장터글 유효성 검사 -->
 <script type="text/javascript">
+	$(function(){
+		$('#mar_date').datepicker({
+			  dateFormat: "yy/mm/dd"
+		});
+	});
 	function checkform() {
 		var mar_content = CKEDITOR.instances['mar_content']; //CKEITOR의 내용을 갖고오기위해 객체 받아온다
 		var mardate = /^[0-9][0-9][0-9][0-9]\/[0-1][0-9]\/[0-3][0-9]/;
