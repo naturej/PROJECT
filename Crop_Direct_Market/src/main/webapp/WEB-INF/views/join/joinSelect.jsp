@@ -6,6 +6,8 @@
     <section id="contact" class="home-section text-center">
     	<div class="boxed-grey">
 		    <div class="row" style="height:400px;" align="center">
+		    <br></br>
+		    <br></br>
 			<table>
 				<tr>
 				<td align="center">
@@ -23,6 +25,8 @@
 				</tr>
 			</table>
 			</div>
+			<br></br>
+		    <br></br>
 		</div>
 	</section>
 	

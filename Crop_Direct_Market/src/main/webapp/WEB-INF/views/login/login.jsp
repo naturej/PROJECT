@@ -15,7 +15,6 @@
 </script>
     <!-- Section: contact -->
     <section id="contact" class="home-section text-center" style="position:static;">
-    	<div class="container" style="height: 620px;" align="center">
 			<c:if test="${param.error != null}">
 			<div id="dialog" title="로그인실패">
 				 <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
@@ -46,6 +45,9 @@
 			<c:url value="/j_spring_security_check" var="loginURL"/>
 			<form method="post" action="${loginURL}">
 				<div class="row" style="height:294px">
+					<br></br>
+		    		<br></br>
+		    		<br></br>
                     <div class="col-sm-4 col-sm-offset-4" style="float: left;">
                         <div class="form-group">
                             <label for="j_username">ID</label>
@@ -88,5 +90,9 @@
                     </div>
                 </div>
 			</form>
-		</div>
+			<br></br>
+		    <br></br>
+		    <br></br>
+		    <br></br>
+		    <br></br>
 	</section>

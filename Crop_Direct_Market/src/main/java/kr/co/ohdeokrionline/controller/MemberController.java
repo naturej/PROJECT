@@ -153,7 +153,8 @@ public class MemberController {
 		if(StringUtils.hasText(password)){
 			// 원암호 수집
 			//String path = req.getRealPath("/ohdeokrionline/etc/");
-			Writer wr = new FileWriter(remote_path+"/tmp.txt");
+			String re_path = req.getServletContext().getRealPath("upload");
+			Writer wr = new FileWriter(re_path+"/tmp.txt");
 			BufferedWriter bwr = new BufferedWriter(wr);
 			bwr.append(password);
 			bwr.newLine();

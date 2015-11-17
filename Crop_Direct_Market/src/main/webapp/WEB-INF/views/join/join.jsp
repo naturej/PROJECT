@@ -262,7 +262,7 @@
     
     <!-- Section: contact -->
     <section id="contact" class="home-section text-center" style="position: static;">
-    	<div class="boxed-grey" style="height:100%">
+    <div class="boxed-grey" style="height:100%">
 	
 	<!-- 회원가입 폼 -->
 	<form action="" method="post" name="joinForm" enctype="multipart/form-data">
@@ -410,11 +410,12 @@
 				<input type="hidden" name="authority" value="ROLE_CONSUMER">
 			</c:otherwise>
 		</c:choose>
-	</form>
-	<div class="col-sm-offset-4 col-md-4">
+		<div class="col-sm-offset-4 col-md-4">
 		<button type="button" class="btn btn-skin pull-center" onclick="checkfield()">가입확인</button>
 		<button type="reset" class="btn btn-skin pull-center" onclick="javascript:history.go(-1)">취 소</button>
-	</div>
+		</div>
+	</form>
+	
 	</div>
 	</section>
 	<div id="dialog" title="title">
